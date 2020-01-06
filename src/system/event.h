@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   event.h
  * Author: kazeshi
  *
@@ -12,11 +12,11 @@
 #include <stdbool.h>
 #include "../utils/closure.h"
 
-typedef enum event_type event_type_t;
 enum event_type {
     CLOSURE_EVENT,
     TIMER_EVENT
 };
+typedef enum event_type event_type_t;
 
 typedef struct event event_t;
 struct event {
@@ -35,12 +35,11 @@ void event_destroy(event_t *event);
 
 void event_config_closure(event_t *event, closure_t *closure);
 void event_config_timer(
-    event_t *event, 
+    event_t *event,
     uint16_t timeout_in_ms,
-    bool repeating, 
+    bool repeating,
     closure_t *closure,
     uint32_t current_time
 );
 
 #endif	/* EVENT_H */
-

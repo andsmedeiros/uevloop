@@ -20,7 +20,7 @@ void cqueue_clear(cqueue_t *queue, bool clear_buffer){
 
 bool cqueue_push(cqueue_t *queue, void *element){
     if(cqueue_is_full(queue)) return false;
-    
+
     const size_t head = (++queue->count + queue->tail) & queue->mask;
     queue->buffer[head] = element;
     return true;
@@ -28,7 +28,7 @@ bool cqueue_push(cqueue_t *queue, void *element){
 
 void *cqueue_pop(cqueue_t *queue){
     if(cqueue_is_empty(queue)) return NULL;
-    
+
     queue->count--;
     queue->tail = (queue->tail + 1) & queue->mask;
     void *element = queue->buffer[queue->tail];
@@ -38,13 +38,13 @@ void *cqueue_pop(cqueue_t *queue){
 
 void *cqueue_peek_tail(cqueue_t *queue){
     if(cqueue_is_empty(queue)) return NULL;
-    
+
     return queue->buffer[(queue->tail + 1) & queue->mask];
 }
 
 void *cqueue_peek_head(cqueue_t *queue){
     if(cqueue_is_empty(queue)) return NULL;
-    
+
     return queue->buffer[(queue->tail + queue->count) & queue->mask];
 }
 

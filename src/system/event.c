@@ -15,9 +15,9 @@ void event_config_closure(event_t *event, closure_t *closure){
 }
 
 void event_config_timer(
-    event_t *event, 
+    event_t *event,
     uint16_t timeout_in_ms,
-    bool repeating, 
+    bool repeating,
     closure_t *closure,
     uint32_t current_time
 ){

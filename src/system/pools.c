@@ -3,9 +3,9 @@
 
 void pools_init(pools_t *pools){
     objpool_init(
-        &pools->event_pool, 
-        EVENT_POOL_SIZE_LOG2N, 
-        sizeof(event_t), 
+        &pools->event_pool,
+        EVENT_POOL_SIZE_LOG2N,
+        sizeof(event_t),
         OBJPOOL_BUFFERS_AT(event, pools)
     );
     objpool_init(
@@ -18,7 +18,7 @@ void pools_init(pools_t *pools){
 
 objpool_t *pools_get(pools_t *pools, pool_id_t pool){
     switch (pool){
-        case EVENT_POOL: 
+        case EVENT_POOL:
             return &pools->event_pool;
             break;
         case LLIST_NODE_POOL:
