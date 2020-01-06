@@ -12,7 +12,7 @@ void llist_push_head(llist_t *list, llist_node_t *node){
         list->head->next = node;
     }
     if(list->tail == NULL){
-       list->tail = node; 
+       list->tail = node;
     }
     list->head = node;
     list->count++;
@@ -29,21 +29,23 @@ void llist_push_tail(llist_t *list, llist_node_t *node){
 
 llist_node_t *llist_pop_head(llist_t *list){
     if(list->head == NULL) return NULL;
-    
+
     llist_node_t *current = list->tail, *head = list->head;
-    while(current->next != head){
+    while(current->next != head && current->next != NULL){
         current = current->next;
     }
     current->next = NULL;
     list->head = current;
+    list->count--;
     return head;
 }
 
 llist_node_t *llist_pop_tail(llist_t *list){
     if(list->tail == NULL) return NULL;
-    
+
     llist_node_t *tail = list->tail;
     list->tail = list->tail->next;
+    list->count--;
     return tail;
 }
 
@@ -57,7 +59,7 @@ llist_node_t *llist_peek_tail(llist_t *list){
 llist_t llist_remove_until(llist_t *list, closure_t *should_remove){
     llist_t removed;
     llist_init(&removed);
-    
+
     llist_node_t *current;
     while((current = llist_peek_tail(list)) != NULL){
         bool fit_for_removal = (bool)closure_invoke(should_remove, current);
@@ -71,7 +73,7 @@ llist_t llist_remove_until(llist_t *list, closure_t *should_remove){
 
 void llist_insert_at(llist_t *list, llist_node_t *node, closure_t *should_insert){
     llist_node_t *current = llist_peek_tail(list);
-    
+
     if(current == NULL){
         llist_push_tail(list, node);
     }else{
@@ -81,10 +83,11 @@ void llist_insert_at(llist_t *list, llist_node_t *node, closure_t *should_insert
             if(fit_for_insertion){
                 node->next = current->next;
                 current->next = node;
+                list->count++;
                 return;
             }
             current = current->next;
         }
     }
-    
+
 }
