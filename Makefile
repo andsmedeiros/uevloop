@@ -1,11 +1,11 @@
+# CC=clang-9
 CC=gcc
-CFLAGS=-I./src/ -I. -O1 -Wall -pedantic -std=c99
+CFLAGS=-I./src/ -I. -O1 -Wall -pedantic -std=c99 -g
 OBJ=build/system/event.o build/system/pools.o build/system/scheduler.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o
-TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o
-# TEST_OBJ=build/test/system/event.o build/test/system/pools.o build/test/system/scheduler.o build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o
+TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o
 
 dist/test: dist/libuevloop.so build/test.o $(TEST_OBJ)
-	$(CC) -L$(shell pwd)/dist -o dist/test build/test.o $(TEST_OBJ) -luevloop $(CFLAGS)
+	$(CC) -L./dist -o dist/test build/test.o $(TEST_OBJ) -luevloop $(CFLAGS)
 
 build/test.o: test/test.c test/minunit.h
 	$(CC) -c -o build/test.o test/test.c $(CFLAGS)
@@ -30,10 +30,13 @@ build/utils/%.o: src/utils/%.c src/utils/%.h
 	mkdir -p build/utils
 	$(CC) -c -fpic  -o $@ $< $(CFLAGS)
 
-.PHONY: clean test
+.PHONY: clean test debug
 
 clean:
 	rm -rf build dist
 
 test:
-	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) ./dist/test
+	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so ./dist/test
+
+debug:
+	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) gdb dist/test
