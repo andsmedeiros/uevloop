@@ -3,6 +3,8 @@
 #include "test/utils/circular-queue.h"
 #include "test/utils/closure.h"
 #include "test/utils/linked-list.h"
+#include "test/utils/object-pool.h"
+#include "test/system/event.h"
 
 
 unsigned int tests_run = 0, groups_run = 0;
@@ -11,6 +13,8 @@ static char *run_all_tests(){
     mu_run_test_group("cqueue", cqueue_run_tests);
     mu_run_test_group("closure", closure_run_tests);
     mu_run_test_group("llist", llist_run_tests);
+    mu_run_test_group("objpool", objpool_run_tests);
+    mu_run_test_group("event", event_run_tests);
     return 0;
 }
 
