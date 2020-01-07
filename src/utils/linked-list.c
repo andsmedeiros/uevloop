@@ -77,16 +77,24 @@ void llist_insert_at(llist_t *list, llist_node_t *node, closure_t *should_insert
     if(current == NULL){
         llist_push_tail(list, node);
     }else{
-        while(current != NULL){
-            llist_node_t *nodes[2] = { current, current->next };
-            bool fit_for_insertion = (bool)closure_invoke(should_insert, (void *)&nodes);
-            if(fit_for_insertion){
-                node->next = current->next;
-                current->next = node;
-                list->count++;
-                return;
+        llist_node_t *nodes[2] = { NULL, current };
+        bool fit_for_insertion = (bool)closure_invoke(should_insert, (void *)&nodes);
+
+        if(fit_for_insertion){
+            llist_push_tail(list, node);
+        }else{
+            while(current != NULL && !fit_for_insertion){
+                nodes[0] = current;
+                nodes[1] = current->next;
+                fit_for_insertion = (bool)closure_invoke(should_insert, (void *)&nodes);
+                if(fit_for_insertion){
+                    node->next = current->next;
+                    current->next = node;
+                    list->count++;
+                    return;
+                }
+                current = current->next;
             }
-            current = current->next;
         }
     }
 

@@ -146,14 +146,17 @@ static char *should_remove_elements_until_condition(){
 
 static void between_ranges(closure_t *closure){
     llist_node_t **nodes = (llist_node_t **)closure->params;
-    if(nodes[1] == NULL){
-        closure_return(closure, (void *)(true));
-        return; 
-    }
+    bool fits = false;
 
-    size_t value1 = (size_t)nodes[0]->value;
-    size_t value2 = (size_t)nodes[1]->value;
-    closure_return(closure, (void *)(size_t)(value1 < value2));
+    if(nodes[1] == NULL){
+        fits = true;
+    }else if(nodes[0] != NULL){
+        size_t value1 = (size_t)nodes[0]->value;
+        size_t value2 = (size_t)nodes[1]->value;
+        fits = value1 < value2;
+    }
+    closure_return(closure, (void *)(size_t)fits);
+
 }
 static char *should_insert_element_when_condition(){
     llist_t list;
