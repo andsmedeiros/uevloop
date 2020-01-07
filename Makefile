@@ -2,7 +2,7 @@
 CC=gcc
 CFLAGS=-I./src/ -I. -O1 -Wall -pedantic -std=c99 -g
 OBJ=build/system/event.o build/system/pools.o build/system/scheduler.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o
-TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o
+TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o build/test/system/pools.o build/test/system/scheduler.o
 
 dist/test: dist/libuevloop.so build/test.o $(TEST_OBJ)
 	$(CC) -L./dist -o dist/test build/test.o $(TEST_OBJ) -luevloop $(CFLAGS)
