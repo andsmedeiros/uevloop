@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   scheduler.h
  * Author: kazeshi
  *
@@ -20,21 +20,21 @@
 
 typedef struct scheduler scheduler_t;
 struct scheduler{
-    
+
     /* This queue holds events ready for processing on the next run loop */
     void *event_queue_buffer[SCHEDULER_EVENT_QUEUE_SIZE];
     cqueue_t event_queue;
-    
+
     /* This linked list holds events/timers scheduled to be run in the future.*/
     /* Timers are inserted sorted by its due time, so the list is always in */
     /* execution order. */
     /* Expired timers may be returned here if they are repeating. */
     llist_t timer_list;
-    
+
     /* Holds execution time in milliseconds. */
     /* Must be updated at 1kHz by an external timer set at sch_init() */
-    uint32_t timer;
-    
+    volatile uint32_t timer;
+
     /* Easy reference to the consumed object pools. */
     objpool_t *event_pool;
     objpool_t *llist_node_pool;
@@ -42,22 +42,21 @@ struct scheduler{
 
 void sch_tick(scheduler_t *scheduler);
 void sch_init(
-    scheduler_t *scheduler, 
-    pools_t *pools, 
+    scheduler_t *scheduler,
+    pools_t *pools,
     void (*on_timer_tick)(closure_t)
 );
 void sch_enqueue(scheduler_t *scheduler, closure_t closure);
 void sch_run_later(
-    scheduler_t *scheduler, 
-    uint16_t  timeout_in_ms, 
+    scheduler_t *scheduler,
+    uint16_t  timeout_in_ms,
     closure_t closure
 );
 void sch_run_at_intervals(
-    scheduler_t *scheduler, 
-    uint16_t interval_in_ms, 
-    bool immediate, 
+    scheduler_t *scheduler,
+    uint16_t interval_in_ms,
+    bool immediate,
     closure_t closure
 );
 
 #endif	/* SCHEDULER_H */
-
