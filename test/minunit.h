@@ -2,28 +2,37 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define mu_assert(message, test) do {                       \
-    if (!(test)) return "Assertion failed: "message;        \
+#define mu_assert(message, test) do {                                           \
+    if (!(test)) {                                                              \
+        char *error = malloc(1024 * sizeof(char));                              \
+        const char *template = "Assertion failed: "message"\n\n@%s:%d> %s\n";   \
+        snprintf(error, 1024, template, __FILE__, __LINE__, __func__);          \
+        return error;                                                           \
+    }                                                                           \
 } while (0)
 
 #define mu_assert_not(message, test) mu_assert(message, (!test))
 
 #define mu_assert_equals(id, expected, supplied, format) do {                   \
     if(expected != supplied){                                                   \
-        char *error = malloc(512 * sizeof(char));                               \
+        char *error = malloc(1024 * sizeof(char));                              \
         const char *template =                                                  \
-            "Assertion failed: on '%s', expected "format" and got "format".";   \
-        snprintf(error, 512, template, id, expected, supplied);                 \
+            "Assertion failed: on '%s', expected "format" and got "format".\n\n"\
+            "@%s:%d> %s";                                                       \
+        snprintf(error, 1024, template, id, expected, supplied,                 \
+            __FILE__, __LINE__, __func__);                                      \
         return error;                                                           \
     }                                                                           \
 } while(0)
 
 #define mu_assert_not_equals(id, expected, supplied, format) do {               \
     if(expected == supplied){                                                   \
-        char *error = malloc(512 * sizeof(char));                               \
+        char *error = malloc(1024 * sizeof(char));                              \
         const char *template =                                                  \
-            "Assertion failed: on '%s', expected to differ from "format".";     \
-        snprintf(error, 512, template, id, expected, supplied);                 \
+            "Assertion failed: on '%s', expected to differ from "format".\n\n"  \
+            "@%s:%d> %s";                                                       \
+        snprintf(error, 1024, template, id, supplied,                           \
+            __FILE__, __LINE__, __func__);                                      \
         return error;                                                           \
     }                                                                           \
 }while(0)
@@ -64,9 +73,9 @@
     char *message = test();                             \
     tests_run++;                                        \
     if(message){                                        \
-        char *error = malloc(1024 * sizeof(char));      \
+        char *error = malloc(2046 * sizeof(char));      \
         const char *template = "@test: %s\n    %s";     \
-        snprintf(error, 1024, template, id, message);   \
+        snprintf(error, 2046, template, id, message);   \
         return error;                                   \
     }                                                   \
 } while(0)
@@ -75,9 +84,9 @@
     char *message = group();                            \
     groups_run++;                                       \
     if(message){                                        \
-        char *error = malloc(2048 * sizeof(char));      \
+        char *error = malloc(4096 * sizeof(char));      \
         const char *template = "@group: %s\n%s";        \
-        snprintf(error, 2048, template, id, message);   \
+        snprintf(error, 4096, template, id, message);   \
         return error;                                   \
     }                                                   \
 } while(0)
