@@ -22,13 +22,11 @@ typedef struct event event_t;
 struct event {
     event_type_t type;
     closure_t closure;
-    union{
-        struct{
-            uint32_t due_time;
-            uint16_t timeout;
-            bool repeating;
-        } timer;
-    };
+    struct{
+        uint32_t due_time;
+        uint16_t timeout;
+        bool repeating;
+    } timer;
 };
 
 void event_destroy(event_t *event);
