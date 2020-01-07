@@ -6,34 +6,57 @@ static void update_timer(closure_t *closure){
     scheduler->timer++;
 }
 
-static void should_insert(closure_t *closure){
-    event_t *timer = (event_t *)closure->context;
-    llist_node_t **nodes = (llist_node_t **)closure->params;
-    bool fit_for_insertion = true;
-
-    if(nodes[1] != NULL){
-        event_t *prev = (event_t *)nodes[0]->value;
-        event_t *next = (event_t *)nodes[1]->value;
-        fit_for_insertion =
-            prev->timer.due_time <= timer->timer.due_time &&
-            next->timer.due_time > timer->timer.due_time;
-    }
-    closure_return(closure, (void *)fit_for_insertion);
+static void should_remove(closure_t *closure){
+    uint32_t current_time = *(uint32_t *)closure->context;
+    llist_node_t *node = (llist_node_t *)closure->params;
+    event_t *event = (event_t *)node->value;
+    bool fit_for_removal = event->timer.due_time <= current_time;
+    closure_return(closure, (void *)fit_for_removal);
 }
 
-static void should_remove(closure_t *closure){
+static void manage(scheduler_t *scheduler){
+    closure_t closure = closure_create(&should_remove, (void *)&scheduler->timer, NULL);
+    llist_t expired_timers = llist_remove_until(&scheduler->timer_list, &closure);
+    llist_node_t *current = expired_timers.tail, *previous;
+    while(current != NULL){
+        event_t *timer = (event_t *)current->value;
+        previous = current;
+        current = current->next;
+        objpool_release(scheduler->llist_node_pool, previous);
+        cqueue_push(&scheduler->event_queue, (void *)timer);
+    }
+}
 
+static void place_in_order(closure_t *closure){
+    uint32_t due_time = *(uint32_t *)closure->context;
+    llist_node_t **nodes = (llist_node_t **)closure->params;
+
+    bool fits = false;
+    if(nodes[1] == NULL){
+        fits = true;
+    }else if(nodes[0] == NULL){
+        event_t *next = (event_t *)nodes[1]->value;
+        fits = next->timer.due_time > due_time;
+    }else{
+        event_t *prev = (event_t *)nodes[0]->value;
+        event_t *next = (event_t *)nodes[1]->value;
+
+        fits = prev->timer.due_time <= due_time &&
+            next->timer.due_time > due_time;
+    }
+
+    closure_return(closure, (void *)(size_t)fits);
 }
 
 static void enqueue_timer(scheduler_t *scheduler, event_t *timer){
     llist_node_t *node = (llist_node_t *)objpool_acquire(scheduler->llist_node_pool);
     node->value = (void *)timer;
-    closure_t closure = closure_create(&should_insert, timer, NULL);
-    llist_insert_at(&scheduler->timer_list, node, &closure);
-}
-
-static void manage(scheduler_t *scheduler){
-
+    closure_t in_order = closure_create(
+        place_in_order,
+        (void *)&timer->timer.due_time,
+        NULL
+    );
+    llist_insert_at(&scheduler->timer_list, node, &in_order);
 }
 
 void sch_init(
@@ -61,13 +84,27 @@ void sch_tick(scheduler_t *scheduler){
     while(!cqueue_is_empty(&scheduler->event_queue)){
         event_t *event = cqueue_pop(&scheduler->event_queue);
         switch(event->type){
+            case TIMER_EVENT:
+                closure_invoke(&event->closure, scheduler);
+                if (event->timer.repeating) {
+                    event->timer.due_time =
+                        event->timer.timeout + scheduler->timer;
+                    enqueue_timer(scheduler, event);
+                }else{
+                    event_destroy(event);
+                    objpool_release(scheduler->event_pool, (void *)event);
+                }
+                break;
             case CLOSURE_EVENT:
                 closure_invoke(&event->closure, scheduler);
+                event_destroy(event);
+                objpool_release(scheduler->event_pool, (void *)event);
                 break;
-            default: break;
+            default:
+                event_destroy(event);
+                objpool_release(scheduler->event_pool, (void *)event);
+                break;
         }
-        event_destroy(event);
-        objpool_release(scheduler->event_pool, (void *)event);
     }
 }
 
@@ -84,6 +121,7 @@ void sch_run_later(
 ){
     event_t *event = (event_t *)objpool_acquire(scheduler->event_pool);
     event_config_timer(event, timeout_in_ms, false, &closure, scheduler->timer);
+    enqueue_timer(scheduler, event);
 }
 
 void sch_run_at_intervals(
@@ -92,9 +130,11 @@ void sch_run_at_intervals(
     bool immediate,
     closure_t closure
 ){
+    event_t *timer = (event_t *)objpool_acquire(scheduler->event_pool);
+    event_config_timer(timer, interval_in_ms, true, &closure, scheduler->timer);
     if(immediate){
-        sch_enqueue(scheduler, closure);
+        cqueue_push(&scheduler->event_queue, (void *)timer);
+    }else{
+        enqueue_timer(scheduler, timer);
     }
-    event_t *event = (event_t *)objpool_acquire(scheduler->event_pool);
-    event_config_timer(event, interval_in_ms, true, &closure, scheduler->timer);
 }
