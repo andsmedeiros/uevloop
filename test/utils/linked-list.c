@@ -107,11 +107,11 @@ static char *should_peek_elements(){
     return NULL;
 }
 
-static void less_than(closure_t *closure){
+static void *less_than(closure_t *closure){
     size_t threshold = (size_t)closure->context;
     llist_node_t *node = (llist_node_t *)closure->params;
     size_t value = (size_t)node->value;
-    closure_return(closure, (void*)(size_t)(value < threshold));
+    return (void*)(size_t)(value < threshold);
 }
 static char *should_remove_elements_until_condition(){
     llist_t list;
@@ -144,7 +144,7 @@ static char *should_remove_elements_until_condition(){
 }
 
 
-static void between_ranges(closure_t *closure){
+static void *between_ranges(closure_t *closure){
     llist_node_t **nodes = (llist_node_t **)closure->params;
     bool fits = false;
 
@@ -155,7 +155,7 @@ static void between_ranges(closure_t *closure){
         size_t value2 = (size_t)nodes[1]->value;
         fits = value1 < value2;
     }
-    closure_return(closure, (void *)(size_t)fits);
+    return (void *)(size_t)fits;
 
 }
 static char *should_insert_element_when_condition(){
@@ -186,6 +186,42 @@ static char *should_insert_element_when_condition(){
     return NULL;
 }
 
+static bool contains(llist_t *list, llist_node_t *node){
+    llist_node_t *current = list->tail;
+    while(current != NULL){
+        if (current == node) return true;
+        current = current->next;
+    }
+    return false;
+}
+static char *should_remove_elements(){
+    llist_t list;
+    llist_init(&list);
+
+    llist_node_t node1 = { (void *)1, NULL };
+    llist_node_t node2 = { (void *)2, NULL };
+    llist_node_t node3 = { (void *)2, NULL };
+    llist_push_head(&list, &node1);
+    llist_push_head(&list, &node2);
+    llist_push_head(&list, &node3);
+
+    mu_assert_ints_equal("list.count", 3, list.count);
+
+    llist_remove(&list, &node2);
+    mu_assert_ints_equal("list.count after first removal", 2, list.count);
+    mu_assert_not("list must not contain node2", contains(&list, &node2));
+
+    llist_remove(&list, &node3);
+    mu_assert_ints_equal("list.count after second removal", 1, list.count);
+    mu_assert_not("list must not contain node3", contains(&list, &node3));
+
+    llist_remove(&list, &node1);
+    mu_assert_int_zero("list.count after third removal", list.count);
+    mu_assert_not("list must not contain node1", contains(&list, &node1));
+
+    return NULL;
+}
+
 char *llist_run_tests(){
     mu_run_test("should correctly initialise a linked list", should_init_llist);
     mu_run_test("should push elements to a linked list", should_push_elements);
@@ -198,6 +234,10 @@ char *llist_run_tests(){
     mu_run_test(
         "should insert an element into a list at the position some condition is met",
         should_insert_element_when_condition
+    );
+    mu_run_test(
+        "should remove arbitraty elements",
+        should_remove_elements
     );
 
     return NULL;
