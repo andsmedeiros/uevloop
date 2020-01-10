@@ -5,84 +5,59 @@
 #include "utils/closure.h"
 #include "system/pools.h"
 #include "system/scheduler.h"
+#include "system/event-loop.h"
 #include "../minunit.h"
 
-closure_t update_timer;
-static void set_timer_tick_handler(closure_t handler){
-    update_timer = handler;
-}
-
-static void generate_timer_ticks(size_t ticks){
-    for (size_t i = 0; i < ticks; i++) {
-        closure_invoke(&update_timer, NULL);
-    }
-}
+#define DECLARE_SCHEDULER()                                                     \
+    pools_t pools;                                                              \
+    void *event_queue_buffer[8];                                                \
+    cqueue_t event_queue;                                                       \
+    void *reschedule_queue_buffer[8];                                           \
+    cqueue_t reschedule_queue;                                                  \
+    pools_init(&pools);                                                         \
+    cqueue_init(&event_queue, event_queue_buffer, 3);                           \
+    cqueue_init(&reschedule_queue, reschedule_queue_buffer, 3 );                \
+    scheduler_t scheduler;                                                      \
+    sch_init(                                                                   \
+        &scheduler,                                                             \
+        &pools.llist_node_pool,                                                 \
+        &pools.event_pool,                                                      \
+        &event_queue,                                                           \
+        &reschedule_queue                                                       \
+    );
 
 static char *should_init_scheduler(){
-    pools_t pools;
-    pools_init(&pools);
-
-    scheduler_t scheduler;
-    sch_init(&scheduler, &pools, &set_timer_tick_handler);
+    DECLARE_SCHEDULER();
 
     mu_assert_pointers_equal(
-        "scheduler.event_queue.buffer",
-        &scheduler.event_queue_buffer,
-        scheduler.event_queue.buffer
+        "scheduler.event_pool",
+        scheduler.event_pool,
+        &pools.event_pool
     );
-    mu_assert_int_zero("scheduler.event_queue.count", scheduler.event_queue.count);
-
+    mu_assert_pointers_equal(
+        "scheduler.reschedule_queue",
+        scheduler.reschedule_queue,
+        &reschedule_queue
+    );
+    mu_assert_pointers_equal(
+        "scheduler.reschedule_queue",
+        scheduler.reschedule_queue,
+        &reschedule_queue
+    );
     mu_assert_pointers_equal(
         "scheduler.timer_list.head",
         scheduler.timer_list.tail,
         scheduler.timer_list.head
     );
     mu_assert_int_zero("scheduler.timer_list.count", scheduler.timer_list.count);
-
     mu_assert_int_zero("scheduler.timer", scheduler.timer);
 
-    objpool_t *event_pool = pools_get(&pools, EVENT_POOL);
-    mu_assert_pointers_equal(
-        "scheduler.event_pool",
-        event_pool,
-        scheduler.event_pool
-    );
-
-    objpool_t *llist_node_pool = pools_get(&pools, LLIST_NODE_POOL);
-    mu_assert_pointers_equal(
-        "scheduler.llist_node_pool",
-        llist_node_pool,
-        scheduler.llist_node_pool
-    );
     return NULL;
 }
 
-static void nop(closure_t *closure){}
-static char *should_enqueue_event(){
-    pools_t pools;
-    pools_init(&pools);
-
-    scheduler_t scheduler;
-    sch_init(&scheduler, &pools, &set_timer_tick_handler);
-
-    for (size_t i = 0; i < 3; i++) {
-        sch_enqueue(&scheduler, closure_create(&nop, NULL, NULL));
-        mu_assert_ints_equal(
-            "scheduler.event_queue.count",
-            i + 1,
-            scheduler.event_queue.count
-        );
-    }
-
-    return NULL;
-}
-
+static void *nop(closure_t *closure){ return NULL; }
 static char *should_schedule_for_later_execution(){
-    pools_t pools;
-    pools_init(&pools);
-
-    scheduler_t scheduler;
-    sch_init(&scheduler, &pools, &set_timer_tick_handler);
+    DECLARE_SCHEDULER();
 
     sch_run_later(&scheduler, 1000, closure_create(&nop, NULL, NULL));
     mu_assert_ints_equal(
@@ -122,15 +97,11 @@ static char *should_schedule_for_later_execution(){
 }
 
 static char *should_schedule_intervals(){
-    pools_t pools;
-    pools_init(&pools);
-
-    scheduler_t scheduler;
-    sch_init(&scheduler, &pools, &set_timer_tick_handler);
+    DECLARE_SCHEDULER();
     closure_t closure = closure_create(&nop, NULL, NULL);
 
     {
-        sch_run_at_intervals(&scheduler, 1000, false, closure);
+        sch_run_at_intervals(&scheduler, 1000, true, closure);
         llist_node_t *node = (llist_node_t *)scheduler.timer_list.tail;
         event_t *event = (event_t *)node->value;
         mu_assert_ints_equal(
@@ -144,18 +115,18 @@ static char *should_schedule_intervals(){
             event->timer.timeout
         );
         mu_assert(
-            "scheduler.timer_list.tail->timer.repeating must had been set",
-            event->timer.repeating
+            "scheduler.timer_list.tail->repeating must had been set",
+            event->repeating
         );
 
     }
     {
-        sch_run_at_intervals(&scheduler, 500, true, closure);
+        sch_run_at_intervals(&scheduler, 500, false, closure);
         llist_node_t *node = (llist_node_t *)scheduler.timer_list.tail;
         event_t *event = (event_t *)node->value;
         mu_assert_ints_equal(
             "scheduler.timer_list.count",
-            1,
+            2,
             scheduler.timer_list.count
         );
         mu_assert_ints_equal(
@@ -163,98 +134,98 @@ static char *should_schedule_intervals(){
             1000,
             event->timer.timeout
         );
-
+    }
+    {
+        sch_run_at_intervals(&scheduler, 200, false, closure);
+        llist_node_t *node = (llist_node_t *)scheduler.timer_list.tail;
+        event_t *event = (event_t *)node->next->value;
         mu_assert_ints_equal(
-            "scheduler.event_queue.count",
-            1,
-            scheduler.event_queue.count
+            "scheduler.timer_list.count",
+            3,
+            scheduler.timer_list.count
         );
-        event = cqueue_peek_tail(&scheduler.event_queue);
         mu_assert_ints_equal(
-            "scheduler.event_queue.peek_tail()->timer.timeout",
-            500, event->timer.timeout
+            "scheduler.timer_list.tail->next->timer.timeout",
+            200,
+            event->timer.timeout
         );
     }
+
 
     return NULL;
 }
 
-static void mark_execution(closure_t *closure){
-    bool *executed = (bool *)closure->context;
-    *executed = true;
+static void fast_forward(scheduler_t *scheduler, uint32_t amount){
+    static uint32_t timer = 0;
+    timer += amount;
+    sch_update_timer(scheduler, timer);
 }
 
-static char *should_tick(){
-    pools_t pools;
-    pools_init(&pools);
 
-    scheduler_t scheduler;
-    sch_init(&scheduler, &pools, &set_timer_tick_handler);
+static void operate(scheduler_t *scheduler, evloop_t *loop){
+    sch_manage_timers(scheduler);
+    evloop_run(loop);
+}
 
-    generate_timer_ticks(1);
+static void *signal_execution(closure_t *closure){
+    bool *executed = (bool *)closure->context;
+    *executed = true;
+
+    return NULL;
+}
+static char *should_operate(){
+    DECLARE_SCHEDULER();
+
+    evloop_t loop;
+    evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
+
+    fast_forward(&scheduler, 1);
     mu_assert_ints_equal("scheduler.timer", 1, scheduler.timer);
 
-    {
-        bool success = false;
-        sch_enqueue(&scheduler, closure_create(&mark_execution, (void *)&success, NULL));
-        mu_assert_not("success must had been unset", success);
-        sch_tick(&scheduler);
-        mu_assert("success must had been set", success);
-    }
-    {
-        bool success1 = false, success2 =false;
-        sch_enqueue(&scheduler, closure_create(&mark_execution, (void *)&success1, NULL));
-        sch_enqueue(&scheduler, closure_create(&mark_execution, (void *)&success2, NULL));
-        mu_assert_not("success1 must had been unset", success1);
-        mu_assert_not("success2 must had been unset", success2);
-        sch_tick(&scheduler);
-        mu_assert("success1 must had been set", success1);
-        mu_assert("success2 must had been set", success2);
-    }
     {
         bool success1 = false, success2 =false;
 
         sch_run_later(
             &scheduler,
             3,
-            closure_create(&mark_execution, (void *)&success1, NULL)
+            closure_create(&signal_execution, (void *)&success1, NULL)
         );
         sch_run_at_intervals(
             &scheduler,
             5,
             true,
-            closure_create(&mark_execution, (void *)&success2, NULL)
+            closure_create(&signal_execution, (void *)&success2, NULL)
         );
         mu_assert_not("success1 must had been unset", success1);
         mu_assert_not("success2 must had been unset", success2);
 
-        sch_tick(&scheduler);
+        operate(&scheduler, &loop);
         mu_assert_not("success1 must had been unset", success1);
         mu_assert("success2 must had been set", success2);
         success2 = false;
 
-        generate_timer_ticks(3);
+        fast_forward(&scheduler, 3);
 
-        sch_tick(&scheduler);
+        operate(&scheduler, &loop);
         mu_assert("success1 must had been set", success1);
         mu_assert_not("success2 must had been unset", success2);
         success1 = false;
 
-        generate_timer_ticks(2);
+        fast_forward(&scheduler, 2);
 
-        sch_tick(&scheduler);
+        operate(&scheduler, &loop);
         mu_assert_not("success1 must had been unset", success1);
         mu_assert("success2 must had been set", success2);
         success2 = false;
 
-        generate_timer_ticks(1);
-        sch_tick(&scheduler);
+        fast_forward(&scheduler, 1);
+        operate(&scheduler, &loop);
         mu_assert_not("success1 must had been unset", success1);
         mu_assert_not("success2 must had been unset", success2);
 
-        generate_timer_ticks(4);
+        fast_forward(&scheduler, 4);
 
-        sch_tick(&scheduler);
+        operate(&scheduler, &loop);
         mu_assert_not("success1 must had been unset", success1);
         mu_assert("success2 must had been set", success2);
     }
@@ -265,10 +236,6 @@ static char *should_tick(){
 char *sch_run_tests(){
     mu_run_test("should correctly initialise an scheduler", should_init_scheduler);
     mu_run_test(
-        "should correctly enqueue events on the scheduler's queue",
-        should_enqueue_event
-    );
-    mu_run_test(
         "should correctly schedule events for later execution",
         should_schedule_for_later_execution
     );
@@ -277,8 +244,8 @@ char *sch_run_tests(){
         should_schedule_intervals
     );
     mu_run_test(
-        "should correctly tick and process events as they are input",
-        should_tick
+        "should correctly process events as they are input and run them when managing",
+        should_operate
     );
     return NULL;
 }
