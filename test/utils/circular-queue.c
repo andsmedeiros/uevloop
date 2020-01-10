@@ -15,8 +15,8 @@ static char *should_init(){
     cqueue_init(&queue, buffer, BUFFER_SIZE_LOG2N);
 
     mu_assert_pointers_equal("cqueue.buffer", &buffer, queue.buffer);
-    mu_assert_ints_equal("cqueue.size", pow(2, BUFFER_SIZE_LOG2N), queue.size);
-    mu_assert_ints_equal("cqueue.mask", pow(2, BUFFER_SIZE_LOG2N) - 1, queue.mask);
+    mu_assert_ints_equal("cqueue.size", 32, queue.size);
+    mu_assert_ints_equal("cqueue.mask", 31, queue.mask);
     mu_assert_pointer_null("cqueue.tail", queue.tail);
     mu_assert_int_zero("cqueue.count", queue.count);
 
