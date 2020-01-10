@@ -56,6 +56,24 @@ llist_node_t *llist_peek_tail(llist_t *list){
     return list->tail;
 }
 
+void llist_remove(llist_t *list, llist_node_t *node){
+    if(node == list->tail){
+        list->tail = node->next;
+        list->count--;
+        return;
+    }
+
+    llist_node_t *current = list->tail;
+    while(current != NULL){
+        if(current->next == node){
+            current->next = node->next;
+            list->count--;
+            return;
+        }
+        current = current->next;
+    }
+}
+
 llist_t llist_remove_until(llist_t *list, closure_t *should_remove){
     llist_t removed;
     llist_init(&removed);
