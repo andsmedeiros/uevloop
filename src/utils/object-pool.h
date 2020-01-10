@@ -1,10 +1,3 @@
-/*
- * File:   object-pool.h
- * Author: kazeshi
- *
- * Created on January 3, 2020, 3:04 PM
- */
-
 #ifndef OBJECT_POOL_H
 #define	OBJECT_POOL_H
 
@@ -34,7 +27,7 @@ bool objpool_is_empty(objpool_t *pool);
 
 #define DECLARE_OBJPOOL_BUFFERS(type, size_log2n, id)           \
     uint8_t id##_pool_buffer[(1<<size_log2n) * sizeof(type)];   \
-    void *id##_pool_queue_buffer[1<<size_log2n]               
+    void *id##_pool_queue_buffer[1<<size_log2n]
 
 #define OBJPOOL_BUFFERS(id)                                     \
     id##_pool_buffer, id##_pool_queue_buffer

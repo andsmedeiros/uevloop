@@ -1,10 +1,3 @@
-/* 
- * File:   circular-queue.h
- * Author: kazeshi
- *
- * Created on January 3, 2020, 11:17 AM
- */
-
 #ifndef CIRCULAR_QUEUE_H
 #define	CIRCULAR_QUEUE_H
 
@@ -32,4 +25,3 @@ bool cqueue_is_full(cqueue_t *queue);
 bool cqueue_is_empty(cqueue_t *queue);
 
 #endif	/* CIRCULAR_QUEUE_H */
-
