@@ -6,7 +6,7 @@
 #include "system/event.h"
 #include "../minunit.h"
 
-void nop(closure_t *closure){}
+static void *nop(closure_t *closure){ return NULL; }
 
 static char *should_config_closure_event(){
     event_t event;
@@ -31,7 +31,7 @@ static char *should_config_timer_event(){
     uint32_t timer = 326680;
     uint16_t timeout_in_ms = 15000;
 
-    event_config_timer(&event, timeout_in_ms, true, &closure, timer);
+    event_config_timer(&event, timeout_in_ms, true, false, &closure, timer);
     mu_assert_ints_equal("event.type", TIMER_EVENT, event.type);
     mu_assert_pointers_equal(
         "event.closure.function",
@@ -43,12 +43,23 @@ static char *should_config_timer_event(){
         timeout_in_ms,
         event.timer.timeout
     );
-    mu_assert("event.timer.repeating muts had been set", event.timer.repeating);
+    mu_assert("event.repeating muts had been set", event.repeating);
     mu_assert_ints_equal(
         "event.timer.due_time",
         timer + timeout_in_ms,
         event.timer.due_time
     );
+
+    return NULL;
+}
+
+static char *should_config_signal_event(){
+    event_t event;
+    closure_t closure = closure_create(&nop, NULL, NULL);
+
+    event_config_signal(&event, true, &closure);
+    mu_assert_ints_equal("event.type", SIGNAL_EVENT, event.type);
+    mu_assert("event.repeating must had been set", event.repeating);
 
     return NULL;
 }
@@ -73,7 +84,7 @@ static char *should_destroy_events(){
         bool destroyed = false;
 
         closure_t closure = closure_create(&nop, &destroyed, &signal_destruction);
-        event_config_timer(&event, 1000, false, &closure, 10000);
+        event_config_timer(&event, 1000, false, true, &closure, 10000);
         event_destroy(&event);
 
         mu_assert("destroyed must had been set on timer event destruction", destroyed);
@@ -90,6 +101,10 @@ char *event_run_tests(){
     mu_run_test(
         "should correctly config a timer event",
         should_config_timer_event
+    );
+    mu_run_test(
+        "should correctly config a signal event",
+        should_config_signal_event
     );
     mu_run_test(
         "should correctly destroy events and contained closures",
