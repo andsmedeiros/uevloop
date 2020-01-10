@@ -54,25 +54,8 @@ static char *should_init_pools(){
     return NULL;
 }
 
-static char *should_get_pools(){
-    pools_t pools;
-    pools_init(&pools);
-
-    objpool_t *event_pool = pools_get(&pools, EVENT_POOL);
-    mu_assert_pointers_equal("pools_get(EVENT_POOL)", &pools.event_pool, event_pool);
-
-    objpool_t *llist_node_pool = pools_get(&pools, LLIST_NODE_POOL);
-    mu_assert_pointers_equal("pools_get(EVENT_POOL)", &pools.llist_node_pool, llist_node_pool);
-
-    objpool_t *null_pool = pools_get(&pools, (pool_id_t)(100));
-    mu_assert_pointer_null("pools_get(INVALID)", null_pool);
-
-    return NULL;
-}
-
 char *pools_run_tests(){
     mu_run_test("should correctly initiase system pools", should_init_pools);
-    mu_run_test("should correctly get system pools by their ID", should_get_pools);
 
     return NULL;
 }
