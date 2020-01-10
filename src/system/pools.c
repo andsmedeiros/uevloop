@@ -15,17 +15,3 @@ void pools_init(pools_t *pools){
         OBJPOOL_BUFFERS_AT(llist_node, pools)
     );
 }
-
-objpool_t *pools_get(pools_t *pools, pool_id_t pool){
-    switch (pool){
-        case EVENT_POOL:
-            return &pools->event_pool;
-            break;
-        case LLIST_NODE_POOL:
-            return &pools->llist_node_pool;
-            break;
-        default:
-            return NULL;
-            break;
-    }
-}
