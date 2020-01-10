@@ -189,7 +189,6 @@ static void *increment(closure_t *closure){
 }
 static char *should_emit(){
     DECLARE_SIGNAL_RELAY();
-    printf("should emit\n");
 
     size_t counter1 = 0, counter2 = 0, counter3 = 0;
 
