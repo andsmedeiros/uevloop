@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #define mu_assert(message, test) do {                                           \
+    assertions_run++;                                                           \
     if (!(test)) {                                                              \
         char *error = malloc(1024 * sizeof(char));                              \
         const char *template = "Assertion failed: "message"\n\n@%s:%d> %s\n";   \
@@ -14,6 +15,7 @@
 #define mu_assert_not(message, test) mu_assert(message, (!test))
 
 #define mu_assert_equals(id, expected, supplied, format) do {                   \
+    assertions_run++;                                                           \
     if(expected != supplied){                                                   \
         char *error = malloc(1024 * sizeof(char));                              \
         const char *template =                                                  \
@@ -26,6 +28,7 @@
 } while(0)
 
 #define mu_assert_not_equals(id, expected, supplied, format) do {               \
+    assertions_run++;                                                           \
     if(expected == supplied){                                                   \
         char *error = malloc(1024 * sizeof(char));                              \
         const char *template =                                                  \
@@ -73,9 +76,9 @@
     char *message = test();                             \
     tests_run++;                                        \
     if(message){                                        \
-        char *error = malloc(2046 * sizeof(char));      \
+        char *error = malloc(2048 * sizeof(char));      \
         const char *template = "@test: %s\n    %s";     \
-        snprintf(error, 2046, template, id, message);   \
+        snprintf(error, 2048, template, id, message);   \
         return error;                                   \
     }                                                   \
 } while(0)
@@ -93,3 +96,4 @@
 
 extern unsigned int tests_run;
 extern unsigned int groups_run;
+extern unsigned int assertions_run;
