@@ -7,7 +7,7 @@
 #include "../minunit.h"
 #include "utils/closure.h"
 
-static void nop1(closure_t *closure){}
+static void *nop1(closure_t *closure){ return NULL; }
 static void nop2(closure_t *closure){}
 static char *should_create_closure(){
     uint8_t context = 18;
@@ -22,13 +22,15 @@ static char *should_create_closure(){
     return NULL;
 }
 
-static void signal_execution(closure_t *closure){
+static void *signal_execution(closure_t *closure){
     bool *success = (bool *)closure->context;
     *success = true;
+
+    return NULL;
 }
-static void echo_param(closure_t *closure){
+static void *echo_param(closure_t *closure){
     char *text = (char *)closure->params;
-    closure_return(closure, (void *)text);
+    return (void *)text;
 }
 static char *should_invoke_closure(){
     bool success = false;
@@ -62,15 +64,15 @@ static char *should_destroy_closure(){
     return NULL;
 }
 
-static void add(closure_t *closure){
-    uint8_t a = (uint8_t)closure->context;
-    uint8_t b = (uint8_t)closure->params;
-    closure_return(closure, (void *)(size_t)(a + b));
+static void *add(closure_t *closure){
+    uint8_t a = (uint8_t)(size_t)closure->context;
+    uint8_t b = (uint8_t)(size_t)closure->params;
+    return (void *)(size_t)(a + b);
 }
-static void multiply(closure_t *closure){
-    uint8_t a = (uint8_t)closure->context;
-    uint8_t b = (uint8_t)closure->params;
-    closure_return(closure, (void *)(size_t)(a * b));
+static void *multiply(closure_t *closure){
+    uint8_t a = (uint8_t)(size_t)closure->context;
+    uint8_t b = (uint8_t)(size_t)closure->params;
+    return (void *)(size_t)(a * b);
 }
 static char *should_check_closure_return(){
     closure_t plus_two = closure_create(&add, (void *)2, NULL);
@@ -78,10 +80,10 @@ static char *should_check_closure_return(){
     closure_t times_two = closure_create(&multiply, (void *)2, NULL);
     closure_t times_three = closure_create(&multiply, (void *)3, NULL);
 
-    uint8_t res1 = (uint8_t)closure_invoke(&plus_two, (void *)25);
-    uint8_t res2 = (uint8_t)closure_invoke(&plus_three, (void *)176);
-    uint8_t res3 = (uint8_t)closure_invoke(&times_two, (void *)17);
-    uint8_t res4 = (uint8_t)closure_invoke(&times_three, (void *)51);
+    uint8_t res1 = (uint8_t)(size_t)closure_invoke(&plus_two, (void *)25);
+    uint8_t res2 = (uint8_t)(size_t)closure_invoke(&plus_three, (void *)176);
+    uint8_t res3 = (uint8_t)(size_t)closure_invoke(&times_two, (void *)17);
+    uint8_t res4 = (uint8_t)(size_t)closure_invoke(&times_three, (void *)51);
 
     mu_assert_ints_equal("25 + 2", 27, res1);
     mu_assert_ints_equal("176 + 3", 179, res2);
