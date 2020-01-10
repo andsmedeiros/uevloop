@@ -8,9 +8,12 @@
 #include "test/system/event.h"
 #include "test/system/pools.h"
 #include "test/system/scheduler.h"
+#include "test/system/event-loop.h"
+#include "test/system/signal.h"
+#include "test/system/application.h"
 
 
-unsigned int tests_run = 0, groups_run = 0;
+unsigned int tests_run = 0, groups_run = 0, assertions_run = 0;
 
 static char *run_all_tests(){
     mu_run_test_group("cqueue", cqueue_run_tests);
@@ -20,6 +23,9 @@ static char *run_all_tests(){
     mu_run_test_group("event", event_run_tests);
     mu_run_test_group("pools", pools_run_tests);
     mu_run_test_group("scheduler", sch_run_tests);
+    mu_run_test_group("evloop", evloop_run_tests);
+    mu_run_test_group("signal", signal_run_tests);
+    mu_run_test_group("app", app_run_tests);
 
     return NULL;
 }
@@ -31,6 +37,11 @@ int main(int argc, char *argv[]){
     } else {
         printf("\nALL TESTS PASSED!\n");
     }
-    printf("Groups run: %d\nTests run: %d\n", groups_run, tests_run);
+    printf(
+        "Groups run: %d\nTests run: %d\nAssertions run: %d\n",
+        groups_run,
+        tests_run,
+        assertions_run
+    );
     return result != NULL;
 }
