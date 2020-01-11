@@ -108,10 +108,10 @@ static char *should_peek_elements(){
 }
 
 static void *less_than(closure_t *closure){
-    size_t threshold = (size_t)closure->context;
+    uintptr_t threshold = (uintptr_t)closure->context;
     llist_node_t *node = (llist_node_t *)closure->params;
-    size_t value = (size_t)node->value;
-    return (void*)(size_t)(value < threshold);
+    uintptr_t value = (uintptr_t)node->value;
+    return (void*)(uintptr_t)(value < threshold);
 }
 static char *should_remove_elements_until_condition(){
     llist_t list;
@@ -127,7 +127,7 @@ static char *should_remove_elements_until_condition(){
         { (void *)7, NULL }
     };
 
-    for(size_t i = 0; i < 7; i++) llist_push_head(&list, &nodes[i]);
+    for(uintptr_t i = 0; i < 7; i++) llist_push_head(&list, &nodes[i]);
 
     closure_t less_than_five = closure_create(&less_than, (void *)5, NULL);
     llist_t removed = llist_remove_until(&list, &less_than_five);
@@ -151,11 +151,11 @@ static void *between_ranges(closure_t *closure){
     if(nodes[1] == NULL){
         fits = true;
     }else if(nodes[0] != NULL){
-        size_t value1 = (size_t)nodes[0]->value;
-        size_t value2 = (size_t)nodes[1]->value;
+        uintptr_t value1 = (uintptr_t)nodes[0]->value;
+        uintptr_t value2 = (uintptr_t)nodes[1]->value;
         fits = value1 < value2;
     }
-    return (void *)(size_t)fits;
+    return (void *)(uintptr_t)fits;
 
 }
 static char *should_insert_element_when_condition(){
@@ -170,7 +170,7 @@ static char *should_insert_element_when_condition(){
         { (void *)3, NULL },
         { (void *)3, NULL }
     };
-    for(size_t i = 0; i < 6; i++) llist_push_head(&list, &nodes[i]);
+    for(uintptr_t i = 0; i < 6; i++) llist_push_head(&list, &nodes[i]);
 
     llist_node_t node = { (void *)2, NULL };
     closure_t is_between_ranges = closure_create(&between_ranges, NULL, NULL);

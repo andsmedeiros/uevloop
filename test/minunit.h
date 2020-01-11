@@ -41,7 +41,7 @@
 }while(0)
 
 #define mu_assert_pointers_equal(id, expected, supplied) do {                       \
-    mu_assert_equals(id, (void *)(size_t)expected, (void *)(size_t)supplied, "%u"); \
+    mu_assert_equals(id, (void *)(uintptr_t)expected, (void *)(uintptr_t)supplied, "%u"); \
 } while(0)
 
 #define mu_assert_pointers_not_equal(id, expected, supplied) do {           \

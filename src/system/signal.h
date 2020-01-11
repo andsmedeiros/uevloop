@@ -7,7 +7,7 @@
 #include "../utils/object-pool.h"
 #include "../utils/closure.h"
 
-typedef size_t signal_t;
+typedef uintptr_t signal_t;
 
 typedef struct signal_listener signal_listener_t;
 struct signal_listener{
@@ -21,7 +21,7 @@ struct signal_relay{
     evloop_t *event_loop;
     objpool_t *llist_node_pool;
     objpool_t *event_pool;
-    size_t width;
+    uintptr_t width;
 };
 
 void signal_relay_init(
@@ -30,7 +30,7 @@ void signal_relay_init(
     objpool_t *llist_node_pool,
     objpool_t *event_pool,
     llist_t *buffer,
-    size_t width
+    uintptr_t width
 );
 
 signal_listener_t signal_listen(

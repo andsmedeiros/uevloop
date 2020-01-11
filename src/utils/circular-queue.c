@@ -1,7 +1,7 @@
 
 #include "circular-queue.h"
 
-void cqueue_init(cqueue_t *queue, void **buffer, size_t size_log2n){
+void cqueue_init(cqueue_t *queue, void **buffer, uintptr_t size_log2n){
     queue->buffer = buffer;
     queue->size = 1<<size_log2n;
     queue->mask = queue->size - 1;
@@ -21,7 +21,7 @@ void cqueue_clear(cqueue_t *queue, bool clear_buffer){
 bool cqueue_push(cqueue_t *queue, void *element){
     if(cqueue_is_full(queue)) return false;
 
-    const size_t head = (++queue->count + queue->tail) & queue->mask;
+    const uintptr_t head = (++queue->count + queue->tail) & queue->mask;
     queue->buffer[head] = element;
     return true;
 }

@@ -26,7 +26,7 @@ static void *place_in_order(closure_t *closure){
             next->timer.due_time > due_time;
     }
 
-    return (void *)(size_t)fits;
+    return (void *)(uintptr_t)fits;
 }
 
 static void enqueue_timer(scheduler_t *scheduler, event_t *timer){

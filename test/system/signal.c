@@ -180,8 +180,8 @@ static char *should_unlisten(){
 
 
 static void *increment(closure_t *closure){
-    size_t *counter = (size_t *)closure->context;
-    size_t amount = (size_t)closure->params;
+    uintptr_t *counter = (uintptr_t *)closure->context;
+    uintptr_t amount = (uintptr_t)closure->params;
 
     *counter += amount;
 
@@ -190,7 +190,7 @@ static void *increment(closure_t *closure){
 static char *should_emit(){
     DECLARE_SIGNAL_RELAY();
 
-    size_t counter1 = 0, counter2 = 0, counter3 = 0;
+    uintptr_t counter1 = 0, counter2 = 0, counter3 = 0;
 
     closure_t closure1 = closure_create(&increment, &counter1, NULL);
     closure_t closure2 = closure_create(&increment, &counter2, NULL);

@@ -132,7 +132,7 @@ static char *should_set_scheduler_run_flag(){
 }
 
 static void *increment(closure_t *closure){
-    size_t *counter = (size_t *)closure->context;
+    uintptr_t *counter = (uintptr_t *)closure->context;
     (*counter)++;
 
     return NULL;
@@ -140,7 +140,7 @@ static void *increment(closure_t *closure){
 static char *should_tick(){
     DECLARE_APP();
 
-    size_t counter1 = 0, counter2 = 0, counter3 = 0;
+    uintptr_t counter1 = 0, counter2 = 0, counter3 = 0;
 
     closure_t closure1 = closure_create(&increment, (void *)&counter1, NULL);
     closure_t closure2 = closure_create(&increment, (void *)&counter2, NULL);

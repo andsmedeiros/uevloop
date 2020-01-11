@@ -60,7 +60,7 @@ static char *should_push_element(){
 
     uint8_t elements[3] = { 213, 13, 75 }, values[3] = { 213, 13, 75 };
 
-    size_t i;
+    uintptr_t i;
     for(i = 0; i < 3; i++){
         cqueue_push(&queue, (void *)&elements[i]);
         mu_assert_ints_equal("cqueue.count", i + 1, queue.count);
@@ -90,7 +90,7 @@ static char *should_pop_element(){
 
     uint8_t elements[3] = { 213, 13, 75 }, values[3] = { 213, 13, 75 };
 
-    size_t i;
+    uintptr_t i;
     for(i = 0; i < 3; i++){
         cqueue_push(&queue, (void *)&elements[i]);
     }
@@ -113,7 +113,7 @@ static char *should_peek_tail(){
 
     uint8_t elements[3] = { 213, 13, 75 }, value = 213;
 
-    size_t i;
+    uintptr_t i;
     for(i = 0; i < 3; i++){
         cqueue_push(&queue, (void *)&elements[i]);
         element = (uint8_t *)cqueue_peek_tail(&queue);
@@ -134,7 +134,7 @@ static char *should_peek_head(){
 
     uint8_t elements[3] = { 213, 13, 75 }, values[3] = { 213, 13, 75 };
 
-    size_t i;
+    uintptr_t i;
     for(i = 0; i < 3; i++){
         cqueue_push(&queue, (void *)&elements[i]);
         element = (uint8_t *)cqueue_peek_head(&queue);
@@ -151,7 +151,7 @@ static char *should_detect_when_full(){
     cqueue_init(&queue, buffer, BUFFER_SIZE_LOG2N);
 
     uint8_t elements[32];
-    size_t i;
+    uintptr_t i;
 
     for(i = 0; i < 32; i++) elements[i] = i;
     for(i = 0; i < 31; i++){
@@ -211,7 +211,7 @@ static char *should_wrap_on_buffer_limit(){
     queue.tail = BUFFER_SIZE - 3;
 
     uint8_t elements[3] = { 213, 13, 75 };
-    size_t i;
+    uintptr_t i;
     for(i = 0; i < 3; i++){
         cqueue_push(&queue, (void *)&elements[i]);
     }

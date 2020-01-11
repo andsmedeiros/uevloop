@@ -2,6 +2,7 @@
 #define	LINKED_LIST_H
 
 #include <stdlib.h>
+#include <stdint.h>
 #include "closure.h"
 
 typedef struct llist_node llist_node_t;
@@ -14,7 +15,7 @@ typedef struct llist llist_t;
 struct llist{
     llist_node_t *head;
     llist_node_t *tail;
-    size_t count;
+    uintptr_t count;
 };
 
 void llist_init(llist_t *list);

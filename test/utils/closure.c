@@ -65,14 +65,14 @@ static char *should_destroy_closure(){
 }
 
 static void *add(closure_t *closure){
-    uint8_t a = (uint8_t)(size_t)closure->context;
-    uint8_t b = (uint8_t)(size_t)closure->params;
-    return (void *)(size_t)(a + b);
+    uint8_t a = (uint8_t)(uintptr_t)closure->context;
+    uint8_t b = (uint8_t)(uintptr_t)closure->params;
+    return (void *)(uintptr_t)(a + b);
 }
 static void *multiply(closure_t *closure){
-    uint8_t a = (uint8_t)(size_t)closure->context;
-    uint8_t b = (uint8_t)(size_t)closure->params;
-    return (void *)(size_t)(a * b);
+    uint8_t a = (uint8_t)(uintptr_t)closure->context;
+    uint8_t b = (uint8_t)(uintptr_t)closure->params;
+    return (void *)(uintptr_t)(a * b);
 }
 static char *should_check_closure_return(){
     closure_t plus_two = closure_create(&add, (void *)2, NULL);
@@ -80,10 +80,10 @@ static char *should_check_closure_return(){
     closure_t times_two = closure_create(&multiply, (void *)2, NULL);
     closure_t times_three = closure_create(&multiply, (void *)3, NULL);
 
-    uint8_t res1 = (uint8_t)(size_t)closure_invoke(&plus_two, (void *)25);
-    uint8_t res2 = (uint8_t)(size_t)closure_invoke(&plus_three, (void *)176);
-    uint8_t res3 = (uint8_t)(size_t)closure_invoke(&times_two, (void *)17);
-    uint8_t res4 = (uint8_t)(size_t)closure_invoke(&times_three, (void *)51);
+    uint8_t res1 = (uint8_t)(uintptr_t)closure_invoke(&plus_two, (void *)25);
+    uint8_t res2 = (uint8_t)(uintptr_t)closure_invoke(&plus_three, (void *)176);
+    uint8_t res3 = (uint8_t)(uintptr_t)closure_invoke(&times_two, (void *)17);
+    uint8_t res4 = (uint8_t)(uintptr_t)closure_invoke(&times_three, (void *)51);
 
     mu_assert_ints_equal("25 + 2", 27, res1);
     mu_assert_ints_equal("176 + 3", 179, res2);

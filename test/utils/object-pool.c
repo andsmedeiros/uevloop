@@ -7,7 +7,7 @@
 
 typedef struct{
     char character;
-    size_t integer;
+    uintptr_t integer;
     float rational;
 } object_t;
 
@@ -33,7 +33,7 @@ static char *should_acquire_objects(){
     objpool_t pool;
     objpool_init(&pool, 3, sizeof(object_t), OBJPOOL_BUFFERS(main));
 
-    for(size_t i = 0; i < 8; i++){
+    for(uintptr_t i = 0; i < 8; i++){
         object_t *obj = (object_t *)objpool_acquire(&pool);
         mu_assert_pointers_equal(
             "objpool_acquire()",
@@ -52,14 +52,14 @@ static char *should_release_objects(){
 
     object_t *objects[8] = {0};
 
-    for(size_t i = 0; i < 8; i++){
+    for(uintptr_t i = 0; i < 8; i++){
         objects[i] = (object_t *)objpool_acquire(&pool);
         objects[i]->character = 'a' + i;
         objects[i]->integer = i * 10;
         objects[i]->rational = i / 2.0;
     }
 
-    for(size_t i = 0; i < 8; i++){
+    for(uintptr_t i = 0; i < 8; i++){
         objpool_release(&pool, objects[i]);
         mu_assert_equals("objects[i]->character", ('a' + i), objects[i]->character, "%c");
         mu_assert_ints_equal("objects[i]->integer", 10 * i, objects[i]->integer);
@@ -80,7 +80,7 @@ static char *should_detect_when_pool_is_empty(){
     objpool_t pool;
     objpool_init(&pool, 3, sizeof(object_t), OBJPOOL_BUFFERS(main));
 
-    for(size_t i = 0; i < 7; i++){
+    for(uintptr_t i = 0; i < 7; i++){
         objpool_acquire(&pool);
     }
     mu_assert_not(

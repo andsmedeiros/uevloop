@@ -13,8 +13,8 @@ struct objpool {
 
 void objpool_init(
     objpool_t *pool,
-    size_t size_log2n,
-    size_t item_size,
+    uintptr_t size_log2n,
+    uintptr_t item_size,
     uint8_t *buffer,
     void **queue_buffer
 );

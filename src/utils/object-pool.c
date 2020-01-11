@@ -2,14 +2,14 @@
 
 void objpool_init(
     objpool_t *pool,
-    size_t size_log2n,
-    size_t item_size,
+    uintptr_t size_log2n,
+    uintptr_t item_size,
     uint8_t *buffer,
     void **queue_buffer
 ){
     pool->buffer = buffer;
     cqueue_init(&pool->queue, queue_buffer, size_log2n);
-    size_t i;
+    uintptr_t i;
     for(i = 0; i < pool->queue.size; i++){
         cqueue_push(&pool->queue, (void *)(&pool->buffer[i * item_size]));
     }

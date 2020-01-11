@@ -27,7 +27,7 @@ void signal_relay_init(
     objpool_t *llist_node_pool,
     objpool_t *event_pool,
     llist_t *buffer,
-    size_t width
+    uintptr_t width
 ){
     relay->event_loop = event_loop;
     relay->llist_node_pool = llist_node_pool;
@@ -35,7 +35,7 @@ void signal_relay_init(
     relay->signal_vector = buffer;
     relay->width = width;
 
-    for (size_t i = 0; i < width; i++) {
+    for (uintptr_t i = 0; i < width; i++) {
         llist_init(&relay->signal_vector[i]);
     }
 }
