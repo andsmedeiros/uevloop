@@ -187,7 +187,7 @@ pools_t pools;
 pools_init(&pools);
 // This allocates two pools:
 //   1) pools.event_pool
-//   2_ pools.llist_node_pool
+//   2) pools.llist_node_pool
 ```
 
 ### Scheduler
@@ -266,25 +266,110 @@ sch_run_at_intervals(&scheduler, 300, true, print_three);
 
 ```
 
-The scheduler must be fed regularly to work. It needs both an update on the running time as an stimulus to process enqueued timers. Ideally, a hardware timer will be consistently incrementing a counter and in the main loop this counter is fed to the scheduler.
+The scheduler must be fed regularly to work. It needs both an update on the running time as an stimulus to process enqueued timers. Ideally, a hardware timer will be consistently incrementing a counter and feeding it at an ISR while in the main loop the scheduler is oriented to process its queue.
 
 ```c
+// millisecond counter
 uint32_t counter = 0;
 
+// 1kHz timer ISR
 void my_timer_isr(){
-  isr_flag = 0;
-  counter++;
+  my_timer_isr_flag = 0;
+  sch_update_timer(&scheduler, ++counter);
 }
 
 // ...
 
 // On the main loop
-// (tip: don't do this, more on the subject later)
-
-sch_update_timer(&scheduler, counter);
 sch_manage_timers(&scheduler);
 ```
 
-When the function `sch_manage_timers` is called, it iterates over the enqueued timer list and breaks it when it finds a timer scheduled further in the future. It then moves each timer to the event queue, where it will be further collected and processed.
+When the function `sch_manage_timers` is called, two things happen:
+1. The reschedule_queue is flushed  and every timer in it is rescheduled accordingly;
+2. The scheduler iterates over the enqueued timer list from the begining and breaks it when it finds a timer scheduled further in the future. It then procedes to move each timer from the extracted list  to the event queue, where they will be further collected and processed.
 
-# TODO: finish README.md
+#### Scheduler time resolution
+
+There are two distinct factors that will determine the actual time resolution of the scheduler:
+1. the frequency of the feed in timer isr
+2.  the frequency the function `sch_manage_timers` is called.
+
+The basic resolution variable is the feed in timer frequency. Having this update too sporadically will cause events scheduled to differing moments to be indistinguishable regarding their schedule (*e.g.*: most of the time, having the timer increment every 100ms will make any events scheduled to moments with less than 100ms of difference to each other to be run in the same runloop).
+
+A good value for the timer ISR frequency is usually between 1 kHz - 200 Hz, but depending on your requirements and available resources it can be less. Down to around 10 Hz is still valid, but precision will start to deteriotate quickly from here on.
+
+There is little use having the feed in timer ISR run at more than 1 kHz, as it is meant to measure milliseconds. Software timers are unlikely to be accurate enough for much greater frequencies anyway.
+
+If the `sch_manage_timers` function is not called frequently enough, events will start enqueing and won't be served in time. Just make sure it is called when the counter is updated or when there is events on the reschedule queue.
+
+
+## Event loop
+
+The central piece of µEvLoop (even its name is a bloody reference to it) is the event loop, a queue of events to be processed sequentially. It is not aware of the execution time and simply process all enqueued events when run.
+
+The event loop requires access to system's event pool.
+
+### Basic event loop initialisation
+
+```c
+#include "system/event-loop.h"
+#include "system/pools.h"
+#include "utils/circular-queue.h"
+
+// Create system pools
+pools_t pools;
+pools_init(&pools);
+
+// Create event queue
+void *event_queue_buffer[8];
+cqueue_t event_queue;
+cqueue_init(&event_queue, event_queue_buffer, 3);
+
+// Create reschedule queue
+void *reschedule_queue_buffer[8];
+cqueue_t reschedule_queue;
+cqueue_init(&reschedule_queue, reschedule_queue_buffer, 3 );
+
+// Bind it all to the event loop
+evloop_t loop;
+evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
+```
+
+### Event loop usage
+
+The event loop is mean to behave as a run-to-completition task scheduler. Its `evloop_run` function should be called as ofter as possible as to minimise execution latency. Each execution of `evloop_run` is called a *runloop*.
+
+Depending on the nature of the event being processed at a time, the event loop may decide to dispose of it in different ways. Closures and one-shot timers are immediately deconstructed and returned to their pools. Both **signals** (more on that in a while) and repeating timers are never disposed of, being the latter put on the reschedule queue upon completition.
+
+Only closures are enqueued manually by the programmer. Timers and signals are enqueued by their corresponding modules. Any event can be enqueued multiple times.
+
+```c
+#include <stdlib.h>
+#include "utils/closure.h"
+
+// ...
+
+static void *increment(closure_t *closure){
+  uintptr_t *value = (uintptr_t *)closure->context;
+  (*value)++;
+
+  return NULL;
+}
+
+// ...
+
+uintptr_t value = 0;
+closure_t closure = closure_create(&nop, (void *)&value, NULL);
+
+evloop_enqueue_closure(&loop, &closure);
+// value is 0
+
+// On the main loop
+evloop_run(&loop);
+// value is 1
+
+evloop_enqueue_closure(&loop, &closure);
+evloop_enqueue_closure(&loop, &closure);
+// value is 3
+
+```
