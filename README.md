@@ -50,7 +50,7 @@ As closures are somewhat light, it is often useful to pass it around by value.
 
 Closures take the context and params as a void pointer and return the same. This is meant to make possible to pass and return complex objects from them.
 
-At many times, however, you may find the values passed/returned are small and simple (*i.e.*: smaller than a pointer). If so, it is absolutely valid to cast from/to a uintptr_t or other data type known to be at most the size of a pointer. The above example does that so we don't have to create unnecessary object pools or allocate dynamic memory.
+At many times, however, the programmer may find the values passed/returned are small and simple (*i.e.*: smaller than a pointer). If so, it is absolutely valid to cast from/to a uintptr_t or other data type known to be at most the size of a pointer. The above example does that to avoid creating unnecessary object pools or allocating dynamic memory.
 
 ### Object pools
 
@@ -296,7 +296,7 @@ There are two distinct factors that will determine the actual time resolution of
 
 The basic resolution variable is the feed in timer frequency. Having this update too sporadically will cause events scheduled to differing moments to be indistinguishable regarding their schedule (*e.g.*: most of the time, having the timer increment every 100ms will make any events scheduled to moments with less than 100ms of difference to each other to be run in the same runloop).
 
-A good value for the timer ISR frequency is usually between 1 kHz - 200 Hz, but depending on your requirements and available resources it can be less. Down to around 10 Hz is still valid, but precision will start to deteriotate quickly from here on.
+A good value for the timer ISR frequency is usually between 1 kHz - 200 Hz, but depending on project requirements and available resources it can be less. Down to around 10 Hz is still valid, but precision will start to deteriotate quickly from here on.
 
 There is little use having the feed in timer ISR run at more than 1 kHz, as it is meant to measure milliseconds. Software timers are unlikely to be accurate enough for much greater frequencies anyway.
 
@@ -337,7 +337,7 @@ evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
 
 ### Event loop usage
 
-The event loop is mean to behave as a run-to-completition task scheduler. Its `evloop_run` function should be called as ofter as possible as to minimise execution latency. Each execution of `evloop_run` is called a *runloop*.
+The event loop is mean to behave as a run-to-completition task scheduler. Its `evloop_run` function should be called as ofter as possible as to minimise execution latency. Each execution of `evloop_run` is called a *runloop* .
 
 Depending on the nature of the event being processed at a time, the event loop may decide to dispose of it in different ways. Closures and one-shot timers are immediately deconstructed and returned to their pools. Both **signals** (more on that in a while) and repeating timers are never disposed of, being the latter put on the reschedule queue upon completition.
 
@@ -364,7 +364,6 @@ closure_t closure = closure_create(&nop, (void *)&value, NULL);
 evloop_enqueue_closure(&loop, &closure);
 // value is 0
 
-// On the main loop
 evloop_run(&loop);
 // value is 1
 
@@ -372,4 +371,86 @@ evloop_enqueue_closure(&loop, &closure);
 evloop_enqueue_closure(&loop, &closure);
 // value is 3
 
+```
+***WARNING!*** `evloop_run` is the single most important function within µEvLoop. Almost every other core module depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
+
+ ## Signal
+
+ Signals are similar to events in Javascript. It allows the programmer to message distant parts of the system to communicate with each other in a pub/sub fashion.
+
+ At the center of the signal system is the Signal Relay, a structure that bind speciffic signals to its listeners. When a signal is emitted, the relay will **asynchronously** run each listener registered for that signal. If the listener was not recurring, it will be destroyed upon execution by the event loop.
+
+ ### Signals and relay initialisation
+
+To use signals, the programmer must first define what signals will be available in a particular relay, then create the relay bound to this events.
+
+To be initialised, the relay must have access to the system pools and the system event loop. To simplify things a little, the creation of these objects will not be shown in the next snippets. The programmer will also need to supply it a buffer of linked lists, where listeners will be stored.
+
+ ```c
+#include "system/signal.h"
+#include "utils/linked-list.h"
+
+// Defines what signals will be available to this relay.
+// Doing so in an enum makes it easy to add new signals in the future.
+enum my_module_signals {
+  SIGNAL_1 = 0,
+  SIGNAL_2,
+  SIGNAL_COUNT
+};
+
+// Declares the relay buffer. Note this array will be the number of signals large.
+llist_t buffer[SIGNAL_COUNT];
+
+// Assume pools_t pools and evloop_t loop here, ready to use
+signal_relay_t relay;
+void signal_relay_init(
+  &relay,
+  &loop,
+  &pools->llist_node_pool,
+  &pools->event_pool,
+  buffer,
+  SIGNAL_COUNT
+);
+ ```
+
+ ### Signal operation
+
+ ```c
+// This is the listener function.
+static void *respond_to_signal(closure_t *closure){
+  uintptr_t num = (uintptr_t)closure->context;
+  // Signals can be emitted with parameters, just like events in JS
+  char c = (char)(uintptr_t)closure->params;
+  printf("%d%c\n", num, c);
+
+  return NULL;
+}
+
+// Listeners can be persistent. They will fire once each time the signal is emitted
+closure_t respond_to_signal_1 = closure_create(&respond_to_signal, (void *)1, NULL);
+signal_listener_t listener_1 =
+  signal_listen(SIGNAL_1, &relay, &respond_to_signal_1);
+
+// Listeners can also be transient, so they fire ust on first emission
+closure_t respond_to_signal_2 = closure_create(&respond_to_signal, (void *)2, NULL);
+signal_listener_t listener_2 =
+  signal_listen_once(SIGNAL_2, &relay, &respond_to_signal_2);
+
+// ...
+
+signal_emit(SIGNAL_1, &relay, (void *)('a')); // prints 1a
+signal_emit(SIGNAL_2, &relay, (void *)('b')); // prints 2b
+signal_emit(SIGNAL_1, &relay, (void *)('c')); // prints 1c
+signal_emit(SIGNAL_2, &relay, (void *)('d')); // doesn't print anything
+```
+
+Please note the listener function will not be executed immediately, despite what this last snippet can lead to believe. Internally, each closure will be sent to the event loop and only when it runs will the closures be invoked.
+
+You can also unlisten for events. This will remove them from the signal vector, so **unlistening to a signal will only prevent execution if the signal has not been already emitted**.
+
+```c
+  signal_unlisten(listener_1, &relay);
+  signal_unlisten(listener_2, &relay);  // This has no effect because the listener
+                                        // for SIGNAL_2 has already been removed from
+                                        // the vector
 ```
