@@ -1,3 +1,4 @@
+
 # µEvLoop
 
 A fast and lightweight event loop aimed at embedded platforms in C99.
@@ -46,7 +47,7 @@ As closures are somewhat light, it is often useful to pass it around by value.
 
 ```
 
-#### *A word on (void *)*
+#### *A word on (void \*)*
 
 Closures take the context and params as a void pointer and return the same. This is meant to make possible to pass and return complex objects from them.
 
@@ -303,13 +304,13 @@ There is little use having the feed in timer ISR run at more than 1 kHz, as it i
 If the `sch_manage_timers` function is not called frequently enough, events will start enqueing and won't be served in time. Just make sure it is called when the counter is updated or when there is events on the reschedule queue.
 
 
-## Event loop
+### Event loop
 
 The central piece of µEvLoop (even its name is a bloody reference to it) is the event loop, a queue of events to be processed sequentially. It is not aware of the execution time and simply process all enqueued events when run.
 
 The event loop requires access to system's event pool.
 
-### Basic event loop initialisation
+#### Basic event loop initialisation
 
 ```c
 #include "system/event-loop.h"
@@ -335,7 +336,7 @@ evloop_t loop;
 evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
 ```
 
-### Event loop usage
+#### Event loop usage
 
 The event loop is mean to behave as a run-to-completition task scheduler. Its `evloop_run` function should be called as ofter as possible as to minimise execution latency. Each execution of `evloop_run` is called a *runloop* .
 
@@ -374,13 +375,13 @@ evloop_enqueue_closure(&loop, &closure);
 ```
 ***WARNING!*** `evloop_run` is the single most important function within µEvLoop. Almost every other core module depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
 
- ## Signal
+ ### Signal
 
  Signals are similar to events in Javascript. It allows the programmer to message distant parts of the system to communicate with each other in a pub/sub fashion.
 
  At the center of the signal system is the Signal Relay, a structure that bind speciffic signals to its listeners. When a signal is emitted, the relay will **asynchronously** run each listener registered for that signal. If the listener was not recurring, it will be destroyed upon execution by the event loop.
 
- ### Signals and relay initialisation
+ #### Signals and relay initialisation
 
 To use signals, the programmer must first define what signals will be available in a particular relay, then create the relay bound to this events.
 
@@ -413,7 +414,7 @@ void signal_relay_init(
 );
  ```
 
- ### Signal operation
+ #### Signal operation
 
  ```c
 // This is the listener function.
@@ -454,3 +455,49 @@ You can also unlisten for events. This will remove them from the signal vector, 
                                         // for SIGNAL_2 has already been removed from
                                         // the vector
 ```
+
+### Application
+
+The Application module is a convenient toplevel container for all the internals of an µEvLoop'd app. It is not necessary at all (as the pools module) but contains much of the boilerplate in a typical application.
+
+The following code is a reallistic minimal configuration of the framework.
+```c
+#include "system/application.h"
+#include <stdint.h>
+
+static volatile uint32_t counter = 0;
+static application_t my_app;
+
+// 1 kHz timer
+void my_timer_isr(){
+  my_timer_irs_flag = 0;
+  app_update_timer(&my_app, ++counter);
+}
+
+int main (int argc, char *argv[]){
+  app_init(&my_app);
+
+  // Start scheduling timers through my_app.scheduler or enqueuing
+  // closures through my_app.event_loop
+  // Create modules that emit signals and listen to then from here
+
+  while(1){  
+    app_tick(&my_app);
+  }
+
+  return 0;
+}
+```
+
+The function `app_tick` is responsible for coordinating the dance between the scheduler and the event loop, so the programmer don't have to manually manage timers and runloops.
+
+## Motivation
+
+I often work with small MCUs (8-16bits) that simply don't have the necessary power to run a RTOS ou any fancy scheduling solution. Right now I am working on a new comercial project and felt the need to build something by my own. µEvLoop is my bet on how a modern, interrupt-driven and predictable embedded application should be.
+I am also looking for a new job and needed to improve my portifolio.
+
+## Roadmap
+* Correct some bugs I am aware of
+* Comment code and generate API doc
+* Make timer events cancellable / pausable / resumable
+* Better error handling
