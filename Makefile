@@ -45,7 +45,7 @@ coverage: dist/test
 	lcov -c --directory . --output-file coverage/test.info
 	genhtml coverage/test.info --output-directory coverage
 
-docs:
+docs: Doxyfile $(OBJ)
 	doxygen Doxyfile
 
 debug:
