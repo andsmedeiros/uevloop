@@ -30,10 +30,10 @@ build/test/utils/%.o: test/utils/%.c test/utils/%.h build/utils/%.o test/minunit
 	mkdir -p build/test/utils
 	$(CC) -c -fpic -o $@ $< $(CFLAGS)
 
-.PHONY: clean test debug
+.PHONY: clean test coverage doc debug
 
 clean:
-	rm -rf build dist
+	rm -rf build dist coverage docs
 
 test: dist/test
 	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so ./dist/test
@@ -44,6 +44,9 @@ coverage: dist/test
 	gcov test/test.c
 	lcov -c --directory . --output-file coverage/test.info
 	genhtml coverage/test.info --output-directory coverage
+
+docs:
+	doxygen Doxyfile
 
 debug:
 	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) gdb dist/test
