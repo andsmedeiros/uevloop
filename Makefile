@@ -46,7 +46,10 @@ coverage: dist/test
 	genhtml coverage/test.info --output-directory coverage
 
 docs: Doxyfile $(OBJ)
+	mkdir -p docs
+	touch docs/index.html
 	doxygen Doxyfile
+	echo '<!DOCTYPE html><html><head><meta http-equiv=Refresh content="0;url=html/index.html"></head></html>' > docs/index.html
 
 debug:
 	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) gdb dist/test
