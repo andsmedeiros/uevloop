@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['event',['event',['../structevent.html',1,'']]],
+  ['event_2dloop_2eh',['event-loop.h',['../event-loop_8h.html',1,'']]],
+  ['event_2eh',['event.h',['../event_8h.html',1,'']]],
+  ['event_5fconfig_5fclosure',['event_config_closure',['../event_8h.html#a7e14814e114b610c08792f85b9cac2e6',1,'event.c']]],
+  ['event_5fconfig_5fsignal',['event_config_signal',['../event_8h.html#ad8cf20af57f2dcab33169e21b6bf3bb8',1,'event.c']]],
+  ['event_5fconfig_5ftimer',['event_config_timer',['../event_8h.html#a1c8af99f6923dcf452f3f5e9926c339a',1,'event.c']]],
+  ['event_5fdestroy',['event_destroy',['../event_8h.html#ac6929704355fc0963b58671b7b3ee3df',1,'event.c']]],
+  ['event_5floop',['event_loop',['../structapplication.html#aadac22f80a51ed8ced6f47978a0a35de',1,'application::event_loop()'],['../structsignal__relay.html#a3e71616cc5b3a8a56177b9a818709cef',1,'signal_relay::event_loop()']]],
+  ['event_5fpool',['event_pool',['../structevloop.html#a5ead7f6498da38fb2f693bf1459dd9d4',1,'evloop::event_pool()'],['../structpools.html#a2bddb0d395165a3a490c1a1d071c8f0d',1,'pools::event_pool()'],['../structscheduler.html#a357450068909182ab86c56d1e25a5acd',1,'scheduler::event_pool()'],['../structsignal__relay.html#a7826dfc0b41323156c650b4991648058',1,'signal_relay::event_pool()']]],
+  ['event_5fpool_5fbuffer',['event_pool_buffer',['../structpools.html#a1b402a50793c836aad7d13466fecbf62',1,'pools']]],
+  ['event_5fpool_5fqueue_5fbuffer',['event_pool_queue_buffer',['../structpools.html#aec57739d514f519c7de6f9fb3afd8e08',1,'pools']]],
+  ['event_5fpool_5fsize_5flog2n',['EVENT_POOL_SIZE_LOG2N',['../pools_8h.html#a5005e9ecff4f2dd8149f8b932f471887',1,'pools.h']]],
+  ['event_5fqueue',['event_queue',['../structapplication.html#af1d873f69c83965cae55e18305dcefa0',1,'application::event_queue()'],['../structevloop.html#a4a7847f577a32adca063835e3849bdbb',1,'evloop::event_queue()'],['../structscheduler.html#ac3121faa5a91270cf87b3503c8e8ab5d',1,'scheduler::event_queue()']]],
+  ['event_5fqueue_5fbuffer',['event_queue_buffer',['../structapplication.html#a2ea9c0a58e95678eb5c17d43d2312046',1,'application']]],
+  ['event_5ftype',['event_type',['../event_8h.html#a430b444c74dd3fd1472a31714ec5f1ce',1,'event.h']]],
+  ['event_5ftype_5ft',['event_type_t',['../event_8h.html#aa34399f2f041fedcb9f1b437896cfcc7',1,'event.h']]],
+  ['evloop',['evloop',['../structevloop.html',1,'']]],
+  ['evloop_5fenqueue_5fclosure',['evloop_enqueue_closure',['../event-loop_8h.html#a9297808d7ffc05da6358ce6672221b27',1,'event-loop.c']]],
+  ['evloop_5fenqueue_5fevent',['evloop_enqueue_event',['../event-loop_8h.html#a2aae248e41aadc759c26c4464bf5f893',1,'event-loop.c']]],
+  ['evloop_5finit',['evloop_init',['../event-loop_8h.html#a32d416e09446cdf0aad61e46345f38f1',1,'event-loop.c']]],
+  ['evloop_5frun',['evloop_run',['../event-loop_8h.html#a342bd080e4ca3e4585437d7642d44ee2',1,'event-loop.c']]]
+];

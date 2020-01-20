@@ -1,0 +1,8 @@
+<map id="src/utils/circular&#45;queue.h" name="src/utils/circular&#45;queue.h">
+<area shape="rect" id="node2" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="435,102,581,129"/>
+<area shape="rect" id="node4" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="498,333,662,360"/>
+<area shape="rect" id="node7" href="$event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="104,184,267,211"/>
+<area shape="rect" id="node11" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="670,184,829,211"/>
+<area shape="rect" id="node3" href="$pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="512,184,645,211"/>
+<area shape="rect" id="node8" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="243,259,379,285"/>
+</map>

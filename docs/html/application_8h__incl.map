@@ -1,0 +1,11 @@
+<map id="src/system/application.h" name="src/system/application.h">
+<area shape="rect" id="node4" href="$pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="245,155,309,181"/>
+<area shape="rect" id="node8" href="$circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="607,304,721,331"/>
+<area shape="rect" id="node11" href="$event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="572,155,665,181"/>
+<area shape="rect" id="node12" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="334,155,423,181"/>
+<area shape="rect" id="node13" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="501,80,568,107"/>
+<area shape="rect" id="node5" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="297,229,362,256"/>
+<area shape="rect" id="node7" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="488,229,624,256"/>
+<area shape="rect" id="node10" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="144,229,272,256"/>
+<area shape="rect" id="node6" href="$closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="367,304,481,331"/>
+</map>

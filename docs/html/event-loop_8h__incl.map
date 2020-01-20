@@ -1,0 +1,6 @@
+<map id="src/system/event&#45;loop.h" name="src/system/event&#45;loop.h">
+<area shape="rect" id="node3" href="$circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="93,155,248,181"/>
+<area shape="rect" id="node6" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="5,80,141,107"/>
+<area shape="rect" id="node7" href="$closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="373,155,488,181"/>
+<area shape="rect" id="node8" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="269,80,393,107"/>
+</map>
