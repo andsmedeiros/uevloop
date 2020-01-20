@@ -514,6 +514,29 @@ int main (int argc, char *argv[]){
 
 The function `app_tick` is responsible for coordinating the dance between the scheduler and the event loop, so the programmer don't have to manually manage timers and runloops.
 
+## Concurrency model
+
+µEvLoop is meant to run primarily in simple, single-core MCUs. That said, nothing stops it from being employed in full-fledged x86_64 multi-threaded applications.
+
+Anyway, there are no built-in guarantees that any code is interrupt or thread safe. Queue and linked lists operations are not atomic by default and therefore need some special care.
+
+### Critical sessions
+
+The programmer can turn on critical session protection on core modules functions.
+By default, critical sections are a no-op, but by overriding the `UEVLOOP_CRITICAL_SECTION` macro with appropriate platform-speciffic synchronisation methods will make the whole core safe.
+
+```C
+#define UEVLOOP_CRITICAL_SECTION(body) do { \
+  __disable_global_interrupt();             \
+  body;                                     \
+  __enable_global_interrupt();              \
+} while(0);
+
+// ...
+
+#include "system/application.h"
+```
+
 ## Motivation
 
 I often work with small MCUs (8-16bits) that simply don't have the necessary power to run a RTOS ou any fancy scheduling solution. Right now I am working on a new comercial project and felt the need to build something by my own. µEvLoop is my bet on how a modern, interrupt-driven and predictable embedded application should be.
