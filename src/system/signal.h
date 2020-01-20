@@ -59,7 +59,7 @@ struct signal_relay{
   * \param relay The signal relay object to be initialised
   * \param event_loop The system's event loop
   * \param llist_node_pool The system's llist node pool
-  * \param event_poool The system's event pool
+  * \param event_pool The system's event pool
   * \param buffer The buffer that will be used to store listeners registered at
   * this relay. Must be the number of signals bound to this relay wide.
   * \param width The number of signals bound to this relay.

@@ -45,7 +45,7 @@ struct evloop{
   * \param event_loop The evloop_t instance to be initialised
   * \param event_pool The system's event pool
   * \param event_queue The system's event queue
-  * \aram reschedule_queue The system's reschedule queue
+  * \param reschedule_queue The system's reschedule queue
   */
 void evloop_init(
     evloop_t *event_loop,

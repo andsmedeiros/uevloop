@@ -1,6 +1,6 @@
 /** \file circular-queue.h
   *
-  * Contains definitions for the circular queue data structure and functions to
+  * \brief Contains definitions for the circular queue data structure and functions to
   * manipulate it.
   */
 
@@ -57,6 +57,7 @@ void cqueue_clear(cqueue_t *queue, bool clear_buffer);
   *
   * \param queue The queue into which to push the element
   * \param element The element to be pushed into the queue
+  * \return Whether the push operation was successfull
   */
 bool cqueue_push(cqueue_t *queue, void *element);
 

@@ -1,7 +1,6 @@
 /**  \file application.h
-   * \brief Application module
-   *
-   * Contains the application_t struct as well as functions to manipulate it.
+   * \brief The application module is a convenient top-level container for the
+   * system internals.
    */
 
 #ifndef APPLICATION_H
@@ -15,19 +14,23 @@
 #include "signal.h"
 #include "../utils/circular-queue.h"
 
+//! Events emitted by the application relay. Unused ATM.
 enum app_event{
     APP_READY = 0,
     APP_CRASHED,
     APP_EVENT_COUNT
 };
+//! Alias to the app_event enum
 typedef enum app_event app_event_t;
 
 //! The size of the event queue in log2 form
 #define APP_EVENT_QUEUE_SIZE_LOG2N (5)
+//! Unrolls the `APP_EVENT_QUEUE_SIZE_LOG2N` value to its power-of-two form
 #define APP_EVENT_QUEUE_SIZE (1<<APP_EVENT_QUEUE_SIZE_LOG2N)
 
 //! The size of the reschedule queue in log2 form
 #define APP_RESCHEDULE_QUEUE_SIZE_LOG2N (4)
+//! Unrolls the `APP_RESCHEDULE_QUEUE_SIZE_LOG2N` value to its power-of-two form
 #define APP_RESCHEDULE_QUEUE_SIZE (1<<APP_RESCHEDULE_QUEUE_SIZE_LOG2N)
 
 /** \brief Top-level container for µEvLoop'd application
@@ -47,7 +50,7 @@ struct application{
     signal_relay_t relay;   //!< Unused
     llist_t relay_buffer[APP_EVENT_COUNT]; //!< Unused
 
-    //! \internal The event queue buffer
+    //! The event queue buffer
     void *event_queue_buffer[APP_EVENT_QUEUE_SIZE];
     cqueue_t event_queue;   /**< \brief The application's event queue.
                               *
@@ -55,7 +58,7 @@ struct application{
                               * runloop.
                               */
 
-    //! \internal The reschedule queue buffer
+    //! The reschedule queue buffer
     void *reschedule_queue_buffer[APP_RESCHEDULE_QUEUE_SIZE];
     cqueue_t reschedule_queue; /**< \brief The application's reschedule queue.
                                  *
@@ -63,7 +66,7 @@ struct application{
                                  * but fit for rescheduling at the scheduler.
                                  */
 
-    bool run_scheduler; //!< \internal Marks when it's time to wake the scheduler
+    bool run_scheduler; //!< Marks when it's time to wake the scheduler
 };
 
 /** \brief Initialises an application_t instance

@@ -15,6 +15,7 @@ enum event_type {
     TIMER_EVENT,
     SIGNAL_EVENT
 };
+//! Alias to the event_type enum.
 typedef enum event_type event_type_t;
 
 /** \brief Events are special closures passed around the core.

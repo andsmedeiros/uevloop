@@ -1,6 +1,6 @@
 /** \file closure.h
   *
-  * Defines closures and provides functions to manipulate them
+  * \brief Defines closures and provides functions to manipulate them
   */
 
 #ifndef CLOSURE_H

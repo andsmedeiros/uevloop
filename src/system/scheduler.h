@@ -51,9 +51,9 @@ struct scheduler{
     volatile uint32_t timer;
 };
 
-/** \brief Initialises a schedueler object
+/** \brief Initialises a scheduler object
   *
-  * \param schedueler The scheduler_t instance to be initialised
+  * \param scheduler The scheduler_t instance to be initialised
   * \param llist_node_pool The system's llist node pool
   * \param event_pool The system's event pool
   * \param event_queue The queue into which events ready to be run are put
