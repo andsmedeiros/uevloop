@@ -1,42 +1,42 @@
+#ifndef MINUNIT_H
+#define MINUNIT_H
+
 /* built upon http://www.jera.com/techinfo/jtns/jtn002.html */
 #include <stdlib.h>
 #include <stdio.h>
 
 #define mu_assert(message, test) do {                                           \
-    assertions_run++;                                                           \
-    if (!(test)) {                                                              \
-        char *error = malloc(1024 * sizeof(char));                              \
+    test_context.assertions_run++;                                                           \
+    if (!(test)) {                           \
         const char *template = "Assertion failed: "message"\n\n@%s:%d> %s\n";   \
-        snprintf(error, 1024, template, __FILE__, __LINE__, __func__);          \
-        return error;                                                           \
+        snprintf(test_context.assertion_error, 256, template, __FILE__, __LINE__, __func__);          \
+        return test_context.assertion_error;                                                           \
     }                                                                           \
 } while (0)
 
 #define mu_assert_not(message, test) mu_assert(message, (!test))
 
 #define mu_assert_equals(id, expected, supplied, format) do {                   \
-    assertions_run++;                                                           \
-    if(expected != supplied){                                                   \
-        char *error = malloc(1024 * sizeof(char));                              \
+    test_context.assertions_run++;                                                           \
+    if(expected != supplied){                            \
         const char *template =                                                  \
             "Assertion failed: on '%s', expected "format" and got "format".\n\n"\
             "@%s:%d> %s";                                                       \
-        snprintf(error, 1024, template, id, expected, supplied,                 \
+        snprintf(test_context.assertion_error, 256, template, id, expected, supplied,                 \
             __FILE__, __LINE__, __func__);                                      \
-        return error;                                                           \
+        return test_context.assertion_error;                                                           \
     }                                                                           \
 } while(0)
 
 #define mu_assert_not_equals(id, expected, supplied, format) do {               \
-    assertions_run++;                                                           \
-    if(expected == supplied){                                                   \
-        char *error = malloc(1024 * sizeof(char));                              \
+    test_context.assertions_run++;                                                           \
+    if(expected == supplied){                            \
         const char *template =                                                  \
             "Assertion failed: on '%s', expected to differ from "format".\n\n"  \
             "@%s:%d> %s";                                                       \
-        snprintf(error, 1024, template, id, supplied,                           \
+        snprintf(test_context.assertion_error, 256, template, id, supplied,                           \
             __FILE__, __LINE__, __func__);                                      \
-        return error;                                                           \
+        return test_context.assertion_error;                                                           \
     }                                                                           \
 }while(0)
 
@@ -72,28 +72,40 @@
     mu_assert_ints_not_equal(id, 0, supplied);              \
 } while(0)
 
-#define mu_run_test(id, test) do {                      \
-    char *message = test();                             \
-    tests_run++;                                        \
-    if(message){                                        \
-        char *error = malloc(2048 * sizeof(char));      \
-        const char *template = "@test: %s\n    %s";     \
-        snprintf(error, 2048, template, id, message);   \
-        return error;                                   \
-    }                                                   \
+#define mu_run_test(id, test) do {                                          \
+    char *message = test();                                                 \
+    test_context.tests_run++;                                               \
+    if(message){                                                            \
+        const char *template = "@test: %s\n    %s";                         \
+        snprintf(test_context.test_error, 512, template, id, message);      \
+        return test_context.test_error;                                     \
+    }                                                                       \
 } while(0)
 
 #define mu_run_test_group(id, group) do {               \
     char *message = group();                            \
-    groups_run++;                                       \
+    test_context.groups_run++;                                       \
     if(message){                                        \
-        char *error = malloc(4096 * sizeof(char));      \
         const char *template = "@group: %s\n%s";        \
-        snprintf(error, 4096, template, id, message);   \
-        return error;                                   \
+        snprintf(test_context.group_error, 1024, template, id, message);   \
+        return test_context.group_error;                                   \
     }                                                   \
 } while(0)
 
-extern unsigned int tests_run;
-extern unsigned int groups_run;
-extern unsigned int assertions_run;
+typedef struct {
+    unsigned int tests_run;
+    unsigned int groups_run;
+    unsigned int assertions_run;
+    char assertion_error[256];
+    char test_error[512];
+    char group_error[1024];
+    
+} minunit_context_t;
+
+//extern unsigned int tests_run;
+//extern unsigned int groups_run;
+//extern unsigned int assertions_run;
+extern minunit_context_t test_context;
+#define DEFAULT_TEST_CONTEXT {0, 0, 0, {0}, {0}}
+
+#endif /* MINUNIT_H */
