@@ -155,10 +155,9 @@ static char *should_schedule_intervals(){
     return NULL;
 }
 
-static void fast_forward(scheduler_t *scheduler, uint32_t amount){
-    static uint32_t timer = 0;
-    timer += amount;
-    sch_update_timer(scheduler, timer);
+static void fast_forward(scheduler_t *scheduler, uint32_t *timer, uint32_t amount){
+    *timer += amount;
+    sch_update_timer(scheduler, *timer);
 }
 
 
@@ -175,11 +174,12 @@ static void *signal_execution(closure_t *closure){
 }
 static char *should_operate(){
     DECLARE_SCHEDULER();
-
+    
+    uint32_t timer = 0;
     evloop_t loop;
     evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
 
-    fast_forward(&scheduler, 1);
+    fast_forward(&scheduler, &timer, 1);
     mu_assert_ints_equal("scheduler.timer", 1, scheduler.timer);
 
     {
@@ -204,26 +204,26 @@ static char *should_operate(){
         mu_assert("success2 must had been set", success2);
         success2 = false;
 
-        fast_forward(&scheduler, 3);
+        fast_forward(&scheduler, &timer, 3);
 
         operate(&scheduler, &loop);
         mu_assert("success1 must had been set", success1);
         mu_assert_not("success2 must had been unset", success2);
         success1 = false;
 
-        fast_forward(&scheduler, 2);
+        fast_forward(&scheduler, &timer, 2);
 
         operate(&scheduler, &loop);
         mu_assert_not("success1 must had been unset", success1);
         mu_assert("success2 must had been set", success2);
         success2 = false;
 
-        fast_forward(&scheduler, 1);
+        fast_forward(&scheduler, &timer, 1);
         operate(&scheduler, &loop);
         mu_assert_not("success1 must had been unset", success1);
         mu_assert_not("success2 must had been unset", success2);
 
-        fast_forward(&scheduler, 4);
+        fast_forward(&scheduler, &timer, 4);
 
         operate(&scheduler, &loop);
         mu_assert_not("success1 must had been unset", success1);
