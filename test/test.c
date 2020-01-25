@@ -12,8 +12,7 @@
 #include "test/system/signal.h"
 #include "test/system/application.h"
 
-
-unsigned int tests_run = 0, groups_run = 0, assertions_run = 0;
+minunit_context_t test_context = DEFAULT_TEST_CONTEXT;
 
 static char *run_all_tests(){
     mu_run_test_group("cqueue", cqueue_run_tests);
@@ -31,6 +30,8 @@ static char *run_all_tests(){
 }
 
 int main(int argc, char *argv[]){
+    test_context = (minunit_context_t)DEFAULT_TEST_CONTEXT;
+            
     char * result = run_all_tests();
     if (result != NULL) {
         printf("\nTEST FAILED!\n\n%s\n\n", result);
@@ -39,9 +40,9 @@ int main(int argc, char *argv[]){
     }
     printf(
         "Groups run: %d\nTests run: %d\nAssertions run: %d\n",
-        groups_run,
-        tests_run,
-        assertions_run
+        test_context.groups_run,
+        test_context.tests_run,
+        test_context.assertions_run
     );
     return result != NULL;
 }
