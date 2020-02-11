@@ -1,8 +1,8 @@
 # CC=clang-9
 CC=gcc
 CFLAGS=-I./src/ -I. -O1 -Wall -Werror -pedantic -std=c99 -g
-OBJ=build/system/application.o build/system/event.o build/system/pools.o build/system/event-loop.o build/system/signal.o build/system/scheduler.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o
-TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o build/test/system/pools.o build/test/system/event-loop.o build/test/system/scheduler.o build/test/system/signal.o build/test/system/application.o
+OBJ=build/system/application.o build/system/event.o build/system/syspools.o build/system/event-loop.o build/system/signal.o build/system/scheduler.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o
+TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o build/test/system/syspools.o build/test/system/event-loop.o build/test/system/scheduler.o build/test/system/signal.o build/test/system/application.o
 
 dist/libuevloop.so: $(OBJ)
 	mkdir -p dist
