@@ -3,27 +3,27 @@
 #include <stdlib.h>
 
 #include "system/event-loop.h"
-#include "system/pools.h"
+#include "system/syspools.h"
 #include "utils/circular-queue.h"
 #include "utils/closure.h"
 #include "../minunit.h"
 
 #define DECLARE_EVENT_LOOP()                                                    \
-    pools_t pools;                                                              \
+    syspools_t pools;                                                              \
     void *event_queue_buffer[8];                                                \
     cqueue_t event_queue;                                                       \
     void *reschedule_queue_buffer[8];                                           \
     cqueue_t reschedule_queue;                                                  \
-    pools_init(&pools);                                                         \
+    syspools_init(&pools);                                                         \
     cqueue_init(&event_queue, event_queue_buffer, 3);                           \
     cqueue_init(&reschedule_queue, reschedule_queue_buffer, 3 );                \
     evloop_t loop;                                                              \
-    evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
+    evloop_init(&loop, &pools, &event_queue, &reschedule_queue);
 
 static char *should_init_event_loop(){
     DECLARE_EVENT_LOOP();
 
-    mu_assert_pointers_equal("evloop.event_pool", &pools.event_pool, loop.event_pool);
+    mu_assert_pointers_equal("evloop.system_pools", &pools, loop.pools);
     mu_assert_pointers_equal("evloop.event_queue", &event_queue, loop.event_queue);
     mu_assert_pointers_equal(
         "evloop.reschedule_queue",

@@ -99,13 +99,10 @@ typedef struct {
     char assertion_error[256];
     char test_error[512];
     char group_error[1024];
-    
+
 } minunit_context_t;
 
-//extern unsigned int tests_run;
-//extern unsigned int groups_run;
-//extern unsigned int assertions_run;
 extern minunit_context_t test_context;
-#define DEFAULT_TEST_CONTEXT {0, 0, 0, {0}, {0}}
+#define DEFAULT_TEST_CONTEXT {0, 0, 0, {0}, {0}, {0}}
 
 #endif /* MINUNIT_H */

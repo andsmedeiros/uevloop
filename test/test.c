@@ -6,7 +6,7 @@
 #include "test/utils/linked-list.h"
 #include "test/utils/object-pool.h"
 #include "test/system/event.h"
-#include "test/system/pools.h"
+#include "test/system/syspools.h"
 #include "test/system/scheduler.h"
 #include "test/system/event-loop.h"
 #include "test/system/signal.h"
@@ -20,7 +20,7 @@ static char *run_all_tests(){
     mu_run_test_group("llist", llist_run_tests);
     mu_run_test_group("objpool", objpool_run_tests);
     mu_run_test_group("event", event_run_tests);
-    mu_run_test_group("pools", pools_run_tests);
+    mu_run_test_group("syspools", syspools_run_tests);
     mu_run_test_group("scheduler", sch_run_tests);
     mu_run_test_group("evloop", evloop_run_tests);
     mu_run_test_group("signal", signal_run_tests);
@@ -31,7 +31,7 @@ static char *run_all_tests(){
 
 int main(int argc, char *argv[]){
     test_context = (minunit_context_t)DEFAULT_TEST_CONTEXT;
-            
+
     char * result = run_all_tests();
     if (result != NULL) {
         printf("\nTEST FAILED!\n\n%s\n\n", result);

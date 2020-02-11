@@ -3,25 +3,24 @@
 #include <stdlib.h>
 
 #include "utils/closure.h"
-#include "system/pools.h"
+#include "system/syspools.h"
 #include "system/scheduler.h"
 #include "system/event-loop.h"
 #include "../minunit.h"
 
 #define DECLARE_SCHEDULER()                                                     \
-    pools_t pools;                                                              \
+    syspools_t pools;                                                              \
     void *event_queue_buffer[8];                                                \
     cqueue_t event_queue;                                                       \
     void *reschedule_queue_buffer[8];                                           \
     cqueue_t reschedule_queue;                                                  \
-    pools_init(&pools);                                                         \
+    syspools_init(&pools);                                                         \
     cqueue_init(&event_queue, event_queue_buffer, 3);                           \
     cqueue_init(&reschedule_queue, reschedule_queue_buffer, 3 );                \
     scheduler_t scheduler;                                                      \
     sch_init(                                                                   \
         &scheduler,                                                             \
-        &pools.llist_node_pool,                                                 \
-        &pools.event_pool,                                                      \
+        &pools,                                                 \
         &event_queue,                                                           \
         &reschedule_queue                                                       \
     );
@@ -30,9 +29,9 @@ static char *should_init_scheduler(){
     DECLARE_SCHEDULER();
 
     mu_assert_pointers_equal(
-        "scheduler.event_pool",
-        scheduler.event_pool,
-        &pools.event_pool
+        "scheduler.pools",
+        scheduler.pools,
+        &pools
     );
     mu_assert_pointers_equal(
         "scheduler.reschedule_queue",
@@ -174,10 +173,10 @@ static void *signal_execution(closure_t *closure){
 }
 static char *should_operate(){
     DECLARE_SCHEDULER();
-    
+
     uint32_t timer = 0;
     evloop_t loop;
-    evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
+    evloop_init(&loop, &pools, &event_queue, &reschedule_queue);
 
     fast_forward(&scheduler, &timer, 1);
     mu_assert_ints_equal("scheduler.timer", 1, scheduler.timer);

@@ -32,14 +32,9 @@ static char *should_init_app(){
         app.reschedule_queue.buffer
     );
     mu_assert_pointers_equal(
-        "app.scheduler.llist_node_pool",
-        &app.pools.llist_node_pool,
-        app.scheduler.llist_node_pool
-    );
-    mu_assert_pointers_equal(
-        "app.scheduler.event_pool",
-        &app.pools.event_pool,
-        app.scheduler.event_pool
+        "app.scheduler.pools",
+        &app.pools,
+        app.scheduler.pools
     );
     mu_assert_pointers_equal(
         "app.scheduler.event_queue",
@@ -52,9 +47,9 @@ static char *should_init_app(){
         app.scheduler.reschedule_queue
     );
     mu_assert_pointers_equal(
-        "app.event_loop.event_pool",
-        &app.pools.event_pool,
-        app.event_loop.event_pool
+        "app.event_loop.polls",
+        &app.pools,
+        app.event_loop.pools
     );
     mu_assert_pointers_equal(
         "app.event_loop.event_queue",
@@ -72,21 +67,16 @@ static char *should_init_app(){
         app.relay.event_loop
     );
     mu_assert_pointers_equal(
-        "app.relay.event_pool",
-        &app.pools.event_pool,
-        app.relay.event_pool
-    );
-    mu_assert_pointers_equal(
-        "app.relay.llist_node_pool",
-        &app.pools.llist_node_pool,
-        app.relay.llist_node_pool
+        "app.relay.pools",
+        &app.pools,
+        app.relay.pools
     );
     mu_assert_pointers_equal(
         "app.relay.signal_vector",
         app.relay_buffer,
         app.relay.signal_vector
     );
-    mu_assert_ints_equal("app.relay.width", 2, app.relay.width);
+    mu_assert_ints_equal("app.relay.width", APP_EVENT_COUNT, app.relay.width);
     mu_assert("app.run_scheduler must had been set", app.run_scheduler);
     return NULL;
 }
@@ -124,7 +114,7 @@ static char *should_set_scheduler_run_flag(){
 
     app_tick(&app);
     mu_assert_not("app.run_scheduler must had been unset", app.run_scheduler);
-    
+
     app_tick(&app);
     mu_assert_not("app.run_scheduler must had been unset", app.run_scheduler);
 
@@ -170,6 +160,45 @@ static char *should_tick(){
     return NULL;
 }
 
+static void *nop(closure_t *closure){
+    return NULL;
+}
+static char *should_proxy_functions(){
+    DECLARE_APP();
+
+    closure_t closure = closure_create(&nop, NULL, NULL);
+    app_enqueue_closure(&app, &closure);
+
+    mu_assert_ints_equal(
+        "app.event_loop.event_queue->count",
+        1,
+        app.event_loop.event_queue->count
+    );
+
+    app_run_later(&app, 1000, closure);
+    mu_assert_ints_equal(
+        "app.scheduler.timer_list.count",
+        1,
+        app.scheduler.timer_list.count
+    );
+
+    app_run_at_intervals(&app, 500, false, closure);
+    mu_assert_ints_equal(
+        "app.scheduler.timer_list.count",
+        2,
+        app.scheduler.timer_list.count
+    );
+
+    app_run_at_intervals(&app, 500, true, closure);
+    mu_assert_ints_equal(
+        "app.scheduler.timer_list.count",
+        3,
+        app.scheduler.timer_list.count
+    );
+
+    return NULL;
+}
+
 char *app_run_tests(){
 
     mu_run_test("should correctly initialise an application", should_init_app);
@@ -184,6 +213,10 @@ char *app_run_tests(){
     mu_run_test(
         "should correctly tick an application event loop and operate accordingly",
         should_tick
+    );
+    mu_run_test(
+        "should correctly proxy scheduler and event loop functions",
+        should_proxy_functions
     );
 
     return NULL;
