@@ -1,4 +1,4 @@
-<map id="src/system/pools.h" name="src/system/pools.h">
+<map id="src/system/syspools.h" name="src/system/syspools.h">
 <area shape="rect" id="node3" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="28,155,94,181"/>
 <area shape="rect" id="node6" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="232,80,368,107"/>
 <area shape="rect" id="node9" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="118,155,246,181"/>

@@ -1,7 +1,8 @@
 <map id="src/system/scheduler.h" name="src/system/scheduler.h">
-<area shape="rect" id="node3" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="42,155,107,181"/>
-<area shape="rect" id="node5" href="$closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="17,229,132,256"/>
-<area shape="rect" id="node6" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="132,155,260,181"/>
-<area shape="rect" id="node8" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="224,80,360,107"/>
-<area shape="rect" id="node9" href="$circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="335,155,449,181"/>
+<area shape="rect" id="node3" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="100,155,166,181"/>
+<area shape="rect" id="node5" href="$closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="22,229,137,256"/>
+<area shape="rect" id="node6" href="$syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="292,80,377,107"/>
+<area shape="rect" id="node8" href="$circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="262,229,377,256"/>
+<area shape="rect" id="node10" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="241,155,369,181"/>
+<area shape="rect" id="node7" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="393,155,529,181"/>
 </map>

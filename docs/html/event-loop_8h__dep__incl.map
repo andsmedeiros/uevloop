@@ -1,4 +1,4 @@
 <map id="src/system/event&#45;loop.h" name="src/system/event&#45;loop.h">
-<area shape="rect" id="node2" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="5,155,169,181"/>
+<area shape="rect" id="node2" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="5,155,169,181"/>
 <area shape="rect" id="node4" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="125,80,261,107"/>
 </map>

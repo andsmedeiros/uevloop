@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value',['value',['../structclosure.html#a08c1cfded1c246368c20bcaa691cd1cc',1,'closure::value()'],['../structllist__node.html#a3c58091fcc8fae5c0bbfd342d05ccac2',1,'llist_node::value()']]]
+  ['uevloop_5fcritical_5fsection',['uevloop_critical_section',['../critical-section_8h.html#ae149730bef3ca6b173fada7d6c7fca59',1,'critical-section.h']]]
 ];

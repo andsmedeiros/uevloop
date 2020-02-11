@@ -73,6 +73,8 @@ $(function() {
 Collaboration diagram for signal_relay_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structsignal__relay__coll__graph.png" border="0" usemap="#signal__relay__t_coll__map" alt="Collaboration graph"/></div>
+<map name="signal__relay__t_coll__map" id="signal__relay__t_coll__map">
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -83,14 +85,10 @@ Data Fields</h2></td></tr>
 evloop_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsignal__relay.html#a3e71616cc5b3a8a56177b9a818709cef">event_loop</a></td></tr>
 <tr class="memdesc:a3e71616cc5b3a8a56177b9a818709cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event loop where closures will be enqueued on signal emission. <br /></td></tr>
 <tr class="separator:a3e71616cc5b3a8a56177b9a818709cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac194187d9ffbe9dcbd247562bd0a211e"><td class="memItemLeft" align="right" valign="top"><a id="ac194187d9ffbe9dcbd247562bd0a211e"></a>
-objpool_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsignal__relay.html#ac194187d9ffbe9dcbd247562bd0a211e">llist_node_pool</a></td></tr>
-<tr class="memdesc:ac194187d9ffbe9dcbd247562bd0a211e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The llist node pool to where discarded listeners will be returned. <br /></td></tr>
-<tr class="separator:ac194187d9ffbe9dcbd247562bd0a211e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7826dfc0b41323156c650b4991648058"><td class="memItemLeft" align="right" valign="top"><a id="a7826dfc0b41323156c650b4991648058"></a>
-objpool_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsignal__relay.html#a7826dfc0b41323156c650b4991648058">event_pool</a></td></tr>
-<tr class="memdesc:a7826dfc0b41323156c650b4991648058"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event pool to where discarded listeners' closures will be returned. <br /></td></tr>
-<tr class="separator:a7826dfc0b41323156c650b4991648058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6f33140d676baa9ef888a7b08fcc197"><td class="memItemLeft" align="right" valign="top"><a id="af6f33140d676baa9ef888a7b08fcc197"></a>
+syspools_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsignal__relay.html#af6f33140d676baa9ef888a7b08fcc197">pools</a></td></tr>
+<tr class="memdesc:af6f33140d676baa9ef888a7b08fcc197"><td class="mdescLeft">&#160;</td><td class="mdescRight">A quick reference to the system's internal pools. <br /></td></tr>
+<tr class="separator:af6f33140d676baa9ef888a7b08fcc197"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41253fe668f8e8adad09ade4d723b3fd"><td class="memItemLeft" align="right" valign="top"><a id="a41253fe668f8e8adad09ade4d723b3fd"></a>
 uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsignal__relay.html#a41253fe668f8e8adad09ade4d723b3fd">width</a></td></tr>
 <tr class="memdesc:a41253fe668f8e8adad09ade4d723b3fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of signals registered at this relay. <br /></td></tr>

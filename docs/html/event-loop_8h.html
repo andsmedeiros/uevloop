@@ -76,18 +76,20 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="circular-queue_8h_source.html">../utils/circular-queue.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="object-pool_8h_source.html">../utils/object-pool.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="closure_8h_source.html">../utils/closure.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="event_8h_source.html">../system/event.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="syspools_8h_source.html">../system/syspools.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for event-loop.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="event-loop_8h__incl.png" border="0" usemap="#src_2system_2event-loop_8h" alt=""/></div>
 <map name="src_2system_2event-loop_8h" id="src_2system_2event-loop_8h">
-<area shape="rect" id="node3" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="93,155,248,181"/>
-<area shape="rect" id="node6" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="5,80,141,107"/>
-<area shape="rect" id="node7" href="closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="373,155,488,181"/>
-<area shape="rect" id="node8" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="269,80,393,107"/>
+<area shape="rect" id="node3" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="21,229,176,256"/>
+<area shape="rect" id="node6" href="closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="453,229,568,256"/>
+<area shape="rect" id="node7" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="454,155,578,181"/>
+<area shape="rect" id="node8" href="syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="265,80,409,107"/>
+<area shape="rect" id="node9" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="90,155,226,181"/>
+<area shape="rect" id="node10" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="250,155,378,181"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -95,7 +97,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="event-loop_8h__dep__incl.png" border="0" usemap="#src_2system_2event-loop_8hdep" alt=""/></div>
 <map name="src_2system_2event-loop_8hdep" id="src_2system_2event-loop_8hdep">
-<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="5,155,169,181"/>
+<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="5,155,169,181"/>
 <area shape="rect" id="node4" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="125,80,261,107"/>
 </map>
 </div>
@@ -110,9 +112,9 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a32d416e09446cdf0aad61e46345f38f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a32d416e09446cdf0aad61e46345f38f1">evloop_init</a> (evloop_t *event_loop, objpool_t *event_pool, cqueue_t *event_queue, cqueue_t *reschedule_queue)</td></tr>
-<tr class="memdesc:a32d416e09446cdf0aad61e46345f38f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an event loop.  <a href="#a32d416e09446cdf0aad61e46345f38f1">More...</a><br /></td></tr>
-<tr class="separator:a32d416e09446cdf0aad61e46345f38f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ea2d4164066c8686ba7a22364f3c13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a71ea2d4164066c8686ba7a22364f3c13">evloop_init</a> (evloop_t *event_loop, syspools_t *pools, cqueue_t *event_queue, cqueue_t *reschedule_queue)</td></tr>
+<tr class="memdesc:a71ea2d4164066c8686ba7a22364f3c13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an event loop.  <a href="#a71ea2d4164066c8686ba7a22364f3c13">More...</a><br /></td></tr>
+<tr class="separator:a71ea2d4164066c8686ba7a22364f3c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a342bd080e4ca3e4585437d7642d44ee2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a342bd080e4ca3e4585437d7642d44ee2">evloop_run</a> (evloop_t *event_loop)</td></tr>
 <tr class="memdesc:a342bd080e4ca3e4585437d7642d44ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers a runloop.  <a href="#a342bd080e4ca3e4585437d7642d44ee2">More...</a><br /></td></tr>
 <tr class="separator:a342bd080e4ca3e4585437d7642d44ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,8 +202,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a32d416e09446cdf0aad61e46345f38f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32d416e09446cdf0aad61e46345f38f1">&#9670;&nbsp;</a></span>evloop_init()</h2>
+<a id="a71ea2d4164066c8686ba7a22364f3c13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71ea2d4164066c8686ba7a22364f3c13">&#9670;&nbsp;</a></span>evloop_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -215,8 +217,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">objpool_t *&#160;</td>
-          <td class="paramname"><em>event_pool</em>, </td>
+          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramname"><em>pools</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -242,7 +244,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event_loop</td><td>The evloop_t instance to be initialised </td></tr>
-    <tr><td class="paramname">event_pool</td><td>The system's event pool </td></tr>
+    <tr><td class="paramname">pools</td><td>The system's internal pools </td></tr>
     <tr><td class="paramname">event_queue</td><td>The system's event queue </td></tr>
     <tr><td class="paramname">reschedule_queue</td><td>The system's reschedule queue </td></tr>
   </table>

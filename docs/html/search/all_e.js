@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['sch_5finit',['sch_init',['../scheduler_8h.html#ab75632cd5576c63a1604254efe0ba91a',1,'scheduler.c']]],
+  ['sch_5finit',['sch_init',['../scheduler_8h.html#a10be803c49d16c59f33c0fb560f2b4a3',1,'scheduler.c']]],
   ['sch_5fmanage_5ftimers',['sch_manage_timers',['../scheduler_8h.html#a561a4b7cdcb445d42994da0eb9c160a3',1,'scheduler.c']]],
   ['sch_5freschedule',['sch_reschedule',['../scheduler_8h.html#ab43813596ebad992491c3667830f1ede',1,'scheduler.c']]],
   ['sch_5frun_5fat_5fintervals',['sch_run_at_intervals',['../scheduler_8h.html#a43e2339c242a52f788d74f30ce103ed4',1,'scheduler.c']]],
@@ -14,10 +14,17 @@ var searchData=
   ['signal_5flisten_5fonce',['signal_listen_once',['../signal_8h.html#abf0d5feed25c08e6826ae5849360cc4f',1,'signal.c']]],
   ['signal_5flistener',['signal_listener',['../structsignal__listener.html',1,'']]],
   ['signal_5frelay',['signal_relay',['../structsignal__relay.html',1,'']]],
-  ['signal_5frelay_5finit',['signal_relay_init',['../signal_8h.html#af9c878080463b3d13a80ae19b18852dd',1,'signal.c']]],
+  ['signal_5frelay_5finit',['signal_relay_init',['../signal_8h.html#addcc8f1986d4075475a9f56b31ad902e',1,'signal.c']]],
   ['signal_5ft',['signal_t',['../signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5',1,'signal.h']]],
   ['signal_5funlisten',['signal_unlisten',['../signal_8h.html#a77b3f96a528d543367cc14d26326befd',1,'signal.c']]],
   ['signal_5fvector',['signal_vector',['../structsignal__relay.html#a750a09d3893f54e06c086064c3af225f',1,'signal_relay']]],
   ['size',['size',['../structcqueue.html#ab46e5cf9c1ecbcdbac01965c5366b963',1,'cqueue']]],
-  ['source',['source',['../structsignal__listener.html#a4e7c19a45324824a8f8b593857cc4d39',1,'signal_listener']]]
+  ['source',['source',['../structsignal__listener.html#a4e7c19a45324824a8f8b593857cc4d39',1,'signal_listener']]],
+  ['syspools',['syspools',['../structsyspools.html',1,'']]],
+  ['syspools_2eh',['syspools.h',['../syspools_8h.html',1,'']]],
+  ['syspools_5facquire_5fevent',['syspools_acquire_event',['../syspools_8h.html#a15ece231776223f27e2ebbb8534101fc',1,'syspools.c']]],
+  ['syspools_5facquire_5fllist_5fnode',['syspools_acquire_llist_node',['../syspools_8h.html#af42fc81b948b4b5ade8d9d4854b5f1ab',1,'syspools.c']]],
+  ['syspools_5finit',['syspools_init',['../syspools_8h.html#a5b00c216720de7afc3a3c30a2df60cc4',1,'syspools.c']]],
+  ['syspools_5frelease_5fevent',['syspools_release_event',['../syspools_8h.html#aa6a3eecf2bc5f3a1bf6cf82fb38dba5b',1,'syspools.c']]],
+  ['syspools_5frelease_5fllist_5fnode',['syspools_release_llist_node',['../syspools_8h.html#a0a0e2d37a9a37f9e037113a66f07fa57',1,'syspools.c']]]
 ];

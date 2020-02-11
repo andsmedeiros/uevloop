@@ -1,9 +1,9 @@
 <map id="src/utils/closure.h" name="src/utils/closure.h">
-<area shape="rect" id="node2" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="296,80,431,107"/>
-<area shape="rect" id="node7" href="$event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="97,155,260,181"/>
-<area shape="rect" id="node8" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="208,229,344,256"/>
-<area shape="rect" id="node11" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="652,155,811,181"/>
-<area shape="rect" id="node14" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="480,80,618,107"/>
-<area shape="rect" id="node3" href="$pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="494,155,628,181"/>
-<area shape="rect" id="node4" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="388,304,552,331"/>
+<area shape="rect" id="node2" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="233,80,367,107"/>
+<area shape="rect" id="node6" href="$event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="43,229,205,256"/>
+<area shape="rect" id="node7" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="295,304,431,331"/>
+<area shape="rect" id="node10" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="561,229,719,256"/>
+<area shape="rect" id="node14" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="453,80,592,107"/>
+<area shape="rect" id="node3" href="$syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="280,155,435,181"/>
+<area shape="rect" id="node4" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="335,379,499,405"/>
 </map>

@@ -77,20 +77,21 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="event-loop_8h_source.html">event-loop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="syspools_8h_source.html">syspools.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="linked-list_8h_source.html">../utils/linked-list.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="object-pool_8h_source.html">../utils/object-pool.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="closure_8h_source.html">../utils/closure.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for signal.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="signal_8h__incl.png" border="0" usemap="#src_2system_2signal_8h" alt=""/></div>
 <map name="src_2system_2signal_8h" id="src_2system_2signal_8h">
-<area shape="rect" id="node3" href="event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="215,80,308,107"/>
-<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="240,155,376,181"/>
-<area shape="rect" id="node8" href="closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="411,229,525,256"/>
-<area shape="rect" id="node10" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="501,155,629,181"/>
-<area shape="rect" id="node5" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="131,229,285,256"/>
-<area shape="rect" id="node9" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="35,155,159,181"/>
+<area shape="rect" id="node3" href="event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="416,80,509,107"/>
+<area shape="rect" id="node7" href="closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="595,304,709,331"/>
+<area shape="rect" id="node9" href="syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="244,155,388,181"/>
+<area shape="rect" id="node11" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="43,229,171,256"/>
+<area shape="rect" id="node5" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="315,304,469,331"/>
+<area shape="rect" id="node8" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="463,229,587,256"/>
+<area shape="rect" id="node10" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="195,229,331,256"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -98,7 +99,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="signal_8h__dep__incl.png" border="0" usemap="#src_2system_2signal_8hdep" alt=""/></div>
 <map name="src_2system_2signal_8hdep" id="src_2system_2signal_8hdep">
-<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="5,80,169,107"/>
+<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="5,80,169,107"/>
 </map>
 </div>
 </div>
@@ -120,9 +121,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af9c878080463b3d13a80ae19b18852dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#af9c878080463b3d13a80ae19b18852dd">signal_relay_init</a> (signal_relay_t *relay, evloop_t *event_loop, objpool_t *llist_node_pool, objpool_t *event_pool, llist_t *buffer, uintptr_t width)</td></tr>
-<tr class="memdesc:af9c878080463b3d13a80ae19b18852dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a signal relay.  <a href="#af9c878080463b3d13a80ae19b18852dd">More...</a><br /></td></tr>
-<tr class="separator:af9c878080463b3d13a80ae19b18852dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addcc8f1986d4075475a9f56b31ad902e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#addcc8f1986d4075475a9f56b31ad902e">signal_relay_init</a> (signal_relay_t *relay, evloop_t *event_loop, syspools_t *pools, llist_t *buffer, uintptr_t width)</td></tr>
+<tr class="memdesc:addcc8f1986d4075475a9f56b31ad902e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a signal relay.  <a href="#addcc8f1986d4075475a9f56b31ad902e">More...</a><br /></td></tr>
+<tr class="separator:addcc8f1986d4075475a9f56b31ad902e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab16f22b1d4dc97a45dd8ecee8d3d716c"><td class="memItemLeft" align="right" valign="top">signal_listener_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#ab16f22b1d4dc97a45dd8ecee8d3d716c">signal_listen</a> (<a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a> signal, signal_relay_t *relay, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
 <tr class="memdesc:ab16f22b1d4dc97a45dd8ecee8d3d716c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a listener closure to some signal at a particular relay.  <a href="#ab16f22b1d4dc97a45dd8ecee8d3d716c">More...</a><br /></td></tr>
 <tr class="separator:ab16f22b1d4dc97a45dd8ecee8d3d716c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -289,8 +290,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af9c878080463b3d13a80ae19b18852dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9c878080463b3d13a80ae19b18852dd">&#9670;&nbsp;</a></span>signal_relay_init()</h2>
+<a id="addcc8f1986d4075475a9f56b31ad902e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addcc8f1986d4075475a9f56b31ad902e">&#9670;&nbsp;</a></span>signal_relay_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -310,14 +311,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">objpool_t *&#160;</td>
-          <td class="paramname"><em>llist_node_pool</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">objpool_t *&#160;</td>
-          <td class="paramname"><em>event_pool</em>, </td>
+          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramname"><em>pools</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -344,8 +339,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">relay</td><td>The signal relay object to be initialised </td></tr>
     <tr><td class="paramname">event_loop</td><td>The system's event loop </td></tr>
-    <tr><td class="paramname">llist_node_pool</td><td>The system's llist node pool </td></tr>
-    <tr><td class="paramname">event_pool</td><td>The system's event pool </td></tr>
+    <tr><td class="paramname">pools</td><td>The system's internal pools </td></tr>
     <tr><td class="paramname">buffer</td><td>The buffer that will be used to store listeners registered at this relay. Must be the number of signals bound to this relay wide. </td></tr>
     <tr><td class="paramname">width</td><td>The number of signals bound to this relay. </td></tr>
   </table>
