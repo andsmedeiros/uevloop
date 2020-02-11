@@ -2,11 +2,11 @@
 
 void evloop_init(
     evloop_t *event_loop,
-    objpool_t *event_pool,
+    syspools_t *pools,
     cqueue_t *event_queue,
     cqueue_t *reschedule_queue
 ){
-    event_loop->event_pool = event_pool;
+    event_loop->pools = pools;
     event_loop->event_queue = event_queue;
     event_loop->reschedule_queue = reschedule_queue;
 }
@@ -31,7 +31,7 @@ void evloop_run(evloop_t *event_loop){
             default: break;
         }
         event_destroy(event);
-        objpool_release(event_loop->event_pool, (void *)event);
+        syspools_release_event(event_loop->pools, event);
     }
 }
 
@@ -40,7 +40,7 @@ void evloop_enqueue_event(evloop_t *event_loop, event_t *event){
 }
 
 void evloop_enqueue_closure(evloop_t *event_loop, closure_t *closure){
-    event_t *event = (event_t *)objpool_acquire(event_loop->event_pool);
+    event_t *event = syspools_acquire_event(event_loop->pools);
     event_config_closure(event, closure);
     evloop_enqueue_event(event_loop, event);
 }

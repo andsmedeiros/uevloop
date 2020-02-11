@@ -12,7 +12,7 @@ static signal_listener_t register_event(
     llist_t *listeners = &relay->signal_vector[signal];
     listener.source = listeners;
 
-    llist_node_t *node = (llist_node_t *)objpool_acquire(relay->llist_node_pool);
+    llist_node_t *node = syspools_acquire_llist_node(relay->pools);
     node->value = (void *)event;
     listener.node = node;
 
@@ -24,14 +24,12 @@ static signal_listener_t register_event(
 void signal_relay_init(
     signal_relay_t *relay,
     evloop_t *event_loop,
-    objpool_t *llist_node_pool,
-    objpool_t *event_pool,
+    syspools_t *pools,
     llist_t *buffer,
     uintptr_t width
 ){
     relay->event_loop = event_loop;
-    relay->llist_node_pool = llist_node_pool;
-    relay->event_pool = event_pool;
+    relay->pools = pools;
     relay->signal_vector = buffer;
     relay->width = width;
 
@@ -45,7 +43,7 @@ signal_listener_t signal_listen(
     signal_relay_t *relay,
     closure_t *closure
 ){
-    event_t *event = (event_t *)objpool_acquire(relay->event_pool);
+    event_t *event = syspools_acquire_event(relay->pools);
     event_config_signal(event, true, closure);
     return register_event(signal, relay, event);
 }
@@ -55,7 +53,7 @@ signal_listener_t signal_listen_once(
     signal_relay_t *relay,
     closure_t *closure
 ){
-    event_t *event = (event_t *)objpool_acquire(relay->event_pool);
+    event_t *event = syspools_acquire_event(relay->pools);
     event_config_signal(event, false, closure);
     return register_event(signal, relay, event);
 }
@@ -64,8 +62,8 @@ void signal_unlisten(signal_listener_t listener, signal_relay_t *relay){
     llist_remove(listener.source, listener.node);
     event_t *event = (event_t *)listener.node->value;
     event_destroy(event);
-    objpool_release(relay->event_pool, (void *)event);
-    objpool_release(relay->llist_node_pool, (void *)listener.node);
+    syspools_release_event(relay->pools, event);
+    syspools_release_llist_node(relay->pools, listener.node);
 }
 
 void signal_emit(signal_t signal, signal_relay_t *relay, void *params){

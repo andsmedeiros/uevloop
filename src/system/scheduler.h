@@ -8,9 +8,9 @@
 
 #include <stdint.h>
 #include "event.h"
+#include "syspools.h"
 #include "../utils/linked-list.h"
 #include "../utils/closure.h"
-#include "../utils/object-pool.h"
 #include "../utils/circular-queue.h"
 
 /** \brief The scheduler object.
@@ -30,8 +30,7 @@ struct scheduler{
       */
     llist_t timer_list;
 
-    objpool_t *llist_node_pool; //!< Reference to the system's llist node pool
-    objpool_t *event_pool; //!< Reference to the system's event pool
+    syspools_t *pools; //!< Reference to the system's pools
 
     /** \brief The system's event queue
       *
@@ -54,15 +53,13 @@ struct scheduler{
 /** \brief Initialises a scheduler object
   *
   * \param scheduler The scheduler_t instance to be initialised
-  * \param llist_node_pool The system's llist node pool
-  * \param event_pool The system's event pool
+  * \param pools The system's internal pools
   * \param event_queue The queue into which events ready to be run are put
   * \param reschedule_queue The queue that holds events ready for rescheduling
   */
 void sch_init(
     scheduler_t *scheduler,
-    objpool_t *llist_node_pool,
-    objpool_t *event_pool,
+    syspools_t *pools,
     cqueue_t *event_queue,
     cqueue_t *reschedule_queue
 );

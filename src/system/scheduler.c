@@ -30,7 +30,7 @@ static void *place_in_order(closure_t *closure){
 }
 
 static void enqueue_timer(scheduler_t *scheduler, event_t *timer){
-    llist_node_t *node = (llist_node_t *)objpool_acquire(scheduler->llist_node_pool);
+    llist_node_t *node = syspools_acquire_llist_node(scheduler->pools);
     node->value = (void *)timer;
     closure_t in_order = closure_create(
         place_in_order,
@@ -42,21 +42,19 @@ static void enqueue_timer(scheduler_t *scheduler, event_t *timer){
 
 void sch_init(
     scheduler_t *scheduler,
-    objpool_t *llist_node_pool,
-    objpool_t *event_pool,
+    syspools_t *pools,
     cqueue_t *event_queue,
     cqueue_t *reschedule_queue
 ){
     llist_init(&scheduler->timer_list);
-    scheduler->llist_node_pool = llist_node_pool;
-    scheduler->event_pool = event_pool;
+    scheduler->pools = pools;
     scheduler->event_queue = event_queue;
     scheduler->reschedule_queue = reschedule_queue;
     scheduler->timer = 0;
 }
 
 void sch_run_later(scheduler_t *scheduler, uint16_t  timeout_in_ms, closure_t closure){
-    event_t *event = (event_t *)objpool_acquire(scheduler->event_pool);
+    event_t *event = syspools_acquire_event(scheduler->pools);
     event_config_timer(event, timeout_in_ms, false, false, &closure, scheduler->timer);
     enqueue_timer(scheduler, event);
 }
@@ -67,7 +65,7 @@ void sch_run_at_intervals(
     bool immediate,
     closure_t closure
 ){
-    event_t *event = (event_t *)objpool_acquire(scheduler->event_pool);
+    event_t *event = syspools_acquire_event(scheduler->pools);
     event_config_timer(event, interval_in_ms, true, immediate, &closure, scheduler->timer);
     if(immediate){
         event->timer.due_time = scheduler->timer;
@@ -84,7 +82,7 @@ void sch_manage_timers(scheduler_t *scheduler){
         event_t *timer = (event_t *)current->value;
         previous = current;
         current = current->next;
-        objpool_release(scheduler->llist_node_pool, previous);
+        syspools_release_llist_node(scheduler->pools, previous);
         cqueue_push(scheduler->event_queue, (void *)timer);
     }
     while(!cqueue_is_empty(scheduler->reschedule_queue)){

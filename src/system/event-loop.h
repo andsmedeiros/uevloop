@@ -7,9 +7,9 @@
 
 #include <stdbool.h>
 #include "../utils/circular-queue.h"
-#include "../utils/object-pool.h"
 #include "../utils/closure.h"
 #include "../system/event.h"
+#include "../system/syspools.h"
 
 /** \brief The event loop object
   *
@@ -19,7 +19,7 @@
   */
 typedef struct evloop evloop_t;
 struct evloop{
-    objpool_t *event_pool; //!< Quick reference to the system's event pool
+    syspools_t *pools; //!< Quick reference to the system's pools
 
     /** \brief The system's event queue
       *
@@ -43,13 +43,13 @@ struct evloop{
 /** \brief Initialises an event loop
   *
   * \param event_loop The evloop_t instance to be initialised
-  * \param event_pool The system's event pool
+  * \param pools The system's internal pools
   * \param event_queue The system's event queue
   * \param reschedule_queue The system's reschedule queue
   */
 void evloop_init(
     evloop_t *event_loop,
-    objpool_t *event_pool,
+    syspools_t *pools,
     cqueue_t *event_queue,
     cqueue_t *reschedule_queue
 );

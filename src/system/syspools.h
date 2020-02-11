@@ -1,9 +1,9 @@
-/** \file pools.h
+/** \file syspools.h
   * \brief A container for the system's internal pools
   */
 
-#ifndef POOLS_H
-#define	POOLS_H
+#ifndef SYSPOOLS_H
+#define	SYSPOOLS_H
 
 #include <stdint.h>
 #include "event.h"
@@ -12,12 +12,12 @@
 
 /** \brief A container for the system pools
   *
-  * The pools object is meant as a container for the internal system pools.
+  * The syspools object is meant as a container for the internal system pools.
   * It is defined to make easier for the programmer to reason about the sizes
-  * of allocated internal object pools
+  * of allocated internal object pools.
   */
-typedef struct pools pools_t;
-struct pools{
+typedef struct syspools syspools_t;
+struct syspools{
 
     //! Defines the size of the event pool size in log2 form
     #define EVENT_POOL_SIZE_LOG2N   (7) //128 events
@@ -41,8 +41,38 @@ struct pools{
 
 /** \brief Initialise the system pools
   *
-  * \param pools The pools_t instance
+  * \param pools The syspools_t instance
   */
-void pools_init(pools_t *pools);
+void syspools_init(syspools_t *pools);
 
-#endif	/* POOLS_H */
+/** \brief Acquires an event from the system pools
+  *
+  * \param pools The syspools_t instance
+  * \returns The acquired event
+  */
+event_t *syspools_acquire_event(syspools_t *pools);
+
+/** \brief Acquires a linked list node from the system pools
+  *
+  * \param pools The syspools_t instance
+  * \returns The acquired linked list node
+  */
+llist_node_t *syspools_acquire_llist_node(syspools_t *pools);
+
+/** \brief Releases an event to the system pools
+  *
+  * \param pools The syspools_t instance
+  * \param event The event to be released
+  * \returns Whether the event was successfully released
+  */
+bool syspools_release_event(syspools_t *pools, event_t *event);
+
+/** \brief Releases a linked list node to the system pools
+  *
+  * \param pools The syspools_t instance
+  * \param node The linked list node to be released
+  * \returns Wheter the linked list node was successfully released
+  */
+bool syspools_release_llist_node(syspools_t *pools, llist_node_t *node);
+
+#endif	/* SYSPOOLS_H */

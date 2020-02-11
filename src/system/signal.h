@@ -8,8 +8,8 @@
 
 #include <stdlib.h>
 #include "event-loop.h"
+#include "syspools.h"
 #include "../utils/linked-list.h"
-#include "../utils/object-pool.h"
 #include "../utils/closure.h"
 
 /** \typedef signal_t
@@ -46,10 +46,8 @@ struct signal_relay{
     llist_t *signal_vector;
     //! The event loop where closures will be enqueued on signal emission
     evloop_t *event_loop;
-    //! The llist node pool to where discarded listeners will be returned.
-    objpool_t *llist_node_pool;
-    //! The event pool to where discarded listeners' closures will be returned.
-    objpool_t *event_pool;
+    //! A quick reference to the system's internal pools
+    syspools_t *pools;
     //! The number of signals registered at this relay.
     uintptr_t width;
 };
@@ -58,8 +56,7 @@ struct signal_relay{
   *
   * \param relay The signal relay object to be initialised
   * \param event_loop The system's event loop
-  * \param llist_node_pool The system's llist node pool
-  * \param event_pool The system's event pool
+  * \param pools The system's internal pools
   * \param buffer The buffer that will be used to store listeners registered at
   * this relay. Must be the number of signals bound to this relay wide.
   * \param width The number of signals bound to this relay.
@@ -67,8 +64,7 @@ struct signal_relay{
 void signal_relay_init(
     signal_relay_t *relay,
     evloop_t *event_loop,
-    objpool_t *llist_node_pool,
-    objpool_t *event_pool,
+    syspools_t *pools,
     llist_t *buffer,
     uintptr_t width
 );
