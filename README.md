@@ -194,21 +194,25 @@ llist_node_t *node2 = (llist_node_t *)llist_pop_tail(&list);
 
 Events are messages that represent a task to be done by the core. The programmer does not usually create or manipulate them manually, but must provide a pool of events so other core modules can communicate with each other.
 
-### Pools
+### System pools
 
-The pools module is a container for the system internal object pools. It contains pools for events and linked list nodes used by other core modules.
+The syspools module is a container for the system internal object pools. It contains pools for events and linked list nodes used by other core modules.
 
-To configure the size of each pool created, edit *system/pools.h*.
+Besides serving as a container of object pools, it also encapsulates manipulation of these pools inside [critical sections](#critical-sections), ensuring safe access to shared resources.
 
-#### Pools usage
+The system pools module is meant to be internally operated only. The only responsability of the programmer is to allocate, initialise and provide it to other core modules.
+
+To configure the size of each pool created, edit *system/syspools.h*.
+
+#### System pools usage
 
 ```c
-#include "system/pools.h"
+#include "system/syspools.h"
 
 // ...
 
-pools_t pools;
-pools_init(&pools);
+syspools_t pools;
+syspools_init(&pools);
 // This allocates two pools:
 //   1) pools.event_pool
 //   2) pools.llist_node_pool
@@ -402,7 +406,7 @@ evloop_enqueue_closure(&loop, &closure);
 
  Signals are similar to events in Javascript. It allows the programmer to message distant parts of the system to communicate with each other in a pub/sub fashion.
 
- At the center of the signal system is the Signal Relay, a structure that bind speciffic signals to its listeners. When a signal is emitted, the relay will **asynchronously** run each listener registered for that signal. If the listener was not recurring, it will be destroyed upon execution by the event loop.
+ At the centre of the signal system is the Signal Relay, a structure that bind speciffic signals to its listeners. When a signal is emitted, the relay will **asynchronously** run each listener registered for that signal. If the listener was not recurring, it will be destroyed upon execution by the event loop.
 
  #### Signals and relay initialisation
 
@@ -516,26 +520,35 @@ The function `app_tick` is responsible for coordinating the dance between the sc
 
 ## Concurrency model
 
-µEvLoop is meant to run primarily in simple, single-core MCUs. That said, nothing stops it from being employed in full-fledged x86_64 multi-threaded applications.
+µEvLoop is meant to run baremetal, primarily in simple single-core MCUs. That said, nothing stops it from being employed as a side library in RTOSes or in full-fledged x86_64 multi-threaded desktop applications.
 
-Anyway, there are no built-in guarantees that any code is interrupt or thread safe. Queue and linked lists operations are not atomic by default and therefore need some special care.
+Communication between asynchronous contexts, such as ISRs and side threads, is done through some shared data structures defined inside the library's core modules. As whenever dealing with non-atomic shared memory, there must be sincronisation between accesses to these structures as to avoid memory corruption.
 
-### Critical sessions
+µEvLoop does not try to implement a universal locking scheme fit for any device. Instead, some generic critical section definition is provided.
 
-The programmer can turn on critical session protection on core modules functions.
-By default, critical sections are a no-op, but by overriding the `UEVLOOP_CRITICAL_SECTION` macro with appropriate platform-speciffic synchronisation methods will make the whole core safe.
+### Critical sections
 
-```C
-#define UEVLOOP_CRITICAL_SECTION(body) do { \
-  __disable_global_interrupt();             \
-  body;                                     \
-  __enable_global_interrupt();              \
-} while(0);
+By default, critical sections in µEvLoop are a no-op. They are provided as a set of macros that can be overriden by the programmer to implement platform speciffic behaviour.
 
-// ...
+For instance, while running baremetal it may be only necessary to disable interrupts to make sure accesses are synchronised. On a RTOS multi-threaded environment, on the other hand, it may be necessary to use a mutex.
 
-#include "system/application.h"
-```
+Critical sections in µEvLoop are meant to be nestable. This means that synchronisation must occur around the first critical section created. Inner critical sections should be a no-op.
+
+There are three macros that define critical section implementation:
+
+1. `UEVLOOP_CRITICAL_OBJECT`
+
+  To provide correct nesting behaviour, a global critical section object is declared. It is available to any critical section under the symbol `uevloop_critical_section`.
+
+  The `UEVLOOP_CRITICAL_OBJECT` macro defines the **type** of the object (by default, `unsigned char`). It is the programmer's responsability to declare the globally allocate and initialise the object.
+
+2. `UEVLOOP_CRITICAL_ENTER`
+
+  Enters a new critical section. If one or more critical sections are already in place, until all of them exit, this macro must do nothing. Otherwise, it must acquire exclusive control of the running process.
+
+3. `UEVLOOP_CRITICAL_EXIT`
+
+  Exits the current topmost critical section. It must only release control of the process when there are no more critical sections left.
 
 ## Motivation
 
