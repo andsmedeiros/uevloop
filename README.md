@@ -222,7 +222,7 @@ syspools_init(&pools);
 
 The scheduler is a module that keeps track of current execution time and keeps track of closures to be run in the future. It provides similar functionality to the `setTimeout` and `setInterval` Javascript functions.
 
-Two queues lead in and out of it: the inbound reschedule_queue is externally fed events that have already been processed but should be rescheduled (*i.e.*: repeating timers); the outbound event_queue hold events that are due to be collected and processed. Both queues must be provided during initialisation.
+Two queues lead in and out of it: the inbound schedule_queue is externally fed events that have already been processed but should be scheduled (*i.e.*: repeating timers); the outbound event_queue hold events that are due to be collected and processed. Both queues must be provided during initialisation.
 
 This module needs access to system's event and linked list node pools.
 
@@ -245,10 +245,10 @@ void *event_queue_buffer[8];
 cqueue_t event_queue;
 cqueue_init(&event_queue, event_queue_buffer, 3);
 
-// Create reschedule queue
-void *reschedule_queue_buffer[8];
-cqueue_t reschedule_queue;
-cqueue_init(&reschedule_queue, reschedule_queue_buffer, 3);
+// Create schedule queue
+void *schedule_queue_buffer[8];
+cqueue_t schedule_queue;
+cqueue_init(&schedule_queue, schedule_queue_buffer, 3);
 
 // Push it all into the scheduler
 scheduler_t scheduler;
@@ -257,7 +257,7 @@ sch_init(
     &pools.llist_node_pool,
     &pools.event_pool,
     &event_queue,
-    &reschedule_queue
+    &schedule_queue
 );
 ```
 
@@ -313,7 +313,7 @@ sch_manage_timers(&scheduler);
 ```
 
 When the function `sch_manage_timers` is called, two things happen:
-1. The reschedule_queue is flushed  and every timer in it is rescheduled accordingly;
+1. The schedule_queue is flushed  and every timer in it is scheduled accordingly;
 2. The scheduler iterates over the enqueued timer list from the begining and breaks it when it finds a timer scheduled further in the future. It then procedes to move each timer from the extracted list  to the event queue, where they will be further collected and processed.
 
 #### Scheduler time resolution
@@ -328,7 +328,7 @@ A good value for the timer ISR frequency is usually between 1 kHz - 200 Hz, but 
 
 There is little use having the feed in timer ISR run at more than 1 kHz, as it is meant to measure milliseconds. Software timers are unlikely to be accurate enough for much greater frequencies anyway.
 
-If the `sch_manage_timers` function is not called frequently enough, events will start enqueing and won't be served in time. Just make sure it is called when the counter is updated or when there is events on the reschedule queue.
+If the `sch_manage_timers` function is not called frequently enough, events will start enqueing and won't be served in time. Just make sure it is called when the counter is updated or when there is events on the schedule queue.
 
 
 ### Event loop
@@ -353,21 +353,21 @@ void *event_queue_buffer[8];
 cqueue_t event_queue;
 cqueue_init(&event_queue, event_queue_buffer, 3);
 
-// Create reschedule queue
-void *reschedule_queue_buffer[8];
-cqueue_t reschedule_queue;
-cqueue_init(&reschedule_queue, reschedule_queue_buffer, 3 );
+// Create schedule queue
+void *schedule_queue_buffer[8];
+cqueue_t schedule_queue;
+cqueue_init(&schedule_queue, schedule_queue_buffer, 3 );
 
 // Bind it all to the event loop
 evloop_t loop;
-evloop_init(&loop, &pools.event_pool, &event_queue, &reschedule_queue);
+evloop_init(&loop, &pools.event_pool, &event_queue, &schedule_queue);
 ```
 
 #### Event loop usage
 
 The event loop is mean to behave as a run-to-completition task scheduler. Its `evloop_run` function should be called as ofter as possible as to minimise execution latency. Each execution of `evloop_run` is called a *runloop* .
 
-Depending on the nature of the event being processed at a time, the event loop may decide to dispose of it in different ways. Closures and one-shot timers are immediately deconstructed and returned to their pools. Both **signals** (more on that in a while) and repeating timers are never disposed of, being the latter put on the reschedule queue upon completition.
+Depending on the nature of the event being processed at a time, the event loop may decide to dispose of it in different ways. Closures and one-shot timers are immediately deconstructed and returned to their pools. Both **signals** (more on that in a while) and repeating timers are never disposed of, being the latter put on the schedule queue upon completition.
 
 Only closures are enqueued manually by the programmer. Timers and signals are enqueued by their corresponding modules. Any event can be enqueued multiple times.
 

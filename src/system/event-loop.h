@@ -15,7 +15,7 @@
   *
   * This object represents an event loop. It contains a two queues:
   * 1. The inbound event queue, which is the feeding point of the event loop.
-  * 2. The outbound reschedule queue, which holds reusable events already run.
+  * 2. The outbound schedule queue, which holds reusable events already run.
   */
 typedef struct evloop evloop_t;
 struct evloop{
@@ -31,13 +31,13 @@ struct evloop{
       */
     cqueue_t *event_queue;
 
-    /** \brief The system's reschedule queue
+    /** \brief The system's schedule queue
       *
-      * The reschedule queue holds events that are not immediately disposable
+      * The schedule queue holds events that are not immediately disposable
       * (i.e. recurring timers) that have already been processed and should be
       * put back on the scheduler's queue.
       */
-     cqueue_t *reschedule_queue;
+     cqueue_t *schedule_queue;
 };
 
 /** \brief Initialises an event loop
@@ -45,13 +45,13 @@ struct evloop{
   * \param event_loop The evloop_t instance to be initialised
   * \param pools The system's internal pools
   * \param event_queue The system's event queue
-  * \param reschedule_queue The system's reschedule queue
+  * \param schedule_queue The system's schedule queue
   */
 void evloop_init(
     evloop_t *event_loop,
     syspools_t *pools,
     cqueue_t *event_queue,
-    cqueue_t *reschedule_queue
+    cqueue_t *schedule_queue
 );
 
 /** \brief Triggers a runloop.

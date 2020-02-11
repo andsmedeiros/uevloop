@@ -4,11 +4,11 @@ void evloop_init(
     evloop_t *event_loop,
     syspools_t *pools,
     cqueue_t *event_queue,
-    cqueue_t *reschedule_queue
+    cqueue_t *schedule_queue
 ){
     event_loop->pools = pools;
     event_loop->event_queue = event_queue;
-    event_loop->reschedule_queue = reschedule_queue;
+    event_loop->schedule_queue = schedule_queue;
 }
 
 void evloop_run(evloop_t *event_loop){
@@ -21,7 +21,7 @@ void evloop_run(evloop_t *event_loop){
             case TIMER_EVENT:
                 closure_invoke(&event->closure, event_loop);
                 if (event->repeating) {
-                    cqueue_push(event_loop->reschedule_queue, (void *)event);
+                    cqueue_push(event_loop->schedule_queue, (void *)event);
                     continue;
                 }
                 break;

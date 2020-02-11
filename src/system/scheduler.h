@@ -7,7 +7,6 @@
 #define	SCHEDULER_H
 
 #include <stdint.h>
-#include "event.h"
 #include "syspools.h"
 #include "../utils/linked-list.h"
 #include "../utils/closure.h"
@@ -39,12 +38,12 @@ struct scheduler{
       */
     cqueue_t *event_queue;
 
-    /** \brief The system's reschedule queue
+    /** \brief The system's schedule queue
       *
-      * Events put in this queue will be reschedule according to their due time
+      * Events put in this queue will be schedule according to their due time
       * by the next time the scheduler manages its timers.
       */
-    cqueue_t *reschedule_queue;
+    cqueue_t *schedule_queue;
 
     /** \brief Internal timer. Must be updated via `evloop_update_timer()` */
     volatile uint32_t timer;
@@ -55,13 +54,13 @@ struct scheduler{
   * \param scheduler The scheduler_t instance to be initialised
   * \param pools The system's internal pools
   * \param event_queue The queue into which events ready to be run are put
-  * \param reschedule_queue The queue that holds events ready for rescheduling
+  * \param schedule_queue The queue that holds events ready for rescheduling
   */
 void sch_init(
     scheduler_t *scheduler,
     syspools_t *pools,
     cqueue_t *event_queue,
-    cqueue_t *reschedule_queue
+    cqueue_t *schedule_queue
 );
 
 /** \brief Enqueues a closure for later execution.
@@ -100,13 +99,6 @@ void sch_run_at_intervals(
   * \param scheduler The scheduler_t to manage
   */
 void sch_manage_timers(scheduler_t *scheduler);
-
-/** \brief Reschedules an already initialised timer
-  *
-  * \param scheduler The scheduler into which to reschedule the timer
-  * \param timer The timer to be rescheduled
-  */
-void sch_reschedule(scheduler_t *scheduler, event_t *timer);
 
 /** \brief Updates the internal time counter
   *

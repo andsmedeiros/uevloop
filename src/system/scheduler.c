@@ -1,4 +1,6 @@
 #include "scheduler.h"
+#include "event.h"
+#include "../portability/critical-section.h"
 
 static void *is_past_due_time(closure_t *closure){
     uint32_t current_time = *(uint32_t *)closure->context;
@@ -40,23 +42,29 @@ static void enqueue_timer(scheduler_t *scheduler, event_t *timer){
     llist_insert_at(&scheduler->timer_list, node, &in_order);
 }
 
+static void schedule(scheduler_t *scheduler, event_t *timer){
+    UEVLOOP_CRITICAL_ENTER;
+    cqueue_push(scheduler->schedule_queue, (void *)timer);
+    UEVLOOP_CRITICAL_EXIT;
+}
+
 void sch_init(
     scheduler_t *scheduler,
     syspools_t *pools,
     cqueue_t *event_queue,
-    cqueue_t *reschedule_queue
+    cqueue_t *schedule_queue
 ){
     llist_init(&scheduler->timer_list);
     scheduler->pools = pools;
     scheduler->event_queue = event_queue;
-    scheduler->reschedule_queue = reschedule_queue;
+    scheduler->schedule_queue = schedule_queue;
     scheduler->timer = 0;
 }
 
 void sch_run_later(scheduler_t *scheduler, uint16_t  timeout_in_ms, closure_t closure){
     event_t *event = syspools_acquire_event(scheduler->pools);
     event_config_timer(event, timeout_in_ms, false, false, &closure, scheduler->timer);
-    enqueue_timer(scheduler, event);
+    schedule(scheduler, event);
 }
 
 void sch_run_at_intervals(
@@ -70,10 +78,15 @@ void sch_run_at_intervals(
     if(immediate){
         event->timer.due_time = scheduler->timer;
     }
-    enqueue_timer(scheduler, event);
+    schedule(scheduler, event);
 }
 
 void sch_manage_timers(scheduler_t *scheduler){
+    event_t *event;
+    while((event = (event_t *)cqueue_pop(scheduler->schedule_queue)) != NULL){
+        enqueue_timer(scheduler, event);
+    }
+
     closure_t closure =
         closure_create(&is_past_due_time, (void *)&scheduler->timer, NULL);
     llist_t expired_timers = llist_remove_until(&scheduler->timer_list, &closure);
@@ -85,14 +98,6 @@ void sch_manage_timers(scheduler_t *scheduler){
         syspools_release_llist_node(scheduler->pools, previous);
         cqueue_push(scheduler->event_queue, (void *)timer);
     }
-    while(!cqueue_is_empty(scheduler->reschedule_queue)){
-        event_t *event = (event_t *)cqueue_pop(scheduler->reschedule_queue);
-        sch_reschedule(scheduler, event);
-    }
-}
-
-void sch_reschedule(scheduler_t *scheduler, event_t *timer){
-    enqueue_timer(scheduler, timer);
 }
 
 void sch_update_timer(scheduler_t *scheduler, uint32_t timer){

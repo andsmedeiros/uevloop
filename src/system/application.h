@@ -30,10 +30,10 @@ typedef enum app_event app_event_t;
 //! Unrolls the `APP_EVENT_QUEUE_SIZE_LOG2N` value to its power-of-two form
 #define APP_EVENT_QUEUE_SIZE (1<<APP_EVENT_QUEUE_SIZE_LOG2N)
 
-//! The size of the reschedule queue in log2 form
-#define APP_RESCHEDULE_QUEUE_SIZE_LOG2N (4)
-//! Unrolls the `APP_RESCHEDULE_QUEUE_SIZE_LOG2N` value to its power-of-two form
-#define APP_RESCHEDULE_QUEUE_SIZE (1<<APP_RESCHEDULE_QUEUE_SIZE_LOG2N)
+//! The size of the schedule queue in log2 form
+#define APP_SCHEDULE_QUEUE_SIZE_LOG2N (4)
+//! Unrolls the `APP_SCHEDULE_QUEUE_SIZE_LOG2N` value to its power-of-two form
+#define APP_SCHEDULE_QUEUE_SIZE (1<<APP_SCHEDULE_QUEUE_SIZE_LOG2N)
 
 /** \brief Top-level container for µEvLoop'd application
   *
@@ -60,9 +60,9 @@ struct application{
                               * runloop.
                               */
 
-    //! The reschedule queue buffer
-    void *reschedule_queue_buffer[APP_RESCHEDULE_QUEUE_SIZE];
-    cqueue_t reschedule_queue; /**< \brief The application's reschedule queue.
+    //! The schedule queue buffer
+    void *schedule_queue_buffer[APP_SCHEDULE_QUEUE_SIZE];
+    cqueue_t schedule_queue; /**< \brief The application's schedule queue.
                                  *
                                  * Hold events already processed by the runloop
                                  * but fit for rescheduling at the scheduler.

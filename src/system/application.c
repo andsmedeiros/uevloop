@@ -11,21 +11,21 @@ void app_init(application_t *app){
         APP_EVENT_QUEUE_SIZE_LOG2N
     );
     cqueue_init(
-        &app->reschedule_queue,
-        app->reschedule_queue_buffer,
-        APP_RESCHEDULE_QUEUE_SIZE_LOG2N
+        &app->schedule_queue,
+        app->schedule_queue_buffer,
+        APP_SCHEDULE_QUEUE_SIZE_LOG2N
     );
     sch_init(
         &app->scheduler,
         &app->pools,
         &app->event_queue,
-        &app->reschedule_queue
+        &app->schedule_queue
     );
     evloop_init(
         &app->event_loop,
         &app->pools,
         &app->event_queue,
-        &app->reschedule_queue
+        &app->schedule_queue
     );
     signal_relay_init(
         &app->relay,

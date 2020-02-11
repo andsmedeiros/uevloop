@@ -76,7 +76,7 @@ void event_config_signal(event_t *event, bool repeating, closure_t *closure);
   * \param timeout_in_ms The delay to process this event. If the event is repeating,
   * this defines the interval between successive executions.
   * \param repeating If this flag is set, the event will not be destroyed after
-  * execution. Instead it will be put on the reschedule queue.
+  * execution. Instead it will be put on the schedule queue.
   * \param immediate If this flag is set, a recurring timer will be immediately
   * enqueued for processing. One-shot timers will ignore this setting.
   * \param closure The closure to be invoked when the timer expires
