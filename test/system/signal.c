@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include "utils/linked-list.h"
 #include "system/signal.h"
-#include "system/syspools.h"
+#include "system/event-loop.h"
+#include "system/containers/system-pools.h"
+#include "system/containers/system-queues.h"
 #include "../minunit.h"
 
 enum test_signal_event {
@@ -14,22 +16,18 @@ enum test_signal_event {
 };
 
 #define DECLARE_SIGNAL_RELAY()                                                  \
-    syspools_t pools;                                                              \
-    void *event_queue_buffer[8];                                                \
-    cqueue_t event_queue;                                                       \
-    void *reschedule_queue_buffer[8];                                           \
-    cqueue_t reschedule_queue;                                                  \
-    syspools_init(&pools);                                                         \
-    cqueue_init(&event_queue, event_queue_buffer, 3);                           \
-    cqueue_init(&reschedule_queue, reschedule_queue_buffer, 3 );                \
+    syspools_t pools;                                                           \
+    syspools_init(&pools);                                                      \
+    sysqueues_t queues;                                                         \
+    sysqueues_init(&queues);                                                    \
     evloop_t loop;                                                              \
-    evloop_init(&loop, &pools, &event_queue, &reschedule_queue);     \
+    evloop_init(&loop, &pools, &queues);                                        \
     llist_t relay_buffer[TEST_SIGNAL_EVENT_COUNT];                              \
     signal_relay_t relay;                                                       \
     signal_relay_init(                                                          \
         &relay,                                                                 \
-        &loop,                                                                  \
         &pools,                                                                 \
+        &queues,                                                                \
         relay_buffer,                                                           \
         TEST_SIGNAL_EVENT_COUNT                                                 \
     );
@@ -38,16 +36,15 @@ static char *should_init_signal_relay(){
     DECLARE_SIGNAL_RELAY();
 
     mu_assert_pointers_equal(
-        "relay.event_loop",
-        &loop,
-        relay.event_loop
-    );
-    mu_assert_pointers_equal(
-        "relay.event_pool",
+        "relay.pools",
         &pools,
         relay.pools
     );
-
+    mu_assert_pointers_equal(
+        "relay.queues",
+        &queues,
+        relay.queues
+    );
     mu_assert_pointers_equal(
         "relay.signal_vector",
         relay_buffer,

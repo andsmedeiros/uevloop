@@ -98,4 +98,11 @@ bool cqueue_is_full(cqueue_t *queue);
 */
 bool cqueue_is_empty(cqueue_t *queue);
 
+/** \brief Counts the number o elements in the queue
+  *
+  * \param queue The queue whoese elements should be counted
+  * \returns The number of enqueued elements
+  */
+uintptr_t cqueue_count(cqueue_t *queue);
+
 #endif	/* CIRCULAR_QUEUE_H */

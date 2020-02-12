@@ -22,14 +22,14 @@ static char *should_init_app(){
         app.pools.llist_node_pool.buffer
     );
     mu_assert_pointers_equal(
-        "app.event_queue.buffer",
-        app.event_queue_buffer,
-        app.event_queue.buffer
+        "app.queues.event_queue.buffer",
+        app.queues.event_queue_buffer,
+        app.queues.event_queue.buffer
     );
     mu_assert_pointers_equal(
-        "app.reschedule_queue.buffer",
-        app.reschedule_queue_buffer,
-        app.reschedule_queue.buffer
+        "app.queues.schedule_queue.buffer",
+        app.queues.schedule_queue_buffer,
+        app.queues.schedule_queue.buffer
     );
     mu_assert_pointers_equal(
         "app.scheduler.pools",
@@ -37,34 +37,24 @@ static char *should_init_app(){
         app.scheduler.pools
     );
     mu_assert_pointers_equal(
-        "app.scheduler.event_queue",
-        &app.event_queue,
-        app.scheduler.event_queue
+        "app.scheduler.queues",
+        &app.queues,
+        app.scheduler.queues
     );
     mu_assert_pointers_equal(
-        "app.scheduler.reschedule_queue",
-        &app.reschedule_queue,
-        app.scheduler.reschedule_queue
-    );
-    mu_assert_pointers_equal(
-        "app.event_loop.polls",
+        "app.event_loop.pools",
         &app.pools,
         app.event_loop.pools
     );
     mu_assert_pointers_equal(
-        "app.event_loop.event_queue",
-        &app.event_queue,
-        app.event_loop.event_queue
+        "app.event_loop.queues",
+        &app.queues,
+        app.event_loop.queues
     );
     mu_assert_pointers_equal(
-        "app.event_loop.reschedule_queue",
-        &app.reschedule_queue,
-        app.event_loop.reschedule_queue
-    );
-    mu_assert_pointers_equal(
-        "app.relay.event_loop",
-        &app.event_loop,
-        app.relay.event_loop
+        "app.relay.queues",
+        &app.queues,
+        app.relay.queues
     );
     mu_assert_pointers_equal(
         "app.relay.pools",
@@ -167,33 +157,53 @@ static char *should_proxy_functions(){
     DECLARE_APP();
 
     closure_t closure = closure_create(&nop, NULL, NULL);
-    app_enqueue_closure(&app, &closure);
 
+    app_enqueue_closure(&app, &closure);
     mu_assert_ints_equal(
-        "app.event_loop.event_queue->count",
+        "sysqueues_count_enqueued_events",
         1,
-        app.event_loop.event_queue->count
+        sysqueues_count_enqueued_events(&app.queues)
+    );
+    mu_assert_ints_equal(
+        "sysqueues_count_scheduled_events",
+        0,
+        sysqueues_count_scheduled_events(&app.queues)
     );
 
     app_run_later(&app, 1000, closure);
     mu_assert_ints_equal(
-        "app.scheduler.timer_list.count",
+        "sysqueues_count_enqueued_events",
         1,
-        app.scheduler.timer_list.count
+        sysqueues_count_enqueued_events(&app.queues)
+    );
+    mu_assert_ints_equal(
+        "sysqueues_count_scheduled_events",
+        1,
+        sysqueues_count_scheduled_events(&app.queues)
     );
 
     app_run_at_intervals(&app, 500, false, closure);
     mu_assert_ints_equal(
-        "app.scheduler.timer_list.count",
+        "sysqueues_count_enqueued_events",
+        1,
+        sysqueues_count_enqueued_events(&app.queues)
+    );
+    mu_assert_ints_equal(
+        "sysqueues_count_scheduled_events",
         2,
-        app.scheduler.timer_list.count
+        sysqueues_count_scheduled_events(&app.queues)
     );
 
     app_run_at_intervals(&app, 500, true, closure);
     mu_assert_ints_equal(
-        "app.scheduler.timer_list.count",
-        3,
-        app.scheduler.timer_list.count
+        "sysqueues_count_enqueued_events",
+        2,
+        sysqueues_count_enqueued_events(&app.queues)
+    );
+    mu_assert_ints_equal(
+        "sysqueues_count_scheduled_events",
+        2,
+        sysqueues_count_scheduled_events(&app.queues)
     );
 
     return NULL;

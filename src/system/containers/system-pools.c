@@ -1,7 +1,7 @@
-#include "syspools.h"
+#include "system-pools.h"
 
 #include <stdlib.h>
-#include "../portability/critical-section.h"
+#include "../../portability/critical-section.h"
 
 void syspools_init(syspools_t *pools){
     objpool_init(

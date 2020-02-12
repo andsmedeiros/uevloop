@@ -2,6 +2,7 @@
 
 #include <stdbool.h>
 #include "event.h"
+#include "../portability/critical-section.h"
 
 static signal_listener_t register_event(
     signal_t signal,
@@ -16,20 +17,22 @@ static signal_listener_t register_event(
     node->value = (void *)event;
     listener.node = node;
 
+    UEVLOOP_CRITICAL_ENTER;
     llist_push_head(listeners, node);
+    UEVLOOP_CRITICAL_EXIT;
 
     return listener;
 }
 
 void signal_relay_init(
     signal_relay_t *relay,
-    evloop_t *event_loop,
     syspools_t *pools,
+    sysqueues_t *queues,
     llist_t *buffer,
     uintptr_t width
 ){
-    relay->event_loop = event_loop;
     relay->pools = pools;
+    relay->queues = queues;
     relay->signal_vector = buffer;
     relay->width = width;
 
@@ -72,7 +75,7 @@ void signal_emit(signal_t signal, signal_relay_t *relay, void *params){
     while(current != NULL){
         event_t *event = (event_t *)current->value;
         event->closure.params = params;
-        evloop_enqueue_event(relay->event_loop, event);
+        sysqueues_enqueue_event(relay->queues, event);
         if(!event->repeating){
             signal_listener_t listener = { listeners, current };
             signal_unlisten(listener, relay);

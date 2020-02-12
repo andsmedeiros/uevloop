@@ -6,52 +6,34 @@
 #define EVENT_LOOP_H
 
 #include <stdbool.h>
-#include "../utils/circular-queue.h"
 #include "../utils/closure.h"
 #include "../system/event.h"
-#include "../system/syspools.h"
+#include "../system/containers/system-pools.h"
+#include "../system/containers/system-queues.h"
 
 /** \brief The event loop object
   *
-  * This object represents an event loop. It contains a two queues:
+  * This object represents an event loop. It is operated primarily by the system
+  * internal queues:
   * 1. The inbound event queue, which is the feeding point of the event loop.
-  * 2. The outbound schedule queue, which holds reusable events already run.
+  * 2. The outbound schedule queue, which holds reusable timers already run.
   */
 typedef struct evloop evloop_t;
 struct evloop{
-    syspools_t *pools; //!< Quick reference to the system's pools
-
-    /** \brief The system's event queue
-      *
-      * The event queue hold events ready to be processed.
-      * Any event directly pushed into this queue or
-      * enqueued through any of the `evloop_enqueue`
-      * functions wiill be run sequentially on the next
-      * runloop.
-      */
-    cqueue_t *event_queue;
-
-    /** \brief The system's schedule queue
-      *
-      * The schedule queue holds events that are not immediately disposable
-      * (i.e. recurring timers) that have already been processed and should be
-      * put back on the scheduler's queue.
-      */
-     cqueue_t *schedule_queue;
+    syspools_t *pools; //!< Reference to the system's pools
+    sysqueues_t *queues; //!< Reference to the system's queues
 };
 
 /** \brief Initialises an event loop
   *
   * \param event_loop The evloop_t instance to be initialised
   * \param pools The system's internal pools
-  * \param event_queue The system's event queue
-  * \param schedule_queue The system's schedule queue
+  * \param queues The system's internal queues
   */
 void evloop_init(
     evloop_t *event_loop,
     syspools_t *pools,
-    cqueue_t *event_queue,
-    cqueue_t *schedule_queue
+    sysqueues_t *queues
 );
 
 /** \brief Triggers a runloop.
@@ -65,13 +47,6 @@ void evloop_init(
   * \param event_loop The evloop_t instance to be run
   */
 void evloop_run(evloop_t *event_loop);
-
-/** \brief Enqueues an arbitrary event to be processed
-  *
-  * \param event_loop The evloop_t instance into which the event wil be put
-  * \param event The event to be enqueued
-  */
-void evloop_enqueue_event(evloop_t *event_loop, event_t *event);
 
 /** \brief Enqueues a closure to be invoked
   *

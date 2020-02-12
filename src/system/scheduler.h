@@ -7,15 +7,19 @@
 #define	SCHEDULER_H
 
 #include <stdint.h>
-#include "syspools.h"
+#include "containers/system-pools.h"
+#include "containers/system-queues.h"
 #include "../utils/linked-list.h"
 #include "../utils/closure.h"
-#include "../utils/circular-queue.h"
 
 /** \brief The scheduler object.
   *
   * This object keeps track of time run since the application was launched. It
   * also keeps a queue of events due to be processed sometime in the future.
+  *
+  * It feeds and is fed by the system queues. Timers due to be processed are put
+  * in the outbound event queue. Timers awaiting scheduling are put in the
+  * inbound schedule queue.
   */
 typedef struct scheduler scheduler_t;
 struct scheduler{
@@ -24,28 +28,13 @@ struct scheduler{
       * This linked list holds events/timers scheduled to be run in the future.
       * Timers are inserted sorted by its due time, so it is always in
       * execution order.
-      *
-      * Expired timers may be returned here if they are repeating.
       */
     llist_t timer_list;
 
     syspools_t *pools; //!< Reference to the system's pools
+    sysqueues_t *queues; //!< Reference to the system's queues
 
-    /** \brief The system's event queue
-      *
-      * When an event's due time arrive, they will put in this queue for further
-      * collection and processing by the event loop.
-      */
-    cqueue_t *event_queue;
-
-    /** \brief The system's schedule queue
-      *
-      * Events put in this queue will be schedule according to their due time
-      * by the next time the scheduler manages its timers.
-      */
-    cqueue_t *schedule_queue;
-
-    /** \brief Internal timer. Must be updated via `evloop_update_timer()` */
+    /** \brief Internal timer. Must be updated via `sch_update_timer()` */
     volatile uint32_t timer;
 };
 
@@ -53,14 +42,12 @@ struct scheduler{
   *
   * \param scheduler The scheduler_t instance to be initialised
   * \param pools The system's internal pools
-  * \param event_queue The queue into which events ready to be run are put
-  * \param schedule_queue The queue that holds events ready for rescheduling
+  * \param queues The system's internal queues
   */
 void sch_init(
     scheduler_t *scheduler,
     syspools_t *pools,
-    cqueue_t *event_queue,
-    cqueue_t *schedule_queue
+    sysqueues_t *queues
 );
 
 /** \brief Enqueues a closure for later execution.

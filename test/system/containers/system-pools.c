@@ -1,9 +1,9 @@
-#include "syspools.h"
+#include "system-pools.h"
 
 #include <stdlib.h>
 
-#include "system/syspools.h"
-#include "../minunit.h"
+#include "system/containers/system-pools.h"
+#include "../../minunit.h"
 
 static char *should_init_syspools(){
     syspools_t pools;

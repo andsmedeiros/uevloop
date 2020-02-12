@@ -1,8 +1,8 @@
 # CC=clang-9
 CC=gcc
 CFLAGS=-I./src/ -I. -O1 -Wall -Werror -pedantic -std=c99 -g
-OBJ=build/system/application.o build/system/event.o build/system/syspools.o build/system/event-loop.o build/system/signal.o build/system/scheduler.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o
-TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o build/test/system/syspools.o build/test/system/event-loop.o build/test/system/scheduler.o build/test/system/signal.o build/test/system/application.o
+OBJ=build/system/application.o build/system/event.o build/system/event-loop.o build/system/signal.o build/system/scheduler.o build/system/containers/system-queues.o build/system/containers/system-pools.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o
+TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o build/test/system/containers/system-pools.o build/test/system/containers/system-queues.o build/test/system/event-loop.o build/test/system/scheduler.o build/test/system/signal.o build/test/system/application.o
 
 dist/libuevloop.so: $(OBJ)
 	mkdir -p dist
@@ -10,6 +10,10 @@ dist/libuevloop.so: $(OBJ)
 
 build/system/%.o: src/system/%.c src/system/%.h
 	mkdir -p build/system
+	$(CC) -c -fpic -o $@ $< $(CFLAGS) -fprofile-arcs -ftest-coverage
+
+build/system/containers/%.o: src/system/containers/%.c src/system/containers/%.h
+	mkdir -p build/system/containers
 	$(CC) -c -fpic -o $@ $< $(CFLAGS) -fprofile-arcs -ftest-coverage
 
 build/utils/%.o: src/utils/%.c src/utils/%.h
@@ -24,6 +28,10 @@ build/test.o: test/test.c test/minunit.h
 
 build/test/system/%.o: test/system/%.c test/system/%.h build/system/%.o test/minunit.h
 	mkdir -p build/test/system
+	$(CC) -c -fpic -o $@ $< $(CFLAGS)
+
+build/test/system/containers/%.o: test/system/containers/%.c test/system/containers/%.h build/system/containers/%.o test/minunit.h
+	mkdir -p build/test/system/containers
 	$(CC) -c -fpic -o $@ $< $(CFLAGS)
 
 build/test/utils/%.o: test/utils/%.c test/utils/%.h build/utils/%.o test/minunit.h
@@ -51,5 +59,5 @@ docs: Doxyfile $(OBJ)
 	doxygen Doxyfile
 	echo '<!DOCTYPE html>\n<html><head><meta http-equiv=Refresh content="0;url=html/index.html"></head></html>' > docs/index.html
 
-debug:
+debug: dist/test
 	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) gdb dist/test

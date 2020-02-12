@@ -7,8 +7,8 @@
 #define SIGNAL_H
 
 #include <stdlib.h>
-#include "event-loop.h"
-#include "syspools.h"
+#include "containers/system-pools.h"
+#include "containers/system-queues.h"
 #include "../utils/linked-list.h"
 #include "../utils/closure.h"
 
@@ -44,8 +44,9 @@ struct signal_relay{
     //! Contains the signal vector. Must be large enough to contain every signal
     //! bound to this relay.
     llist_t *signal_vector;
-    //! The event loop where closures will be enqueued on signal emission
-    evloop_t *event_loop;
+    //! The system's internal queues. Upon emission, signals will be enqueued on
+    //! one of these.
+    sysqueues_t *queues;
     //! A quick reference to the system's internal pools
     syspools_t *pools;
     //! The number of signals registered at this relay.
@@ -55,16 +56,16 @@ struct signal_relay{
 /** \brief Initialises a signal relay
   *
   * \param relay The signal relay object to be initialised
-  * \param event_loop The system's event loop
   * \param pools The system's internal pools
+  * \param queues The system's internal queues
   * \param buffer The buffer that will be used to store listeners registered at
   * this relay. Must be the number of signals bound to this relay wide.
   * \param width The number of signals bound to this relay.
   */
 void signal_relay_init(
     signal_relay_t *relay,
-    evloop_t *event_loop,
     syspools_t *pools,
+    sysqueues_t *queues,
     llist_t *buffer,
     uintptr_t width
 );

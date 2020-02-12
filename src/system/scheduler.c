@@ -42,29 +42,21 @@ static void enqueue_timer(scheduler_t *scheduler, event_t *timer){
     llist_insert_at(&scheduler->timer_list, node, &in_order);
 }
 
-static void schedule(scheduler_t *scheduler, event_t *timer){
-    UEVLOOP_CRITICAL_ENTER;
-    cqueue_push(scheduler->schedule_queue, (void *)timer);
-    UEVLOOP_CRITICAL_EXIT;
-}
-
 void sch_init(
     scheduler_t *scheduler,
     syspools_t *pools,
-    cqueue_t *event_queue,
-    cqueue_t *schedule_queue
+    sysqueues_t *queues
 ){
     llist_init(&scheduler->timer_list);
     scheduler->pools = pools;
-    scheduler->event_queue = event_queue;
-    scheduler->schedule_queue = schedule_queue;
+    scheduler->queues = queues;
     scheduler->timer = 0;
 }
 
 void sch_run_later(scheduler_t *scheduler, uint16_t  timeout_in_ms, closure_t closure){
     event_t *event = syspools_acquire_event(scheduler->pools);
     event_config_timer(event, timeout_in_ms, false, false, &closure, scheduler->timer);
-    schedule(scheduler, event);
+    sysqueues_schedule_event(scheduler->queues, event);
 }
 
 void sch_run_at_intervals(
@@ -76,14 +68,15 @@ void sch_run_at_intervals(
     event_t *event = syspools_acquire_event(scheduler->pools);
     event_config_timer(event, interval_in_ms, true, immediate, &closure, scheduler->timer);
     if(immediate){
-        event->timer.due_time = scheduler->timer;
+        sysqueues_enqueue_event(scheduler->queues, event);
+    }else{
+        sysqueues_schedule_event(scheduler->queues, event);
     }
-    schedule(scheduler, event);
 }
 
 void sch_manage_timers(scheduler_t *scheduler){
     event_t *event;
-    while((event = (event_t *)cqueue_pop(scheduler->schedule_queue)) != NULL){
+    while((event = sysqueues_get_scheduled_event(scheduler->queues)) != NULL){
         enqueue_timer(scheduler, event);
     }
 
@@ -96,7 +89,7 @@ void sch_manage_timers(scheduler_t *scheduler){
         previous = current;
         current = current->next;
         syspools_release_llist_node(scheduler->pools, previous);
-        cqueue_push(scheduler->event_queue, (void *)timer);
+        sysqueues_enqueue_event(scheduler->queues, timer);
     }
 }
 

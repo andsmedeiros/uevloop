@@ -9,10 +9,11 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "syspools.h"
 #include "event-loop.h"
 #include "scheduler.h"
 #include "signal.h"
+#include "containers/system-pools.h"
+#include "containers/system-queues.h"
 #include "../utils/circular-queue.h"
 
 //! Events emitted by the application relay. Unused ATM.
@@ -25,16 +26,6 @@ enum app_event{
 //! Alias to the app_event enum
 typedef enum app_event app_event_t;
 
-//! The size of the event queue in log2 form
-#define APP_EVENT_QUEUE_SIZE_LOG2N (5)
-//! Unrolls the `APP_EVENT_QUEUE_SIZE_LOG2N` value to its power-of-two form
-#define APP_EVENT_QUEUE_SIZE (1<<APP_EVENT_QUEUE_SIZE_LOG2N)
-
-//! The size of the schedule queue in log2 form
-#define APP_SCHEDULE_QUEUE_SIZE_LOG2N (4)
-//! Unrolls the `APP_SCHEDULE_QUEUE_SIZE_LOG2N` value to its power-of-two form
-#define APP_SCHEDULE_QUEUE_SIZE (1<<APP_SCHEDULE_QUEUE_SIZE_LOG2N)
-
 /** \brief Top-level container for µEvLoop'd application
   *
   * The application module is not necessary, but it does facilitate creating
@@ -45,29 +36,11 @@ typedef enum app_event app_event_t;
 typedef struct application application_t;
 struct application{
     syspools_t pools; //!< Holds the system pools: events and llist nodes
-
+    sysqueues_t queues; //!< Holds the system event queues
     evloop_t event_loop; //!< The application's event loop
     scheduler_t scheduler;  //!< The applications's scheduler;
-
     signal_relay_t relay;   //!< Unused
     llist_t relay_buffer[APP_EVENT_COUNT]; //!< Unused
-
-    //! The event queue buffer
-    void *event_queue_buffer[APP_EVENT_QUEUE_SIZE];
-    cqueue_t event_queue;   /**< \brief The application's event queue.
-                              *
-                              * Holds events ready to be processed on the next
-                              * runloop.
-                              */
-
-    //! The schedule queue buffer
-    void *schedule_queue_buffer[APP_SCHEDULE_QUEUE_SIZE];
-    cqueue_t schedule_queue; /**< \brief The application's schedule queue.
-                                 *
-                                 * Hold events already processed by the runloop
-                                 * but fit for rescheduling at the scheduler.
-                                 */
-
     bool run_scheduler; //!< Marks when it's time to wake the scheduler
 };
 

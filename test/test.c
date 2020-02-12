@@ -5,8 +5,9 @@
 #include "test/utils/closure.h"
 #include "test/utils/linked-list.h"
 #include "test/utils/object-pool.h"
+#include "test/system/containers/system-pools.h"
+#include "test/system/containers/system-queues.h"
 #include "test/system/event.h"
-#include "test/system/syspools.h"
 #include "test/system/scheduler.h"
 #include "test/system/event-loop.h"
 #include "test/system/signal.h"
@@ -19,8 +20,9 @@ static char *run_all_tests(){
     mu_run_test_group("closure", closure_run_tests);
     mu_run_test_group("llist", llist_run_tests);
     mu_run_test_group("objpool", objpool_run_tests);
-    mu_run_test_group("event", event_run_tests);
     mu_run_test_group("syspools", syspools_run_tests);
+    mu_run_test_group("sysqueues", sysqueues_run_tests);
+    mu_run_test_group("event", event_run_tests);
     mu_run_test_group("scheduler", sch_run_tests);
     mu_run_test_group("evloop", evloop_run_tests);
     mu_run_test_group("signal", signal_run_tests);

@@ -55,3 +55,7 @@ bool cqueue_is_full(cqueue_t *queue){
 bool cqueue_is_empty(cqueue_t *queue){
     return queue->count == 0;
 }
+
+uintptr_t cqueue_count(cqueue_t *queue){
+    return queue->count;
+}

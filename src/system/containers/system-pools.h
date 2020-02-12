@@ -1,14 +1,14 @@
-/** \file syspools.h
+/** \file system-pools.h
   * \brief A container for the system's internal pools
   */
 
-#ifndef SYSPOOLS_H
-#define	SYSPOOLS_H
+#ifndef SYSTEM_POOLS_H
+#define	SYSTEM_POOLS_H
 
 #include <stdint.h>
-#include "event.h"
-#include "../utils/object-pool.h"
-#include "../utils/linked-list.h"
+#include "../event.h"
+#include "../../utils/object-pool.h"
+#include "../../utils/linked-list.h"
 
 /** \brief A container for the system pools
   *
@@ -75,4 +75,4 @@ bool syspools_release_event(syspools_t *pools, event_t *event);
   */
 bool syspools_release_llist_node(syspools_t *pools, llist_node_t *node);
 
-#endif	/* SYSPOOLS_H */
+#endif	/* SYSTEM_POOLS_H */

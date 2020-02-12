@@ -3,17 +3,15 @@
 void evloop_init(
     evloop_t *event_loop,
     syspools_t *pools,
-    cqueue_t *event_queue,
-    cqueue_t *schedule_queue
+    sysqueues_t *queues
 ){
     event_loop->pools = pools;
-    event_loop->event_queue = event_queue;
-    event_loop->schedule_queue = schedule_queue;
+    event_loop->queues = queues;
 }
 
 void evloop_run(evloop_t *event_loop){
-    while(!cqueue_is_empty(event_loop->event_queue)){
-        event_t *event = cqueue_pop(event_loop->event_queue);
+    event_t *event;
+    while((event = sysqueues_get_enqueued_event(event_loop->queues)) != NULL){
         switch(event->type){
             case CLOSURE_EVENT:
                 closure_invoke(&event->closure, event_loop);
@@ -21,7 +19,8 @@ void evloop_run(evloop_t *event_loop){
             case TIMER_EVENT:
                 closure_invoke(&event->closure, event_loop);
                 if (event->repeating) {
-                    cqueue_push(event_loop->schedule_queue, (void *)event);
+                    event->timer.due_time += event->timer.timeout;
+                    sysqueues_schedule_event(event_loop->queues, event);
                     continue;
                 }
                 break;
@@ -35,12 +34,8 @@ void evloop_run(evloop_t *event_loop){
     }
 }
 
-void evloop_enqueue_event(evloop_t *event_loop, event_t *event){
-    cqueue_push(event_loop->event_queue, (void *)event);
-}
-
 void evloop_enqueue_closure(evloop_t *event_loop, closure_t *closure){
     event_t *event = syspools_acquire_event(event_loop->pools);
     event_config_closure(event, closure);
-    evloop_enqueue_event(event_loop, event);
+    sysqueues_enqueue_event(event_loop->queues, event);
 }
