@@ -11,6 +11,7 @@
 /// \endcond
 
 #include "../utils/closure.h"
+#include "../utils/linked-list.h"
 
 //! Possible types of events understood by the core
 enum event_type {
@@ -42,13 +43,19 @@ struct event {
       * Closure events have no use for this flag
       */
     bool repeating;
-    struct{
-        /** \brief The value the system timer must be at when this event's closure
-          * should be invoked. This is a best effort value.
-          */
-        uint32_t due_time;
-        uint16_t timeout; //!< Holds the interval between two executions of the timer
-    } timer; //!< The scheduling information of this event. Relevant only for timers
+    union detail {
+        struct timer{
+            /** \brief The value the system timer must be at when this event's closure
+            * should be invoked. This is a best effort value.
+            */
+            uint32_t due_time;
+            uint16_t timeout; //!< Holds the interval between two executions of the timer
+        } timer; //!< The scheduling information of this event. Relevant only for timers
+        struct signal{
+            uintptr_t value; //!< The integer value that identifies this signal
+            llist_t *listeners; //!< Reference to the signal listeners
+        } signal; //!< The signal information of this event. Relevant only for signals
+    } detail;
 };
 
 /** \brief Destroys an event

@@ -26,8 +26,8 @@ void event_config_timer(
     event->type = TIMER_EVENT;
     event->closure = *closure;
     event->repeating = repeating;
-    event->timer.due_time = immediate ?
+    event->detail.timer.due_time = immediate ?
         current_time :
         current_time + timeout_in_ms;
-    event->timer.timeout = timeout_in_ms;
+    event->detail.timer.timeout = timeout_in_ms;
 }

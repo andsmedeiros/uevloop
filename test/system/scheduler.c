@@ -61,9 +61,9 @@ static char *should_schedule_for_later_execution(){
     event_t *event;
     event = (event_t *)scheduler.timer_list.tail->value;
     mu_assert_ints_equal(
-        "scheduler.timer_list.tail->value->timer.timeout",
+        "scheduler.timer_list.tail->value->detail.timer.timeout",
         1000,
-        event->timer.timeout
+        event->detail.timer.timeout
     );
     mu_assert_pointers_equal(
         "scheduler.timer_list.tail->value->closure.function",
@@ -86,9 +86,9 @@ static char *should_schedule_for_later_execution(){
 
     event = (event_t *)scheduler.timer_list.tail->value;
     mu_assert_ints_equal(
-        "scheduler.timer_list.tail->value->timer.timeout",
+        "scheduler.timer_list.tail->value->detail.timer.timeout",
         500,
-        event->timer.timeout
+        event->detail.timer.timeout
     );
 
     return NULL;
@@ -110,7 +110,7 @@ static char *should_schedule_intervals(){
         mu_assert_ints_equal(
             "timeout at system's event queue tail element",
             1000,
-            event->timer.timeout
+            event->detail.timer.timeout
         );
         mu_assert(
             "`repeating` at the system's event queue tail element must had been set",
@@ -134,9 +134,9 @@ static char *should_schedule_intervals(){
         llist_node_t *node = (llist_node_t *)scheduler.timer_list.tail;
         event_t *event = (event_t *)node->value;
         mu_assert_ints_equal(
-            "scheduler.timer_list.tail->timer.timeout",
+            "scheduler.timer_list.tail->detail.timer.timeout",
             500,
-            event->timer.timeout
+            event->detail.timer.timeout
         );
     }
     {
@@ -156,14 +156,14 @@ static char *should_schedule_intervals(){
         event_t *previous = (event_t *)node->value;
         event_t *current = (event_t *)node->next->value;
         mu_assert_ints_equal(
-            "scheduler.timer_list.tail->timer.timeout",
+            "scheduler.timer_list.tail->detail.timer.timeout",
             200,
-            previous->timer.timeout
+            previous->detail.timer.timeout
         );
         mu_assert_ints_equal(
-            "scheduler.timer_list.tail->next->timer.timeout",
+            "scheduler.timer_list.tail->next->detail.timer.timeout",
             500,
-            current->timer.timeout
+            current->detail.timer.timeout
         );
     }
 

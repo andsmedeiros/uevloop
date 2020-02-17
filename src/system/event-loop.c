@@ -23,7 +23,7 @@ void evloop_run(evloop_t *event_loop){
             case TIMER_EVENT:
                 closure_invoke(&event->closure, event_loop);
                 if (event->repeating) {
-                    event->timer.due_time += event->timer.timeout;
+                    event->detail.timer.due_time += event->detail.timer.timeout;
                     sysqueues_schedule_event(event_loop->queues, event);
                     continue;
                 }

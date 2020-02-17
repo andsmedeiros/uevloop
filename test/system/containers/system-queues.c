@@ -32,9 +32,9 @@ static char *should_manipulate_the_event_queue(){
 
     closure_t closure = closure_create(&nop, NULL, NULL);
     event_t events[3] = {
-        { CLOSURE_EVENT, closure, false, { 0, 0 } },
-        { TIMER_EVENT, closure, false, { 0, 0 } },
-        { SIGNAL_EVENT, closure, false, { 0, 0 } }
+        { CLOSURE_EVENT, closure, false, { { 0, 0 } } },
+        { TIMER_EVENT, closure, false, { { 0, 0 } } },
+        { SIGNAL_EVENT, closure, false, { { 0, 0 } } }
     };
 
     sysqueues_enqueue_event(&queues, &events[0]);
@@ -89,9 +89,9 @@ static char *should_manipulate_the_schedule_queue(){
 
     closure_t closure = closure_create(&nop, NULL, NULL);
     event_t events[3] = {
-        { CLOSURE_EVENT, closure, false, { 0, 0 } },
-        { TIMER_EVENT, closure, false, { 0, 0 } },
-        { SIGNAL_EVENT, closure, false, { 0, 0 } }
+        { CLOSURE_EVENT, closure, false, { { 0, 0 } } },
+        { TIMER_EVENT, closure, false, { { 0, 0 } } },
+        { SIGNAL_EVENT, closure, false, { { 0, 0 } } }
     };
 
     sysqueues_schedule_event(&queues, &events[2]);

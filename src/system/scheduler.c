@@ -10,7 +10,7 @@ static void *is_past_due_time(closure_t *closure){
     uint32_t current_time = *(uint32_t *)closure->context;
     llist_node_t *node = (llist_node_t *)closure->params;
     event_t *event = (event_t *)node->value;
-    bool fit_for_removal = event->timer.due_time <= current_time;
+    bool fit_for_removal = event->detail.timer.due_time <= current_time;
     return (void *)fit_for_removal;
 }
 
@@ -23,13 +23,13 @@ static void *place_in_order(closure_t *closure){
         fits = true;
     }else if(nodes[0] == NULL){
         event_t *next = (event_t *)nodes[1]->value;
-        fits = next->timer.due_time > due_time;
+        fits = next->detail.timer.due_time > due_time;
     }else{
         event_t *prev = (event_t *)nodes[0]->value;
         event_t *next = (event_t *)nodes[1]->value;
 
-        fits = prev->timer.due_time <= due_time &&
-            next->timer.due_time > due_time;
+        fits = prev->detail.timer.due_time <= due_time &&
+            next->detail.timer.due_time > due_time;
     }
 
     return (void *)(uintptr_t)fits;
@@ -40,7 +40,7 @@ static void enqueue_timer(scheduler_t *scheduler, event_t *timer){
     node->value = (void *)timer;
     closure_t in_order = closure_create(
         place_in_order,
-        (void *)&timer->timer.due_time,
+        (void *)&timer->detail.timer.due_time,
         NULL
     );
     llist_insert_at(&scheduler->timer_list, node, &in_order);

@@ -39,15 +39,15 @@ static char *should_config_timer_event(){
         event.closure.function
     );
     mu_assert_ints_equal(
-        "event.timer.timeout",
+        "event.detail.timer.timeout",
         timeout_in_ms,
-        event.timer.timeout
+        event.detail.timer.timeout
     );
     mu_assert("event.repeating muts had been set", event.repeating);
     mu_assert_ints_equal(
-        "event.timer.due_time",
+        "event.detail.timer.due_time",
         timer + timeout_in_ms,
-        event.timer.due_time
+        event.detail.timer.due_time
     );
 
     return NULL;
