@@ -7,11 +7,11 @@
 #include "test/utils/object-pool.h"
 #include "test/system/containers/system-pools.h"
 #include "test/system/containers/system-queues.h"
+#include "test/system/containers/application.h"
 #include "test/system/event.h"
 #include "test/system/scheduler.h"
 #include "test/system/event-loop.h"
 #include "test/system/signal.h"
-#include "test/system/application.h"
 
 minunit_context_t test_context = DEFAULT_TEST_CONTEXT;
 

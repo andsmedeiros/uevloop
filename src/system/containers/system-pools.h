@@ -5,10 +5,16 @@
 #ifndef SYSTEM_POOLS_H
 #define	SYSTEM_POOLS_H
 
+/// \cond
 #include <stdint.h>
+/// \endcond
+
 #include "../event.h"
-#include "../../utils/object-pool.h"
+#include "../../config.h"
 #include "../../utils/linked-list.h"
+#include "../../utils/object-pool.h"
+
+
 
 /** \brief A container for the system pools
   *
@@ -19,21 +25,21 @@
 typedef struct syspools syspools_t;
 struct syspools{
 
-    //! Defines the size of the event pool size in log2 form
-    #define EVENT_POOL_SIZE_LOG2N   (7) //128 events
+    //! Unrolls the `SYSPOOLS_EVENT_POOL_SIZE_LOG2N` value to its power-of-two form
+    #define SYSPOOLS_EVENT_POOL_SIZE (1<<SYSPOOLS_EVENT_POOL_SIZE_LOG2N)
     //! The buffer used to store events in the event pool
-    uint8_t event_pool_buffer[(1<<EVENT_POOL_SIZE_LOG2N) * sizeof(event_t)];
+    uint8_t event_pool_buffer[SYSPOOLS_EVENT_POOL_SIZE * sizeof(event_t)];
     //! The buffer used to store event pointers in the event pool queue
-    void *event_pool_queue_buffer[1<<EVENT_POOL_SIZE_LOG2N];
+    void *event_pool_queue_buffer[SYSPOOLS_EVENT_POOL_SIZE];
     //! The event pool object. Contains all the events used by the core.
     objpool_t event_pool;
 
-    //! Defines the size of the linked list node pool size in log2 form
-    #define LLIST_NODE_POOL_SIZE_LOG2N    (7) //128 nodes
+    //! Unrolls the `SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N` value to its power-of-two form
+    #define SYSPOOLS_LLIST_NODE_POOL_SIZE (1<<SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N)
     //! The buffer used to store llist nodes in the llist node pool
-    uint8_t llist_node_pool_buffer[(1<<LLIST_NODE_POOL_SIZE_LOG2N) * sizeof(llist_node_t)];
+    uint8_t llist_node_pool_buffer[SYSPOOLS_LLIST_NODE_POOL_SIZE * sizeof(llist_node_t)];
     //! The budder used to store llist node pointers in the llist node pool queue
-    void *llist_node_pool_queue_buffer[1<<LLIST_NODE_POOL_SIZE_LOG2N];
+    void *llist_node_pool_queue_buffer[SYSPOOLS_LLIST_NODE_POOL_SIZE];
     //! The llist node pool object. Contains all llist nodes used by the core.
     objpool_t llist_node_pool;
 

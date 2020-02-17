@@ -29,7 +29,11 @@ event_t *sysqueues_get_enqueued_event(sysqueues_t *queues){
 }
 
 uintptr_t sysqueues_count_enqueued_events(sysqueues_t *queues){
-    return cqueue_count(&queues->event_queue);
+    uintptr_t count;
+    UEVLOOP_CRITICAL_ENTER;
+    count = cqueue_count(&queues->event_queue);
+    UEVLOOP_CRITICAL_EXIT;
+    return count;
 }
 
 void sysqueues_schedule_event(sysqueues_t *queues, event_t *event){
@@ -47,5 +51,9 @@ event_t *sysqueues_get_scheduled_event(sysqueues_t *queues){
 }
 
 uintptr_t sysqueues_count_scheduled_events(sysqueues_t *queues){
-    return cqueue_count(&queues->schedule_queue);
+    uintptr_t count;
+    UEVLOOP_CRITICAL_ENTER;
+    count = cqueue_count(&queues->schedule_queue);
+    UEVLOOP_CRITICAL_EXIT;
+    return count;
 }

@@ -21,12 +21,12 @@ static char *should_init_syspools(){
     );
     mu_assert_ints_equal(
         "pool.queue.size",
-        1<<EVENT_POOL_SIZE_LOG2N,
+        SYSPOOLS_EVENT_POOL_SIZE,
         pools.event_pool.queue.size
     );
     mu_assert_ints_equal(
         "pool.queue.count",
-        1<<EVENT_POOL_SIZE_LOG2N,
+        SYSPOOLS_EVENT_POOL_SIZE,
         pools.event_pool.queue.count
     );
     mu_assert_pointers_equal(
@@ -41,12 +41,12 @@ static char *should_init_syspools(){
     );
     mu_assert_ints_equal(
         "llist_node_pool.queue.size",
-        1<<LLIST_NODE_POOL_SIZE_LOG2N,
+        SYSPOOLS_LLIST_NODE_POOL_SIZE,
         pools.llist_node_pool.queue.size
     );
     mu_assert_ints_equal(
         "llist_node_pool.queue.count",
-        1<<LLIST_NODE_POOL_SIZE_LOG2N,
+        SYSPOOLS_LLIST_NODE_POOL_SIZE,
         pools.llist_node_pool.queue.count
     );
 

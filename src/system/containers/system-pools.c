@@ -1,18 +1,16 @@
 #include "system-pools.h"
-
-#include <stdlib.h>
 #include "../../portability/critical-section.h"
 
 void syspools_init(syspools_t *pools){
     objpool_init(
         &pools->event_pool,
-        EVENT_POOL_SIZE_LOG2N,
+        SYSPOOLS_EVENT_POOL_SIZE_LOG2N,
         sizeof(event_t),
         OBJPOOL_BUFFERS_AT(event, pools)
     );
     objpool_init(
         &pools->llist_node_pool,
-        LLIST_NODE_POOL_SIZE_LOG2N,
+        SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N,
         sizeof(llist_node_t),
         OBJPOOL_BUFFERS_AT(llist_node, pools)
     );

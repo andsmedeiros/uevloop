@@ -5,22 +5,27 @@
 #ifndef SYSTEM_QUEUES_H
 #define SYSTEM_QUEUES_H
 
+/// \cond
 #include <stdint.h>
+/// \endcond
+
 #include "../event.h"
+#include "../../config.h"
 #include "../../utils/circular-queue.h"
 
-//! The size of the event queue in log2 form
-#define SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N (5)
-//! Unrolls the `SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N` value to its power-of-two form
-#define SYSQUEUES_EVENT_QUEUE_SIZE (1<<SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N)
-
-//! The size of the schedule queue in log2 form
-#define SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N (4)
-//! Unrolls the `SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N` value to its power-of-two form
-#define SYSQUEUES_SCHEDULE_QUEUE_SIZE (1<<SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N)
-
+/** \brief A container for the system's internal queues
+  *
+  * This module conveniently declares and contains the object queues necessary for
+  * internal operation of the application.
+  *
+  * It also encapsulate manipulation of shared memory in critical sections. All
+  * of its functions are safe, except for `sysqueues_init`.
+  */
 typedef struct sysqueues sysqueues_t;
 struct sysqueues {
+
+    //! Unrolls the `SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N` value to its power-of-two form
+    #define SYSQUEUES_EVENT_QUEUE_SIZE (1<<SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N)
     //! The event queue buffer
     void *event_queue_buffer[SYSQUEUES_EVENT_QUEUE_SIZE];
     /** \brief The application's event queue.
@@ -29,6 +34,9 @@ struct sysqueues {
       */
     cqueue_t event_queue;
 
+
+    //! Unrolls the `SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N` value to its power-of-two form
+    #define SYSQUEUES_SCHEDULE_QUEUE_SIZE (1<<SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N)
     //! The schedule queue buffer
     void *schedule_queue_buffer[SYSQUEUES_SCHEDULE_QUEUE_SIZE];
     /** \brief The application's schedule queue.
@@ -64,7 +72,7 @@ event_t *sysqueues_get_enqueued_event(sysqueues_t *queues);
 
 /** \brief Counts the number of elements in the event queue
   *
-  * \params queues The sysqueues_t instance whose event queue's elements should
+  * \param queues The sysqueues_t instance whose event queue's elements should
   * be counted
   * \returns The number of elements in the queue
   */
@@ -89,7 +97,7 @@ event_t *sysqueues_get_scheduled_event(sysqueues_t *queues);
 
 /** \brief Counts the number of elements in the schedule queue
   *
-  * \params queues The sysqueues_t instance whose schedule queue's elements should
+  * \param queues The sysqueues_t instance whose schedule queue's elements should
   * be counted
   * \returns The number of elements in the queue
   */
