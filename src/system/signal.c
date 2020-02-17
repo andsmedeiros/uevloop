@@ -5,28 +5,21 @@
 #include <stdlib.h>
 /// \endcond
 
-#include "event.h"
 #include "../config.h"
 #include "../portability/critical-section.h"
 
-static signal_listener_t register_event(
+static void register_listener(
     signal_t signal,
     signal_relay_t *relay,
-    event_t *event
+    event_t *listener
 ){
-    signal_listener_t listener;
     llist_t *listeners = &relay->signal_vector[signal];
-    listener.source = listeners;
-
     llist_node_t *node = syspools_acquire_llist_node(relay->pools);
-    node->value = (void *)event;
-    listener.node = node;
+    node->value = (void *)listener;
 
     UEVLOOP_CRITICAL_ENTER;
     llist_push_head(listeners, node);
     UEVLOOP_CRITICAL_EXIT;
-
-    return listener;
 }
 
 void signal_relay_init(
@@ -51,9 +44,10 @@ signal_listener_t signal_listen(
     signal_relay_t *relay,
     closure_t *closure
 ){
-    event_t *event = syspools_acquire_event(relay->pools);
-    event_config_signal(event, true, closure);
-    return register_event(signal, relay, event);
+    event_t *listener = syspools_acquire_event(relay->pools);
+    event_config_signal_listener(listener, closure, true);
+    register_listener(signal, relay, listener);
+    return &listener->detail.listener;
 }
 
 signal_listener_t signal_listen_once(
@@ -61,58 +55,19 @@ signal_listener_t signal_listen_once(
     signal_relay_t *relay,
     closure_t *closure
 ){
-    event_t *event = syspools_acquire_event(relay->pools);
-    event_config_signal(event, false, closure);
-    return register_event(signal, relay, event);
+    event_t *listener = syspools_acquire_event(relay->pools);
+    event_config_signal_listener(listener, closure, false);
+    register_listener(signal, relay, listener);
+    return &listener->detail.listener;
 }
 
-void signal_unlisten(signal_listener_t listener, signal_relay_t *relay){
-    bool removed;
-    UEVLOOP_CRITICAL_ENTER;
-    removed = llist_remove(listener.source, listener.node);
-    UEVLOOP_CRITICAL_EXIT;
-
-    if (removed) {
-        event_t *event = (event_t *)listener.node->value;
-        event_destroy(event);
-        syspools_release_event(relay->pools, event);
-        syspools_release_llist_node(relay->pools, listener.node);
-    }
+void signal_unlisten(signal_listener_t listener){
+    listener->unlistened = true;
 }
-
-#include <stdio.h>
 
 void signal_emit(signal_t signal, signal_relay_t *relay, void *params){
-    closure_t closures[SIGNAL_MAX_LISTENERS];
-    llist_node_t *nodes_for_removal[SIGNAL_MAX_LISTENERS];
     llist_t *listeners = &relay->signal_vector[signal];
-    unsigned int i = 0, j =  0;
-
-    UEVLOOP_CRITICAL_ENTER;
-    for(llist_node_t *current = listeners->tail;
-        current != NULL && i < SIGNAL_MAX_LISTENERS;
-        current = current->next, i++
-    ){
-        event_t *event = (event_t *)current->value;
-        if(!event->repeating){
-            llist_remove(listeners, current);
-            nodes_for_removal[j++] = current;
-        }
-        closures[i] = event->closure;
-    }
-    UEVLOOP_CRITICAL_EXIT;
-
-    for(unsigned int closure_count = i, i = 0; i < closure_count; i++){
-        event_t *event = syspools_acquire_event(relay->pools);
-        closure_t *closure = &closures[i];
-        closure->params = params;
-        event_config_signal(event, false, closure);
-        sysqueues_enqueue_event(relay->queues, event);
-    }
-    for(unsigned int node_count = j, j = 0; j < node_count; j++){
-        event_t *event = nodes_for_removal[j]->value;
-        event_destroy(event);
-        syspools_release_event(relay->pools, event);
-        syspools_release_llist_node(relay->pools, nodes_for_removal[j]);
-    }
+    event_t *event = syspools_acquire_event(relay->pools);
+    event_config_signal(event, signal, listeners, params);
+    sysqueues_enqueue_event(relay->queues, event);
 }

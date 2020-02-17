@@ -12,7 +12,7 @@ static char *should_config_closure_event(){
     event_t event;
     closure_t closure = closure_create(&nop, NULL, NULL);
 
-    event_config_closure(&event, &closure);
+    event_config_closure(&event, &closure, false);
 
     mu_assert_ints_equal("event.type", CLOSURE_EVENT, event.type);
     mu_assert_pointers_equal(
@@ -20,6 +20,10 @@ static char *should_config_closure_event(){
         &nop,
         event.closure.function
     );
+    mu_assert_not("event.repeating", event.repeating);
+
+    event_config_closure(&event, &closure, true);
+    mu_assert("event.repeating", event.repeating);
 
     return NULL;
 }
@@ -53,13 +57,35 @@ static char *should_config_timer_event(){
     return NULL;
 }
 
+typedef enum event_test_signals {
+    SIGNAL_0, SIGNAL_1, SIGNAL_MAX
+ } event_test_signals_t;
+
 static char *should_config_signal_event(){
     event_t event;
     closure_t closure = closure_create(&nop, NULL, NULL);
+    llist_t listeners[SIGNAL_MAX];
 
-    event_config_signal(&event, true, &closure);
+    for (size_t i = 0; i < SIGNAL_MAX; i++) {
+        llist_init(&listeners[i]);
+    }
+    event_config_signal(&event, SIGNAL_0, listeners, (void *)&closure);
     mu_assert_ints_equal("event.type", SIGNAL_EVENT, event.type);
-    mu_assert("event.repeating must had been set", event.repeating);
+    mu_assert_ints_equal(
+        "event.detail.signal.value",
+        SIGNAL_0,
+        event.detail.signal.value
+    );
+    mu_assert_pointers_equal(
+        "event.detail.signal.listeners",
+        &listeners,
+        event.detail.signal.listeners
+    );
+    mu_assert_pointers_equal(
+        "event.closure.params",
+        &closure,
+        event.closure.params
+    );
 
     return NULL;
 }
@@ -74,7 +100,7 @@ static char *should_destroy_events(){
         bool destroyed = false;
 
         closure_t closure = closure_create(&nop, &destroyed, &signal_destruction);
-        event_config_closure(&event, &closure);
+        event_config_closure(&event, &closure, false);
         event_destroy(&event);
 
         mu_assert("destroyed must had been set on closure event destruction", destroyed);

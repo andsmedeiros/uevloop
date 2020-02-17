@@ -17,33 +17,42 @@
 enum event_type {
     CLOSURE_EVENT,
     TIMER_EVENT,
-    SIGNAL_EVENT
+    SIGNAL_EVENT,
+    SIGNAL_LISTENER_EVENT
 };
 //! Alias to the event_type enum.
 typedef enum event_type event_type_t;
 
-/** \brief Events are special closures passed around the core.
+/** \brief Events are special messages passed around the core.
   * They represent tasks to be run at some point by the system.
   *
   * Events are bound to information on how and when they should be invoked.
-  * They can be timers, which are scheduled to be run in the future, or signals,
-  * which represent asynchronous reactions to occurances thorough the system.
+  * There are four types of events:
   *
-  * Both timers and signals can be recurring, in which case they won't be
-  * discarded after processing by the event loop.
+  * - `CLOSURE_EVENT`: lifeless wrappers to closures.
+  * - `TIMER_EVENT`: contains scheduling information associated with some closure
+  * - `SIGNAL_EVENT`: contains information on the emission of a signal
+  * - `SIGNAL_LISTENER_EVENT`: represent a single listening operation
   *
-  * Events can also be lifeless shells to closures, in which case they will be
-  * immediately destroyed after execution.
+  * Closure and timer events can be recurring, in which case they won't be discarded
+  * after processing by the event loop.
+  *
+  * Signal events are *always* discarded by the event loop.
+  * Signal listeners are never meant to be sent there. In their case, the `repeating`
+  * flag determines whether the signal should be able to fire multiple times or just once.
   */
 typedef struct event event_t;
 struct event {
-    event_type_t type; //!< The type of the event, as defined in event.h
+    event_type_t type; //!< The type of the event, as defined by `event_type_t`
     closure_t closure; //!< The closure to be invoked a.k.a. the action to be run
     /** \brief Marks whether the event should be discarded after processing.
       * Closure events have no use for this flag
       */
     bool repeating;
-    union detail {
+    //! Allows to compact many speciffic details on various event types on a single
+    //! memory slot. Pertinent content depends on the `type` member value.
+    union detail{
+        //! Contains information suitable for scheduling an event at the scheduler.
         struct timer{
             /** \brief The value the system timer must be at when this event's closure
             * should be invoked. This is a best effort value.
@@ -51,11 +60,19 @@ struct event {
             uint32_t due_time;
             uint16_t timeout; //!< Holds the interval between two executions of the timer
         } timer; //!< The scheduling information of this event. Relevant only for timers
+        //! Contains information related to an emitted `signal`.
         struct signal{
             uintptr_t value; //!< The integer value that identifies this signal
             llist_t *listeners; //!< Reference to the signal listeners
-        } signal; //!< The signal information of this event. Relevant only for signals
-    } detail;
+        } signal; //!< The emission information of this event. Relevant only for signals
+        //! Contains the context of a particular signal listener
+        struct listener{
+            /** When this flag is set, the `event_loop` will not run this event's
+              * closure. Additionally, the event will be destroyed.
+              */
+            bool unlistened;
+        } listener; //!< The listening information of this event. Relevant only for signal listeners
+    } detail; //!< Represents speciffic detail on a event depending on its type.
 };
 
 /** \brief Destroys an event
@@ -69,17 +86,33 @@ void event_destroy(event_t *event);
   *
   * \param event The event to be configured
   * \param closure The closure to be invoked when the event is run
+  * \param repeating Intructs the system whether should this event be disposed of
+  * after processing
   */
-void event_config_closure(event_t *event, closure_t *closure);
+void event_config_closure(event_t *event, closure_t *closure, bool repeating);
 
 /** \brief Configures a signal event
   *
   * \param event The event to be configured
-  * \param repeating If this flag is set, the event will not be destroyed after
-  * execution.
-  * \param closure The closure to be invoked when the event is run
+  * \param signal The integer value that identifies this signal
+  * \param listeners The listeners associated to this signal
+  * \param params The parameters associated with this signal emission
   */
-void event_config_signal(event_t *event, bool repeating, closure_t *closure);
+void event_config_signal(
+    event_t *event,
+    uintptr_t signal,
+    llist_t *listeners,
+    void *params
+);
+
+/** \brief Configures a signal listener event
+  *
+  * \param event The event to be configured
+  * \param closure The closure to be invoked when the event is run
+  * \param repeating Intructs the system whether should this event be disposed of
+  * after processing
+  */
+void event_config_signal_listener(event_t *event, closure_t *closure, bool repeating);
 
 /** \brief Configures a timer event
   * \param event The event to be configured

@@ -10,6 +10,7 @@
 #include "containers/system-queues.h"
 #include "../utils/linked-list.h"
 #include "../utils/closure.h"
+#include "event.h"
 
 /** \typedef signal_t
   *
@@ -19,14 +20,9 @@
   */
 typedef uintptr_t signal_t;
 
-//! \brief Keeps a reference to a listener bound to some signal at some relay
-typedef struct signal_listener signal_listener_t;
-struct signal_listener{
-    //! The list associated to the signal emitted when this listener was registered
-    llist_t *source;
-    //! The node containing this listener's closure to be run
-    llist_node_t *node;
-};
+/** \brief Reference to the listener associated with some listen operation
+  */
+typedef struct listener* signal_listener_t;
 
 /** \brief Contains a signal vector and operates on in.
   *
@@ -98,12 +94,12 @@ signal_listener_t signal_listen_once(
     closure_t *closure
 );
 
-/** \brief Detaches some listener from the signal vector at the provided relay.
+/** \brief Marks a signal listener as expired. When a its corresponding signal is
+  * emitted, this listener will be destroyed.
   *
   + \param listener The listener that identifies the listen operation to be undone
-  * \param relay The relay where the listener was registered
   */
-void signal_unlisten(signal_listener_t listener, signal_relay_t *relay);
+void signal_unlisten(signal_listener_t listener);
 
 /** \brief Emits a signal at the supplied relay. Any closure listening to this
   * signal will be invoked.

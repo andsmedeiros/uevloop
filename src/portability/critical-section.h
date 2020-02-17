@@ -10,8 +10,6 @@
   *
   * This is a no-op meant to be overridden by the programmer, according to the
   * synchronisation methods available on the target platform.
-  *
-  * \note Critical sections are meant to be nested.
   */
 #define UEVLOOP_CRITICAL_ENTER
 #endif /* UEVLOOP_CRITICAL_ENTER */
@@ -21,25 +19,23 @@
   *
   * This is a no-op meant to be overridden by the programmer, according to the
   * synchronisation methods available on the target platform.
-  *
-  * \note Critical sections are meant to be nested.
   */
 #define UEVLOOP_CRITICAL_EXIT
 #endif /* UEVLOOP_CRITICAL_EXIT */
 
-#ifndef UEVLOOP_CRITICAL_OBJECT
-/** \brief Defines the type of critical section objects.
-  *
-  * This macro should be defined with the intended type of critical section
-  * objects.
-  */
-#define UEVLOOP_CRITICAL_OBJECT unsigned char
-#endif /* UEVLOOP_CRITICAL_OBJECT */
-
+#ifdef UEVLOOP_CRITICAL_SECTION_OBJ_TYPE
 /** \brief The global critical section object.
-  *
-  * This should be declared globally in the application body.
-  * It is meant to store the current nesting level of critical sections.
-  */
-extern UEVLOOP_CRITICAL_OBJECT uevloop_critical_section;
+*
+* Should the programmer need a critical section object to manage the system lock,
+* the `UEVLOOP_CRITICAL_SECTION_OBJ_TYPE` must be defined with the desired
+* type of such object.
+*
+* An object of type `UEVLOOP_CRITICAL_SECTION_OBJ_TYPE` will be then declared as
+* an external global under the symbol `uevloop_critical_section`.
+* It is the programmer's responsability to actually allocate such object. It will
+* then be available in all critical sections.
+*/
+extern UEVLOOP_CRITICAL_SECTION_OBJ_TYPE uevloop_critical_section;
+#endif /* UEVLOOP_CRITICAL_SECTION_OBJ_TYPE */
+
 #endif /* end of include guard: CRITICAL_SECTION_H */

@@ -109,14 +109,6 @@ static char *should_listen(){
     return NULL;
 }
 
-static bool contains(llist_t *list, llist_node_t *node){
-    llist_node_t *current = list->tail;
-    while(current != NULL){
-        if (current == node) return true;
-        current = current->next;
-    }
-    return false;
-}
 static char *should_unlisten(){
     DECLARE_SIGNAL_RELAY();
 
@@ -129,43 +121,42 @@ static char *should_unlisten(){
         signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
 
     mu_assert_ints_equal(
-        "relay.signal_vector[0].count",
+        "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
         3,
-        relay.signal_vector[0].count
+        relay.signal_vector[TEST_SIGNAL_EVENT_1].count
     );
+    mu_assert_not("listener2->unlistened", listener2->unlistened);
 
-    signal_unlisten(listener2, &relay);
+    signal_unlisten(listener2);
+    mu_assert("listener2->unlistened", listener2->unlistened);
+    signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
+    evloop_run(&loop);
     mu_assert_ints_equal(
-        "relay.signal_vector[0].count",
+        "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
         2,
-        relay.signal_vector[0].count
-    );
-    mu_assert_not(
-        "relay.signal_vector[0].contains(listener2) must had been false",
-        contains(&relay.signal_vector[0], listener2.node)
+        relay.signal_vector[TEST_SIGNAL_EVENT_1].count
     );
 
-    signal_unlisten(listener3, &relay);
+    mu_assert_not("listener3->unlistened", listener3->unlistened);
+    signal_unlisten(listener3);
+    mu_assert("listener3->unlistened", listener3->unlistened);
+    signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
+    evloop_run(&loop);
     mu_assert_ints_equal(
-        "relay.signal_vector[0].count",
+        "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
         1,
-        relay.signal_vector[0].count
-    );
-    mu_assert_not(
-        "relay.signal_vector[0].contains(listener3) must had been false",
-        contains(&relay.signal_vector[0], listener3.node)
+        relay.signal_vector[TEST_SIGNAL_EVENT_1].count
     );
 
-    signal_unlisten(listener1, &relay);
+    mu_assert_not("listener1->unlistened", listener1->unlistened);
+    signal_unlisten(listener1);
+    mu_assert("listener1->unlistened", listener1->unlistened);
+    signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
+    evloop_run(&loop);
     mu_assert_int_zero(
-        "relay.signal_vector[0].count",
-        relay.signal_vector[0].count
+        "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
+        relay.signal_vector[TEST_SIGNAL_EVENT_1].count
     );
-    mu_assert_not(
-        "relay.signal_vector[0].contains(listener1) must had been false",
-        contains(&relay.signal_vector[0], listener1.node)
-    );
-
 
     return NULL;
 }
