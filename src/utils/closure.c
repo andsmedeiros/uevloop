@@ -1,5 +1,8 @@
 #include "closure.h"
+
+/// \cond
 #include <stdlib.h>
+/// \endcond
 
 closure_t closure_create(
     void * (* function)(closure_t *),

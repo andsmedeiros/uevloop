@@ -1,6 +1,10 @@
 #include "scheduler.h"
+
+/// \cond
+#include <stdlib.h>
+/// \endcond
+
 #include "event.h"
-#include "../portability/critical-section.h"
 
 static void *is_past_due_time(closure_t *closure){
     uint32_t current_time = *(uint32_t *)closure->context;

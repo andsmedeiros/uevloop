@@ -7,9 +7,10 @@
 #ifndef CIRCULAR_QUEUE_H
 #define	CIRCULAR_QUEUE_H
 
-#include <stdlib.h>
+/// \cond
 #include <stdint.h>
 #include <stdbool.h>
+/// \endcond
 
 /** \brief Defines a circular queue of void pointers
   *

@@ -5,9 +5,7 @@
 #ifndef EVENT_LOOP_H
 #define EVENT_LOOP_H
 
-#include <stdbool.h>
 #include "../utils/closure.h"
-#include "../system/event.h"
 #include "../system/containers/system-pools.h"
 #include "../system/containers/system-queues.h"
 

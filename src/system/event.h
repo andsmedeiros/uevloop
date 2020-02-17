@@ -5,8 +5,11 @@
 #ifndef EVENT_H
 #define	EVENT_H
 
+/// \cond
 #include <stdint.h>
 #include <stdbool.h>
+/// \endcond
+
 #include "../utils/closure.h"
 
 //! Possible types of events understood by the core

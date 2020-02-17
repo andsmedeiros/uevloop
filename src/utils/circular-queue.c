@@ -1,5 +1,8 @@
-
 #include "circular-queue.h"
+
+/// \cond
+#include <stdlib.h>
+/// \endcond
 
 void cqueue_init(cqueue_t *queue, void **buffer, uintptr_t size_log2n){
     queue->buffer = buffer;

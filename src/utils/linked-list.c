@@ -1,5 +1,9 @@
 #include "linked-list.h"
+
+/// \cond
 #include <stdbool.h>
+#include <stdlib.h>
+/// \endcond
 
 void llist_init(llist_t *list){
     list->head = list->tail = NULL;
@@ -56,11 +60,11 @@ llist_node_t *llist_peek_tail(llist_t *list){
     return list->tail;
 }
 
-void llist_remove(llist_t *list, llist_node_t *node){
+bool llist_remove(llist_t *list, llist_node_t *node){
     if(node == list->tail){
         list->tail = node->next;
         list->count--;
-        return;
+        return true;
     }
 
     llist_node_t *current = list->tail;
@@ -68,10 +72,12 @@ void llist_remove(llist_t *list, llist_node_t *node){
         if(current->next == node){
             current->next = node->next;
             list->count--;
-            return;
+            return true;
         }
         current = current->next;
     }
+
+    return false;
 }
 
 llist_t llist_remove_until(llist_t *list, closure_t *should_remove){

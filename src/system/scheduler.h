@@ -6,7 +6,10 @@
 #ifndef SCHEDULER_H
 #define	SCHEDULER_H
 
+/// \cond
 #include <stdint.h>
+/// \endcond
+
 #include "containers/system-pools.h"
 #include "containers/system-queues.h"
 #include "../utils/linked-list.h"

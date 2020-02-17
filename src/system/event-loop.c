@@ -1,5 +1,9 @@
 #include "event-loop.h"
 
+/// \cond
+#include <stdlib.h>
+/// \endcond
+
 void evloop_init(
     evloop_t *event_loop,
     syspools_t *pools,
@@ -26,7 +30,9 @@ void evloop_run(evloop_t *event_loop){
                 break;
             case SIGNAL_EVENT:
                 closure_invoke(&event->closure, event->closure.params);
-                continue;
+                if(event->repeating){
+                    continue;
+                }
             default: break;
         }
         event_destroy(event);

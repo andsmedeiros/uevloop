@@ -7,9 +7,10 @@
 #define	OBJECT_POOL_H
 
 #include "circular-queue.h"
-#include <stdlib.h>
-#include <stdint.h>
 
+/// \cond
+#include <stdint.h>
+/// \endcond
 
 /** \brief Pre-allocated memory bound to speciffic types suitable for providing
   * dynamic object management in the stack.

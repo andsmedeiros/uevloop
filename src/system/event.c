@@ -1,11 +1,7 @@
 #include "event.h"
 
 void event_destroy(event_t *event){
-    switch (event->type){
-        default:
-            closure_destroy(&event->closure);
-            break;
-    }
+    closure_destroy(&event->closure);
 }
 
 void event_config_closure(event_t *event, closure_t *closure){

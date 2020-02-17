@@ -6,8 +6,11 @@
 #ifndef LINKED_LIST_H
 #define	LINKED_LIST_H
 
-#include <stdlib.h>
+/// \cond
 #include <stdint.h>
+#include <stdbool.h>
+/// \endcond
+
 #include "closure.h"
 
 //! Defines a node of the linked list. Holds a void pointer.
@@ -86,8 +89,9 @@ llist_node_t *llist_peek_tail(llist_t *list);
   *
   * \param list The list from where the node will be removed
   * \param node Address of the node being removed
+  * \returns Whether the node was found and removed
   */
-void llist_remove(llist_t *list, llist_node_t *node);
+bool llist_remove(llist_t *list, llist_node_t *node);
 
 /** \brief Splits a list in two. The rupture point is determined by the supplied
  * closure.

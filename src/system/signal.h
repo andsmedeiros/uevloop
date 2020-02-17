@@ -6,7 +6,6 @@
 #ifndef SIGNAL_H
 #define SIGNAL_H
 
-#include <stdlib.h>
 #include "containers/system-pools.h"
 #include "containers/system-queues.h"
 #include "../utils/linked-list.h"
