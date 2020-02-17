@@ -1,8 +1,5 @@
 #include "application.h"
 
-#include <stdlib.h>
-#include "../portability/critical-section.h"
-
 void app_init(application_t *app){
     syspools_init(&app->pools);
     sysqueues_init(&app->queues);

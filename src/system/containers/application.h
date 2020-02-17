@@ -6,15 +6,16 @@
 
 #ifndef APPLICATION_H
 #define APPLICATION_H
-
+/// \cond
 #include <stdint.h>
 #include <stdbool.h>
-#include "event-loop.h"
-#include "scheduler.h"
-#include "signal.h"
-#include "containers/system-pools.h"
-#include "containers/system-queues.h"
-#include "../utils/circular-queue.h"
+/// \endcond
+
+#include "system-pools.h"
+#include "system-queues.h"
+#include "../event-loop.h"
+#include "../scheduler.h"
+#include "../signal.h"
 
 //! Events emitted by the application relay. Unused ATM.
 enum app_event{

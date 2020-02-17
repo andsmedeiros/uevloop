@@ -1,8 +1,8 @@
 #include "application.h"
 
 #include <stdlib.h>
-#include "system/application.h"
-#include "../minunit.h"
+#include "system/containers/application.h"
+#include "../../minunit.h"
 
 #define DECLARE_APP()                                                           \
     application_t app;                                                          \
