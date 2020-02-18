@@ -1,6 +1,6 @@
 /** \file object-pool.h
   *
-  * \brief Defines object pools and functions to manipulate it.
+  * \brief Defines object pools, arrays of pre-allocated objects for dynamic use
   */
 
 #ifndef OBJECT_POOL_H
@@ -15,7 +15,7 @@
 /** \brief Pre-allocated memory bound to speciffic types suitable for providing
   * dynamic object management in the stack.
   *
-  * Object pools are arrays of objects that are pre=allocated in the stack at
+  * Object pools are arrays of objects that are pre-allocated in the stack at
   * compile time as an alternative to runtime memory allocation for dynamic
   * object management.
   *

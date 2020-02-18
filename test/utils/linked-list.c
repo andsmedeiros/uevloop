@@ -130,7 +130,7 @@ static char *should_remove_elements_until_condition(){
     for(uintptr_t i = 0; i < 7; i++) llist_push_head(&list, &nodes[i]);
 
     closure_t less_than_five = closure_create(&less_than, (void *)5, NULL);
-    llist_t removed = llist_remove_until(&list, &less_than_five);
+    llist_t removed = llist_remove_while(&list, &less_than_five);
 
     mu_assert_ints_equal("list.count", 3, list.count);
     mu_assert_pointers_equal("list.head", &nodes[6], list.head);

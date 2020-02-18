@@ -80,7 +80,7 @@ bool llist_remove(llist_t *list, llist_node_t *node){
     return false;
 }
 
-llist_t llist_remove_until(llist_t *list, closure_t *should_remove){
+llist_t llist_remove_while(llist_t *list, closure_t *should_remove){
     llist_t removed;
     llist_init(&removed);
 

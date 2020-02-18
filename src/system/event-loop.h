@@ -1,5 +1,5 @@
 /** \file event-loop.h
-  * \brief Contains the evloop_t struct and functions to manipulate it
+  * \brief Module responsible for running enqueued events and process them accordingly
   */
 
 #ifndef EVENT_LOOP_H

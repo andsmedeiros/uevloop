@@ -1,7 +1,6 @@
 /** \file circular-queue.h
   *
-  * \brief Contains definitions for the circular queue data structure and functions to
-  * manipulate it.
+  * \brief Defines circular queues, fast and efficient FIFO data structures
   */
 
 #ifndef CIRCULAR_QUEUE_H
@@ -18,9 +17,7 @@
   * FIFO data structure that holds void pointers.
   *
   * Its capacity is **required** to be a power of two. This makes possible to
-  * use fast modulo-2 arithmetics when dealing with the queue indices.
-  *
-  * \todo Circular queues are not interrupt/thread safe ATM.
+  * use fast modulo-2 arithmetic when dealing with the queue indices.
   */
 typedef struct cqueue cqueue_t;
 struct cqueue {

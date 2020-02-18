@@ -24,8 +24,6 @@ struct llist_node{
 
 /** \brief Defines a linked list. If it is empty, head == tail == NULL.
   * Pushing or popping from both the head or tail is always O(1).
-  *
-  * \todo Linked lists are not interrupt/thread safe ATM.
   */
 typedef struct llist llist_t;
 struct llist{
@@ -105,11 +103,11 @@ bool llist_remove(llist_t *list, llist_node_t *node);
   * removed or not.
   * \return A new list containing the removed nodes, in their original order.
   */
-llist_t llist_remove_until(llist_t *list, closure_t *should_remove);
+llist_t llist_remove_while(llist_t *list, closure_t *should_remove);
 
-/** \brief Scans a list until it finds a suitable spot to insert the psovided node.
+/** \brief Scans a list until it finds a suitable spot to insert the provided node.
   *
-  * This function iterates the linked list invoking the supplied closure util
+  * This function iterates the linked list invoking the supplied closure until
   * it returns true. The supplied node is then inserted at this position.
   *
   * The `should_insert` closure will be invoked for each pair of node addresses

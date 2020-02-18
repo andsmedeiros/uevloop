@@ -19,8 +19,7 @@
 /** \brief A container for the system pools
   *
   * The syspools object is meant as a container for the internal system pools.
-  * It is defined to make easier for the programmer to reason about the sizes
-  * of allocated internal object pools.
+  * It is a safe interface to the pools, acquiring and releasing objects on demand.
   */
 typedef struct syspools syspools_t;
 struct syspools{

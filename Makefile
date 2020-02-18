@@ -39,7 +39,7 @@ build/test/utils/%.o: test/utils/%.c test/utils/%.h build/utils/%.o test/minunit
 	mkdir -p build/test/utils
 	$(CC) -c -fpic -o $@ $< $(CFLAGS)
 
-.PHONY: clean test coverage doc debug
+.PHONY: clean test coverage doc debug publish
 
 clean:
 	rm -rf build dist coverage docs
@@ -62,3 +62,6 @@ docs: Doxyfile $(OBJ)
 
 debug: dist/test
 	$(MAKE) && LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) gdb dist/test
+
+publish:
+	env bash scripts/publish.sh

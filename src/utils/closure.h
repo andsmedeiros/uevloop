@@ -1,6 +1,7 @@
 /** \file closure.h
   *
-  * \brief Defines closures and provides functions to manipulate them
+  * \brief Defines closures, objects that bind functions to creating and calling
+  * contexts
   */
 
 #ifndef CLOSURE_H

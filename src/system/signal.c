@@ -67,7 +67,13 @@ void signal_unlisten(signal_listener_t listener){
 
 void signal_emit(signal_t signal, signal_relay_t *relay, void *params){
     llist_t *listeners = &relay->signal_vector[signal];
-    event_t *event = syspools_acquire_event(relay->pools);
-    event_config_signal(event, signal, listeners, params);
-    sysqueues_enqueue_event(relay->queues, event);
+    bool has_listeners = false;
+    UEVLOOP_CRITICAL_ENTER;
+    has_listeners = listeners->count > 0;
+    UEVLOOP_CRITICAL_EXIT;
+    if (has_listeners) {
+        event_t *event = syspools_acquire_event(relay->pools);
+        event_config_signal(event, signal, listeners, params);
+        sysqueues_enqueue_event(relay->queues, event);
+    }
 }

@@ -86,7 +86,7 @@ void sch_manage_timers(scheduler_t *scheduler){
 
     closure_t closure =
         closure_create(&is_past_due_time, (void *)&scheduler->timer, NULL);
-    llist_t expired_timers = llist_remove_until(&scheduler->timer_list, &closure);
+    llist_t expired_timers = llist_remove_while(&scheduler->timer_list, &closure);
     llist_node_t *current = expired_timers.tail, *previous;
     while(current != NULL){
         event_t *timer = (event_t *)current->value;

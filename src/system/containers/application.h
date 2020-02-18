@@ -1,7 +1,6 @@
 /**  \file application.h
    * \brief The application module is a convenient top-level container for the
    * system internals.
-   * It also serves as a thread/interrupt safe proxy interface.
    */
 
 #ifndef APPLICATION_H
@@ -57,8 +56,6 @@ void app_init(application_t *app);
   * updated or there are events awaiting rescheduling) and do so if necessary
   * 2. Perform a runloop
   *
-  * \note This function is run in a critical section
-  *
   * \param app The application_t instance
   */
 void app_tick(application_t *app);
@@ -75,8 +72,6 @@ void app_update_timer(application_t *app, uint32_t timer);
   * Proxies the call to sch_run_later() with application_t::scheduler as
   * parameter.
   *
-  * \note This function is run in a critical section
-  *
   * \param app The application_t instance
   * \param timeout_in_ms The delay in milliseconds until the closure is run
   * \param closure The closure to be invoked when the due time is reached
@@ -91,8 +86,6 @@ void app_update_timer(application_t *app, uint32_t timer);
   *
   * Proxies the call to sch_run_at_intervals() with application_t::scheduler as
   * parameter.
-  *
-  * \note This function is run in a critical section
   *
   * \param app The application_t instance
   * \param interval_in_ms The delay in milliseconds two executions of the closure
@@ -111,8 +104,6 @@ void app_run_at_intervals(
   *
   * Proxies the call to evloop_enqueue_closure() with application_t::event_loop
   * as parameter.
-  *
-  * \note This function is run in a critical section
   *
   * \param app The application_t instance
   * \param closure The closure to be enqueued

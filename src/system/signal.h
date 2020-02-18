@@ -20,7 +20,8 @@
   */
 typedef uintptr_t signal_t;
 
-/** \brief Reference to the listener associated with some listen operation
+/** \brief Defines a reference type suitable to manipulate the actual listener
+  * event's context.
   */
 typedef struct listener* signal_listener_t;
 
@@ -94,15 +95,16 @@ signal_listener_t signal_listen_once(
     closure_t *closure
 );
 
-/** \brief Marks a signal listener as expired. When a its corresponding signal is
-  * emitted, this listener will be destroyed.
+/** \brief Marks a signal listener as expired. When its corresponding signal is
+  * emitted, this listener's closure will not be invoked and the listener will
+  * be destroyed.
   *
   + \param listener The listener that identifies the listen operation to be undone
   */
 void signal_unlisten(signal_listener_t listener);
 
 /** \brief Emits a signal at the supplied relay. Any closure listening to this
-  * signal will be invoked.
+  * signal will be asynchronously invoked.
   *
   * \param signal The signal to be emitted
   * \param relay The relay where the signal is registered
