@@ -86,6 +86,10 @@ while [[ $confirm != "yes" && $confirm != "y" &&
   echo "Annotate? ${annotate}"
 
   read -p "Confirm pusblishing? ((y)es or (n)o) " confirm
+  if [[ $confirm == "no" || $confirm == "n" ]]; then
+    echo "Publishing canceled by the user. Aborting."
+    exit 1
+  fi
 done
 
 
