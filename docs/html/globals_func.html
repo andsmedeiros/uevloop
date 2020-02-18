@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: Globals</title>
+<title>µEvLoop: Globals</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -97,6 +97,9 @@ $(function() {
 <li>cqueue_clear()
 : <a class="el" href="circular-queue_8h.html#ac917314e783ce943bfeab05242785191">circular-queue.h</a>
 </li>
+<li>cqueue_count()
+: <a class="el" href="circular-queue_8h.html#aa6bfadb159a25ba36d41feb280ac635d">circular-queue.h</a>
+</li>
 <li>cqueue_init()
 : <a class="el" href="circular-queue_8h.html#a39b3eee4b6d829de97f24b32e577f84c">circular-queue.h</a>
 </li>
@@ -123,10 +126,13 @@ $(function() {
 
 <h3><a id="index_e"></a>- e -</h3><ul>
 <li>event_config_closure()
-: <a class="el" href="event_8h.html#a7e14814e114b610c08792f85b9cac2e6">event.h</a>
+: <a class="el" href="event_8h.html#ae7022b95708ef84c8321f4503f159fb3">event.h</a>
 </li>
 <li>event_config_signal()
-: <a class="el" href="event_8h.html#ad8cf20af57f2dcab33169e21b6bf3bb8">event.h</a>
+: <a class="el" href="event_8h.html#aa2b234dfe7dc1540b31124ed659576eb">event.h</a>
+</li>
+<li>event_config_signal_listener()
+: <a class="el" href="event_8h.html#ac7ddafe814eb81d1cfefb688b648079c">event.h</a>
 </li>
 <li>event_config_timer()
 : <a class="el" href="event_8h.html#a1c8af99f6923dcf452f3f5e9926c339a">event.h</a>
@@ -137,11 +143,8 @@ $(function() {
 <li>evloop_enqueue_closure()
 : <a class="el" href="event-loop_8h.html#a9297808d7ffc05da6358ce6672221b27">event-loop.h</a>
 </li>
-<li>evloop_enqueue_event()
-: <a class="el" href="event-loop_8h.html#a2aae248e41aadc759c26c4464bf5f893">event-loop.h</a>
-</li>
 <li>evloop_init()
-: <a class="el" href="event-loop_8h.html#a71ea2d4164066c8686ba7a22364f3c13">event-loop.h</a>
+: <a class="el" href="event-loop_8h.html#afad64158ebb99c0ce26604c7b54148f3">event-loop.h</a>
 </li>
 <li>evloop_run()
 : <a class="el" href="event-loop_8h.html#a342bd080e4ca3e4585437d7642d44ee2">event-loop.h</a>
@@ -175,10 +178,10 @@ $(function() {
 : <a class="el" href="linked-list_8h.html#a783d77da372f2ab357869a412a519dfd">linked-list.h</a>
 </li>
 <li>llist_remove()
-: <a class="el" href="linked-list_8h.html#a441978ba82820b040b280319aac98e1d">linked-list.h</a>
+: <a class="el" href="linked-list_8h.html#af841c0a67fca955a21aa0b5896f4a01b">linked-list.h</a>
 </li>
-<li>llist_remove_until()
-: <a class="el" href="linked-list_8h.html#ae4dc682fe813d927b569d22bcac4da19">linked-list.h</a>
+<li>llist_remove_while()
+: <a class="el" href="linked-list_8h.html#a010ad800e07dcf82a49587d0660461a9">linked-list.h</a>
 </li>
 </ul>
 
@@ -201,13 +204,10 @@ $(function() {
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>sch_init()
-: <a class="el" href="scheduler_8h.html#a10be803c49d16c59f33c0fb560f2b4a3">scheduler.h</a>
+: <a class="el" href="scheduler_8h.html#ac71114eccc00dabe5874fd70f1b0d78e">scheduler.h</a>
 </li>
 <li>sch_manage_timers()
 : <a class="el" href="scheduler_8h.html#a561a4b7cdcb445d42994da0eb9c160a3">scheduler.h</a>
-</li>
-<li>sch_reschedule()
-: <a class="el" href="scheduler_8h.html#ab43813596ebad992491c3667830f1ede">scheduler.h</a>
 </li>
 <li>sch_run_at_intervals()
 : <a class="el" href="scheduler_8h.html#a43e2339c242a52f788d74f30ce103ed4">scheduler.h</a>
@@ -228,25 +228,46 @@ $(function() {
 : <a class="el" href="signal_8h.html#abf0d5feed25c08e6826ae5849360cc4f">signal.h</a>
 </li>
 <li>signal_relay_init()
-: <a class="el" href="signal_8h.html#addcc8f1986d4075475a9f56b31ad902e">signal.h</a>
+: <a class="el" href="signal_8h.html#a32a5c7105320c8e7437d8a36fda4899b">signal.h</a>
 </li>
 <li>signal_unlisten()
-: <a class="el" href="signal_8h.html#a77b3f96a528d543367cc14d26326befd">signal.h</a>
+: <a class="el" href="signal_8h.html#a4d1a8cde3b250148801339fc72ff11a4">signal.h</a>
 </li>
 <li>syspools_acquire_event()
-: <a class="el" href="syspools_8h.html#a15ece231776223f27e2ebbb8534101fc">syspools.h</a>
+: <a class="el" href="system-pools_8h.html#a15ece231776223f27e2ebbb8534101fc">system-pools.h</a>
 </li>
 <li>syspools_acquire_llist_node()
-: <a class="el" href="syspools_8h.html#af42fc81b948b4b5ade8d9d4854b5f1ab">syspools.h</a>
+: <a class="el" href="system-pools_8h.html#af42fc81b948b4b5ade8d9d4854b5f1ab">system-pools.h</a>
 </li>
 <li>syspools_init()
-: <a class="el" href="syspools_8h.html#a5b00c216720de7afc3a3c30a2df60cc4">syspools.h</a>
+: <a class="el" href="system-pools_8h.html#a5b00c216720de7afc3a3c30a2df60cc4">system-pools.h</a>
 </li>
 <li>syspools_release_event()
-: <a class="el" href="syspools_8h.html#aa6a3eecf2bc5f3a1bf6cf82fb38dba5b">syspools.h</a>
+: <a class="el" href="system-pools_8h.html#aa6a3eecf2bc5f3a1bf6cf82fb38dba5b">system-pools.h</a>
 </li>
 <li>syspools_release_llist_node()
-: <a class="el" href="syspools_8h.html#a0a0e2d37a9a37f9e037113a66f07fa57">syspools.h</a>
+: <a class="el" href="system-pools_8h.html#a0a0e2d37a9a37f9e037113a66f07fa57">system-pools.h</a>
+</li>
+<li>sysqueues_count_enqueued_events()
+: <a class="el" href="system-queues_8h.html#a2188698354f60dd3c365ba89e5c17bae">system-queues.h</a>
+</li>
+<li>sysqueues_count_scheduled_events()
+: <a class="el" href="system-queues_8h.html#aebbe860cbbc658ba30531fad5a9fceaa">system-queues.h</a>
+</li>
+<li>sysqueues_enqueue_event()
+: <a class="el" href="system-queues_8h.html#a7330cf933d3cddf916d796a7e5848c16">system-queues.h</a>
+</li>
+<li>sysqueues_get_enqueued_event()
+: <a class="el" href="system-queues_8h.html#a02d9a1eae7c2625083fe72311dc01950">system-queues.h</a>
+</li>
+<li>sysqueues_get_scheduled_event()
+: <a class="el" href="system-queues_8h.html#a1e00a97348719a8a357f5f0c305b034d">system-queues.h</a>
+</li>
+<li>sysqueues_init()
+: <a class="el" href="system-queues_8h.html#abed67e4f7c2c8dec08899920bcf31a6a">system-queues.h</a>
+</li>
+<li>sysqueues_schedule_event()
+: <a class="el" href="system-queues_8h.html#ae1444269bad4265fa8601813dcfbc7ef">system-queues.h</a>
 </li>
 </ul>
 </div><!-- contents -->

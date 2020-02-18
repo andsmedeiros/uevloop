@@ -1,8 +1,10 @@
 <map id="src/system/event&#45;loop.h" name="src/system/event&#45;loop.h">
-<area shape="rect" id="node3" href="$circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="21,229,176,256"/>
-<area shape="rect" id="node6" href="$closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="453,229,568,256"/>
-<area shape="rect" id="node7" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="454,155,578,181"/>
-<area shape="rect" id="node8" href="$syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="265,80,409,107"/>
-<area shape="rect" id="node9" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="90,155,226,181"/>
-<area shape="rect" id="node10" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="250,155,378,181"/>
+<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="27,333,142,360"/>
+<area shape="rect" id="node3" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="83,80,224,121"/>
+<area shape="rect" id="node9" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="287,80,428,121"/>
+<area shape="rect" id="node4" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="96,177,174,203"/>
+<area shape="rect" id="node5" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="20,259,148,285"/>
+<area shape="rect" id="node6" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="332,177,424,203"/>
+<area shape="rect" id="node7" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="198,169,307,211"/>
+<area shape="rect" id="node8" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="314,259,428,285"/>
 </map>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: src/portability/critical-section.h File Reference</title>
+<title>µEvLoop: src/portability/critical-section.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -65,8 +65,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">critical-section.h File Reference</div>  </div>
 </div><!--header-->
@@ -92,15 +91,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a47db4d608d0480c31eda9497d16a01da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="critical-section_8h.html#a47db4d608d0480c31eda9497d16a01da">UEVLOOP_CRITICAL_EXIT</a></td></tr>
 <tr class="memdesc:a47db4d608d0480c31eda9497d16a01da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits a critical section..  <a href="#a47db4d608d0480c31eda9497d16a01da">More...</a><br /></td></tr>
 <tr class="separator:a47db4d608d0480c31eda9497d16a01da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e0967e67a056c60d8fc4a9fe36f1f04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="critical-section_8h.html#a2e0967e67a056c60d8fc4a9fe36f1f04">UEVLOOP_CRITICAL_OBJECT</a>&#160;&#160;&#160;unsigned char</td></tr>
-<tr class="memdesc:a2e0967e67a056c60d8fc4a9fe36f1f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the type of critical section objects.  <a href="#a2e0967e67a056c60d8fc4a9fe36f1f04">More...</a><br /></td></tr>
-<tr class="separator:a2e0967e67a056c60d8fc4a9fe36f1f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ae149730bef3ca6b173fada7d6c7fca59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="critical-section_8h.html#a2e0967e67a056c60d8fc4a9fe36f1f04">UEVLOOP_CRITICAL_OBJECT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="critical-section_8h.html#ae149730bef3ca6b173fada7d6c7fca59">uevloop_critical_section</a></td></tr>
-<tr class="memdesc:ae149730bef3ca6b173fada7d6c7fca59"><td class="mdescLeft">&#160;</td><td class="mdescRight">The global critical section object.  <a href="#ae149730bef3ca6b173fada7d6c7fca59">More...</a><br /></td></tr>
-<tr class="separator:ae149730bef3ca6b173fada7d6c7fca59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains macros for delimitating critical sections. </p>
@@ -118,8 +108,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enters a critical section. </p>
-<p>This is a no-op meant to be overridden by the programmer, according to the synchronisation methods available on the target platform.</p>
-<dl class="section note"><dt>Note</dt><dd>Critical sections are meant to be nested. </dd></dl>
+<p>This is a no-op meant to be overridden by the programmer, according to the synchronisation methods available on the target platform. </p>
 
 </div>
 </div>
@@ -136,43 +125,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Exits a critical section.. </p>
-<p>This is a no-op meant to be overridden by the programmer, according to the synchronisation methods available on the target platform.</p>
-<dl class="section note"><dt>Note</dt><dd>Critical sections are meant to be nested. </dd></dl>
-
-</div>
-</div>
-<a id="a2e0967e67a056c60d8fc4a9fe36f1f04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e0967e67a056c60d8fc4a9fe36f1f04">&#9670;&nbsp;</a></span>UEVLOOP_CRITICAL_OBJECT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define UEVLOOP_CRITICAL_OBJECT&#160;&#160;&#160;unsigned char</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Defines the type of critical section objects. </p>
-<p>This macro should be defined with the intended type of critical section objects. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ae149730bef3ca6b173fada7d6c7fca59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae149730bef3ca6b173fada7d6c7fca59">&#9670;&nbsp;</a></span>uevloop_critical_section</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="critical-section_8h.html#a2e0967e67a056c60d8fc4a9fe36f1f04">UEVLOOP_CRITICAL_OBJECT</a> uevloop_critical_section</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The global critical section object. </p>
-<p>This should be declared globally in the application body. It is meant to store the current nesting level of critical sections. </p>
+<p>This is a no-op meant to be overridden by the programmer, according to the synchronisation methods available on the target platform. </p>
 
 </div>
 </div>

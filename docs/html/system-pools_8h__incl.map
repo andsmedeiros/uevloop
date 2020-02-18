@@ -1,0 +1,8 @@
+<map id="src/system/containers/system&#45;pools.h" name="src/system/containers/system&#45;pools.h">
+<area shape="rect" id="node2" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="5,102,83,129"/>
+<area shape="rect" id="node4" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="56,184,184,211"/>
+<area shape="rect" id="node5" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="158,102,250,129"/>
+<area shape="rect" id="node6" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="275,95,384,136"/>
+<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="12,259,127,285"/>
+<area shape="rect" id="node7" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="272,184,387,211"/>
+</map>

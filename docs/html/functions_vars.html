@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: Data Fields - Variables</title>
+<title>µEvLoop: Data Fields - Variables</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -88,8 +88,11 @@ $(function() {
 <li>destructor
 : <a class="el" href="structclosure.html#a099b36a37d646f84d389f4e68f5d5850">closure_t</a>
 </li>
+<li>detail
+: <a class="el" href="structevent.html#a66e4b6c4aa0c5b36887377c6570ce289">event_t</a>
+</li>
 <li>due_time
-: <a class="el" href="structevent.html#aa3f02d7cacd449d47ace09864a5a2ba0">event_t</a>
+: <a class="el" href="structevent_1_1detail_1_1timer.html#a73fd497059882a0043555a7cc6c811bf">event_t::detail::timer</a>
 </li>
 </ul>
 
@@ -97,24 +100,21 @@ $(function() {
 <h3><a id="index_e"></a>- e -</h3><ul>
 <li>event_loop
 : <a class="el" href="structapplication.html#aadac22f80a51ed8ced6f47978a0a35de">application_t</a>
-, <a class="el" href="structsignal__relay.html#a3e71616cc5b3a8a56177b9a818709cef">signal_relay_t</a>
 </li>
 <li>event_pool
 : <a class="el" href="structsyspools.html#ada9c1bdfd5a04c2c0caf4bee636a7ec6">syspools_t</a>
 </li>
 <li>event_pool_buffer
-: <a class="el" href="structsyspools.html#a5a707f5e8d76c7b80552deb3845c60ab">syspools_t</a>
+: <a class="el" href="structsyspools.html#a46fbfba88fa2ea855611ebaa55b9c482">syspools_t</a>
 </li>
 <li>event_pool_queue_buffer
-: <a class="el" href="structsyspools.html#a8231d8854ce335a6299d453c362bb67a">syspools_t</a>
+: <a class="el" href="structsyspools.html#ae200517dfad9f8eecf64ed5bcb358306">syspools_t</a>
 </li>
 <li>event_queue
-: <a class="el" href="structapplication.html#af1d873f69c83965cae55e18305dcefa0">application_t</a>
-, <a class="el" href="structevloop.html#a4a7847f577a32adca063835e3849bdbb">evloop_t</a>
-, <a class="el" href="structscheduler.html#ac3121faa5a91270cf87b3503c8e8ab5d">scheduler_t</a>
+: <a class="el" href="structsysqueues.html#ace8d7b05a6cef69aa9d887ee85808edc">sysqueues_t</a>
 </li>
 <li>event_queue_buffer
-: <a class="el" href="structapplication.html#a2ea9c0a58e95678eb5c17d43d2312046">application_t</a>
+: <a class="el" href="structsysqueues.html#a9bfde24d77d0bef2f0d1df2e304acacd">sysqueues_t</a>
 </li>
 </ul>
 
@@ -134,14 +134,20 @@ $(function() {
 
 
 <h3><a id="index_l"></a>- l -</h3><ul>
+<li>listener
+: <a class="el" href="unionevent_1_1detail.html#a4e4ff10d09b7095cf12521a17235e752">event_t::detail</a>
+</li>
+<li>listeners
+: <a class="el" href="structevent_1_1detail_1_1signal.html#a86422b69d2f6d108e75f9896086a27a7">event_t::detail::signal</a>
+</li>
 <li>llist_node_pool
 : <a class="el" href="structsyspools.html#a62d871671627584205e83218b3668ed3">syspools_t</a>
 </li>
 <li>llist_node_pool_buffer
-: <a class="el" href="structsyspools.html#ad185baecd130112f79c5ec8c39d09092">syspools_t</a>
+: <a class="el" href="structsyspools.html#af61eb2c66e973cff4cf7975512f71a7f">syspools_t</a>
 </li>
 <li>llist_node_pool_queue_buffer
-: <a class="el" href="structsyspools.html#a120e1ea1b494e0b92a1ac143224b8fff">syspools_t</a>
+: <a class="el" href="structsyspools.html#a1377ef1669f2d2fc33dc26eee454aded">syspools_t</a>
 </li>
 </ul>
 
@@ -156,9 +162,6 @@ $(function() {
 <h3><a id="index_n"></a>- n -</h3><ul>
 <li>next
 : <a class="el" href="structllist__node.html#a7ab05d6a52b539c8ccd73a5277101b88">llist_node_t</a>
-</li>
-<li>node
-: <a class="el" href="structsignal__listener.html#a39b09237d05713d41014619ce8d35e23">signal_listener_t</a>
 </li>
 </ul>
 
@@ -180,6 +183,12 @@ $(function() {
 <li>queue
 : <a class="el" href="structobjpool.html#abbdcde256fb3e4abd6852dfb49f968a7">objpool_t</a>
 </li>
+<li>queues
+: <a class="el" href="structapplication.html#aea9eb95c4c5f99ebcf12ae714e97879a">application_t</a>
+, <a class="el" href="structevloop.html#aec1d9b2c1068d58749041a24e74bb394">evloop_t</a>
+, <a class="el" href="structscheduler.html#ad28989c429e0090c8733632ab0136077">scheduler_t</a>
+, <a class="el" href="structsignal__relay.html#a3199769c5ebd4be3d28099787c9e8b18">signal_relay_t</a>
+</li>
 </ul>
 
 
@@ -193,14 +202,6 @@ $(function() {
 <li>repeating
 : <a class="el" href="structevent.html#ad1f2d27cf687939d4548c067ff691e9b">event_t</a>
 </li>
-<li>reschedule_queue
-: <a class="el" href="structapplication.html#a7459b3b42b9f7234700ba34ff548e6ea">application_t</a>
-, <a class="el" href="structevloop.html#a93ad3c713f5421f24827c04f44306b91">evloop_t</a>
-, <a class="el" href="structscheduler.html#a0abaf4a130738ca7f1e8f3a50ac4e693">scheduler_t</a>
-</li>
-<li>reschedule_queue_buffer
-: <a class="el" href="structapplication.html#a4e6f794ab80b40145ebad03256628e99">application_t</a>
-</li>
 <li>run_scheduler
 : <a class="el" href="structapplication.html#a24f738e140b391135a4f2d5f710d48d2">application_t</a>
 </li>
@@ -208,17 +209,23 @@ $(function() {
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>schedule_queue
+: <a class="el" href="structsysqueues.html#a8b64d3f2f440f5ab9f133a8f704886bd">sysqueues_t</a>
+</li>
+<li>schedule_queue_buffer
+: <a class="el" href="structsysqueues.html#ae2dab95d98835f6b8e6b8f7df8cbfefe">sysqueues_t</a>
+</li>
 <li>scheduler
 : <a class="el" href="structapplication.html#ac273576a40bf70daaeb8e3d5292ac32d">application_t</a>
+</li>
+<li>signal
+: <a class="el" href="unionevent_1_1detail.html#a4c25a0e0f7dedc64a15c66efd10a1ddb">event_t::detail</a>
 </li>
 <li>signal_vector
 : <a class="el" href="structsignal__relay.html#a750a09d3893f54e06c086064c3af225f">signal_relay_t</a>
 </li>
 <li>size
 : <a class="el" href="structcqueue.html#ab46e5cf9c1ecbcdbac01965c5366b963">cqueue_t</a>
-</li>
-<li>source
-: <a class="el" href="structsignal__listener.html#a4e7c19a45324824a8f8b593857cc4d39">signal_listener_t</a>
 </li>
 </ul>
 
@@ -229,10 +236,10 @@ $(function() {
 , <a class="el" href="structllist.html#a5a4baef30512d20d7b1e79c14394323f">llist_t</a>
 </li>
 <li>timeout
-: <a class="el" href="structevent.html#a4402a10ffedc909eb8ead240469d15e1">event_t</a>
+: <a class="el" href="structevent_1_1detail_1_1timer.html#af029ace1462698ad378bbb7b6fc4fd8d">event_t::detail::timer</a>
 </li>
 <li>timer
-: <a class="el" href="structevent.html#a04206131750b1c393b7e097e3a60b29f">event_t</a>
+: <a class="el" href="unionevent_1_1detail.html#ade36e2a72c964a895d3c28235f28f812">event_t::detail</a>
 , <a class="el" href="structscheduler.html#a1ddccbb20e693ce9e8f4cf5285638507">scheduler_t</a>
 </li>
 <li>timer_list
@@ -244,9 +251,17 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_u"></a>- u -</h3><ul>
+<li>unlistened
+: <a class="el" href="structevent_1_1detail_1_1listener.html#aac3f1abd87e450f512ddf7c0eb49589c">event_t::detail::listener</a>
+</li>
+</ul>
+
+
 <h3><a id="index_v"></a>- v -</h3><ul>
 <li>value
 : <a class="el" href="structclosure.html#a08c1cfded1c246368c20bcaa691cd1cc">closure_t</a>
+, <a class="el" href="structevent_1_1detail_1_1signal.html#ad6984b580b42ef66dd5f988ef1e34c50">event_t::detail::signal</a>
 , <a class="el" href="structllist__node.html#a3c58091fcc8fae5c0bbfd342d05ccac2">llist_node_t</a>
 </li>
 </ul>

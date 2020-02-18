@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: Data Structures</title>
+<title>µEvLoop: Data Structures</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -65,19 +65,23 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock">Here are the data structures with brief descriptions:</div><div class="directory">
-<table class="directory">
+<div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span><span onclick="javascript:toggleLevel(3);">3</span>]</div><table class="directory">
 <tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structapplication.html" target="_self">application_t</a></td><td class="desc">Top-level container for µEvLoop'd application </td></tr>
 <tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structclosure.html" target="_self">closure_t</a></td><td class="desc">Defines a closure, a tuple &lt;function, context, destructor&gt; </td></tr>
 <tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structcqueue.html" target="_self">cqueue_t</a></td><td class="desc">Defines a circular queue of void pointers </td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structevent.html" target="_self">event_t</a></td><td class="desc">Events are special closures passed around the core. They represent tasks to be run at some point by the system </td></tr>
+<tr id="row_3_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_3_" class="arrow" onclick="toggleFolder('3_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structevent.html" target="_self">event_t</a></td><td class="desc">Events are special messages passed around the core. They represent tasks to be run at some point by the system </td></tr>
+<tr id="row_3_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_3_0_" class="arrow" onclick="toggleFolder('3_0_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="unionevent_1_1detail.html" target="_self">detail</a></td><td class="desc"></td></tr>
+<tr id="row_3_0_0_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structevent_1_1detail_1_1listener.html" target="_self">listener</a></td><td class="desc">Contains the context of a particular signal listener </td></tr>
+<tr id="row_3_0_1_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structevent_1_1detail_1_1signal.html" target="_self">signal</a></td><td class="desc">Contains information related to an emitted <code>signal</code> </td></tr>
+<tr id="row_3_0_2_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structevent_1_1detail_1_1timer.html" target="_self">timer</a></td><td class="desc">Contains information suitable for scheduling an event at the scheduler </td></tr>
 <tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structevloop.html" target="_self">evloop_t</a></td><td class="desc">The event loop object </td></tr>
 <tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structllist__node.html" target="_self">llist_node_t</a></td><td class="desc">Defines a node of the linked list. Holds a void pointer </td></tr>
 <tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structllist.html" target="_self">llist_t</a></td><td class="desc">Defines a linked list. If it is empty, head == tail == NULL. Pushing or popping from both the head or tail is always O(1) </td></tr>
 <tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structobjpool.html" target="_self">objpool_t</a></td><td class="desc">Pre-allocated memory bound to speciffic types suitable for providing dynamic object management in the stack </td></tr>
 <tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structscheduler.html" target="_self">scheduler_t</a></td><td class="desc">The scheduler object </td></tr>
-<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structsignal__listener.html" target="_self">signal_listener_t</a></td><td class="desc">Keeps a reference to a listener bound to some signal at some relay </td></tr>
-<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structsignal__relay.html" target="_self">signal_relay_t</a></td><td class="desc">Contains a signal vector and operates on in </td></tr>
-<tr id="row_11_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structsyspools.html" target="_self">syspools_t</a></td><td class="desc">A container for the system pools </td></tr>
+<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structsignal__relay.html" target="_self">signal_relay_t</a></td><td class="desc">Contains a signal vector and operates on in </td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structsyspools.html" target="_self">syspools_t</a></td><td class="desc">A container for the system pools </td></tr>
+<tr id="row_11_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structsysqueues.html" target="_self">sysqueues_t</a></td><td class="desc">A container for the system's internal queues </td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->

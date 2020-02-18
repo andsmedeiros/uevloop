@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: src/system/application.h File Reference</title>
+<title>µEvLoop: src/system/containers/application.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -60,13 +60,12 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d501334aeb1b78ad67cd3c72c37b1e87.html">system</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d501334aeb1b78ad67cd3c72c37b1e87.html">system</a></li><li class="navelem"><a class="el" href="dir_d1c64472db257bc8a50fa16fe2ccfe0d.html">containers</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -75,36 +74,36 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>The application module is a convenient top-level container for the system internals. It also serves as a thread/interrupt safe proxy interface.  
+<p>The application module is a convenient top-level container for the system internals.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="syspools_8h_source.html">syspools.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="event-loop_8h_source.html">event-loop.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scheduler_8h_source.html">scheduler.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="signal_8h_source.html">signal.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="circular-queue_8h_source.html">../utils/circular-queue.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="system-pools_8h_source.html">system-pools.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="system-queues_8h_source.html">system-queues.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="event-loop_8h_source.html">../event-loop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="scheduler_8h_source.html">../scheduler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="signal_8h_source.html">../signal.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for application.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="application_8h__incl.png" border="0" usemap="#src_2system_2application_8h" alt=""/></div>
-<map name="src_2system_2application_8h" id="src_2system_2application_8h">
-<area shape="rect" id="node4" href="syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="296,229,381,256"/>
-<area shape="rect" id="node8" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="671,379,785,405"/>
-<area shape="rect" id="node11" href="event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="456,155,549,181"/>
-<area shape="rect" id="node12" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="190,155,279,181"/>
-<area shape="rect" id="node13" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="385,80,452,107"/>
-<area shape="rect" id="node5" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="398,304,463,331"/>
-<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="539,304,675,331"/>
-<area shape="rect" id="node10" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="93,304,221,331"/>
-<area shape="rect" id="node6" href="closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="329,379,444,405"/>
+<div class="center"><img src="application_8h__incl.png" border="0" usemap="#src_2system_2containers_2application_8h" alt=""/></div>
+<map name="src_2system_2containers_2application_8h" id="src_2system_2containers_2application_8h">
+<area shape="rect" id="node2" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="249,169,360,196"/>
+<area shape="rect" id="node9" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="389,169,511,196"/>
+<area shape="rect" id="node10" href="event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="493,95,599,121"/>
+<area shape="rect" id="node11" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="317,95,418,121"/>
+<area shape="rect" id="node12" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="163,95,241,121"/>
+<area shape="rect" id="node3" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="169,251,246,278"/>
+<area shape="rect" id="node5" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="53,333,181,360"/>
+<area shape="rect" id="node6" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="404,251,496,278"/>
+<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="270,244,379,285"/>
+<area shape="rect" id="node4" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="161,408,275,435"/>
+<area shape="rect" id="node8" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="350,333,465,360"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="application_8h__dep__incl.png" border="0" usemap="#src_2system_2application_8hdep" alt=""/></div>
-<map name="src_2system_2application_8hdep" id="src_2system_2application_8hdep">
+<div class="center"><img src="application_8h__dep__incl.png" border="0" usemap="#src_2system_2containers_2application_8hdep" alt=""/></div>
+<map name="src_2system_2containers_2application_8hdep" id="src_2system_2containers_2application_8hdep">
 </map>
 </div>
 </div>
@@ -115,25 +114,6 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html">application_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Top-level container for µEvLoop'd application.  <a href="structapplication.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:adf85af17fa15acc9fb722e8b6a0f5cfb"><td class="memItemLeft" align="right" valign="top"><a id="adf85af17fa15acc9fb722e8b6a0f5cfb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#adf85af17fa15acc9fb722e8b6a0f5cfb">APP_EVENT_QUEUE_SIZE_LOG2N</a>&#160;&#160;&#160;(5)</td></tr>
-<tr class="memdesc:adf85af17fa15acc9fb722e8b6a0f5cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the event queue in log2 form. <br /></td></tr>
-<tr class="separator:adf85af17fa15acc9fb722e8b6a0f5cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20dab865694685c12b5c86aa5af2bcb2"><td class="memItemLeft" align="right" valign="top"><a id="a20dab865694685c12b5c86aa5af2bcb2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a20dab865694685c12b5c86aa5af2bcb2">APP_EVENT_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="application_8h.html#adf85af17fa15acc9fb722e8b6a0f5cfb">APP_EVENT_QUEUE_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:a20dab865694685c12b5c86aa5af2bcb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>APP_EVENT_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:a20dab865694685c12b5c86aa5af2bcb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92553e0e79ca5f6f59f8c57366ec97e1"><td class="memItemLeft" align="right" valign="top"><a id="a92553e0e79ca5f6f59f8c57366ec97e1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a92553e0e79ca5f6f59f8c57366ec97e1">APP_RESCHEDULE_QUEUE_SIZE_LOG2N</a>&#160;&#160;&#160;(4)</td></tr>
-<tr class="memdesc:a92553e0e79ca5f6f59f8c57366ec97e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the reschedule queue in log2 form. <br /></td></tr>
-<tr class="separator:a92553e0e79ca5f6f59f8c57366ec97e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70dbd00668482742aeb82560d3ed860c"><td class="memItemLeft" align="right" valign="top"><a id="a70dbd00668482742aeb82560d3ed860c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a70dbd00668482742aeb82560d3ed860c">APP_RESCHEDULE_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="application_8h.html#a92553e0e79ca5f6f59f8c57366ec97e1">APP_RESCHEDULE_QUEUE_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:a70dbd00668482742aeb82560d3ed860c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>APP_RESCHEDULE_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:a70dbd00668482742aeb82560d3ed860c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -174,7 +154,7 @@ Functions</h2></td></tr>
 <tr class="separator:a3114c134c545d1c6d67495633f5878d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The application module is a convenient top-level container for the system internals. It also serves as a thread/interrupt safe proxy interface. </p>
+<div class="textblock"><p>The application module is a convenient top-level container for the system internals. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a3114c134c545d1c6d67495633f5878d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3114c134c545d1c6d67495633f5878d0">&#9670;&nbsp;</a></span>app_enqueue_closure()</h2>
@@ -204,7 +184,6 @@ Functions</h2></td></tr>
 
 <p>Enqueues a closure to be invoked. </p>
 <p>Proxies the call to <a class="el" href="event-loop_8h.html#a9297808d7ffc05da6358ce6672221b27" title="Enqueues a closure to be invoked. ">evloop_enqueue_closure()</a> with application_t::event_loop as parameter.</p>
-<dl class="section note"><dt>Note</dt><dd>This function is run in a critical section</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
@@ -281,7 +260,6 @@ Functions</h2></td></tr>
 
 <p>Enqueues a closure for execution at intervals. </p>
 <p>Proxies the call to <a class="el" href="scheduler_8h.html#a43e2339c242a52f788d74f30ce103ed4" title="Enqueues a closure for execution at intervals. ">sch_run_at_intervals()</a> with application_t::scheduler as parameter.</p>
-<dl class="section note"><dt>Note</dt><dd>This function is run in a critical section</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
@@ -328,7 +306,6 @@ Functions</h2></td></tr>
 
 <p>Enqueues a closure for later execution. </p>
 <p>Proxies the call to <a class="el" href="scheduler_8h.html#af81e4cc41f273ded2745a9040ca2e056" title="Enqueues a closure for later execution. ">sch_run_later()</a> with application_t::scheduler as parameter.</p>
-<dl class="section note"><dt>Note</dt><dd>This function is run in a critical section</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
@@ -361,7 +338,6 @@ Functions</h2></td></tr>
 <li>Check if the scheduler ought to be run (i.e.: the counter has been updated or there are events awaiting rescheduling) and do so if necessary</li>
 <li>Perform a runloop</li>
 </ol>
-<dl class="section note"><dt>Note</dt><dd>This function is run in a critical section</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">app</td><td>The application_t instance </td></tr>

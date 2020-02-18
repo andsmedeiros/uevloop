@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: src/system/event-loop.h File Reference</title>
+<title>µEvLoop: src/system/event-loop.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -72,24 +72,24 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Contains the evloop_t struct and functions to manipulate it.  
+<p>Module responsible for running enqueued events and process them accordingly.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="circular-queue_8h_source.html">../utils/circular-queue.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="closure_8h_source.html">../utils/closure.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="event_8h_source.html">../system/event.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="syspools_8h_source.html">../system/syspools.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="closure_8h_source.html">../utils/closure.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="system-pools_8h_source.html">../system/containers/system-pools.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="system-queues_8h_source.html">../system/containers/system-queues.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for event-loop.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="event-loop_8h__incl.png" border="0" usemap="#src_2system_2event-loop_8h" alt=""/></div>
 <map name="src_2system_2event-loop_8h" id="src_2system_2event-loop_8h">
-<area shape="rect" id="node3" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="21,229,176,256"/>
-<area shape="rect" id="node6" href="closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="453,229,568,256"/>
-<area shape="rect" id="node7" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="454,155,578,181"/>
-<area shape="rect" id="node8" href="syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="265,80,409,107"/>
-<area shape="rect" id="node9" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="90,155,226,181"/>
-<area shape="rect" id="node10" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="250,155,378,181"/>
+<area shape="rect" id="node2" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="27,333,142,360"/>
+<area shape="rect" id="node3" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="83,80,224,121"/>
+<area shape="rect" id="node9" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="287,80,428,121"/>
+<area shape="rect" id="node4" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="96,177,174,203"/>
+<area shape="rect" id="node5" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="20,259,148,285"/>
+<area shape="rect" id="node6" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="332,177,424,203"/>
+<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="198,169,307,211"/>
+<area shape="rect" id="node8" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="314,259,428,285"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -97,8 +97,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="event-loop_8h__dep__incl.png" border="0" usemap="#src_2system_2event-loop_8hdep" alt=""/></div>
 <map name="src_2system_2event-loop_8hdep" id="src_2system_2event-loop_8hdep">
-<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="5,155,169,181"/>
-<area shape="rect" id="node4" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="125,80,261,107"/>
+<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="5,80,156,121"/>
 </map>
 </div>
 </div>
@@ -112,21 +111,18 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a71ea2d4164066c8686ba7a22364f3c13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a71ea2d4164066c8686ba7a22364f3c13">evloop_init</a> (evloop_t *event_loop, syspools_t *pools, cqueue_t *event_queue, cqueue_t *reschedule_queue)</td></tr>
-<tr class="memdesc:a71ea2d4164066c8686ba7a22364f3c13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an event loop.  <a href="#a71ea2d4164066c8686ba7a22364f3c13">More...</a><br /></td></tr>
-<tr class="separator:a71ea2d4164066c8686ba7a22364f3c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad64158ebb99c0ce26604c7b54148f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#afad64158ebb99c0ce26604c7b54148f3">evloop_init</a> (evloop_t *event_loop, syspools_t *pools, sysqueues_t *queues)</td></tr>
+<tr class="memdesc:afad64158ebb99c0ce26604c7b54148f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an event loop.  <a href="#afad64158ebb99c0ce26604c7b54148f3">More...</a><br /></td></tr>
+<tr class="separator:afad64158ebb99c0ce26604c7b54148f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a342bd080e4ca3e4585437d7642d44ee2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a342bd080e4ca3e4585437d7642d44ee2">evloop_run</a> (evloop_t *event_loop)</td></tr>
 <tr class="memdesc:a342bd080e4ca3e4585437d7642d44ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers a runloop.  <a href="#a342bd080e4ca3e4585437d7642d44ee2">More...</a><br /></td></tr>
 <tr class="separator:a342bd080e4ca3e4585437d7642d44ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aae248e41aadc759c26c4464bf5f893"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a2aae248e41aadc759c26c4464bf5f893">evloop_enqueue_event</a> (evloop_t *event_loop, event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
-<tr class="memdesc:a2aae248e41aadc759c26c4464bf5f893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues an arbitrary event to be processed.  <a href="#a2aae248e41aadc759c26c4464bf5f893">More...</a><br /></td></tr>
-<tr class="separator:a2aae248e41aadc759c26c4464bf5f893"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9297808d7ffc05da6358ce6672221b27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a9297808d7ffc05da6358ce6672221b27">evloop_enqueue_closure</a> (evloop_t *event_loop, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
 <tr class="memdesc:a9297808d7ffc05da6358ce6672221b27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure to be invoked.  <a href="#a9297808d7ffc05da6358ce6672221b27">More...</a><br /></td></tr>
 <tr class="separator:a9297808d7ffc05da6358ce6672221b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains the evloop_t struct and functions to manipulate it. </p>
+<div class="textblock"><p>Module responsible for running enqueued events and process them accordingly. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a9297808d7ffc05da6358ce6672221b27"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9297808d7ffc05da6358ce6672221b27">&#9670;&nbsp;</a></span>evloop_enqueue_closure()</h2>
@@ -165,45 +161,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2aae248e41aadc759c26c4464bf5f893"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2aae248e41aadc759c26c4464bf5f893">&#9670;&nbsp;</a></span>evloop_enqueue_event()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void evloop_enqueue_event </td>
-          <td>(</td>
-          <td class="paramtype">evloop_t *&#160;</td>
-          <td class="paramname"><em>event_loop</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">event_t *&#160;</td>
-          <td class="paramname"><em>event</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enqueues an arbitrary event to be processed. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">event_loop</td><td>The evloop_t instance into which the event wil be put </td></tr>
-    <tr><td class="paramname">event</td><td>The event to be enqueued </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a71ea2d4164066c8686ba7a22364f3c13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71ea2d4164066c8686ba7a22364f3c13">&#9670;&nbsp;</a></span>evloop_init()</h2>
+<a id="afad64158ebb99c0ce26604c7b54148f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afad64158ebb99c0ce26604c7b54148f3">&#9670;&nbsp;</a></span>evloop_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -223,14 +182,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">cqueue_t *&#160;</td>
-          <td class="paramname"><em>event_queue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">cqueue_t *&#160;</td>
-          <td class="paramname"><em>reschedule_queue</em>&#160;</td>
+          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramname"><em>queues</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -245,8 +198,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">event_loop</td><td>The evloop_t instance to be initialised </td></tr>
     <tr><td class="paramname">pools</td><td>The system's internal pools </td></tr>
-    <tr><td class="paramname">event_queue</td><td>The system's event queue </td></tr>
-    <tr><td class="paramname">reschedule_queue</td><td>The system's reschedule queue </td></tr>
+    <tr><td class="paramname">queues</td><td>The system's internal queues </td></tr>
   </table>
   </dd>
 </dl>

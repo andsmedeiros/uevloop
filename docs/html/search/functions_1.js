@@ -4,6 +4,7 @@ var searchData=
   ['closure_5fdestroy',['closure_destroy',['../closure_8h.html#a2ab22fcb8bdf9665f24c8c627ae34ff0',1,'closure.c']]],
   ['closure_5finvoke',['closure_invoke',['../closure_8h.html#abc4ac87add333788e108d2dcdad4104d',1,'closure.c']]],
   ['cqueue_5fclear',['cqueue_clear',['../circular-queue_8h.html#ac917314e783ce943bfeab05242785191',1,'circular-queue.c']]],
+  ['cqueue_5fcount',['cqueue_count',['../circular-queue_8h.html#aa6bfadb159a25ba36d41feb280ac635d',1,'circular-queue.c']]],
   ['cqueue_5finit',['cqueue_init',['../circular-queue_8h.html#a39b3eee4b6d829de97f24b32e577f84c',1,'circular-queue.c']]],
   ['cqueue_5fis_5fempty',['cqueue_is_empty',['../circular-queue_8h.html#a4c681c321f51fb19eb127673860bf020',1,'circular-queue.c']]],
   ['cqueue_5fis_5ffull',['cqueue_is_full',['../circular-queue_8h.html#a14c5d2843c43f446e1a00f5c976b1369',1,'circular-queue.c']]],

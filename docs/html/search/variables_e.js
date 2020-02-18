@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uevloop_5fcritical_5fsection',['uevloop_critical_section',['../critical-section_8h.html#ae149730bef3ca6b173fada7d6c7fca59',1,'critical-section.h']]]
+  ['unlistened',['unlistened',['../structevent_1_1detail_1_1listener.html#aac3f1abd87e450f512ddf7c0eb49589c',1,'event::detail::listener']]]
 ];

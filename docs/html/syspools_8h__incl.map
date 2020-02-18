@@ -1,7 +1,0 @@
-<map id="src/system/syspools.h" name="src/system/syspools.h">
-<area shape="rect" id="node3" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="28,155,94,181"/>
-<area shape="rect" id="node6" href="$object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="232,80,368,107"/>
-<area shape="rect" id="node9" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="118,155,246,181"/>
-<area shape="rect" id="node5" href="$closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="8,229,122,256"/>
-<area shape="rect" id="node7" href="$circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="321,155,436,181"/>
-</map>

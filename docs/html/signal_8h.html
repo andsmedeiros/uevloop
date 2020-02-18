@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: src/system/signal.h File Reference</title>
+<title>µEvLoop: src/system/signal.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -75,23 +75,24 @@ $(function() {
 
 <p>Defines signals and relays, structures used to communicate asynchronously between distant parts of the application.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="event-loop_8h_source.html">event-loop.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="syspools_8h_source.html">syspools.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="system-pools_8h_source.html">containers/system-pools.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="system-queues_8h_source.html">containers/system-queues.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="linked-list_8h_source.html">../utils/linked-list.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="closure_8h_source.html">../utils/closure.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="event_8h_source.html">event.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for signal.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="signal_8h__incl.png" border="0" usemap="#src_2system_2signal_8h" alt=""/></div>
 <map name="src_2system_2signal_8h" id="src_2system_2signal_8h">
-<area shape="rect" id="node3" href="event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="416,80,509,107"/>
-<area shape="rect" id="node7" href="closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="595,304,709,331"/>
-<area shape="rect" id="node9" href="syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="244,155,388,181"/>
-<area shape="rect" id="node11" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="43,229,171,256"/>
-<area shape="rect" id="node5" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="315,304,469,331"/>
-<area shape="rect" id="node8" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="463,229,587,256"/>
-<area shape="rect" id="node10" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="195,229,331,256"/>
+<area shape="rect" id="node2" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="251,80,426,107"/>
+<area shape="rect" id="node3" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="345,162,422,189"/>
+<area shape="rect" id="node4" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="301,319,416,345"/>
+<area shape="rect" id="node5" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="396,244,524,271"/>
+<area shape="rect" id="node9" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="40,80,226,107"/>
+<area shape="rect" id="node6" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="95,162,187,189"/>
+<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="212,155,321,196"/>
+<area shape="rect" id="node8" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="124,244,238,271"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -99,7 +100,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="signal_8h__dep__incl.png" border="0" usemap="#src_2system_2signal_8hdep" alt=""/></div>
 <map name="src_2system_2signal_8hdep" id="src_2system_2signal_8hdep">
-<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="5,80,169,107"/>
+<area shape="rect" id="node2" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="5,80,156,121"/>
 </map>
 </div>
 </div>
@@ -107,9 +108,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsignal__listener.html">signal_listener_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps a reference to a listener bound to some signal at some relay.  <a href="structsignal__listener.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsignal__relay.html">signal_relay_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains a signal vector and operates on in.  <a href="structsignal__relay.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,23 +116,27 @@ Data Structures</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:aedfd99612f33cabeb5d2af288bcd95a5"><td class="memItemLeft" align="right" valign="top">typedef uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a></td></tr>
 <tr class="separator:aedfd99612f33cabeb5d2af288bcd95a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ae986ba3dd3166e3c542762bb8b0ce5"><td class="memItemLeft" align="right" valign="top"><a id="a9ae986ba3dd3166e3c542762bb8b0ce5"></a>
+typedef struct listener *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a9ae986ba3dd3166e3c542762bb8b0ce5">signal_listener_t</a></td></tr>
+<tr class="memdesc:a9ae986ba3dd3166e3c542762bb8b0ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a reference type suitable to manipulate the actual listener event's context. <br /></td></tr>
+<tr class="separator:a9ae986ba3dd3166e3c542762bb8b0ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:addcc8f1986d4075475a9f56b31ad902e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#addcc8f1986d4075475a9f56b31ad902e">signal_relay_init</a> (signal_relay_t *relay, evloop_t *event_loop, syspools_t *pools, llist_t *buffer, uintptr_t width)</td></tr>
-<tr class="memdesc:addcc8f1986d4075475a9f56b31ad902e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a signal relay.  <a href="#addcc8f1986d4075475a9f56b31ad902e">More...</a><br /></td></tr>
-<tr class="separator:addcc8f1986d4075475a9f56b31ad902e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab16f22b1d4dc97a45dd8ecee8d3d716c"><td class="memItemLeft" align="right" valign="top">signal_listener_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#ab16f22b1d4dc97a45dd8ecee8d3d716c">signal_listen</a> (<a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a> signal, signal_relay_t *relay, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
+<tr class="memitem:a32a5c7105320c8e7437d8a36fda4899b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a32a5c7105320c8e7437d8a36fda4899b">signal_relay_init</a> (signal_relay_t *relay, syspools_t *pools, sysqueues_t *queues, llist_t *buffer, uintptr_t width)</td></tr>
+<tr class="memdesc:a32a5c7105320c8e7437d8a36fda4899b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a signal relay.  <a href="#a32a5c7105320c8e7437d8a36fda4899b">More...</a><br /></td></tr>
+<tr class="separator:a32a5c7105320c8e7437d8a36fda4899b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16f22b1d4dc97a45dd8ecee8d3d716c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#a9ae986ba3dd3166e3c542762bb8b0ce5">signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#ab16f22b1d4dc97a45dd8ecee8d3d716c">signal_listen</a> (<a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a> signal, signal_relay_t *relay, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
 <tr class="memdesc:ab16f22b1d4dc97a45dd8ecee8d3d716c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a listener closure to some signal at a particular relay.  <a href="#ab16f22b1d4dc97a45dd8ecee8d3d716c">More...</a><br /></td></tr>
 <tr class="separator:ab16f22b1d4dc97a45dd8ecee8d3d716c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf0d5feed25c08e6826ae5849360cc4f"><td class="memItemLeft" align="right" valign="top">signal_listener_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#abf0d5feed25c08e6826ae5849360cc4f">signal_listen_once</a> (<a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a> signal, signal_relay_t *relay, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
+<tr class="memitem:abf0d5feed25c08e6826ae5849360cc4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#a9ae986ba3dd3166e3c542762bb8b0ce5">signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#abf0d5feed25c08e6826ae5849360cc4f">signal_listen_once</a> (<a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a> signal, signal_relay_t *relay, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
 <tr class="memdesc:abf0d5feed25c08e6826ae5849360cc4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a listener closure to some signal at a particular relay. The listener closure will be invoked only once.  <a href="#abf0d5feed25c08e6826ae5849360cc4f">More...</a><br /></td></tr>
 <tr class="separator:abf0d5feed25c08e6826ae5849360cc4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77b3f96a528d543367cc14d26326befd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a77b3f96a528d543367cc14d26326befd">signal_unlisten</a> (signal_listener_t listener, signal_relay_t *relay)</td></tr>
-<tr class="memdesc:a77b3f96a528d543367cc14d26326befd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detaches some listener from the signal vector at the provided relay.  <a href="#a77b3f96a528d543367cc14d26326befd">More...</a><br /></td></tr>
-<tr class="separator:a77b3f96a528d543367cc14d26326befd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d1a8cde3b250148801339fc72ff11a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a4d1a8cde3b250148801339fc72ff11a4">signal_unlisten</a> (<a class="el" href="signal_8h.html#a9ae986ba3dd3166e3c542762bb8b0ce5">signal_listener_t</a> listener)</td></tr>
+<tr class="memdesc:a4d1a8cde3b250148801339fc72ff11a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a signal listener as expired. When its corresponding signal is emitted, this listener's closure will not be invoked and the listener will be destroyed.  <a href="#a4d1a8cde3b250148801339fc72ff11a4">More...</a><br /></td></tr>
+<tr class="separator:a4d1a8cde3b250148801339fc72ff11a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04a8eb14d33a3bd88b017c49d2d241ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a04a8eb14d33a3bd88b017c49d2d241ae">signal_emit</a> (<a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a> signal, signal_relay_t *relay, void *params)</td></tr>
-<tr class="memdesc:a04a8eb14d33a3bd88b017c49d2d241ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emits a signal at the supplied relay. Any closure listening to this signal will be invoked.  <a href="#a04a8eb14d33a3bd88b017c49d2d241ae">More...</a><br /></td></tr>
+<tr class="memdesc:a04a8eb14d33a3bd88b017c49d2d241ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emits a signal at the supplied relay. Any closure listening to this signal will be asynchronously invoked.  <a href="#a04a8eb14d33a3bd88b017c49d2d241ae">More...</a><br /></td></tr>
 <tr class="separator:a04a8eb14d33a3bd88b017c49d2d241ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -188,7 +190,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Emits a signal at the supplied relay. Any closure listening to this signal will be invoked. </p>
+<p>Emits a signal at the supplied relay. Any closure listening to this signal will be asynchronously invoked. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">signal</td><td>The signal to be emitted </td></tr>
@@ -207,7 +209,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">signal_listener_t signal_listen </td>
+          <td class="memname"><a class="el" href="signal_8h.html#a9ae986ba3dd3166e3c542762bb8b0ce5">signal_listener_t</a> signal_listen </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a>&#160;</td>
           <td class="paramname"><em>signal</em>, </td>
@@ -252,7 +254,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">signal_listener_t signal_listen_once </td>
+          <td class="memname"><a class="el" href="signal_8h.html#a9ae986ba3dd3166e3c542762bb8b0ce5">signal_listener_t</a> signal_listen_once </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="signal_8h.html#aedfd99612f33cabeb5d2af288bcd95a5">signal_t</a>&#160;</td>
           <td class="paramname"><em>signal</em>, </td>
@@ -290,8 +292,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="addcc8f1986d4075475a9f56b31ad902e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addcc8f1986d4075475a9f56b31ad902e">&#9670;&nbsp;</a></span>signal_relay_init()</h2>
+<a id="a32a5c7105320c8e7437d8a36fda4899b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32a5c7105320c8e7437d8a36fda4899b">&#9670;&nbsp;</a></span>signal_relay_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -305,14 +307,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">evloop_t *&#160;</td>
-          <td class="paramname"><em>event_loop</em>, </td>
+          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramname"><em>pools</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">syspools_t *&#160;</td>
-          <td class="paramname"><em>pools</em>, </td>
+          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramname"><em>queues</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -338,8 +340,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">relay</td><td>The signal relay object to be initialised </td></tr>
-    <tr><td class="paramname">event_loop</td><td>The system's event loop </td></tr>
     <tr><td class="paramname">pools</td><td>The system's internal pools </td></tr>
+    <tr><td class="paramname">queues</td><td>The system's internal queues </td></tr>
     <tr><td class="paramname">buffer</td><td>The buffer that will be used to store listeners registered at this relay. Must be the number of signals bound to this relay wide. </td></tr>
     <tr><td class="paramname">width</td><td>The number of signals bound to this relay. </td></tr>
   </table>
@@ -348,8 +350,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a77b3f96a528d543367cc14d26326befd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77b3f96a528d543367cc14d26326befd">&#9670;&nbsp;</a></span>signal_unlisten()</h2>
+<a id="a4d1a8cde3b250148801339fc72ff11a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d1a8cde3b250148801339fc72ff11a4">&#9670;&nbsp;</a></span>signal_unlisten()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -357,29 +359,18 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void signal_unlisten </td>
           <td>(</td>
-          <td class="paramtype">signal_listener_t&#160;</td>
-          <td class="paramname"><em>listener</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="signal_8h.html#a9ae986ba3dd3166e3c542762bb8b0ce5">signal_listener_t</a>&#160;</td>
+          <td class="paramname"><em>listener</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">signal_relay_t *&#160;</td>
-          <td class="paramname"><em>relay</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Detaches some listener from the signal vector at the provided relay. </p>
+<p>Marks a signal listener as expired. When its corresponding signal is emitted, this listener's closure will not be invoked and the listener will be destroyed. </p>
 <ul>
 <li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">listener</td><td>The listener that identifies the listen operation to be undone </td></tr>
-    <tr><td class="paramname">relay</td><td>The relay where the listener was registered </td></tr>
   </table>
   </dd>
 </dl>

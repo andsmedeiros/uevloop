@@ -1,3 +1,4 @@
 <map id="src/system/event.h" name="src/system/event.h">
-<area shape="rect" id="node4" href="$closure_8h.html" title="Defines closures and provides functions to manipulate them. " alt="" coords="194,80,309,107"/>
+<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="15,155,130,181"/>
+<area shape="rect" id="node3" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="59,80,187,107"/>
 </map>

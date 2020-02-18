@@ -12,6 +12,8 @@ function get_version() {
   new_version=""
   replace_pat=""
 
+  echo "Current version is $current_version"
+
   read -p "Select version type ((M)ajor, (m)inor, (p)atch or (c)ustom): " version_type
 
   if [[ $version_type == "major" || $version_type == "M" ]]; then
@@ -42,8 +44,8 @@ function get_version() {
 }
 
 function get_annotation() {
-  tmpfile=$(mktmp)
-  nano $tmpfile --save
+  tmpfile=$(mktemp)
+  nano $tmpfile --temp
   annotation=`cat $tmpfile`
   rm $tmpfile
 }
@@ -103,4 +105,4 @@ git add .version
 git commit -m "Automatically bumped version to $new_version"
 
 git tag -a $new_version -m "$annotation"
-# git push origin $new_version
+git push origin $new_version

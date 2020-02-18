@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['event',['event',['../structevent.html',1,'']]],
-  ['evloop',['evloop',['../structevloop.html',1,'']]]
+  ['detail',['detail',['../unionevent_1_1detail.html',1,'event']]]
 ];

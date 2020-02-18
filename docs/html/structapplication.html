@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: application_t Struct Reference</title>
+<title>µEvLoop: application_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -83,6 +83,10 @@ Data Fields</h2></td></tr>
 syspools_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a1203055b7eb22e07577ff7e7e08f2b8f">pools</a></td></tr>
 <tr class="memdesc:a1203055b7eb22e07577ff7e7e08f2b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system pools: events and llist nodes. <br /></td></tr>
 <tr class="separator:a1203055b7eb22e07577ff7e7e08f2b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea9eb95c4c5f99ebcf12ae714e97879a"><td class="memItemLeft" align="right" valign="top"><a id="aea9eb95c4c5f99ebcf12ae714e97879a"></a>
+sysqueues_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#aea9eb95c4c5f99ebcf12ae714e97879a">queues</a></td></tr>
+<tr class="memdesc:aea9eb95c4c5f99ebcf12ae714e97879a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system event queues. <br /></td></tr>
+<tr class="separator:aea9eb95c4c5f99ebcf12ae714e97879a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadac22f80a51ed8ced6f47978a0a35de"><td class="memItemLeft" align="right" valign="top"><a id="aadac22f80a51ed8ced6f47978a0a35de"></a>
 evloop_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#aadac22f80a51ed8ced6f47978a0a35de">event_loop</a></td></tr>
 <tr class="memdesc:aadac22f80a51ed8ced6f47978a0a35de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's event loop. <br /></td></tr>
@@ -99,20 +103,6 @@ signal_relay_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 llist_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#adc39fc2b11899ddcdb32e53ea2ad9b05">relay_buffer</a> [APP_EVENT_COUNT]</td></tr>
 <tr class="memdesc:adc39fc2b11899ddcdb32e53ea2ad9b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unused. <br /></td></tr>
 <tr class="separator:adc39fc2b11899ddcdb32e53ea2ad9b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ea9c0a58e95678eb5c17d43d2312046"><td class="memItemLeft" align="right" valign="top"><a id="a2ea9c0a58e95678eb5c17d43d2312046"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a2ea9c0a58e95678eb5c17d43d2312046">event_queue_buffer</a> [<a class="el" href="application_8h.html#a20dab865694685c12b5c86aa5af2bcb2">APP_EVENT_QUEUE_SIZE</a>]</td></tr>
-<tr class="memdesc:a2ea9c0a58e95678eb5c17d43d2312046"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event queue buffer. <br /></td></tr>
-<tr class="separator:a2ea9c0a58e95678eb5c17d43d2312046"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1d873f69c83965cae55e18305dcefa0"><td class="memItemLeft" align="right" valign="top">cqueue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#af1d873f69c83965cae55e18305dcefa0">event_queue</a></td></tr>
-<tr class="memdesc:af1d873f69c83965cae55e18305dcefa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's event queue.  <a href="#af1d873f69c83965cae55e18305dcefa0">More...</a><br /></td></tr>
-<tr class="separator:af1d873f69c83965cae55e18305dcefa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e6f794ab80b40145ebad03256628e99"><td class="memItemLeft" align="right" valign="top"><a id="a4e6f794ab80b40145ebad03256628e99"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a4e6f794ab80b40145ebad03256628e99">reschedule_queue_buffer</a> [<a class="el" href="application_8h.html#a70dbd00668482742aeb82560d3ed860c">APP_RESCHEDULE_QUEUE_SIZE</a>]</td></tr>
-<tr class="memdesc:a4e6f794ab80b40145ebad03256628e99"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reschedule queue buffer. <br /></td></tr>
-<tr class="separator:a4e6f794ab80b40145ebad03256628e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7459b3b42b9f7234700ba34ff548e6ea"><td class="memItemLeft" align="right" valign="top">cqueue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a7459b3b42b9f7234700ba34ff548e6ea">reschedule_queue</a></td></tr>
-<tr class="memdesc:a7459b3b42b9f7234700ba34ff548e6ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's reschedule queue.  <a href="#a7459b3b42b9f7234700ba34ff548e6ea">More...</a><br /></td></tr>
-<tr class="separator:a7459b3b42b9f7234700ba34ff548e6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24f738e140b391135a4f2d5f710d48d2"><td class="memItemLeft" align="right" valign="top"><a id="a24f738e140b391135a4f2d5f710d48d2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a24f738e140b391135a4f2d5f710d48d2">run_scheduler</a></td></tr>
 <tr class="memdesc:a24f738e140b391135a4f2d5f710d48d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks when it's time to wake the scheduler. <br /></td></tr>
@@ -121,43 +111,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stru
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Top-level container for µEvLoop'd application. </p>
 <p>The application module is not necessary, but it does facilitate creating and managing the state of a µEvLoop application. It contains all the system insternals and manages the scheduler and event loops queues automatically. </p>
-</div><h2 class="groupheader">Field Documentation</h2>
-<a id="af1d873f69c83965cae55e18305dcefa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1d873f69c83965cae55e18305dcefa0">&#9670;&nbsp;</a></span>event_queue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cqueue_t application_t::event_queue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The application's event queue. </p>
-<p>Holds events ready to be processed on the next runloop. </p>
-
-</div>
-</div>
-<a id="a7459b3b42b9f7234700ba34ff548e6ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7459b3b42b9f7234700ba34ff548e6ea">&#9670;&nbsp;</a></span>reschedule_queue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cqueue_t application_t::reschedule_queue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The application's reschedule queue. </p>
-<p>Hold events already processed by the runloop but fit for rescheduling at the scheduler. </p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/system/<a class="el" href="application_8h_source.html">application.h</a></li>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/system/containers/<a class="el" href="application_8h_source.html">application.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

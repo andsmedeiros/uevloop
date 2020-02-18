@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: src/utils/object-pool.h File Reference</title>
+<title>µEvLoop: src/utils/object-pool.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -73,17 +73,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Defines object pools and functions to manipulate it.  
+<p>Defines object pools, arrays of pre-allocated objects for dynamic use.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="circular-queue_8h_source.html">circular-queue.h</a>&quot;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for object-pool.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="object-pool_8h__incl.png" border="0" usemap="#src_2utils_2object-pool_8h" alt=""/></div>
 <map name="src_2utils_2object-pool_8h" id="src_2utils_2object-pool_8h">
-<area shape="rect" id="node2" href="circular-queue_8h.html" title="Contains definitions for the circular queue data structure and functions to manipulate it..." alt="" coords="73,80,188,107"/>
+<area shape="rect" id="node2" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="21,80,136,107"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -91,11 +89,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="object-pool_8h__dep__incl.png" border="0" usemap="#src_2utils_2object-pool_8hdep" alt=""/></div>
 <map name="src_2utils_2object-pool_8hdep" id="src_2utils_2object-pool_8hdep">
-<area shape="rect" id="node2" href="syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="431,80,585,107"/>
-<area shape="rect" id="node3" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="309,304,473,331"/>
-<area shape="rect" id="node5" href="event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="191,155,353,181"/>
-<area shape="rect" id="node6" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="5,229,141,256"/>
-<area shape="rect" id="node9" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="429,155,587,181"/>
+<area shape="rect" id="node2" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="310,80,461,121"/>
+<area shape="rect" id="node3" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="193,259,343,300"/>
+<area shape="rect" id="node5" href="event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="68,177,231,203"/>
+<area shape="rect" id="node7" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="306,177,465,203"/>
+<area shape="rect" id="node9" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="489,177,625,203"/>
 </map>
 </div>
 </div>
@@ -138,7 +136,7 @@ Functions</h2></td></tr>
 <tr class="separator:acd8db1d629fbeb768aa1cffd743875ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines object pools and functions to manipulate it. </p>
+<div class="textblock"><p>Defines object pools, arrays of pre-allocated objects for dynamic use. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a3bbfb93498117268841be6917a5aebad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3bbfb93498117268841be6917a5aebad">&#9670;&nbsp;</a></span>DECLARE_OBJPOOL_BUFFERS</h2>

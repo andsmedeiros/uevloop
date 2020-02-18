@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: event_t Struct Reference</title>
+<title>µEvLoop: event_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -61,27 +61,37 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
 <div class="title">event_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Events are special closures passed around the core. They represent tasks to be run at some point by the system.  
+<p>Events are special messages passed around the core. They represent tasks to be run at some point by the system.  
  <a href="structevent.html#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for event_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structevent__coll__graph.png" border="0" usemap="#event__t_coll__map" alt="Collaboration graph"/></div>
 <map name="event__t_coll__map" id="event__t_coll__map">
+<area shape="rect" id="node2" href="unionevent_1_1detail.html" title="event_t::detail" alt="" coords="289,184,393,211"/>
+<area shape="rect" id="node3" href="structevent_1_1detail_1_1signal.html" title="Contains information related to an emitted signal. " alt="" coords="206,95,353,121"/>
+<area shape="rect" id="node6" href="structevent_1_1detail_1_1timer.html" title="Contains information suitable for scheduling an event at the scheduler. " alt="" coords="41,95,182,121"/>
+<area shape="rect" id="node9" href="structevent_1_1detail_1_1listener.html" title="Contains the context of a particular signal listener. " alt="" coords="377,95,531,121"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionevent_1_1detail.html">detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a790a1af3e065d9fff7742aa5e0685b39"><td class="memItemLeft" align="right" valign="top"><a id="a790a1af3e065d9fff7742aa5e0685b39"></a>
 <a class="el" href="event_8h.html#aa34399f2f041fedcb9f1b437896cfcc7">event_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a790a1af3e065d9fff7742aa5e0685b39">type</a></td></tr>
-<tr class="memdesc:a790a1af3e065d9fff7742aa5e0685b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the event, as defined in <a class="el" href="event_8h.html" title="Defines events and methods to configure events. ">event.h</a>. <br /></td></tr>
+<tr class="memdesc:a790a1af3e065d9fff7742aa5e0685b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the event, as defined by <code>event_type_t</code> <br /></td></tr>
 <tr class="separator:a790a1af3e065d9fff7742aa5e0685b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a289dbb002d924fd2a9672bffd09bbdb4"><td class="memItemLeft" align="right" valign="top"><a id="a289dbb002d924fd2a9672bffd09bbdb4"></a>
 closure_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a289dbb002d924fd2a9672bffd09bbdb4">closure</a></td></tr>
@@ -91,25 +101,22 @@ closure_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#ad1f2d27cf687939d4548c067ff691e9b">repeating</a></td></tr>
 <tr class="memdesc:ad1f2d27cf687939d4548c067ff691e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks whether the event should be discarded after processing. Closure events have no use for this flag. <br /></td></tr>
 <tr class="separator:ad1f2d27cf687939d4548c067ff691e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04206131750b1c393b7e097e3a60b29f"><td class="memItemLeft" ><a id="a04206131750b1c393b7e097e3a60b29f"></a>
-struct {</td></tr>
-<tr class="memitem:a6bf81fff70f12c54941b3f893a20268f"><td class="memItemLeft" >
-&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="structevent.html#aa3f02d7cacd449d47ace09864a5a2ba0">due_time</a></td></tr>
-<tr class="memdesc:a6bf81fff70f12c54941b3f893a20268f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value the system timer must be at when this event's closure should be invoked. This is a best effort value. <br /></td></tr>
-<tr class="separator:a6bf81fff70f12c54941b3f893a20268f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afac2d812ad88dbf7e91f7dfd26bc1c3a"><td class="memItemLeft" >
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="structevent.html#a4402a10ffedc909eb8ead240469d15e1">timeout</a></td></tr>
-<tr class="memdesc:afac2d812ad88dbf7e91f7dfd26bc1c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the interval between two executions of the timer. <br /></td></tr>
-<tr class="separator:afac2d812ad88dbf7e91f7dfd26bc1c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04206131750b1c393b7e097e3a60b29f"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a04206131750b1c393b7e097e3a60b29f">timer</a></td></tr>
-<tr class="memdesc:a04206131750b1c393b7e097e3a60b29f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The scheduling information of this event. Relevant only for timers. <br /></td></tr>
-<tr class="separator:a04206131750b1c393b7e097e3a60b29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66e4b6c4aa0c5b36887377c6570ce289"><td class="memItemLeft" align="right" valign="top"><a id="a66e4b6c4aa0c5b36887377c6570ce289"></a>
+union <a class="el" href="unionevent_1_1detail.html">event::detail</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a66e4b6c4aa0c5b36887377c6570ce289">detail</a></td></tr>
+<tr class="memdesc:a66e4b6c4aa0c5b36887377c6570ce289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents speciffic detail on a event depending on its type. <br /></td></tr>
+<tr class="separator:a66e4b6c4aa0c5b36887377c6570ce289"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Events are special closures passed around the core. They represent tasks to be run at some point by the system. </p>
-<p>Events are bound to information on how and when they should be invoked. They can be timers, which are scheduled to be run in the future, or signals, which represent asynchronous reactions to occurances thorough the system.</p>
-<p>Both timers and signals can be recurring, in which case they won't be discarded after processing by the event loop.</p>
-<p>Events can also be lifeless shells to closures, in which case they will be immediately destroyed after execution. </p>
+<div class="textblock"><p>Events are special messages passed around the core. They represent tasks to be run at some point by the system. </p>
+<p>Events are bound to information on how and when they should be invoked. There are four types of events:</p>
+<ul>
+<li><code>CLOSURE_EVENT</code>: lifeless wrappers to closures.</li>
+<li><code>TIMER_EVENT</code>: contains scheduling information associated with some closure</li>
+<li><code>SIGNAL_EVENT</code>: contains information on the emission of a signal</li>
+<li><code>SIGNAL_LISTENER_EVENT</code>: represent a single listening operation</li>
+</ul>
+<p>Closure and timer events can be recurring, in which case they won't be discarded after processing by the event loop.</p>
+<p>Signal events are <em>always</em> discarded by the event loop. Signal listeners are never meant to be sent there. In their case, the <code>repeating</code> flag determines whether the signal should be able to fire multiple times or just once. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/system/<a class="el" href="event_8h_source.html">event.h</a></li>
 </ul>

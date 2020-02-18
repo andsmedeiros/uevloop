@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['llist_5fnode_5fpool_5fsize_5flog2n',['LLIST_NODE_POOL_SIZE_LOG2N',['../syspools_8h.html#a3f3aeb345e0c7c5c6c1497b523b47349',1,'syspools.h']]]
+  ['uevloop_5fcritical_5fenter',['UEVLOOP_CRITICAL_ENTER',['../critical-section_8h.html#aaf97bd92a7b577429adb4a89b3a86ba7',1,'critical-section.h']]],
+  ['uevloop_5fcritical_5fexit',['UEVLOOP_CRITICAL_EXIT',['../critical-section_8h.html#a47db4d608d0480c31eda9497d16a01da',1,'critical-section.h']]]
 ];

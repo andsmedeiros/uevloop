@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: evloop_t Struct Reference</title>
+<title>µEvLoop: evloop_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -81,57 +81,20 @@ Collaboration diagram for evloop_t:</div>
 Data Fields</h2></td></tr>
 <tr class="memitem:a0849dbd923e92aacfbb619a1fb83f8c4"><td class="memItemLeft" align="right" valign="top"><a id="a0849dbd923e92aacfbb619a1fb83f8c4"></a>
 syspools_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevloop.html#a0849dbd923e92aacfbb619a1fb83f8c4">pools</a></td></tr>
-<tr class="memdesc:a0849dbd923e92aacfbb619a1fb83f8c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick reference to the system's pools. <br /></td></tr>
+<tr class="memdesc:a0849dbd923e92aacfbb619a1fb83f8c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the system's pools. <br /></td></tr>
 <tr class="separator:a0849dbd923e92aacfbb619a1fb83f8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a7847f577a32adca063835e3849bdbb"><td class="memItemLeft" align="right" valign="top">cqueue_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevloop.html#a4a7847f577a32adca063835e3849bdbb">event_queue</a></td></tr>
-<tr class="memdesc:a4a7847f577a32adca063835e3849bdbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system's event queue.  <a href="#a4a7847f577a32adca063835e3849bdbb">More...</a><br /></td></tr>
-<tr class="separator:a4a7847f577a32adca063835e3849bdbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93ad3c713f5421f24827c04f44306b91"><td class="memItemLeft" align="right" valign="top">cqueue_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevloop.html#a93ad3c713f5421f24827c04f44306b91">reschedule_queue</a></td></tr>
-<tr class="memdesc:a93ad3c713f5421f24827c04f44306b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system's reschedule queue.  <a href="#a93ad3c713f5421f24827c04f44306b91">More...</a><br /></td></tr>
-<tr class="separator:a93ad3c713f5421f24827c04f44306b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec1d9b2c1068d58749041a24e74bb394"><td class="memItemLeft" align="right" valign="top"><a id="aec1d9b2c1068d58749041a24e74bb394"></a>
+sysqueues_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevloop.html#aec1d9b2c1068d58749041a24e74bb394">queues</a></td></tr>
+<tr class="memdesc:aec1d9b2c1068d58749041a24e74bb394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the system's queues. <br /></td></tr>
+<tr class="separator:aec1d9b2c1068d58749041a24e74bb394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The event loop object. </p>
-<p>This object represents an event loop. It contains a two queues:</p><ol type="1">
+<p>This object represents an event loop. It is operated primarily by the system internal queues:</p><ol type="1">
 <li>The inbound event queue, which is the feeding point of the event loop.</li>
-<li>The outbound reschedule queue, which holds reusable events already run. </li>
+<li>The outbound schedule queue, which holds reusable timers already run. </li>
 </ol>
-</div><h2 class="groupheader">Field Documentation</h2>
-<a id="a4a7847f577a32adca063835e3849bdbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a7847f577a32adca063835e3849bdbb">&#9670;&nbsp;</a></span>event_queue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cqueue_t* evloop_t::event_queue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The system's event queue. </p>
-<p>The event queue hold events ready to be processed. Any event directly pushed into this queue or enqueued through any of the <code>evloop_enqueue</code> functions wiill be run sequentially on the next runloop. </p>
-
-</div>
-</div>
-<a id="a93ad3c713f5421f24827c04f44306b91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93ad3c713f5421f24827c04f44306b91">&#9670;&nbsp;</a></span>reschedule_queue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cqueue_t* evloop_t::reschedule_queue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The system's reschedule queue. </p>
-<p>The reschedule queue holds events that are not immediately disposable (i.e. recurring timers) that have already been processed and should be put back on the scheduler's queue. </p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/system/<a class="el" href="event-loop_8h_source.html">event-loop.h</a></li>
 </ul>
 </div><!-- contents -->

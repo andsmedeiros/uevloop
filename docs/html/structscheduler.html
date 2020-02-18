@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: scheduler_t Struct Reference</title>
+<title>µEvLoop: scheduler_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -86,55 +86,20 @@ Data Fields</h2></td></tr>
 syspools_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler.html#a9df3e48d46ba010072ca1013afdda53a">pools</a></td></tr>
 <tr class="memdesc:a9df3e48d46ba010072ca1013afdda53a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the system's pools. <br /></td></tr>
 <tr class="separator:a9df3e48d46ba010072ca1013afdda53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3121faa5a91270cf87b3503c8e8ab5d"><td class="memItemLeft" align="right" valign="top">cqueue_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler.html#ac3121faa5a91270cf87b3503c8e8ab5d">event_queue</a></td></tr>
-<tr class="memdesc:ac3121faa5a91270cf87b3503c8e8ab5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system's event queue.  <a href="#ac3121faa5a91270cf87b3503c8e8ab5d">More...</a><br /></td></tr>
-<tr class="separator:ac3121faa5a91270cf87b3503c8e8ab5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0abaf4a130738ca7f1e8f3a50ac4e693"><td class="memItemLeft" align="right" valign="top">cqueue_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler.html#a0abaf4a130738ca7f1e8f3a50ac4e693">reschedule_queue</a></td></tr>
-<tr class="memdesc:a0abaf4a130738ca7f1e8f3a50ac4e693"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system's reschedule queue.  <a href="#a0abaf4a130738ca7f1e8f3a50ac4e693">More...</a><br /></td></tr>
-<tr class="separator:a0abaf4a130738ca7f1e8f3a50ac4e693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad28989c429e0090c8733632ab0136077"><td class="memItemLeft" align="right" valign="top"><a id="ad28989c429e0090c8733632ab0136077"></a>
+sysqueues_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler.html#ad28989c429e0090c8733632ab0136077">queues</a></td></tr>
+<tr class="memdesc:ad28989c429e0090c8733632ab0136077"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the system's queues. <br /></td></tr>
+<tr class="separator:ad28989c429e0090c8733632ab0136077"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ddccbb20e693ce9e8f4cf5285638507"><td class="memItemLeft" align="right" valign="top"><a id="a1ddccbb20e693ce9e8f4cf5285638507"></a>
 volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler.html#a1ddccbb20e693ce9e8f4cf5285638507">timer</a></td></tr>
-<tr class="memdesc:a1ddccbb20e693ce9e8f4cf5285638507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal timer. Must be updated via <code>evloop_update_timer()</code> <br /></td></tr>
+<tr class="memdesc:a1ddccbb20e693ce9e8f4cf5285638507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal timer. Must be updated via <code><a class="el" href="scheduler_8h.html#a8869b94849a2ee9cb587aaade4a5c4d5" title="Updates the internal time counter. ">sch_update_timer()</a></code> <br /></td></tr>
 <tr class="separator:a1ddccbb20e693ce9e8f4cf5285638507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The scheduler object. </p>
-<p>This object keeps track of time run since the application was launched. It also keeps a queue of events due to be processed sometime in the future. </p>
+<p>This object keeps track of time run since the application was launched. It also keeps a queue of events due to be processed sometime in the future.</p>
+<p>It feeds and is fed by the system queues. Timers due to be processed are put in the outbound event queue. Timers awaiting scheduling are put in the inbound schedule queue. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="ac3121faa5a91270cf87b3503c8e8ab5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3121faa5a91270cf87b3503c8e8ab5d">&#9670;&nbsp;</a></span>event_queue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cqueue_t* scheduler_t::event_queue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The system's event queue. </p>
-<p>When an event's due time arrive, they will put in this queue for further collection and processing by the event loop. </p>
-
-</div>
-</div>
-<a id="a0abaf4a130738ca7f1e8f3a50ac4e693"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0abaf4a130738ca7f1e8f3a50ac4e693">&#9670;&nbsp;</a></span>reschedule_queue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cqueue_t* scheduler_t::reschedule_queue</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The system's reschedule queue. </p>
-<p>Events put in this queue will be reschedule according to their due time by the next time the scheduler manages its timers. </p>
-
-</div>
-</div>
 <a id="a7b5f75a9578a02d6a79a42d8c955c195"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b5f75a9578a02d6a79a42d8c955c195">&#9670;&nbsp;</a></span>timer_list</h2>
 
@@ -148,8 +113,7 @@ volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 </div><div class="memdoc">
 
 <p>Scheduled timers linked list. </p>
-<p>This linked list holds events/timers scheduled to be run in the future. Timers are inserted sorted by its due time, so it is always in execution order.</p>
-<p>Expired timers may be returned here if they are repeating. </p>
+<p>This linked list holds events/timers scheduled to be run in the future. Timers are inserted sorted by its due time, so it is always in execution order. </p>
 
 </div>
 </div>

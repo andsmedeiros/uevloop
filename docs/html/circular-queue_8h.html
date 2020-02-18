@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>uEvLoop: src/utils/circular-queue.h File Reference</title>
+<title>µEvLoop: src/utils/circular-queue.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">uEvLoop
-   &#160;<span id="projectnumber">0.1.1</span>
+   <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.3.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -72,29 +72,20 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Contains definitions for the circular queue data structure and functions to manipulate it.  
+<p>Defines circular queues, fast and efficient FIFO data structures.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for circular-queue.h:</div>
-<div class="dyncontent">
-<div class="center"><img src="circular-queue_8h__incl.png" border="0" usemap="#src_2utils_2circular-queue_8h" alt=""/></div>
-<map name="src_2utils_2circular-queue_8h" id="src_2utils_2circular-queue_8h">
-</map>
-</div>
-</div><div class="textblock"><div class="dynheader">
+<div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="circular-queue_8h__dep__incl.png" border="0" usemap="#src_2utils_2circular-queue_8hdep" alt=""/></div>
 <map name="src_2utils_2circular-queue_8hdep" id="src_2utils_2circular-queue_8hdep">
-<area shape="rect" id="node2" href="object-pool_8h.html" title="Defines object pools and functions to manipulate it. " alt="" coords="505,102,652,129"/>
-<area shape="rect" id="node4" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="423,408,587,435"/>
-<area shape="rect" id="node6" href="event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="89,259,252,285"/>
-<area shape="rect" id="node10" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="582,259,741,285"/>
-<area shape="rect" id="node3" href="syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="327,184,481,211"/>
-<area shape="rect" id="node7" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="243,333,379,360"/>
+<area shape="rect" id="node2" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="335,102,482,129"/>
+<area shape="rect" id="node14" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="565,184,716,225"/>
+<area shape="rect" id="node3" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="333,184,484,225"/>
+<area shape="rect" id="node4" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="337,363,488,404"/>
+<area shape="rect" id="node6" href="event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="181,281,343,307"/>
+<area shape="rect" id="node8" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="419,281,577,307"/>
+<area shape="rect" id="node10" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="602,281,738,307"/>
 </map>
 </div>
 </div>
@@ -132,9 +123,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a4c681c321f51fb19eb127673860bf020"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a4c681c321f51fb19eb127673860bf020">cqueue_is_empty</a> (cqueue_t *queue)</td></tr>
 <tr class="memdesc:a4c681c321f51fb19eb127673860bf020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the queue is empty. Use this before popping from the queue.  <a href="#a4c681c321f51fb19eb127673860bf020">More...</a><br /></td></tr>
 <tr class="separator:a4c681c321f51fb19eb127673860bf020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6bfadb159a25ba36d41feb280ac635d"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#aa6bfadb159a25ba36d41feb280ac635d">cqueue_count</a> (cqueue_t *queue)</td></tr>
+<tr class="memdesc:aa6bfadb159a25ba36d41feb280ac635d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number o elements in the queue.  <a href="#aa6bfadb159a25ba36d41feb280ac635d">More...</a><br /></td></tr>
+<tr class="separator:aa6bfadb159a25ba36d41feb280ac635d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains definitions for the circular queue data structure and functions to manipulate it. </p>
+<div class="textblock"><p>Defines circular queues, fast and efficient FIFO data structures. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ac917314e783ce943bfeab05242785191"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac917314e783ce943bfeab05242785191">&#9670;&nbsp;</a></span>cqueue_clear()</h2>
@@ -170,6 +164,33 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aa6bfadb159a25ba36d41feb280ac635d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6bfadb159a25ba36d41feb280ac635d">&#9670;&nbsp;</a></span>cqueue_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uintptr_t cqueue_count </td>
+          <td>(</td>
+          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramname"><em>queue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Counts the number o elements in the queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>The queue whoese elements should be counted </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of enqueued elements </dd></dl>
 
 </div>
 </div>

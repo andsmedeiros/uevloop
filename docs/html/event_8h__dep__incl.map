@@ -1,7 +1,8 @@
 <map id="src/system/event.h" name="src/system/event.h">
-<area shape="rect" id="node2" href="$syspools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="353,80,508,107"/>
-<area shape="rect" id="node5" href="$event-loop_8h.html" title="Contains the evloop_t struct and functions to manipulate it. " alt="" coords="108,155,270,181"/>
-<area shape="rect" id="node9" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="575,155,734,181"/>
-<area shape="rect" id="node3" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. It also serves as a thread/interrupt safe proxy interface. " alt="" coords="251,304,415,331"/>
-<area shape="rect" id="node6" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="213,229,349,256"/>
+<area shape="rect" id="node2" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="339,80,490,121"/>
+<area shape="rect" id="node9" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="5,177,141,203"/>
+<area shape="rect" id="node12" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="583,80,734,121"/>
+<area shape="rect" id="node3" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="338,259,489,300"/>
+<area shape="rect" id="node5" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="392,177,555,203"/>
+<area shape="rect" id="node7" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="579,177,738,203"/>
 </map>
