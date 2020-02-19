@@ -1,5 +1,9 @@
 #include "event.h"
 
+/// \cond
+#include <stdlib.h>
+/// \endcond
+
 void event_destroy(event_t *event){
     closure_destroy(&event->closure);
 }
@@ -16,6 +20,7 @@ void event_config_signal(
     llist_t *listeners,
     void *params
 ){
+    event->closure = closure_create(NULL, NULL, NULL);
     event->type = SIGNAL_EVENT;
     event->detail.signal.value = signal;
     event->detail.signal.listeners = listeners;
