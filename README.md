@@ -1,6 +1,6 @@
 
 
-# µEvLoop
+# µEvLoop ![C/C++ CI](https://github.com/andsmedeiros/uevloop/workflows/C/C++%20CI/badge.svg?event=push)
 
 A fast and lightweight event loop aimed at embedded platforms in C99.
 
