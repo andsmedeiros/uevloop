@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -108,52 +107,52 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html">syspools_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html">uel_syspools_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container for the system pools.  <a href="structsyspools.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a98a2d49990c567b5219a983c25d74182"><td class="memItemLeft" align="right" valign="top"><a id="a98a2d49990c567b5219a983c25d74182"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a98a2d49990c567b5219a983c25d74182">SYSPOOLS_EVENT_POOL_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#ae5356ee91873d6a8287f2996fc6892ab">SYSPOOLS_EVENT_POOL_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:a98a2d49990c567b5219a983c25d74182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>SYSPOOLS_EVENT_POOL_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:a98a2d49990c567b5219a983c25d74182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a804b7e30eb898296f4b7be1e6e926c01"><td class="memItemLeft" align="right" valign="top"><a id="a804b7e30eb898296f4b7be1e6e926c01"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a804b7e30eb898296f4b7be1e6e926c01">SYSPOOLS_LLIST_NODE_POOL_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#a6ae9afe783db836a3a41fa580ae79e7e">SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:a804b7e30eb898296f4b7be1e6e926c01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:a804b7e30eb898296f4b7be1e6e926c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338ddcefe15ac9790e2c246817b2bd86"><td class="memItemLeft" align="right" valign="top"><a id="a338ddcefe15ac9790e2c246817b2bd86"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a338ddcefe15ac9790e2c246817b2bd86">UEL_SYSPOOLS_EVENT_POOL_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#aacb6827b910a09fe40f49dfc22bc3a9b">UEL_SYSPOOLS_EVENT_POOL_SIZE_LOG2N</a>)</td></tr>
+<tr class="memdesc:a338ddcefe15ac9790e2c246817b2bd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_SYSPOOLS_EVENT_POOL_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
+<tr class="separator:a338ddcefe15ac9790e2c246817b2bd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5015b8b98a72b1642be11223dfd4b400"><td class="memItemLeft" align="right" valign="top"><a id="a5015b8b98a72b1642be11223dfd4b400"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a5015b8b98a72b1642be11223dfd4b400">UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#ab3932a51e5254319c1d0feb178a5b164">UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N</a>)</td></tr>
+<tr class="memdesc:a5015b8b98a72b1642be11223dfd4b400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
+<tr class="separator:a5015b8b98a72b1642be11223dfd4b400"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5b00c216720de7afc3a3c30a2df60cc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a5b00c216720de7afc3a3c30a2df60cc4">syspools_init</a> (syspools_t *pools)</td></tr>
-<tr class="memdesc:a5b00c216720de7afc3a3c30a2df60cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the system pools.  <a href="#a5b00c216720de7afc3a3c30a2df60cc4">More...</a><br /></td></tr>
-<tr class="separator:a5b00c216720de7afc3a3c30a2df60cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15ece231776223f27e2ebbb8534101fc"><td class="memItemLeft" align="right" valign="top">event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a15ece231776223f27e2ebbb8534101fc">syspools_acquire_event</a> (syspools_t *pools)</td></tr>
-<tr class="memdesc:a15ece231776223f27e2ebbb8534101fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires an event from the system pools.  <a href="#a15ece231776223f27e2ebbb8534101fc">More...</a><br /></td></tr>
-<tr class="separator:a15ece231776223f27e2ebbb8534101fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af42fc81b948b4b5ade8d9d4854b5f1ab"><td class="memItemLeft" align="right" valign="top">llist_node_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#af42fc81b948b4b5ade8d9d4854b5f1ab">syspools_acquire_llist_node</a> (syspools_t *pools)</td></tr>
-<tr class="memdesc:af42fc81b948b4b5ade8d9d4854b5f1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires a linked list node from the system pools.  <a href="#af42fc81b948b4b5ade8d9d4854b5f1ab">More...</a><br /></td></tr>
-<tr class="separator:af42fc81b948b4b5ade8d9d4854b5f1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6a3eecf2bc5f3a1bf6cf82fb38dba5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#aa6a3eecf2bc5f3a1bf6cf82fb38dba5b">syspools_release_event</a> (syspools_t *pools, event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
-<tr class="memdesc:aa6a3eecf2bc5f3a1bf6cf82fb38dba5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases an event to the system pools.  <a href="#aa6a3eecf2bc5f3a1bf6cf82fb38dba5b">More...</a><br /></td></tr>
-<tr class="separator:aa6a3eecf2bc5f3a1bf6cf82fb38dba5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a0e2d37a9a37f9e037113a66f07fa57"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a0a0e2d37a9a37f9e037113a66f07fa57">syspools_release_llist_node</a> (syspools_t *pools, llist_node_t *node)</td></tr>
-<tr class="memdesc:a0a0e2d37a9a37f9e037113a66f07fa57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases a linked list node to the system pools.  <a href="#a0a0e2d37a9a37f9e037113a66f07fa57">More...</a><br /></td></tr>
-<tr class="separator:a0a0e2d37a9a37f9e037113a66f07fa57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a737df9d7ca7c587711dc8c59d9f1c277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a737df9d7ca7c587711dc8c59d9f1c277">uel_syspools_init</a> (uel_syspools_t *pools)</td></tr>
+<tr class="memdesc:a737df9d7ca7c587711dc8c59d9f1c277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the system pools.  <a href="#a737df9d7ca7c587711dc8c59d9f1c277">More...</a><br /></td></tr>
+<tr class="separator:a737df9d7ca7c587711dc8c59d9f1c277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa790328d17062994bc3f958b9e96ea4"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#afa790328d17062994bc3f958b9e96ea4">uel_syspools_acquire_event</a> (uel_syspools_t *pools)</td></tr>
+<tr class="memdesc:afa790328d17062994bc3f958b9e96ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires an event from the system pools.  <a href="#afa790328d17062994bc3f958b9e96ea4">More...</a><br /></td></tr>
+<tr class="separator:afa790328d17062994bc3f958b9e96ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11d44d4872dd5110c3573e0dd8cfc9d3"><td class="memItemLeft" align="right" valign="top">uel_llist_node_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a11d44d4872dd5110c3573e0dd8cfc9d3">uel_syspools_acquire_llist_node</a> (uel_syspools_t *pools)</td></tr>
+<tr class="memdesc:a11d44d4872dd5110c3573e0dd8cfc9d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires a linked list node from the system pools.  <a href="#a11d44d4872dd5110c3573e0dd8cfc9d3">More...</a><br /></td></tr>
+<tr class="separator:a11d44d4872dd5110c3573e0dd8cfc9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52991a37f5e0da28ecc6161ed8932911"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a52991a37f5e0da28ecc6161ed8932911">uel_syspools_release_event</a> (uel_syspools_t *pools, uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:a52991a37f5e0da28ecc6161ed8932911"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases an event to the system pools.  <a href="#a52991a37f5e0da28ecc6161ed8932911">More...</a><br /></td></tr>
+<tr class="separator:a52991a37f5e0da28ecc6161ed8932911"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae392a6e20954e33629d67a5729c9de02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#ae392a6e20954e33629d67a5729c9de02">uel_syspools_release_llist_node</a> (uel_syspools_t *pools, uel_llist_node_t *node)</td></tr>
+<tr class="memdesc:ae392a6e20954e33629d67a5729c9de02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases a linked list node to the system pools.  <a href="#ae392a6e20954e33629d67a5729c9de02">More...</a><br /></td></tr>
+<tr class="separator:ae392a6e20954e33629d67a5729c9de02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A container for the system's internal pools. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a15ece231776223f27e2ebbb8534101fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15ece231776223f27e2ebbb8534101fc">&#9670;&nbsp;</a></span>syspools_acquire_event()</h2>
+<a id="afa790328d17062994bc3f958b9e96ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa790328d17062994bc3f958b9e96ea4">&#9670;&nbsp;</a></span>uel_syspools_acquire_event()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">event_t* syspools_acquire_event </td>
+          <td class="memname">uel_event_t* uel_syspools_acquire_event </td>
           <td>(</td>
-          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramtype">uel_syspools_t *&#160;</td>
           <td class="paramname"><em>pools</em></td><td>)</td>
           <td></td>
         </tr>
@@ -163,7 +162,7 @@ Functions</h2></td></tr>
 <p>Acquires an event from the system pools. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pools</td><td>The syspools_t instance </td></tr>
+    <tr><td class="paramname">pools</td><td>The uel_syspools_t instance </td></tr>
   </table>
   </dd>
 </dl>
@@ -171,16 +170,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af42fc81b948b4b5ade8d9d4854b5f1ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af42fc81b948b4b5ade8d9d4854b5f1ab">&#9670;&nbsp;</a></span>syspools_acquire_llist_node()</h2>
+<a id="a11d44d4872dd5110c3573e0dd8cfc9d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11d44d4872dd5110c3573e0dd8cfc9d3">&#9670;&nbsp;</a></span>uel_syspools_acquire_llist_node()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">llist_node_t* syspools_acquire_llist_node </td>
+          <td class="memname">uel_llist_node_t* uel_syspools_acquire_llist_node </td>
           <td>(</td>
-          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramtype">uel_syspools_t *&#160;</td>
           <td class="paramname"><em>pools</em></td><td>)</td>
           <td></td>
         </tr>
@@ -190,7 +189,7 @@ Functions</h2></td></tr>
 <p>Acquires a linked list node from the system pools. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pools</td><td>The syspools_t instance </td></tr>
+    <tr><td class="paramname">pools</td><td>The uel_syspools_t instance </td></tr>
   </table>
   </dd>
 </dl>
@@ -198,16 +197,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5b00c216720de7afc3a3c30a2df60cc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b00c216720de7afc3a3c30a2df60cc4">&#9670;&nbsp;</a></span>syspools_init()</h2>
+<a id="a737df9d7ca7c587711dc8c59d9f1c277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a737df9d7ca7c587711dc8c59d9f1c277">&#9670;&nbsp;</a></span>uel_syspools_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void syspools_init </td>
+          <td class="memname">void uel_syspools_init </td>
           <td>(</td>
-          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramtype">uel_syspools_t *&#160;</td>
           <td class="paramname"><em>pools</em></td><td>)</td>
           <td></td>
         </tr>
@@ -217,29 +216,29 @@ Functions</h2></td></tr>
 <p>Initialise the system pools. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pools</td><td>The syspools_t instance </td></tr>
+    <tr><td class="paramname">pools</td><td>The uel_syspools_t instance </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="aa6a3eecf2bc5f3a1bf6cf82fb38dba5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6a3eecf2bc5f3a1bf6cf82fb38dba5b">&#9670;&nbsp;</a></span>syspools_release_event()</h2>
+<a id="a52991a37f5e0da28ecc6161ed8932911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52991a37f5e0da28ecc6161ed8932911">&#9670;&nbsp;</a></span>uel_syspools_release_event()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool syspools_release_event </td>
+          <td class="memname">bool uel_syspools_release_event </td>
           <td>(</td>
-          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramtype">uel_syspools_t *&#160;</td>
           <td class="paramname"><em>pools</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em>&#160;</td>
         </tr>
         <tr>
@@ -253,7 +252,7 @@ Functions</h2></td></tr>
 <p>Releases an event to the system pools. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pools</td><td>The syspools_t instance </td></tr>
+    <tr><td class="paramname">pools</td><td>The uel_syspools_t instance </td></tr>
     <tr><td class="paramname">event</td><td>The event to be released </td></tr>
   </table>
   </dd>
@@ -262,22 +261,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0a0e2d37a9a37f9e037113a66f07fa57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a0e2d37a9a37f9e037113a66f07fa57">&#9670;&nbsp;</a></span>syspools_release_llist_node()</h2>
+<a id="ae392a6e20954e33629d67a5729c9de02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae392a6e20954e33629d67a5729c9de02">&#9670;&nbsp;</a></span>uel_syspools_release_llist_node()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool syspools_release_llist_node </td>
+          <td class="memname">bool uel_syspools_release_llist_node </td>
           <td>(</td>
-          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramtype">uel_syspools_t *&#160;</td>
           <td class="paramname"><em>pools</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">llist_node_t *&#160;</td>
+          <td class="paramtype">uel_llist_node_t *&#160;</td>
           <td class="paramname"><em>node</em>&#160;</td>
         </tr>
         <tr>
@@ -291,7 +290,7 @@ Functions</h2></td></tr>
 <p>Releases a linked list node to the system pools. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pools</td><td>The syspools_t instance </td></tr>
+    <tr><td class="paramname">pools</td><td>The uel_syspools_t instance </td></tr>
     <tr><td class="paramname">node</td><td>The linked list node to be released </td></tr>
   </table>
   </dd>

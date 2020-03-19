@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -101,51 +100,51 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structobjpool.html">objpool_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-allocated memory bound to speciffic types suitable for providing dynamic object management in the stack.  <a href="structobjpool.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__objpool.html">uel_objpool_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-allocated memory bound to speciffic types suitable for providing dynamic object management in the stack.  <a href="structuel__objpool.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a3bbfb93498117268841be6917a5aebad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a3bbfb93498117268841be6917a5aebad">DECLARE_OBJPOOL_BUFFERS</a>(type,  size_log2n,  id)</td></tr>
-<tr class="memdesc:a3bbfb93498117268841be6917a5aebad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares the necessary buffers to back an object pool, so the programmer doesn't have to reason much about it.  <a href="#a3bbfb93498117268841be6917a5aebad">More...</a><br /></td></tr>
-<tr class="separator:a3bbfb93498117268841be6917a5aebad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f789de8fa7a0b224acaf8f138500cfc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a1f789de8fa7a0b224acaf8f138500cfc">OBJPOOL_BUFFERS</a>(id)&#160;&#160;&#160;id##_pool_buffer, id##_pool_queue_buffer</td></tr>
-<tr class="memdesc:a1f789de8fa7a0b224acaf8f138500cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refers to a previously declared buffer set.  <a href="#a1f789de8fa7a0b224acaf8f138500cfc">More...</a><br /></td></tr>
-<tr class="separator:a1f789de8fa7a0b224acaf8f138500cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa481edd063902681dba342c171120703"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#aa481edd063902681dba342c171120703">OBJPOOL_BUFFERS_IN</a>(id,  obj)&#160;&#160;&#160;obj.id##_pool_buffer, obj.id##_pool_queue_buffer</td></tr>
-<tr class="memdesc:aa481edd063902681dba342c171120703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refers to a previously declared buffer set.  <a href="#aa481edd063902681dba342c171120703">More...</a><br /></td></tr>
-<tr class="separator:aa481edd063902681dba342c171120703"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0be983168adca0f511adda47f423a057"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a0be983168adca0f511adda47f423a057">OBJPOOL_BUFFERS_AT</a>(id,  obj)&#160;&#160;&#160;obj-&gt;id##_pool_buffer, obj-&gt;id##_pool_queue_buffer</td></tr>
-<tr class="memdesc:a0be983168adca0f511adda47f423a057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refers to a previously declared buffer set.  <a href="#a0be983168adca0f511adda47f423a057">More...</a><br /></td></tr>
-<tr class="separator:a0be983168adca0f511adda47f423a057"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f94946d39d323f7ea0f409962c59f1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a6f94946d39d323f7ea0f409962c59f1e">UEL_DECLARE_OBJPOOL_BUFFERS</a>(type,  size_log2n,  id)</td></tr>
+<tr class="memdesc:a6f94946d39d323f7ea0f409962c59f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares the necessary buffers to back an object pool, so the programmer doesn't have to reason much about it.  <a href="#a6f94946d39d323f7ea0f409962c59f1e">More...</a><br /></td></tr>
+<tr class="separator:a6f94946d39d323f7ea0f409962c59f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623ea70a0df4cc76d0e65a99bc5c26c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a623ea70a0df4cc76d0e65a99bc5c26c9">UEL_OBJPOOL_BUFFERS</a>(id)&#160;&#160;&#160;(uint8_t *)&amp;id##_pool_buffer, id##_pool_queue_buffer</td></tr>
+<tr class="memdesc:a623ea70a0df4cc76d0e65a99bc5c26c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refers to a previously declared buffer set.  <a href="#a623ea70a0df4cc76d0e65a99bc5c26c9">More...</a><br /></td></tr>
+<tr class="separator:a623ea70a0df4cc76d0e65a99bc5c26c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae25ae5d897163fb9104f4295f6fdf84b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#ae25ae5d897163fb9104f4295f6fdf84b">UEL_OBJPOOL_BUFFERS_IN</a>(id,  obj)&#160;&#160;&#160;(uint8_t *)&amp;obj.id##_pool_buffer, obj.id##_pool_queue_buffer</td></tr>
+<tr class="memdesc:ae25ae5d897163fb9104f4295f6fdf84b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refers to a previously declared buffer set.  <a href="#ae25ae5d897163fb9104f4295f6fdf84b">More...</a><br /></td></tr>
+<tr class="separator:ae25ae5d897163fb9104f4295f6fdf84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3a5c0e14ab186fffed61c2b3d67405e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#aa3a5c0e14ab186fffed61c2b3d67405e">UEL_OBJPOOL_BUFFERS_AT</a>(id,  obj)&#160;&#160;&#160;(uint8_t *)&amp;obj-&gt;id##_pool_buffer, obj-&gt;id##_pool_queue_buffer</td></tr>
+<tr class="memdesc:aa3a5c0e14ab186fffed61c2b3d67405e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refers to a previously declared buffer set.  <a href="#aa3a5c0e14ab186fffed61c2b3d67405e">More...</a><br /></td></tr>
+<tr class="separator:aa3a5c0e14ab186fffed61c2b3d67405e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8721d8a9e8bd92172ce8986a7f40a3f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a8721d8a9e8bd92172ce8986a7f40a3f8">objpool_init</a> (objpool_t *pool, uintptr_t size_log2n, uintptr_t item_size, uint8_t *buffer, void **queue_buffer)</td></tr>
-<tr class="memdesc:a8721d8a9e8bd92172ce8986a7f40a3f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an object pool.  <a href="#a8721d8a9e8bd92172ce8986a7f40a3f8">More...</a><br /></td></tr>
-<tr class="separator:a8721d8a9e8bd92172ce8986a7f40a3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04f039b8b1d56b0c777bff90842993a1"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a04f039b8b1d56b0c777bff90842993a1">objpool_acquire</a> (objpool_t *pool)</td></tr>
-<tr class="memdesc:a04f039b8b1d56b0c777bff90842993a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires an object from the pool.  <a href="#a04f039b8b1d56b0c777bff90842993a1">More...</a><br /></td></tr>
-<tr class="separator:a04f039b8b1d56b0c777bff90842993a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a696ee43102f408a0302e7aa88dd5b757"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a696ee43102f408a0302e7aa88dd5b757">objpool_release</a> (objpool_t *pool, void *element)</td></tr>
-<tr class="memdesc:a696ee43102f408a0302e7aa88dd5b757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases an object to the pool.  <a href="#a696ee43102f408a0302e7aa88dd5b757">More...</a><br /></td></tr>
-<tr class="separator:a696ee43102f408a0302e7aa88dd5b757"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd8db1d629fbeb768aa1cffd743875ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#acd8db1d629fbeb768aa1cffd743875ff">objpool_is_empty</a> (objpool_t *pool)</td></tr>
-<tr class="memdesc:acd8db1d629fbeb768aa1cffd743875ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a pool is depleted.  <a href="#acd8db1d629fbeb768aa1cffd743875ff">More...</a><br /></td></tr>
-<tr class="separator:acd8db1d629fbeb768aa1cffd743875ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ec46b5504b8af80077d39ba6f9b12f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a7ec46b5504b8af80077d39ba6f9b12f9">uel_objpool_init</a> (uel_objpool_t *pool, uintptr_t size_log2n, uintptr_t item_size, uint8_t *buffer, void **queue_buffer)</td></tr>
+<tr class="memdesc:a7ec46b5504b8af80077d39ba6f9b12f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an object pool.  <a href="#a7ec46b5504b8af80077d39ba6f9b12f9">More...</a><br /></td></tr>
+<tr class="separator:a7ec46b5504b8af80077d39ba6f9b12f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54248e0810ccb791a8ff82d3de8fc6c5"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#a54248e0810ccb791a8ff82d3de8fc6c5">uel_objpool_acquire</a> (uel_objpool_t *pool)</td></tr>
+<tr class="memdesc:a54248e0810ccb791a8ff82d3de8fc6c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires an object from the pool.  <a href="#a54248e0810ccb791a8ff82d3de8fc6c5">More...</a><br /></td></tr>
+<tr class="separator:a54248e0810ccb791a8ff82d3de8fc6c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4370a164b82e436749fbc9f8af9a114"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#af4370a164b82e436749fbc9f8af9a114">uel_objpool_release</a> (uel_objpool_t *pool, void *element)</td></tr>
+<tr class="memdesc:af4370a164b82e436749fbc9f8af9a114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases an object to the pool.  <a href="#af4370a164b82e436749fbc9f8af9a114">More...</a><br /></td></tr>
+<tr class="separator:af4370a164b82e436749fbc9f8af9a114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae116db7f19b0971e6781e375361265ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object-pool_8h.html#ae116db7f19b0971e6781e375361265ce">uel_objpool_is_empty</a> (uel_objpool_t *pool)</td></tr>
+<tr class="memdesc:ae116db7f19b0971e6781e375361265ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a pool is depleted.  <a href="#ae116db7f19b0971e6781e375361265ce">More...</a><br /></td></tr>
+<tr class="separator:ae116db7f19b0971e6781e375361265ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines object pools, arrays of pre-allocated objects for dynamic use. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a3bbfb93498117268841be6917a5aebad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3bbfb93498117268841be6917a5aebad">&#9670;&nbsp;</a></span>DECLARE_OBJPOOL_BUFFERS</h2>
+<a id="a6f94946d39d323f7ea0f409962c59f1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f94946d39d323f7ea0f409962c59f1e">&#9670;&nbsp;</a></span>UEL_DECLARE_OBJPOOL_BUFFERS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DECLARE_OBJPOOL_BUFFERS</td>
+          <td class="memname">#define UEL_DECLARE_OBJPOOL_BUFFERS</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">type, </td>
@@ -169,7 +168,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">uint8_t <span class="keywordtype">id</span>##_pool_buffer[(1&lt;&lt;size_log2n) * <span class="keyword">sizeof</span>(type)];   \</div><div class="line">    void *<span class="keywordtype">id</span>##_pool_queue_buffer[1&lt;&lt;size_log2n]</div></div><!-- fragment -->
+<b>Value:</b><div class="fragment"><div class="line">uint8_t <span class="keywordtype">id</span>##_pool_buffer[(1&lt;&lt;size_log2n) * <span class="keyword">sizeof</span>(type)];   \</div><div class="line">    void *<span class="keywordtype">id</span>##_pool_queue_buffer[1&lt;&lt;size_log2n];</div></div><!-- fragment -->
 <p>Declares the necessary buffers to back an object pool, so the programmer doesn't have to reason much about it. </p>
 <p>Use this macro as a shortcut to create the required buffers for an object pool. This will declare two buffers in the calling scope.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -183,24 +182,24 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1f789de8fa7a0b224acaf8f138500cfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f789de8fa7a0b224acaf8f138500cfc">&#9670;&nbsp;</a></span>OBJPOOL_BUFFERS</h2>
+<a id="a623ea70a0df4cc76d0e65a99bc5c26c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a623ea70a0df4cc76d0e65a99bc5c26c9">&#9670;&nbsp;</a></span>UEL_OBJPOOL_BUFFERS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define OBJPOOL_BUFFERS</td>
+          <td class="memname">#define UEL_OBJPOOL_BUFFERS</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">id</td><td>)</td>
-          <td>&#160;&#160;&#160;id##_pool_buffer, id##_pool_queue_buffer</td>
+          <td>&#160;&#160;&#160;(uint8_t *)&amp;id##_pool_buffer, id##_pool_queue_buffer</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Refers to a previously declared buffer set. </p>
-<p>This is a convenience macro to supply the buffers generated by <code>DECLARE_OBJPOOL_BUFFERS</code> to the <code>objpool_init</code> function.</p>
+<p>This is a convenience macro to supply the buffers generated by <code>UEL_DECLARE_OBJPOOL_BUFFERS</code> to the <code>uel_objpool_init</code> function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The identifier used to declare the pool buffers </td></tr>
@@ -210,14 +209,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0be983168adca0f511adda47f423a057"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0be983168adca0f511adda47f423a057">&#9670;&nbsp;</a></span>OBJPOOL_BUFFERS_AT</h2>
+<a id="aa3a5c0e14ab186fffed61c2b3d67405e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3a5c0e14ab186fffed61c2b3d67405e">&#9670;&nbsp;</a></span>UEL_OBJPOOL_BUFFERS_AT</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define OBJPOOL_BUFFERS_AT</td>
+          <td class="memname">#define UEL_OBJPOOL_BUFFERS_AT</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">id, </td>
@@ -231,13 +230,13 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;obj-&gt;id##_pool_buffer, obj-&gt;id##_pool_queue_buffer</td>
+          <td></td><td>&#160;&#160;&#160;(uint8_t *)&amp;obj-&gt;id##_pool_buffer, obj-&gt;id##_pool_queue_buffer</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Refers to a previously declared buffer set. </p>
-<p>This is a convenience macro to supply the buffers generated by <code>DECLARE_OBJPOOL_BUFFERS</code> to the <code>objpool_init</code> function. Use this if the buffers were defined inside an object whose address is accessible in the current scope</p>
+<p>This is a convenience macro to supply the buffers generated by <code>UEL_DECLARE_OBJPOOL_BUFFERS</code> to the <code>uel_objpool_init</code> function. Use this if the buffers were defined inside an object whose address is accessible in the current scope</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The identifier used to declare the pool buffers </td></tr>
@@ -248,14 +247,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa481edd063902681dba342c171120703"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa481edd063902681dba342c171120703">&#9670;&nbsp;</a></span>OBJPOOL_BUFFERS_IN</h2>
+<a id="ae25ae5d897163fb9104f4295f6fdf84b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae25ae5d897163fb9104f4295f6fdf84b">&#9670;&nbsp;</a></span>UEL_OBJPOOL_BUFFERS_IN</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define OBJPOOL_BUFFERS_IN</td>
+          <td class="memname">#define UEL_OBJPOOL_BUFFERS_IN</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">id, </td>
@@ -269,13 +268,13 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;obj.id##_pool_buffer, obj.id##_pool_queue_buffer</td>
+          <td></td><td>&#160;&#160;&#160;(uint8_t *)&amp;obj.id##_pool_buffer, obj.id##_pool_queue_buffer</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Refers to a previously declared buffer set. </p>
-<p>This is a convenience macro to supply the buffers generated by <code>DECLARE_OBJPOOL_BUFFERS</code> to the <code>objpool_init</code> function. Use this if the buffers were defined inside a local object, accessible in the current scope.</p>
+<p>This is a convenience macro to supply the buffers generated by <code>UEL_DECLARE_OBJPOOL_BUFFERS</code> to the <code>uel_objpool_init</code> function. Use this if the buffers were defined inside a local object, accessible in the current scope.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The identifier used to declare the pool buffers </td></tr>
@@ -287,16 +286,16 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a04f039b8b1d56b0c777bff90842993a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04f039b8b1d56b0c777bff90842993a1">&#9670;&nbsp;</a></span>objpool_acquire()</h2>
+<a id="a54248e0810ccb791a8ff82d3de8fc6c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54248e0810ccb791a8ff82d3de8fc6c5">&#9670;&nbsp;</a></span>uel_objpool_acquire()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* objpool_acquire </td>
+          <td class="memname">void* uel_objpool_acquire </td>
           <td>(</td>
-          <td class="paramtype">objpool_t *&#160;</td>
+          <td class="paramtype">uel_objpool_t *&#160;</td>
           <td class="paramname"><em>pool</em></td><td>)</td>
           <td></td>
         </tr>
@@ -314,16 +313,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8721d8a9e8bd92172ce8986a7f40a3f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8721d8a9e8bd92172ce8986a7f40a3f8">&#9670;&nbsp;</a></span>objpool_init()</h2>
+<a id="a7ec46b5504b8af80077d39ba6f9b12f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ec46b5504b8af80077d39ba6f9b12f9">&#9670;&nbsp;</a></span>uel_objpool_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void objpool_init </td>
+          <td class="memname">void uel_objpool_init </td>
           <td>(</td>
-          <td class="paramtype">objpool_t *&#160;</td>
+          <td class="paramtype">uel_objpool_t *&#160;</td>
           <td class="paramname"><em>pool</em>, </td>
         </tr>
         <tr>
@@ -372,16 +371,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acd8db1d629fbeb768aa1cffd743875ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd8db1d629fbeb768aa1cffd743875ff">&#9670;&nbsp;</a></span>objpool_is_empty()</h2>
+<a id="ae116db7f19b0971e6781e375361265ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae116db7f19b0971e6781e375361265ce">&#9670;&nbsp;</a></span>uel_objpool_is_empty()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool objpool_is_empty </td>
+          <td class="memname">bool uel_objpool_is_empty </td>
           <td>(</td>
-          <td class="paramtype">objpool_t *&#160;</td>
+          <td class="paramtype">uel_objpool_t *&#160;</td>
           <td class="paramname"><em>pool</em></td><td>)</td>
           <td></td>
         </tr>
@@ -399,16 +398,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a696ee43102f408a0302e7aa88dd5b757"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a696ee43102f408a0302e7aa88dd5b757">&#9670;&nbsp;</a></span>objpool_release()</h2>
+<a id="af4370a164b82e436749fbc9f8af9a114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4370a164b82e436749fbc9f8af9a114">&#9670;&nbsp;</a></span>uel_objpool_release()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool objpool_release </td>
+          <td class="memname">bool uel_objpool_release </td>
           <td>(</td>
-          <td class="paramtype">objpool_t *&#160;</td>
+          <td class="paramtype">uel_objpool_t *&#160;</td>
           <td class="paramname"><em>pool</em>, </td>
         </tr>
         <tr>

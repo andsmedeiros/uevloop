@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>µEvLoop: sysqueues_t Struct Reference</title>
+<title>µEvLoop: uel_sysqueues_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -63,50 +62,48 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">sysqueues_t Struct Reference</div>  </div>
+<div class="title">uel_sysqueues_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>A container for the system's internal queues.  
  <a href="structsysqueues.html#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for sysqueues_t:</div>
+Collaboration diagram for uel_sysqueues_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structsysqueues__coll__graph.png" border="0" usemap="#sysqueues__t_coll__map" alt="Collaboration graph"/></div>
-<map name="sysqueues__t_coll__map" id="sysqueues__t_coll__map">
-</map>
+<div class="center"><img src="structsysqueues__coll__graph.png" border="0" usemap="#uel__sysqueues__t_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a9bfde24d77d0bef2f0d1df2e304acacd"><td class="memItemLeft" align="right" valign="top"><a id="a9bfde24d77d0bef2f0d1df2e304acacd"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#a9bfde24d77d0bef2f0d1df2e304acacd">event_queue_buffer</a> [<a class="el" href="system-queues_8h.html#ac5bad2e704763cac3d2e73a2b211c34e">SYSQUEUES_EVENT_QUEUE_SIZE</a>]</td></tr>
-<tr class="memdesc:a9bfde24d77d0bef2f0d1df2e304acacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event queue buffer. <br /></td></tr>
-<tr class="separator:a9bfde24d77d0bef2f0d1df2e304acacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace8d7b05a6cef69aa9d887ee85808edc"><td class="memItemLeft" align="right" valign="top">cqueue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#ace8d7b05a6cef69aa9d887ee85808edc">event_queue</a></td></tr>
-<tr class="memdesc:ace8d7b05a6cef69aa9d887ee85808edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's event queue.  <a href="#ace8d7b05a6cef69aa9d887ee85808edc">More...</a><br /></td></tr>
-<tr class="separator:ace8d7b05a6cef69aa9d887ee85808edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2dab95d98835f6b8e6b8f7df8cbfefe"><td class="memItemLeft" align="right" valign="top"><a id="ae2dab95d98835f6b8e6b8f7df8cbfefe"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#ae2dab95d98835f6b8e6b8f7df8cbfefe">schedule_queue_buffer</a> [<a class="el" href="system-queues_8h.html#abc36771b24aa8b96ac1d147dba0386b0">SYSQUEUES_SCHEDULE_QUEUE_SIZE</a>]</td></tr>
-<tr class="memdesc:ae2dab95d98835f6b8e6b8f7df8cbfefe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The schedule queue buffer. <br /></td></tr>
-<tr class="separator:ae2dab95d98835f6b8e6b8f7df8cbfefe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b64d3f2f440f5ab9f133a8f704886bd"><td class="memItemLeft" align="right" valign="top">cqueue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#a8b64d3f2f440f5ab9f133a8f704886bd">schedule_queue</a></td></tr>
-<tr class="memdesc:a8b64d3f2f440f5ab9f133a8f704886bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's schedule queue.  <a href="#a8b64d3f2f440f5ab9f133a8f704886bd">More...</a><br /></td></tr>
-<tr class="separator:a8b64d3f2f440f5ab9f133a8f704886bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae98fcac9a2822f2b2394a4c044f148a9"><td class="memItemLeft" align="right" valign="top"><a id="ae98fcac9a2822f2b2394a4c044f148a9"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#ae98fcac9a2822f2b2394a4c044f148a9">event_queue_buffer</a> [<a class="el" href="system-queues_8h.html#a1d616ec92aac7c521870c1ddfbfecba9">UEL_SYSQUEUES_EVENT_QUEUE_SIZE</a>]</td></tr>
+<tr class="memdesc:ae98fcac9a2822f2b2394a4c044f148a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event queue buffer. <br /></td></tr>
+<tr class="separator:ae98fcac9a2822f2b2394a4c044f148a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ee3a87dc51095191300b5e90658d690"><td class="memItemLeft" align="right" valign="top">uel_cqueue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#a8ee3a87dc51095191300b5e90658d690">event_queue</a></td></tr>
+<tr class="memdesc:a8ee3a87dc51095191300b5e90658d690"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's event queue.  <a href="#a8ee3a87dc51095191300b5e90658d690">More...</a><br /></td></tr>
+<tr class="separator:a8ee3a87dc51095191300b5e90658d690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f90eebf85af0e239358c276ea741917"><td class="memItemLeft" align="right" valign="top"><a id="a3f90eebf85af0e239358c276ea741917"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#a3f90eebf85af0e239358c276ea741917">schedule_queue_buffer</a> [<a class="el" href="system-queues_8h.html#a0a913dc860f0136e0633381c33d1821e">UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE</a>]</td></tr>
+<tr class="memdesc:a3f90eebf85af0e239358c276ea741917"><td class="mdescLeft">&#160;</td><td class="mdescRight">The schedule queue buffer. <br /></td></tr>
+<tr class="separator:a3f90eebf85af0e239358c276ea741917"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92e5df8975b6c6b1aa7f79df54da8565"><td class="memItemLeft" align="right" valign="top">uel_cqueue_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html#a92e5df8975b6c6b1aa7f79df54da8565">schedule_queue</a></td></tr>
+<tr class="memdesc:a92e5df8975b6c6b1aa7f79df54da8565"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's schedule queue.  <a href="#a92e5df8975b6c6b1aa7f79df54da8565">More...</a><br /></td></tr>
+<tr class="separator:a92e5df8975b6c6b1aa7f79df54da8565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A container for the system's internal queues. </p>
 <p>This module conveniently declares and contains the object queues necessary for internal operation of the application.</p>
-<p>It also encapsulate manipulation of shared memory in critical sections. All of its functions are safe, except for <code>sysqueues_init</code>. </p>
+<p>It also encapsulate manipulation of shared memory in critical sections. All of its functions are safe, except for <code>uel_sysqueues_init</code>. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="ace8d7b05a6cef69aa9d887ee85808edc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace8d7b05a6cef69aa9d887ee85808edc">&#9670;&nbsp;</a></span>event_queue</h2>
+<a id="a8ee3a87dc51095191300b5e90658d690"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ee3a87dc51095191300b5e90658d690">&#9670;&nbsp;</a></span>event_queue</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">cqueue_t sysqueues_t::event_queue</td>
+          <td class="memname">uel_cqueue_t uel_sysqueues_t::event_queue</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -116,14 +113,14 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 
 </div>
 </div>
-<a id="a8b64d3f2f440f5ab9f133a8f704886bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b64d3f2f440f5ab9f133a8f704886bd">&#9670;&nbsp;</a></span>schedule_queue</h2>
+<a id="a92e5df8975b6c6b1aa7f79df54da8565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92e5df8975b6c6b1aa7f79df54da8565">&#9670;&nbsp;</a></span>schedule_queue</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">cqueue_t sysqueues_t::schedule_queue</td>
+          <td class="memname">uel_cqueue_t uel_sysqueues_t::schedule_queue</td>
         </tr>
       </table>
 </div><div class="memdoc">

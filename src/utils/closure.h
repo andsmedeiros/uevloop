@@ -4,8 +4,8 @@
   * contexts
   */
 
-#ifndef CLOSURE_H
-#define	CLOSURE_H
+#ifndef UEL_CLOSURE_H
+#define	UEL_CLOSURE_H
 
 /** \brief Defines a closure, a tuple <function, context, destructor>
   *
@@ -15,26 +15,26 @@
   *
   * When invoking the closure, additional parameters may be passed along and will
   * also be available to the function body. The function can also return a value
-  * that will be passed back by the `closure_invoke` function.
+  * that will be passed back by the `uel_closure_invoke` function.
   *
   * An optional destructor may also be attached. If it is, it will be called on
-  * closure destruction by the `closure_destroy` function.
+  * closure destruction by the `uel_closure_destroy` function.
   */
-typedef struct closure closure_t;
-struct closure{
+typedef struct uel_closure uel_closure_t;
+struct uel_closure{
     //! \brief The function to be run when the closure is invoked.
-    //! Must task a reference to the closure as param e return a void pointer.
-    void * (* function)(closure_t *);
+    //! Must task a reference to the closure as param and returns a void pointer.
+    void * (* function)(uel_closure_t *);
     //! \brief The context supplied to the closure durint creation.
     //! This context will be available during the function execution.
     void *context;
-    /** \brief The closure destructor that will be run on `closure_destroy`.
+    /** \brief The closure destructor that will be run on `uel_closure_destroy`.
       * If your closure context needs tearing down, attach a custom destructor.
       * It should be responsible by freeing any memory allocated from the heap,
       * if any, or returning dynamic objects contained in the context to their
       * respective pools.
       */
-    void (* destructor)(closure_t *);
+    void (* destructor)(uel_closure_t *);
     //! The parameters supplied by the closure invokation.
     void *params;
     //! The value returned by the last closure invokation.
@@ -47,13 +47,13 @@ struct closure{
   * object with it. The object is returned by value.
   * \param function The function to be run on closure invokation.
   * \param context The creation context of the closure.
-  * \param destructor The custom destructor to be run on `closure_destroy`.
+  * \param destructor The custom destructor to be run on `uel_closure_destroy`.
   * \return The closure object, by value.
   */
-closure_t closure_create(
-    void * (*function)(closure_t *),
+uel_closure_t uel_closure_create(
+    void * (*function)(uel_closure_t *),
     void *context,
-    void (*destructor)(closure_t *)
+    void (*destructor)(uel_closure_t *)
 );
 
 /** \brief Invokes a closure and returns whatever value it returned.
@@ -62,12 +62,12 @@ closure_t closure_create(
   * \param params The parameters to be passed along during closure invokation.
   * \return This function returns whatever the closure function returned.
   */
-void *closure_invoke(closure_t *closure, void *params);
+void *uel_closure_invoke(uel_closure_t *closure, void *params);
 
 /** \brief Tears a closure down, calling its associated destructor
   *
   * \param closure The closure to be destroyed
   */
-void closure_destroy(closure_t *closure);
+void uel_closure_destroy(uel_closure_t *closure);
 
-#endif	/* CLOSURE_H */
+#endif	/* UEL_CLOSURE_H */

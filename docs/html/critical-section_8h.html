@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -77,32 +76,30 @@ $(function() {
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="critical-section_8h__dep__incl.png" border="0" usemap="#src_2portability_2critical-section_8hdep" alt=""/></div>
-<map name="src_2portability_2critical-section_8hdep" id="src_2portability_2critical-section_8hdep">
-</map>
 </div>
 </div>
 <p><a href="critical-section_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:aaf97bd92a7b577429adb4a89b3a86ba7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="critical-section_8h.html#aaf97bd92a7b577429adb4a89b3a86ba7">UEVLOOP_CRITICAL_ENTER</a></td></tr>
-<tr class="memdesc:aaf97bd92a7b577429adb4a89b3a86ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters a critical section.  <a href="#aaf97bd92a7b577429adb4a89b3a86ba7">More...</a><br /></td></tr>
-<tr class="separator:aaf97bd92a7b577429adb4a89b3a86ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47db4d608d0480c31eda9497d16a01da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="critical-section_8h.html#a47db4d608d0480c31eda9497d16a01da">UEVLOOP_CRITICAL_EXIT</a></td></tr>
-<tr class="memdesc:a47db4d608d0480c31eda9497d16a01da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits a critical section..  <a href="#a47db4d608d0480c31eda9497d16a01da">More...</a><br /></td></tr>
-<tr class="separator:a47db4d608d0480c31eda9497d16a01da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c0f97308e835939cf0404b167cc188a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="critical-section_8h.html#a7c0f97308e835939cf0404b167cc188a">UEL_CRITICAL_ENTER</a></td></tr>
+<tr class="memdesc:a7c0f97308e835939cf0404b167cc188a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters a critical section.  <a href="#a7c0f97308e835939cf0404b167cc188a">More...</a><br /></td></tr>
+<tr class="separator:a7c0f97308e835939cf0404b167cc188a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebdb2b9597df1dac79b2fd88d58d6539"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="critical-section_8h.html#aebdb2b9597df1dac79b2fd88d58d6539">UEL_CRITICAL_EXIT</a></td></tr>
+<tr class="memdesc:aebdb2b9597df1dac79b2fd88d58d6539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits a critical section..  <a href="#aebdb2b9597df1dac79b2fd88d58d6539">More...</a><br /></td></tr>
+<tr class="separator:aebdb2b9597df1dac79b2fd88d58d6539"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains macros for delimitating critical sections. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="aaf97bd92a7b577429adb4a89b3a86ba7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf97bd92a7b577429adb4a89b3a86ba7">&#9670;&nbsp;</a></span>UEVLOOP_CRITICAL_ENTER</h2>
+<a id="a7c0f97308e835939cf0404b167cc188a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c0f97308e835939cf0404b167cc188a">&#9670;&nbsp;</a></span>UEL_CRITICAL_ENTER</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define UEVLOOP_CRITICAL_ENTER</td>
+          <td class="memname">#define UEL_CRITICAL_ENTER</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -112,14 +109,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a47db4d608d0480c31eda9497d16a01da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47db4d608d0480c31eda9497d16a01da">&#9670;&nbsp;</a></span>UEVLOOP_CRITICAL_EXIT</h2>
+<a id="aebdb2b9597df1dac79b2fd88d58d6539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebdb2b9597df1dac79b2fd88d58d6539">&#9670;&nbsp;</a></span>UEL_CRITICAL_EXIT</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define UEVLOOP_CRITICAL_EXIT</td>
+          <td class="memname">#define UEL_CRITICAL_EXIT</td>
         </tr>
       </table>
 </div><div class="memdoc">

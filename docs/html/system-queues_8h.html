@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -106,58 +105,58 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html">sysqueues_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsysqueues.html">uel_sysqueues_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container for the system's internal queues.  <a href="structsysqueues.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ac5bad2e704763cac3d2e73a2b211c34e"><td class="memItemLeft" align="right" valign="top"><a id="ac5bad2e704763cac3d2e73a2b211c34e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#ac5bad2e704763cac3d2e73a2b211c34e">SYSQUEUES_EVENT_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#a1a9eb0859c709b9e06181e4142e66729">SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:ac5bad2e704763cac3d2e73a2b211c34e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:ac5bad2e704763cac3d2e73a2b211c34e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc36771b24aa8b96ac1d147dba0386b0"><td class="memItemLeft" align="right" valign="top"><a id="abc36771b24aa8b96ac1d147dba0386b0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#abc36771b24aa8b96ac1d147dba0386b0">SYSQUEUES_SCHEDULE_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#a83a8de0a8a706cade9c397dae8478e89">SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:abc36771b24aa8b96ac1d147dba0386b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:abc36771b24aa8b96ac1d147dba0386b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d616ec92aac7c521870c1ddfbfecba9"><td class="memItemLeft" align="right" valign="top"><a id="a1d616ec92aac7c521870c1ddfbfecba9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a1d616ec92aac7c521870c1ddfbfecba9">UEL_SYSQUEUES_EVENT_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#a89c8fac6285ec1a2ad001ee55d131e90">UEL_SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N</a>)</td></tr>
+<tr class="memdesc:a1d616ec92aac7c521870c1ddfbfecba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
+<tr class="separator:a1d616ec92aac7c521870c1ddfbfecba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a913dc860f0136e0633381c33d1821e"><td class="memItemLeft" align="right" valign="top"><a id="a0a913dc860f0136e0633381c33d1821e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a0a913dc860f0136e0633381c33d1821e">UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#af83cc01ed7c71a81a08be6340bff7f4b">UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N</a>)</td></tr>
+<tr class="memdesc:a0a913dc860f0136e0633381c33d1821e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
+<tr class="separator:a0a913dc860f0136e0633381c33d1821e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:abed67e4f7c2c8dec08899920bcf31a6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#abed67e4f7c2c8dec08899920bcf31a6a">sysqueues_init</a> (sysqueues_t *queues)</td></tr>
-<tr class="memdesc:abed67e4f7c2c8dec08899920bcf31a6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a new sysqueues_t.  <a href="#abed67e4f7c2c8dec08899920bcf31a6a">More...</a><br /></td></tr>
-<tr class="separator:abed67e4f7c2c8dec08899920bcf31a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7330cf933d3cddf916d796a7e5848c16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a7330cf933d3cddf916d796a7e5848c16">sysqueues_enqueue_event</a> (sysqueues_t *queues, event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
-<tr class="memdesc:a7330cf933d3cddf916d796a7e5848c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes an event into the event queue.  <a href="#a7330cf933d3cddf916d796a7e5848c16">More...</a><br /></td></tr>
-<tr class="separator:a7330cf933d3cddf916d796a7e5848c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02d9a1eae7c2625083fe72311dc01950"><td class="memItemLeft" align="right" valign="top">event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a02d9a1eae7c2625083fe72311dc01950">sysqueues_get_enqueued_event</a> (sysqueues_t *queues)</td></tr>
-<tr class="memdesc:a02d9a1eae7c2625083fe72311dc01950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops an event from the event queue.  <a href="#a02d9a1eae7c2625083fe72311dc01950">More...</a><br /></td></tr>
-<tr class="separator:a02d9a1eae7c2625083fe72311dc01950"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2188698354f60dd3c365ba89e5c17bae"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a2188698354f60dd3c365ba89e5c17bae">sysqueues_count_enqueued_events</a> (sysqueues_t *queues)</td></tr>
-<tr class="memdesc:a2188698354f60dd3c365ba89e5c17bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number of elements in the event queue.  <a href="#a2188698354f60dd3c365ba89e5c17bae">More...</a><br /></td></tr>
-<tr class="separator:a2188698354f60dd3c365ba89e5c17bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1444269bad4265fa8601813dcfbc7ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#ae1444269bad4265fa8601813dcfbc7ef">sysqueues_schedule_event</a> (sysqueues_t *queues, event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
-<tr class="memdesc:ae1444269bad4265fa8601813dcfbc7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes an event into the schedule queue.  <a href="#ae1444269bad4265fa8601813dcfbc7ef">More...</a><br /></td></tr>
-<tr class="separator:ae1444269bad4265fa8601813dcfbc7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e00a97348719a8a357f5f0c305b034d"><td class="memItemLeft" align="right" valign="top">event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a1e00a97348719a8a357f5f0c305b034d">sysqueues_get_scheduled_event</a> (sysqueues_t *queues)</td></tr>
-<tr class="memdesc:a1e00a97348719a8a357f5f0c305b034d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops an event from the schedule queue.  <a href="#a1e00a97348719a8a357f5f0c305b034d">More...</a><br /></td></tr>
-<tr class="separator:a1e00a97348719a8a357f5f0c305b034d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebbe860cbbc658ba30531fad5a9fceaa"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#aebbe860cbbc658ba30531fad5a9fceaa">sysqueues_count_scheduled_events</a> (sysqueues_t *queues)</td></tr>
-<tr class="memdesc:aebbe860cbbc658ba30531fad5a9fceaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number of elements in the schedule queue.  <a href="#aebbe860cbbc658ba30531fad5a9fceaa">More...</a><br /></td></tr>
-<tr class="separator:aebbe860cbbc658ba30531fad5a9fceaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa988e6daddfd00129d56c1db350edc5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#aa988e6daddfd00129d56c1db350edc5a">uel_sysqueues_init</a> (uel_sysqueues_t *queues)</td></tr>
+<tr class="memdesc:aa988e6daddfd00129d56c1db350edc5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a new uel_sysqueues_t.  <a href="#aa988e6daddfd00129d56c1db350edc5a">More...</a><br /></td></tr>
+<tr class="separator:aa988e6daddfd00129d56c1db350edc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac58c61b4b8d432898a6c5b2a47b7d197"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#ac58c61b4b8d432898a6c5b2a47b7d197">uel_sysqueues_enqueue_event</a> (uel_sysqueues_t *queues, uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:ac58c61b4b8d432898a6c5b2a47b7d197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes an event into the event queue.  <a href="#ac58c61b4b8d432898a6c5b2a47b7d197">More...</a><br /></td></tr>
+<tr class="separator:ac58c61b4b8d432898a6c5b2a47b7d197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897b9899eefbe90ac11e651b5117bfd3"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a897b9899eefbe90ac11e651b5117bfd3">uel_sysqueues_get_enqueued_event</a> (uel_sysqueues_t *queues)</td></tr>
+<tr class="memdesc:a897b9899eefbe90ac11e651b5117bfd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops an event from the event queue.  <a href="#a897b9899eefbe90ac11e651b5117bfd3">More...</a><br /></td></tr>
+<tr class="separator:a897b9899eefbe90ac11e651b5117bfd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7caa3edc1266d927d334b6b85af5ec95"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a7caa3edc1266d927d334b6b85af5ec95">uel_sysqueues_count_enqueued_events</a> (uel_sysqueues_t *queues)</td></tr>
+<tr class="memdesc:a7caa3edc1266d927d334b6b85af5ec95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number of elements in the event queue.  <a href="#a7caa3edc1266d927d334b6b85af5ec95">More...</a><br /></td></tr>
+<tr class="separator:a7caa3edc1266d927d334b6b85af5ec95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14ac33abf67b93d8904e5ebb1218028"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#ac14ac33abf67b93d8904e5ebb1218028">uel_sysqueues_schedule_event</a> (uel_sysqueues_t *queues, uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:ac14ac33abf67b93d8904e5ebb1218028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes an event into the schedule queue.  <a href="#ac14ac33abf67b93d8904e5ebb1218028">More...</a><br /></td></tr>
+<tr class="separator:ac14ac33abf67b93d8904e5ebb1218028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1730d1f7a7e86a3a79df40938fa9d735"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a1730d1f7a7e86a3a79df40938fa9d735">uel_sysqueues_get_scheduled_event</a> (uel_sysqueues_t *queues)</td></tr>
+<tr class="memdesc:a1730d1f7a7e86a3a79df40938fa9d735"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops an event from the schedule queue.  <a href="#a1730d1f7a7e86a3a79df40938fa9d735">More...</a><br /></td></tr>
+<tr class="separator:a1730d1f7a7e86a3a79df40938fa9d735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a5ee20919b0362d640b3816a2ed191"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a50a5ee20919b0362d640b3816a2ed191">uel_sysqueues_count_scheduled_events</a> (uel_sysqueues_t *queues)</td></tr>
+<tr class="memdesc:a50a5ee20919b0362d640b3816a2ed191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number of elements in the schedule queue.  <a href="#a50a5ee20919b0362d640b3816a2ed191">More...</a><br /></td></tr>
+<tr class="separator:a50a5ee20919b0362d640b3816a2ed191"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A container for the system's internal queues. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a2188698354f60dd3c365ba89e5c17bae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2188698354f60dd3c365ba89e5c17bae">&#9670;&nbsp;</a></span>sysqueues_count_enqueued_events()</h2>
+<a id="a7caa3edc1266d927d334b6b85af5ec95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7caa3edc1266d927d334b6b85af5ec95">&#9670;&nbsp;</a></span>uel_sysqueues_count_enqueued_events()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uintptr_t sysqueues_count_enqueued_events </td>
+          <td class="memname">uintptr_t uel_sysqueues_count_enqueued_events </td>
           <td>(</td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em></td><td>)</td>
           <td></td>
         </tr>
@@ -167,7 +166,7 @@ Functions</h2></td></tr>
 <p>Counts the number of elements in the event queue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">queues</td><td>The sysqueues_t instance whose event queue's elements should be counted </td></tr>
+    <tr><td class="paramname">queues</td><td>The uel_sysqueues_t instance whose event queue's elements should be counted </td></tr>
   </table>
   </dd>
 </dl>
@@ -175,16 +174,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aebbe860cbbc658ba30531fad5a9fceaa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebbe860cbbc658ba30531fad5a9fceaa">&#9670;&nbsp;</a></span>sysqueues_count_scheduled_events()</h2>
+<a id="a50a5ee20919b0362d640b3816a2ed191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50a5ee20919b0362d640b3816a2ed191">&#9670;&nbsp;</a></span>uel_sysqueues_count_scheduled_events()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uintptr_t sysqueues_count_scheduled_events </td>
+          <td class="memname">uintptr_t uel_sysqueues_count_scheduled_events </td>
           <td>(</td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em></td><td>)</td>
           <td></td>
         </tr>
@@ -194,7 +193,7 @@ Functions</h2></td></tr>
 <p>Counts the number of elements in the schedule queue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">queues</td><td>The sysqueues_t instance whose schedule queue's elements should be counted </td></tr>
+    <tr><td class="paramname">queues</td><td>The uel_sysqueues_t instance whose schedule queue's elements should be counted </td></tr>
   </table>
   </dd>
 </dl>
@@ -202,22 +201,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7330cf933d3cddf916d796a7e5848c16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7330cf933d3cddf916d796a7e5848c16">&#9670;&nbsp;</a></span>sysqueues_enqueue_event()</h2>
+<a id="ac58c61b4b8d432898a6c5b2a47b7d197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac58c61b4b8d432898a6c5b2a47b7d197">&#9670;&nbsp;</a></span>uel_sysqueues_enqueue_event()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sysqueues_enqueue_event </td>
+          <td class="memname">void uel_sysqueues_enqueue_event </td>
           <td>(</td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em>&#160;</td>
         </tr>
         <tr>
@@ -232,7 +231,7 @@ Functions</h2></td></tr>
 <p>This makes the event ready for colletion e processing by the event loop.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">queues</td><td>The sysqueues_t instance to be initialised </td></tr>
+    <tr><td class="paramname">queues</td><td>The uel_sysqueues_t instance to be initialised </td></tr>
     <tr><td class="paramname">event</td><td>The event to be enqueued </td></tr>
   </table>
   </dd>
@@ -240,16 +239,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a02d9a1eae7c2625083fe72311dc01950"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02d9a1eae7c2625083fe72311dc01950">&#9670;&nbsp;</a></span>sysqueues_get_enqueued_event()</h2>
+<a id="a897b9899eefbe90ac11e651b5117bfd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897b9899eefbe90ac11e651b5117bfd3">&#9670;&nbsp;</a></span>uel_sysqueues_get_enqueued_event()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">event_t* sysqueues_get_enqueued_event </td>
+          <td class="memname">uel_event_t* uel_sysqueues_get_enqueued_event </td>
           <td>(</td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em></td><td>)</td>
           <td></td>
         </tr>
@@ -259,7 +258,7 @@ Functions</h2></td></tr>
 <p>Pops an event from the event queue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">queues</td><td>The sysqueues_t instance from whose event queue the event must be popped. </td></tr>
+    <tr><td class="paramname">queues</td><td>The uel_sysqueues_t instance from whose event queue the event must be popped. </td></tr>
   </table>
   </dd>
 </dl>
@@ -267,16 +266,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1e00a97348719a8a357f5f0c305b034d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e00a97348719a8a357f5f0c305b034d">&#9670;&nbsp;</a></span>sysqueues_get_scheduled_event()</h2>
+<a id="a1730d1f7a7e86a3a79df40938fa9d735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1730d1f7a7e86a3a79df40938fa9d735">&#9670;&nbsp;</a></span>uel_sysqueues_get_scheduled_event()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">event_t* sysqueues_get_scheduled_event </td>
+          <td class="memname">uel_event_t* uel_sysqueues_get_scheduled_event </td>
           <td>(</td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em></td><td>)</td>
           <td></td>
         </tr>
@@ -286,7 +285,7 @@ Functions</h2></td></tr>
 <p>Pops an event from the schedule queue. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">queues</td><td>The sysqueues_t instance from whose schedule queue the event must be popped. </td></tr>
+    <tr><td class="paramname">queues</td><td>The uel_sysqueues_t instance from whose schedule queue the event must be popped. </td></tr>
   </table>
   </dd>
 </dl>
@@ -294,48 +293,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abed67e4f7c2c8dec08899920bcf31a6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abed67e4f7c2c8dec08899920bcf31a6a">&#9670;&nbsp;</a></span>sysqueues_init()</h2>
+<a id="aa988e6daddfd00129d56c1db350edc5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa988e6daddfd00129d56c1db350edc5a">&#9670;&nbsp;</a></span>uel_sysqueues_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sysqueues_init </td>
+          <td class="memname">void uel_sysqueues_init </td>
           <td>(</td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialises a new sysqueues_t. </p>
+<p>Initialises a new uel_sysqueues_t. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">queues</td><td>The sysqueues_t instance to be initialised </td></tr>
+    <tr><td class="paramname">queues</td><td>The uel_sysqueues_t instance to be initialised </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ae1444269bad4265fa8601813dcfbc7ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1444269bad4265fa8601813dcfbc7ef">&#9670;&nbsp;</a></span>sysqueues_schedule_event()</h2>
+<a id="ac14ac33abf67b93d8904e5ebb1218028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14ac33abf67b93d8904e5ebb1218028">&#9670;&nbsp;</a></span>uel_sysqueues_schedule_event()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sysqueues_schedule_event </td>
+          <td class="memname">void uel_sysqueues_schedule_event </td>
           <td>(</td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em>&#160;</td>
         </tr>
         <tr>
@@ -350,7 +349,7 @@ Functions</h2></td></tr>
 <p>This makes the event ready for collection and scheduling by the scheduler.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">queues</td><td>The sysqueues_t instance to be initialised </td></tr>
+    <tr><td class="paramname">queues</td><td>The uel_sysqueues_t instance to be initialised </td></tr>
     <tr><td class="paramname">event</td><td>The event to be scheduled </td></tr>
   </table>
   </dd>

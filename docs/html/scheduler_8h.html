@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -106,53 +105,53 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler.html">scheduler_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The scheduler object.  <a href="structscheduler.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__scheduler.html">uel_scheduer_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The scheduler object.  <a href="structuel__scheduler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac71114eccc00dabe5874fd70f1b0d78e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#ac71114eccc00dabe5874fd70f1b0d78e">sch_init</a> (scheduler_t *<a class="el" href="structscheduler.html">scheduler</a>, syspools_t *pools, sysqueues_t *queues)</td></tr>
-<tr class="memdesc:ac71114eccc00dabe5874fd70f1b0d78e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a scheduler object.  <a href="#ac71114eccc00dabe5874fd70f1b0d78e">More...</a><br /></td></tr>
-<tr class="separator:ac71114eccc00dabe5874fd70f1b0d78e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af81e4cc41f273ded2745a9040ca2e056"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#af81e4cc41f273ded2745a9040ca2e056">sch_run_later</a> (scheduler_t *<a class="el" href="structscheduler.html">scheduler</a>, uint16_t timeout_in_ms, closure_t <a class="el" href="structclosure.html">closure</a>)</td></tr>
-<tr class="memdesc:af81e4cc41f273ded2745a9040ca2e056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="#af81e4cc41f273ded2745a9040ca2e056">More...</a><br /></td></tr>
-<tr class="separator:af81e4cc41f273ded2745a9040ca2e056"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43e2339c242a52f788d74f30ce103ed4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a43e2339c242a52f788d74f30ce103ed4">sch_run_at_intervals</a> (scheduler_t *<a class="el" href="structscheduler.html">scheduler</a>, uint16_t interval_in_ms, bool immediate, closure_t <a class="el" href="structclosure.html">closure</a>)</td></tr>
-<tr class="memdesc:a43e2339c242a52f788d74f30ce103ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="#a43e2339c242a52f788d74f30ce103ed4">More...</a><br /></td></tr>
-<tr class="separator:a43e2339c242a52f788d74f30ce103ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a561a4b7cdcb445d42994da0eb9c160a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a561a4b7cdcb445d42994da0eb9c160a3">sch_manage_timers</a> (scheduler_t *<a class="el" href="structscheduler.html">scheduler</a>)</td></tr>
-<tr class="memdesc:a561a4b7cdcb445d42994da0eb9c160a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue timers that are due to be processed in the event queue.  <a href="#a561a4b7cdcb445d42994da0eb9c160a3">More...</a><br /></td></tr>
-<tr class="separator:a561a4b7cdcb445d42994da0eb9c160a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8869b94849a2ee9cb587aaade4a5c4d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a8869b94849a2ee9cb587aaade4a5c4d5">sch_update_timer</a> (scheduler_t *<a class="el" href="structscheduler.html">scheduler</a>, uint32_t timer)</td></tr>
-<tr class="memdesc:a8869b94849a2ee9cb587aaade4a5c4d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the internal time counter.  <a href="#a8869b94849a2ee9cb587aaade4a5c4d5">More...</a><br /></td></tr>
-<tr class="separator:a8869b94849a2ee9cb587aaade4a5c4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f4ae225987bb741ca824c83a96ce138"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a7f4ae225987bb741ca824c83a96ce138">uel_sch_init</a> (uel_scheduer_t *scheduler, uel_syspools_t *pools, uel_sysqueues_t *queues)</td></tr>
+<tr class="memdesc:a7f4ae225987bb741ca824c83a96ce138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a scheduler object.  <a href="#a7f4ae225987bb741ca824c83a96ce138">More...</a><br /></td></tr>
+<tr class="separator:a7f4ae225987bb741ca824c83a96ce138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a911ff88f32fa1cc40e15df35c69ab552"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a911ff88f32fa1cc40e15df35c69ab552">uel_sch_run_later</a> (uel_scheduer_t *scheduler, uint16_t timeout_in_ms, uel_closure_t closure)</td></tr>
+<tr class="memdesc:a911ff88f32fa1cc40e15df35c69ab552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="#a911ff88f32fa1cc40e15df35c69ab552">More...</a><br /></td></tr>
+<tr class="separator:a911ff88f32fa1cc40e15df35c69ab552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52746796720015683526e18af42103bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a52746796720015683526e18af42103bd">uel_sch_run_at_intervals</a> (uel_scheduer_t *scheduler, uint16_t interval_in_ms, bool immediate, uel_closure_t closure)</td></tr>
+<tr class="memdesc:a52746796720015683526e18af42103bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="#a52746796720015683526e18af42103bd">More...</a><br /></td></tr>
+<tr class="separator:a52746796720015683526e18af42103bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2666a61c55a518fd602cee03a014ed10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a2666a61c55a518fd602cee03a014ed10">uel_sch_manage_timers</a> (uel_scheduer_t *scheduler)</td></tr>
+<tr class="memdesc:a2666a61c55a518fd602cee03a014ed10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue timers that are due to be processed in the event queue.  <a href="#a2666a61c55a518fd602cee03a014ed10">More...</a><br /></td></tr>
+<tr class="separator:a2666a61c55a518fd602cee03a014ed10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a5a89adf45a470aed0e39925a256ea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a0a5a89adf45a470aed0e39925a256ea2">uel_sch_update_timer</a> (uel_scheduer_t *scheduler, uint32_t timer)</td></tr>
+<tr class="memdesc:a0a5a89adf45a470aed0e39925a256ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the internal time counter.  <a href="#a0a5a89adf45a470aed0e39925a256ea2">More...</a><br /></td></tr>
+<tr class="separator:a0a5a89adf45a470aed0e39925a256ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Module responsible for keeping track of time and tasks to be run in the future. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ac71114eccc00dabe5874fd70f1b0d78e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac71114eccc00dabe5874fd70f1b0d78e">&#9670;&nbsp;</a></span>sch_init()</h2>
+<a id="a7f4ae225987bb741ca824c83a96ce138"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f4ae225987bb741ca824c83a96ce138">&#9670;&nbsp;</a></span>uel_sch_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sch_init </td>
+          <td class="memname">void uel_sch_init </td>
           <td>(</td>
-          <td class="paramtype">scheduler_t *&#160;</td>
+          <td class="paramtype">uel_scheduer_t *&#160;</td>
           <td class="paramname"><em>scheduler</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramtype">uel_syspools_t *&#160;</td>
           <td class="paramname"><em>pools</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em>&#160;</td>
         </tr>
         <tr>
@@ -166,7 +165,7 @@ Functions</h2></td></tr>
 <p>Initialises a scheduler object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scheduler</td><td>The scheduler_t instance to be initialised </td></tr>
+    <tr><td class="paramname">scheduler</td><td>The uel_scheduer_t instance to be initialised </td></tr>
     <tr><td class="paramname">pools</td><td>The system's internal pools </td></tr>
     <tr><td class="paramname">queues</td><td>The system's internal queues </td></tr>
   </table>
@@ -175,16 +174,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a561a4b7cdcb445d42994da0eb9c160a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a561a4b7cdcb445d42994da0eb9c160a3">&#9670;&nbsp;</a></span>sch_manage_timers()</h2>
+<a id="a2666a61c55a518fd602cee03a014ed10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2666a61c55a518fd602cee03a014ed10">&#9670;&nbsp;</a></span>uel_sch_manage_timers()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sch_manage_timers </td>
+          <td class="memname">void uel_sch_manage_timers </td>
           <td>(</td>
-          <td class="paramtype">scheduler_t *&#160;</td>
+          <td class="paramtype">uel_scheduer_t *&#160;</td>
           <td class="paramname"><em>scheduler</em></td><td>)</td>
           <td></td>
         </tr>
@@ -195,23 +194,23 @@ Functions</h2></td></tr>
 <p>Checks, based on the current time counter, what timers should be enqueued for execution. Afterwards, enqueue them.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scheduler</td><td>The scheduler_t to manage </td></tr>
+    <tr><td class="paramname">scheduler</td><td>The uel_scheduer_t to manage </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a43e2339c242a52f788d74f30ce103ed4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43e2339c242a52f788d74f30ce103ed4">&#9670;&nbsp;</a></span>sch_run_at_intervals()</h2>
+<a id="a52746796720015683526e18af42103bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52746796720015683526e18af42103bd">&#9670;&nbsp;</a></span>uel_sch_run_at_intervals()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sch_run_at_intervals </td>
+          <td class="memname">void uel_sch_run_at_intervals </td>
           <td>(</td>
-          <td class="paramtype">scheduler_t *&#160;</td>
+          <td class="paramtype">uel_scheduer_t *&#160;</td>
           <td class="paramname"><em>scheduler</em>, </td>
         </tr>
         <tr>
@@ -229,7 +228,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t&#160;</td>
+          <td class="paramtype">uel_closure_t&#160;</td>
           <td class="paramname"><em>closure</em>&#160;</td>
         </tr>
         <tr>
@@ -243,7 +242,7 @@ Functions</h2></td></tr>
 <p>Enqueues a closure for execution at intervals. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scheduler</td><td>The scheduler_t into which the event will be registered </td></tr>
+    <tr><td class="paramname">scheduler</td><td>The uel_scheduer_t into which the event will be registered </td></tr>
     <tr><td class="paramname">interval_in_ms</td><td>The delay in milliseconds two executions of the closure </td></tr>
     <tr><td class="paramname">immediate</td><td>If this flag is set, the the event will be created with a due time to the current time. </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be invoked when the due time is reached </td></tr>
@@ -253,16 +252,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af81e4cc41f273ded2745a9040ca2e056"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af81e4cc41f273ded2745a9040ca2e056">&#9670;&nbsp;</a></span>sch_run_later()</h2>
+<a id="a911ff88f32fa1cc40e15df35c69ab552"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a911ff88f32fa1cc40e15df35c69ab552">&#9670;&nbsp;</a></span>uel_sch_run_later()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sch_run_later </td>
+          <td class="memname">void uel_sch_run_later </td>
           <td>(</td>
-          <td class="paramtype">scheduler_t *&#160;</td>
+          <td class="paramtype">uel_scheduer_t *&#160;</td>
           <td class="paramname"><em>scheduler</em>, </td>
         </tr>
         <tr>
@@ -274,7 +273,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t&#160;</td>
+          <td class="paramtype">uel_closure_t&#160;</td>
           <td class="paramname"><em>closure</em>&#160;</td>
         </tr>
         <tr>
@@ -288,7 +287,7 @@ Functions</h2></td></tr>
 <p>Enqueues a closure for later execution. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scheduler</td><td>The scheduler_t into which the event will be registered </td></tr>
+    <tr><td class="paramname">scheduler</td><td>The uel_scheduer_t into which the event will be registered </td></tr>
     <tr><td class="paramname">timeout_in_ms</td><td>The delay in milliseconds until the closure is run </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be invoked when the due time is reached </td></tr>
   </table>
@@ -297,16 +296,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8869b94849a2ee9cb587aaade4a5c4d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8869b94849a2ee9cb587aaade4a5c4d5">&#9670;&nbsp;</a></span>sch_update_timer()</h2>
+<a id="a0a5a89adf45a470aed0e39925a256ea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a5a89adf45a470aed0e39925a256ea2">&#9670;&nbsp;</a></span>uel_sch_update_timer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sch_update_timer </td>
+          <td class="memname">void uel_sch_update_timer </td>
           <td>(</td>
-          <td class="paramtype">scheduler_t *&#160;</td>
+          <td class="paramtype">uel_scheduer_t *&#160;</td>
           <td class="paramname"><em>scheduler</em>, </td>
         </tr>
         <tr>

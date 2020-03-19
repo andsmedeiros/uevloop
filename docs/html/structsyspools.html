@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>µEvLoop: syspools_t Struct Reference</title>
+<title>µEvLoop: uel_syspools_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -63,46 +62,44 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">syspools_t Struct Reference</div>  </div>
+<div class="title">uel_syspools_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>A container for the system pools.  
  <a href="structsyspools.html#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for syspools_t:</div>
+Collaboration diagram for uel_syspools_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structsyspools__coll__graph.png" border="0" usemap="#syspools__t_coll__map" alt="Collaboration graph"/></div>
-<map name="syspools__t_coll__map" id="syspools__t_coll__map">
-</map>
+<div class="center"><img src="structsyspools__coll__graph.png" border="0" usemap="#uel__syspools__t_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a46fbfba88fa2ea855611ebaa55b9c482"><td class="memItemLeft" align="right" valign="top"><a id="a46fbfba88fa2ea855611ebaa55b9c482"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a46fbfba88fa2ea855611ebaa55b9c482">event_pool_buffer</a> [<a class="el" href="system-pools_8h.html#a98a2d49990c567b5219a983c25d74182">SYSPOOLS_EVENT_POOL_SIZE</a> *sizeof(event_t)]</td></tr>
-<tr class="memdesc:a46fbfba88fa2ea855611ebaa55b9c482"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store events in the event pool. <br /></td></tr>
-<tr class="separator:a46fbfba88fa2ea855611ebaa55b9c482"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae200517dfad9f8eecf64ed5bcb358306"><td class="memItemLeft" align="right" valign="top"><a id="ae200517dfad9f8eecf64ed5bcb358306"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#ae200517dfad9f8eecf64ed5bcb358306">event_pool_queue_buffer</a> [<a class="el" href="system-pools_8h.html#a98a2d49990c567b5219a983c25d74182">SYSPOOLS_EVENT_POOL_SIZE</a>]</td></tr>
-<tr class="memdesc:ae200517dfad9f8eecf64ed5bcb358306"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store event pointers in the event pool queue. <br /></td></tr>
-<tr class="separator:ae200517dfad9f8eecf64ed5bcb358306"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada9c1bdfd5a04c2c0caf4bee636a7ec6"><td class="memItemLeft" align="right" valign="top"><a id="ada9c1bdfd5a04c2c0caf4bee636a7ec6"></a>
-objpool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#ada9c1bdfd5a04c2c0caf4bee636a7ec6">event_pool</a></td></tr>
-<tr class="memdesc:ada9c1bdfd5a04c2c0caf4bee636a7ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event pool object. Contains all the events used by the core. <br /></td></tr>
-<tr class="separator:ada9c1bdfd5a04c2c0caf4bee636a7ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af61eb2c66e973cff4cf7975512f71a7f"><td class="memItemLeft" align="right" valign="top"><a id="af61eb2c66e973cff4cf7975512f71a7f"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#af61eb2c66e973cff4cf7975512f71a7f">llist_node_pool_buffer</a> [<a class="el" href="system-pools_8h.html#a804b7e30eb898296f4b7be1e6e926c01">SYSPOOLS_LLIST_NODE_POOL_SIZE</a> *sizeof(llist_node_t)]</td></tr>
-<tr class="memdesc:af61eb2c66e973cff4cf7975512f71a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store llist nodes in the llist node pool. <br /></td></tr>
-<tr class="separator:af61eb2c66e973cff4cf7975512f71a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1377ef1669f2d2fc33dc26eee454aded"><td class="memItemLeft" align="right" valign="top"><a id="a1377ef1669f2d2fc33dc26eee454aded"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a1377ef1669f2d2fc33dc26eee454aded">llist_node_pool_queue_buffer</a> [<a class="el" href="system-pools_8h.html#a804b7e30eb898296f4b7be1e6e926c01">SYSPOOLS_LLIST_NODE_POOL_SIZE</a>]</td></tr>
-<tr class="memdesc:a1377ef1669f2d2fc33dc26eee454aded"><td class="mdescLeft">&#160;</td><td class="mdescRight">The budder used to store llist node pointers in the llist node pool queue. <br /></td></tr>
-<tr class="separator:a1377ef1669f2d2fc33dc26eee454aded"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62d871671627584205e83218b3668ed3"><td class="memItemLeft" align="right" valign="top"><a id="a62d871671627584205e83218b3668ed3"></a>
-objpool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a62d871671627584205e83218b3668ed3">llist_node_pool</a></td></tr>
-<tr class="memdesc:a62d871671627584205e83218b3668ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The llist node pool object. Contains all llist nodes used by the core. <br /></td></tr>
-<tr class="separator:a62d871671627584205e83218b3668ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae9b47623604d613f379342873517c7a"><td class="memItemLeft" align="right" valign="top"><a id="aae9b47623604d613f379342873517c7a"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#aae9b47623604d613f379342873517c7a">event_pool_buffer</a> [<a class="el" href="system-pools_8h.html#a338ddcefe15ac9790e2c246817b2bd86">UEL_SYSPOOLS_EVENT_POOL_SIZE</a> *sizeof(uel_event_t)]</td></tr>
+<tr class="memdesc:aae9b47623604d613f379342873517c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store events in the event pool. <br /></td></tr>
+<tr class="separator:aae9b47623604d613f379342873517c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab54b76b022a0bff944791ca2ed3e157a"><td class="memItemLeft" align="right" valign="top"><a id="ab54b76b022a0bff944791ca2ed3e157a"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#ab54b76b022a0bff944791ca2ed3e157a">event_pool_queue_buffer</a> [<a class="el" href="system-pools_8h.html#a338ddcefe15ac9790e2c246817b2bd86">UEL_SYSPOOLS_EVENT_POOL_SIZE</a>]</td></tr>
+<tr class="memdesc:ab54b76b022a0bff944791ca2ed3e157a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store event pointers in the event pool queue. <br /></td></tr>
+<tr class="separator:ab54b76b022a0bff944791ca2ed3e157a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1008e5647b9da5d4497d1d3dceadf1"><td class="memItemLeft" align="right" valign="top"><a id="ade1008e5647b9da5d4497d1d3dceadf1"></a>
+uel_objpool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#ade1008e5647b9da5d4497d1d3dceadf1">event_pool</a></td></tr>
+<tr class="memdesc:ade1008e5647b9da5d4497d1d3dceadf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event pool object. Contains all the events used by the core. <br /></td></tr>
+<tr class="separator:ade1008e5647b9da5d4497d1d3dceadf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5637091eb7dddc72852b72cebb2dac95"><td class="memItemLeft" align="right" valign="top"><a id="a5637091eb7dddc72852b72cebb2dac95"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a5637091eb7dddc72852b72cebb2dac95">llist_node_pool_buffer</a> [<a class="el" href="system-pools_8h.html#a5015b8b98a72b1642be11223dfd4b400">UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE</a> *sizeof(uel_llist_node_t)]</td></tr>
+<tr class="memdesc:a5637091eb7dddc72852b72cebb2dac95"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store llist nodes in the llist node pool. <br /></td></tr>
+<tr class="separator:a5637091eb7dddc72852b72cebb2dac95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d43157b64e89395ddf2ca93150c2de"><td class="memItemLeft" align="right" valign="top"><a id="ae6d43157b64e89395ddf2ca93150c2de"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#ae6d43157b64e89395ddf2ca93150c2de">llist_node_pool_queue_buffer</a> [<a class="el" href="system-pools_8h.html#a5015b8b98a72b1642be11223dfd4b400">UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE</a>]</td></tr>
+<tr class="memdesc:ae6d43157b64e89395ddf2ca93150c2de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The budder used to store llist node pointers in the llist node pool queue. <br /></td></tr>
+<tr class="separator:ae6d43157b64e89395ddf2ca93150c2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a333444479f17163fe541f84f88d8ce"><td class="memItemLeft" align="right" valign="top"><a id="a8a333444479f17163fe541f84f88d8ce"></a>
+uel_objpool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a8a333444479f17163fe541f84f88d8ce">llist_node_pool</a></td></tr>
+<tr class="memdesc:a8a333444479f17163fe541f84f88d8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The llist node pool object. Contains all llist nodes used by the core. <br /></td></tr>
+<tr class="separator:a8a333444479f17163fe541f84f88d8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A container for the system pools. </p>

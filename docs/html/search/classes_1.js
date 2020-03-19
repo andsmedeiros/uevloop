@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['closure',['closure',['../structclosure.html',1,'']]],
-  ['cqueue',['cqueue',['../structcqueue.html',1,'']]]
+  ['detail',['detail',['../unionevent_1_1detail.html',1,'event']]]
 ];

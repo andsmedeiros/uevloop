@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -105,41 +104,41 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevloop.html">evloop_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event loop object.  <a href="structevloop.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__evloop.html">uel_evloop_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event loop object.  <a href="structuel__evloop.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afad64158ebb99c0ce26604c7b54148f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#afad64158ebb99c0ce26604c7b54148f3">evloop_init</a> (evloop_t *event_loop, syspools_t *pools, sysqueues_t *queues)</td></tr>
-<tr class="memdesc:afad64158ebb99c0ce26604c7b54148f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an event loop.  <a href="#afad64158ebb99c0ce26604c7b54148f3">More...</a><br /></td></tr>
-<tr class="separator:afad64158ebb99c0ce26604c7b54148f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a342bd080e4ca3e4585437d7642d44ee2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a342bd080e4ca3e4585437d7642d44ee2">evloop_run</a> (evloop_t *event_loop)</td></tr>
-<tr class="memdesc:a342bd080e4ca3e4585437d7642d44ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers a runloop.  <a href="#a342bd080e4ca3e4585437d7642d44ee2">More...</a><br /></td></tr>
-<tr class="separator:a342bd080e4ca3e4585437d7642d44ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9297808d7ffc05da6358ce6672221b27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a9297808d7ffc05da6358ce6672221b27">evloop_enqueue_closure</a> (evloop_t *event_loop, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
-<tr class="memdesc:a9297808d7ffc05da6358ce6672221b27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure to be invoked.  <a href="#a9297808d7ffc05da6358ce6672221b27">More...</a><br /></td></tr>
-<tr class="separator:a9297808d7ffc05da6358ce6672221b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb6102256fd588588045a5743f07247d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#abb6102256fd588588045a5743f07247d">uel_evloop_init</a> (uel_evloop_t *event_loop, uel_syspools_t *pools, uel_sysqueues_t *queues)</td></tr>
+<tr class="memdesc:abb6102256fd588588045a5743f07247d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an event loop.  <a href="#abb6102256fd588588045a5743f07247d">More...</a><br /></td></tr>
+<tr class="separator:abb6102256fd588588045a5743f07247d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5371df9faa7072e1fd11470448de901"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#ad5371df9faa7072e1fd11470448de901">uel_evloop_run</a> (uel_evloop_t *event_loop)</td></tr>
+<tr class="memdesc:ad5371df9faa7072e1fd11470448de901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers a runloop.  <a href="#ad5371df9faa7072e1fd11470448de901">More...</a><br /></td></tr>
+<tr class="separator:ad5371df9faa7072e1fd11470448de901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d240b660b8380c7e18509b97ec1bea0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a5d240b660b8380c7e18509b97ec1bea0">uel_evloop_enqueue_closure</a> (uel_evloop_t *event_loop, uel_closure_t *closure)</td></tr>
+<tr class="memdesc:a5d240b660b8380c7e18509b97ec1bea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure to be invoked.  <a href="#a5d240b660b8380c7e18509b97ec1bea0">More...</a><br /></td></tr>
+<tr class="separator:a5d240b660b8380c7e18509b97ec1bea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Module responsible for running enqueued events and process them accordingly. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9297808d7ffc05da6358ce6672221b27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9297808d7ffc05da6358ce6672221b27">&#9670;&nbsp;</a></span>evloop_enqueue_closure()</h2>
+<a id="a5d240b660b8380c7e18509b97ec1bea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d240b660b8380c7e18509b97ec1bea0">&#9670;&nbsp;</a></span>uel_evloop_enqueue_closure()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void evloop_enqueue_closure </td>
+          <td class="memname">void uel_evloop_enqueue_closure </td>
           <td>(</td>
-          <td class="paramtype">evloop_t *&#160;</td>
+          <td class="paramtype">uel_evloop_t *&#160;</td>
           <td class="paramname"><em>event_loop</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t *&#160;</td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
           <td class="paramname"><em>closure</em>&#160;</td>
         </tr>
         <tr>
@@ -153,7 +152,7 @@ Functions</h2></td></tr>
 <p>Enqueues a closure to be invoked. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">event_loop</td><td>The evloop_t instance into which the closure will be enqueued </td></tr>
+    <tr><td class="paramname">event_loop</td><td>The uel_evloop_t instance into which the closure will be enqueued </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be enqueued </td></tr>
   </table>
   </dd>
@@ -161,28 +160,28 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afad64158ebb99c0ce26604c7b54148f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afad64158ebb99c0ce26604c7b54148f3">&#9670;&nbsp;</a></span>evloop_init()</h2>
+<a id="abb6102256fd588588045a5743f07247d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb6102256fd588588045a5743f07247d">&#9670;&nbsp;</a></span>uel_evloop_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void evloop_init </td>
+          <td class="memname">void uel_evloop_init </td>
           <td>(</td>
-          <td class="paramtype">evloop_t *&#160;</td>
+          <td class="paramtype">uel_evloop_t *&#160;</td>
           <td class="paramname"><em>event_loop</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">syspools_t *&#160;</td>
+          <td class="paramtype">uel_syspools_t *&#160;</td>
           <td class="paramname"><em>pools</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">sysqueues_t *&#160;</td>
+          <td class="paramtype">uel_sysqueues_t *&#160;</td>
           <td class="paramname"><em>queues</em>&#160;</td>
         </tr>
         <tr>
@@ -196,7 +195,7 @@ Functions</h2></td></tr>
 <p>Initialises an event loop. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">event_loop</td><td>The evloop_t instance to be initialised </td></tr>
+    <tr><td class="paramname">event_loop</td><td>The uel_evloop_t instance to be initialised </td></tr>
     <tr><td class="paramname">pools</td><td>The system's internal pools </td></tr>
     <tr><td class="paramname">queues</td><td>The system's internal queues </td></tr>
   </table>
@@ -205,16 +204,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a342bd080e4ca3e4585437d7642d44ee2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a342bd080e4ca3e4585437d7642d44ee2">&#9670;&nbsp;</a></span>evloop_run()</h2>
+<a id="ad5371df9faa7072e1fd11470448de901"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5371df9faa7072e1fd11470448de901">&#9670;&nbsp;</a></span>uel_evloop_run()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void evloop_run </td>
+          <td class="memname">void uel_evloop_run </td>
           <td>(</td>
-          <td class="paramtype">evloop_t *&#160;</td>
+          <td class="paramtype">uel_evloop_t *&#160;</td>
           <td class="paramname"><em>event_loop</em></td><td>)</td>
           <td></td>
         </tr>
@@ -226,7 +225,7 @@ Functions</h2></td></tr>
 <p>Each iteration of this cycle is called a runloop.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">event_loop</td><td>The evloop_t instance to be run </td></tr>
+    <tr><td class="paramname">event_loop</td><td>The uel_evloop_t instance to be run </td></tr>
   </table>
   </dd>
 </dl>

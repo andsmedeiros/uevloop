@@ -2,8 +2,8 @@
   * \brief Defines events and methods to configure events.
   */
 
-#ifndef EVENT_H
-#define	EVENT_H
+#ifndef UEL_EVENT_H
+#define	UEL_EVENT_H
 
 /// \cond
 #include <stdint.h>
@@ -14,14 +14,14 @@
 #include "../utils/linked-list.h"
 
 //! Possible types of events understood by the core
-enum event_type {
+enum uel_event_type {
     CLOSURE_EVENT,
     TIMER_EVENT,
     SIGNAL_EVENT,
     SIGNAL_LISTENER_EVENT
 };
-//! Alias to the event_type enum.
-typedef enum event_type event_type_t;
+//! Alias to the uel_event_type enum.
+typedef enum uel_event_type uel_event_type_t;
 
 /** \brief Events are special messages passed around the core.
   * They represent tasks to be run at some point by the system.
@@ -41,10 +41,10 @@ typedef enum event_type event_type_t;
   * Signal listeners are never meant to be sent there. In their case, the `repeating`
   * flag determines whether the signal should be able to fire multiple times or just once.
   */
-typedef struct event event_t;
+typedef struct event uel_event_t;
 struct event {
-    event_type_t type; //!< The type of the event, as defined by `event_type_t`
-    closure_t closure; //!< The closure to be invoked a.k.a. the action to be run
+    uel_event_type_t type; //!< The type of the event, as defined by `uel_event_type_t`
+    uel_closure_t closure; //!< The closure to be invoked a.k.a. the action to be run
     /** \brief Marks whether the event should be discarded after processing.
       * Closure events have no use for this flag
       */
@@ -63,7 +63,7 @@ struct event {
         //! Contains information related to an emitted `signal`.
         struct signal{
             uintptr_t value; //!< The integer value that identifies this signal
-            llist_t *listeners; //!< Reference to the signal listeners
+            uel_llist_t *listeners; //!< Reference to the signal listeners
         } signal; //!< The emission information of this event. Relevant only for signals
         //! Contains the context of a particular signal listener
         struct listener{
@@ -77,10 +77,10 @@ struct event {
 
 /** \brief Destroys an event
   *
-  * At the moment, all this does is invoke `closure_destroy` in the contained closure
+  * At the moment, all this does is invoke `uel_closure_destroy` in the contained closure
   * \param event The event to be destroyed
   */
-void event_destroy(event_t *event);
+void uel_event_destroy(uel_event_t *event);
 
 /** \brief Configures a closure event
   *
@@ -89,7 +89,7 @@ void event_destroy(event_t *event);
   * \param repeating Intructs the system whether should this event be disposed of
   * after processing
   */
-void event_config_closure(event_t *event, closure_t *closure, bool repeating);
+void uel_event_config_closure(uel_event_t *event, uel_closure_t *closure, bool repeating);
 
 /** \brief Configures a signal event
   *
@@ -98,10 +98,10 @@ void event_config_closure(event_t *event, closure_t *closure, bool repeating);
   * \param listeners The listeners associated to this signal
   * \param params The parameters associated with this signal emission
   */
-void event_config_signal(
-    event_t *event,
+void uel_event_config_signal(
+    uel_event_t *event,
     uintptr_t signal,
-    llist_t *listeners,
+    uel_llist_t *listeners,
     void *params
 );
 
@@ -112,7 +112,7 @@ void event_config_signal(
   * \param repeating Intructs the system whether should this event be disposed of
   * after processing
   */
-void event_config_signal_listener(event_t *event, closure_t *closure, bool repeating);
+void uel_event_config_signal_listener(uel_event_t *event, uel_closure_t *closure, bool repeating);
 
 /** \brief Configures a timer event
   * \param event The event to be configured
@@ -125,13 +125,13 @@ void event_config_signal_listener(event_t *event, closure_t *closure, bool repea
   * \param closure The closure to be invoked when the timer expires
   * \param current_time The current value set in the system counter.
   */
-void event_config_timer(
-    event_t *event,
+void uel_event_config_timer(
+    uel_event_t *event,
     uint16_t timeout_in_ms,
     bool repeating,
     bool immediate,
-    closure_t *closure,
+    uel_closure_t *closure,
     uint32_t current_time
 );
 
-#endif	/* EVENT_H */
+#endif	/* UEL_EVENT_H */

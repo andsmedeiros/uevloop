@@ -1,10 +1,14 @@
 <map id="src/utils/closure.h" name="src/utils/closure.h">
-<area shape="rect" id="node2" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="389,155,524,181"/>
-<area shape="rect" id="node6" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="422,326,585,353"/>
-<area shape="rect" id="node8" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="64,326,223,353"/>
-<area shape="rect" id="node10" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="886,326,1022,353"/>
-<area shape="rect" id="node16" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="522,80,661,107"/>
-<area shape="rect" id="node3" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="603,229,753,271"/>
-<area shape="rect" id="node13" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="428,229,579,271"/>
-<area shape="rect" id="node4" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="572,408,723,449"/>
+<area shape="rect" id="node2" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="445,155,580,181"/>
+<area shape="rect" id="node6" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="122,326,285,353"/>
+<area shape="rect" id="node8" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="536,326,695,353"/>
+<area shape="rect" id="node10" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="946,326,1082,353"/>
+<area shape="rect" id="node16" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="713,80,851,107"/>
+<area shape="rect" id="node17" href="$iterator_8h.html" title="Defines iterators, structures and functions suitable for enumerating other data structures. " alt="" coords="1033,155,1155,181"/>
+<area shape="rect" id="node18" href="$functional_8h.html" title="Contains helpers for composing and augumenting closures. " alt="" coords="1179,237,1318,263"/>
+<area shape="rect" id="node23" href="$conditional_8h.html" title="Contains definitions of functional conditionals, structures that act as if&#45;else constructs. " alt="" coords="1436,80,1581,107"/>
+<area shape="rect" id="node25" href="$pipeline_8h.html" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially, composing their functionality. " alt="" coords="1285,80,1412,107"/>
+<area shape="rect" id="node3" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="656,229,807,271"/>
+<area shape="rect" id="node13" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="429,229,580,271"/>
+<area shape="rect" id="node4" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="540,408,691,449"/>
 </map>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>µEvLoop: application_t Struct Reference</title>
+<title>µEvLoop: uel_application_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -63,50 +62,48 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">application_t Struct Reference</div>  </div>
+<div class="title">uel_application_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Top-level container for µEvLoop'd application.  
  <a href="structapplication.html#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for application_t:</div>
+Collaboration diagram for uel_application_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structapplication__coll__graph.png" border="0" usemap="#application__t_coll__map" alt="Collaboration graph"/></div>
-<map name="application__t_coll__map" id="application__t_coll__map">
-</map>
+<div class="center"><img src="structapplication__coll__graph.png" border="0" usemap="#uel__application__t_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a1203055b7eb22e07577ff7e7e08f2b8f"><td class="memItemLeft" align="right" valign="top"><a id="a1203055b7eb22e07577ff7e7e08f2b8f"></a>
-syspools_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a1203055b7eb22e07577ff7e7e08f2b8f">pools</a></td></tr>
-<tr class="memdesc:a1203055b7eb22e07577ff7e7e08f2b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system pools: events and llist nodes. <br /></td></tr>
-<tr class="separator:a1203055b7eb22e07577ff7e7e08f2b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea9eb95c4c5f99ebcf12ae714e97879a"><td class="memItemLeft" align="right" valign="top"><a id="aea9eb95c4c5f99ebcf12ae714e97879a"></a>
-sysqueues_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#aea9eb95c4c5f99ebcf12ae714e97879a">queues</a></td></tr>
-<tr class="memdesc:aea9eb95c4c5f99ebcf12ae714e97879a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system event queues. <br /></td></tr>
-<tr class="separator:aea9eb95c4c5f99ebcf12ae714e97879a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadac22f80a51ed8ced6f47978a0a35de"><td class="memItemLeft" align="right" valign="top"><a id="aadac22f80a51ed8ced6f47978a0a35de"></a>
-evloop_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#aadac22f80a51ed8ced6f47978a0a35de">event_loop</a></td></tr>
-<tr class="memdesc:aadac22f80a51ed8ced6f47978a0a35de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's event loop. <br /></td></tr>
-<tr class="separator:aadac22f80a51ed8ced6f47978a0a35de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac273576a40bf70daaeb8e3d5292ac32d"><td class="memItemLeft" align="right" valign="top"><a id="ac273576a40bf70daaeb8e3d5292ac32d"></a>
-scheduler_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#ac273576a40bf70daaeb8e3d5292ac32d">scheduler</a></td></tr>
-<tr class="memdesc:ac273576a40bf70daaeb8e3d5292ac32d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The applications's scheduler;. <br /></td></tr>
-<tr class="separator:ac273576a40bf70daaeb8e3d5292ac32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acefadc6df12d91fa806364e885bf897b"><td class="memItemLeft" align="right" valign="top"><a id="acefadc6df12d91fa806364e885bf897b"></a>
-signal_relay_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#acefadc6df12d91fa806364e885bf897b">relay</a></td></tr>
-<tr class="memdesc:acefadc6df12d91fa806364e885bf897b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unused. <br /></td></tr>
-<tr class="separator:acefadc6df12d91fa806364e885bf897b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc39fc2b11899ddcdb32e53ea2ad9b05"><td class="memItemLeft" align="right" valign="top"><a id="adc39fc2b11899ddcdb32e53ea2ad9b05"></a>
-llist_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#adc39fc2b11899ddcdb32e53ea2ad9b05">relay_buffer</a> [APP_EVENT_COUNT]</td></tr>
-<tr class="memdesc:adc39fc2b11899ddcdb32e53ea2ad9b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unused. <br /></td></tr>
-<tr class="separator:adc39fc2b11899ddcdb32e53ea2ad9b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24f738e140b391135a4f2d5f710d48d2"><td class="memItemLeft" align="right" valign="top"><a id="a24f738e140b391135a4f2d5f710d48d2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a24f738e140b391135a4f2d5f710d48d2">run_scheduler</a></td></tr>
-<tr class="memdesc:a24f738e140b391135a4f2d5f710d48d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks when it's time to wake the scheduler. <br /></td></tr>
-<tr class="separator:a24f738e140b391135a4f2d5f710d48d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af74c95c7a5b2c751e83a3bb6a5404e99"><td class="memItemLeft" align="right" valign="top"><a id="af74c95c7a5b2c751e83a3bb6a5404e99"></a>
+uel_syspools_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#af74c95c7a5b2c751e83a3bb6a5404e99">pools</a></td></tr>
+<tr class="memdesc:af74c95c7a5b2c751e83a3bb6a5404e99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system pools: events and llist nodes. <br /></td></tr>
+<tr class="separator:af74c95c7a5b2c751e83a3bb6a5404e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a461dd6893eb70ee86bac7c43a9a86578"><td class="memItemLeft" align="right" valign="top"><a id="a461dd6893eb70ee86bac7c43a9a86578"></a>
+uel_sysqueues_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a461dd6893eb70ee86bac7c43a9a86578">queues</a></td></tr>
+<tr class="memdesc:a461dd6893eb70ee86bac7c43a9a86578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system event queues. <br /></td></tr>
+<tr class="separator:a461dd6893eb70ee86bac7c43a9a86578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a206cef9bc1164781d91a883a38b0f0d9"><td class="memItemLeft" align="right" valign="top"><a id="a206cef9bc1164781d91a883a38b0f0d9"></a>
+uel_evloop_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a206cef9bc1164781d91a883a38b0f0d9">event_loop</a></td></tr>
+<tr class="memdesc:a206cef9bc1164781d91a883a38b0f0d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's event loop. <br /></td></tr>
+<tr class="separator:a206cef9bc1164781d91a883a38b0f0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a977b88c48d61a8688773b062f74fc78c"><td class="memItemLeft" align="right" valign="top"><a id="a977b88c48d61a8688773b062f74fc78c"></a>
+uel_scheduer_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a977b88c48d61a8688773b062f74fc78c">scheduler</a></td></tr>
+<tr class="memdesc:a977b88c48d61a8688773b062f74fc78c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The applications's scheduler;. <br /></td></tr>
+<tr class="separator:a977b88c48d61a8688773b062f74fc78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f1ffb5e716efc10ffd63968098ce2eb"><td class="memItemLeft" align="right" valign="top"><a id="a5f1ffb5e716efc10ffd63968098ce2eb"></a>
+uel_signal_relay_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a5f1ffb5e716efc10ffd63968098ce2eb">relay</a></td></tr>
+<tr class="memdesc:a5f1ffb5e716efc10ffd63968098ce2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unused. <br /></td></tr>
+<tr class="separator:a5f1ffb5e716efc10ffd63968098ce2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dc1aab92e88e5776d1013b4eb35ec5e"><td class="memItemLeft" align="right" valign="top"><a id="a4dc1aab92e88e5776d1013b4eb35ec5e"></a>
+uel_llist_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a4dc1aab92e88e5776d1013b4eb35ec5e">relay_buffer</a> [UEL_APP_EVENT_COUNT]</td></tr>
+<tr class="memdesc:a4dc1aab92e88e5776d1013b4eb35ec5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unused. <br /></td></tr>
+<tr class="separator:a4dc1aab92e88e5776d1013b4eb35ec5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66b5adaa8603cec1f8072d43cc582f5"><td class="memItemLeft" align="right" valign="top"><a id="ad66b5adaa8603cec1f8072d43cc582f5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#ad66b5adaa8603cec1f8072d43cc582f5">run_scheduler</a></td></tr>
+<tr class="memdesc:ad66b5adaa8603cec1f8072d43cc582f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks when it's time to wake the scheduler. <br /></td></tr>
+<tr class="separator:ad66b5adaa8603cec1f8072d43cc582f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Top-level container for µEvLoop'd application. </p>

@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -93,53 +92,53 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcqueue.html">cqueue_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a circular queue of void pointers.  <a href="structcqueue.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__cqueue.html">uel_cqueue_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a circular queue of void pointers.  <a href="structuel__cqueue.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a39b3eee4b6d829de97f24b32e577f84c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a39b3eee4b6d829de97f24b32e577f84c">cqueue_init</a> (cqueue_t *queue, void **buffer, uintptr_t size_log2n)</td></tr>
-<tr class="memdesc:a39b3eee4b6d829de97f24b32e577f84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialised a circular queue object.  <a href="#a39b3eee4b6d829de97f24b32e577f84c">More...</a><br /></td></tr>
-<tr class="separator:a39b3eee4b6d829de97f24b32e577f84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac917314e783ce943bfeab05242785191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#ac917314e783ce943bfeab05242785191">cqueue_clear</a> (cqueue_t *queue, bool clear_buffer)</td></tr>
-<tr class="memdesc:ac917314e783ce943bfeab05242785191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empties a queue by resetting its tail and count values.  <a href="#ac917314e783ce943bfeab05242785191">More...</a><br /></td></tr>
-<tr class="separator:ac917314e783ce943bfeab05242785191"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2113f1bc7990d617f720e7b3f8fe6d31"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a2113f1bc7990d617f720e7b3f8fe6d31">cqueue_push</a> (cqueue_t *queue, void *element)</td></tr>
-<tr class="memdesc:a2113f1bc7990d617f720e7b3f8fe6d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes an element into the queue.  <a href="#a2113f1bc7990d617f720e7b3f8fe6d31">More...</a><br /></td></tr>
-<tr class="separator:a2113f1bc7990d617f720e7b3f8fe6d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1684e7b47c00fab34aa17adf2d7ce996"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a1684e7b47c00fab34aa17adf2d7ce996">cqueue_pop</a> (cqueue_t *queue)</td></tr>
-<tr class="memdesc:a1684e7b47c00fab34aa17adf2d7ce996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops an element from the queue.  <a href="#a1684e7b47c00fab34aa17adf2d7ce996">More...</a><br /></td></tr>
-<tr class="separator:a1684e7b47c00fab34aa17adf2d7ce996"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1606097cd9c4e106886572cc0565688c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a1606097cd9c4e106886572cc0565688c">cqueue_peek_tail</a> (cqueue_t *queue)</td></tr>
-<tr class="memdesc:a1606097cd9c4e106886572cc0565688c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peeks the tail of the queue, where the oldest element is enqueued. This is the element that will be returned on the next pop operation.  <a href="#a1606097cd9c4e106886572cc0565688c">More...</a><br /></td></tr>
-<tr class="separator:a1606097cd9c4e106886572cc0565688c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5138a0282014f950329beb745b5d3904"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a5138a0282014f950329beb745b5d3904">cqueue_peek_head</a> (cqueue_t *queue)</td></tr>
-<tr class="memdesc:a5138a0282014f950329beb745b5d3904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peeks the head of the queue, where the newest element is enqueued. This is the element that was enqueued on the last push operation.  <a href="#a5138a0282014f950329beb745b5d3904">More...</a><br /></td></tr>
-<tr class="separator:a5138a0282014f950329beb745b5d3904"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14c5d2843c43f446e1a00f5c976b1369"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a14c5d2843c43f446e1a00f5c976b1369">cqueue_is_full</a> (cqueue_t *queue)</td></tr>
-<tr class="memdesc:a14c5d2843c43f446e1a00f5c976b1369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the queue is full.  <a href="#a14c5d2843c43f446e1a00f5c976b1369">More...</a><br /></td></tr>
-<tr class="separator:a14c5d2843c43f446e1a00f5c976b1369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c681c321f51fb19eb127673860bf020"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a4c681c321f51fb19eb127673860bf020">cqueue_is_empty</a> (cqueue_t *queue)</td></tr>
-<tr class="memdesc:a4c681c321f51fb19eb127673860bf020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the queue is empty. Use this before popping from the queue.  <a href="#a4c681c321f51fb19eb127673860bf020">More...</a><br /></td></tr>
-<tr class="separator:a4c681c321f51fb19eb127673860bf020"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6bfadb159a25ba36d41feb280ac635d"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#aa6bfadb159a25ba36d41feb280ac635d">cqueue_count</a> (cqueue_t *queue)</td></tr>
-<tr class="memdesc:aa6bfadb159a25ba36d41feb280ac635d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number o elements in the queue.  <a href="#aa6bfadb159a25ba36d41feb280ac635d">More...</a><br /></td></tr>
-<tr class="separator:aa6bfadb159a25ba36d41feb280ac635d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf451cae31642c456faada2501a4977e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#acf451cae31642c456faada2501a4977e">uel_cqueue_init</a> (uel_cqueue_t *queue, void **buffer, uintptr_t size_log2n)</td></tr>
+<tr class="memdesc:acf451cae31642c456faada2501a4977e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialised a circular queue object.  <a href="#acf451cae31642c456faada2501a4977e">More...</a><br /></td></tr>
+<tr class="separator:acf451cae31642c456faada2501a4977e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df6047e956a849653bc6fe980706a07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a8df6047e956a849653bc6fe980706a07">uel_cqueue_clear</a> (uel_cqueue_t *queue, bool clear_buffer)</td></tr>
+<tr class="memdesc:a8df6047e956a849653bc6fe980706a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empties a queue by resetting its tail and count values.  <a href="#a8df6047e956a849653bc6fe980706a07">More...</a><br /></td></tr>
+<tr class="separator:a8df6047e956a849653bc6fe980706a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae65acd13845cdd8e2492201538c2e968"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#ae65acd13845cdd8e2492201538c2e968">uel_cqueue_push</a> (uel_cqueue_t *queue, void *element)</td></tr>
+<tr class="memdesc:ae65acd13845cdd8e2492201538c2e968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes an element into the queue.  <a href="#ae65acd13845cdd8e2492201538c2e968">More...</a><br /></td></tr>
+<tr class="separator:ae65acd13845cdd8e2492201538c2e968"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a818331aa6bf56e977f7a95d996e9009d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a818331aa6bf56e977f7a95d996e9009d">uel_cqueue_pop</a> (uel_cqueue_t *queue)</td></tr>
+<tr class="memdesc:a818331aa6bf56e977f7a95d996e9009d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops an element from the queue.  <a href="#a818331aa6bf56e977f7a95d996e9009d">More...</a><br /></td></tr>
+<tr class="separator:a818331aa6bf56e977f7a95d996e9009d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf2d52fbe078fc80ef8e6119d12155ff"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#aaf2d52fbe078fc80ef8e6119d12155ff">uel_cqueue_peek_tail</a> (uel_cqueue_t *queue)</td></tr>
+<tr class="memdesc:aaf2d52fbe078fc80ef8e6119d12155ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peeks the tail of the queue, where the oldest element is enqueued. This is the element that will be returned on the next pop operation.  <a href="#aaf2d52fbe078fc80ef8e6119d12155ff">More...</a><br /></td></tr>
+<tr class="separator:aaf2d52fbe078fc80ef8e6119d12155ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d23ce639b076f853247a62670cfae30"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a8d23ce639b076f853247a62670cfae30">uel_cqueue_peek_head</a> (uel_cqueue_t *queue)</td></tr>
+<tr class="memdesc:a8d23ce639b076f853247a62670cfae30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peeks the head of the queue, where the newest element is enqueued. This is the element that was enqueued on the last push operation.  <a href="#a8d23ce639b076f853247a62670cfae30">More...</a><br /></td></tr>
+<tr class="separator:a8d23ce639b076f853247a62670cfae30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab1a212bf38b1578f9df769b65437e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#a8ab1a212bf38b1578f9df769b65437e3">uel_cqueue_is_full</a> (uel_cqueue_t *queue)</td></tr>
+<tr class="memdesc:a8ab1a212bf38b1578f9df769b65437e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the queue is full.  <a href="#a8ab1a212bf38b1578f9df769b65437e3">More...</a><br /></td></tr>
+<tr class="separator:a8ab1a212bf38b1578f9df769b65437e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcd173ac88be8796deacdff15aa0e964"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#abcd173ac88be8796deacdff15aa0e964">uel_cqueue_is_empty</a> (uel_cqueue_t *queue)</td></tr>
+<tr class="memdesc:abcd173ac88be8796deacdff15aa0e964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the queue is empty. Use this before popping from the queue.  <a href="#abcd173ac88be8796deacdff15aa0e964">More...</a><br /></td></tr>
+<tr class="separator:abcd173ac88be8796deacdff15aa0e964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5efb7d3f6579abf94ae15c83cbcde40"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circular-queue_8h.html#ad5efb7d3f6579abf94ae15c83cbcde40">uel_cqueue_count</a> (uel_cqueue_t *queue)</td></tr>
+<tr class="memdesc:ad5efb7d3f6579abf94ae15c83cbcde40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number o elements in the queue.  <a href="#ad5efb7d3f6579abf94ae15c83cbcde40">More...</a><br /></td></tr>
+<tr class="separator:ad5efb7d3f6579abf94ae15c83cbcde40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines circular queues, fast and efficient FIFO data structures. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ac917314e783ce943bfeab05242785191"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac917314e783ce943bfeab05242785191">&#9670;&nbsp;</a></span>cqueue_clear()</h2>
+<a id="a8df6047e956a849653bc6fe980706a07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df6047e956a849653bc6fe980706a07">&#9670;&nbsp;</a></span>uel_cqueue_clear()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void cqueue_clear </td>
+          <td class="memname">void uel_cqueue_clear </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em>, </td>
         </tr>
         <tr>
@@ -167,16 +166,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa6bfadb159a25ba36d41feb280ac635d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6bfadb159a25ba36d41feb280ac635d">&#9670;&nbsp;</a></span>cqueue_count()</h2>
+<a id="ad5efb7d3f6579abf94ae15c83cbcde40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5efb7d3f6579abf94ae15c83cbcde40">&#9670;&nbsp;</a></span>uel_cqueue_count()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uintptr_t cqueue_count </td>
+          <td class="memname">uintptr_t uel_cqueue_count </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -194,16 +193,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a39b3eee4b6d829de97f24b32e577f84c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39b3eee4b6d829de97f24b32e577f84c">&#9670;&nbsp;</a></span>cqueue_init()</h2>
+<a id="acf451cae31642c456faada2501a4977e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf451cae31642c456faada2501a4977e">&#9670;&nbsp;</a></span>uel_cqueue_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void cqueue_init </td>
+          <td class="memname">void uel_cqueue_init </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em>, </td>
         </tr>
         <tr>
@@ -238,16 +237,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4c681c321f51fb19eb127673860bf020"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c681c321f51fb19eb127673860bf020">&#9670;&nbsp;</a></span>cqueue_is_empty()</h2>
+<a id="abcd173ac88be8796deacdff15aa0e964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcd173ac88be8796deacdff15aa0e964">&#9670;&nbsp;</a></span>uel_cqueue_is_empty()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool cqueue_is_empty </td>
+          <td class="memname">bool uel_cqueue_is_empty </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -265,16 +264,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a14c5d2843c43f446e1a00f5c976b1369"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14c5d2843c43f446e1a00f5c976b1369">&#9670;&nbsp;</a></span>cqueue_is_full()</h2>
+<a id="a8ab1a212bf38b1578f9df769b65437e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ab1a212bf38b1578f9df769b65437e3">&#9670;&nbsp;</a></span>uel_cqueue_is_full()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool cqueue_is_full </td>
+          <td class="memname">bool uel_cqueue_is_full </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -292,16 +291,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5138a0282014f950329beb745b5d3904"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5138a0282014f950329beb745b5d3904">&#9670;&nbsp;</a></span>cqueue_peek_head()</h2>
+<a id="a8d23ce639b076f853247a62670cfae30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d23ce639b076f853247a62670cfae30">&#9670;&nbsp;</a></span>uel_cqueue_peek_head()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* cqueue_peek_head </td>
+          <td class="memname">void* uel_cqueue_peek_head </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -319,16 +318,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1606097cd9c4e106886572cc0565688c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1606097cd9c4e106886572cc0565688c">&#9670;&nbsp;</a></span>cqueue_peek_tail()</h2>
+<a id="aaf2d52fbe078fc80ef8e6119d12155ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf2d52fbe078fc80ef8e6119d12155ff">&#9670;&nbsp;</a></span>uel_cqueue_peek_tail()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* cqueue_peek_tail </td>
+          <td class="memname">void* uel_cqueue_peek_tail </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -346,16 +345,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1684e7b47c00fab34aa17adf2d7ce996"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1684e7b47c00fab34aa17adf2d7ce996">&#9670;&nbsp;</a></span>cqueue_pop()</h2>
+<a id="a818331aa6bf56e977f7a95d996e9009d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a818331aa6bf56e977f7a95d996e9009d">&#9670;&nbsp;</a></span>uel_cqueue_pop()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* cqueue_pop </td>
+          <td class="memname">void* uel_cqueue_pop </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -373,16 +372,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2113f1bc7990d617f720e7b3f8fe6d31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2113f1bc7990d617f720e7b3f8fe6d31">&#9670;&nbsp;</a></span>cqueue_push()</h2>
+<a id="ae65acd13845cdd8e2492201538c2e968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae65acd13845cdd8e2492201538c2e968">&#9670;&nbsp;</a></span>uel_cqueue_push()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool cqueue_push </td>
+          <td class="memname">bool uel_cqueue_push </td>
           <td>(</td>
-          <td class="paramtype">cqueue_t *&#160;</td>
+          <td class="paramtype">uel_cqueue_t *&#160;</td>
           <td class="paramname"><em>queue</em>, </td>
         </tr>
         <tr>

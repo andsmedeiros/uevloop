@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>µEvLoop: event_t Struct Reference</title>
+<title>µEvLoop: uel_event_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -64,21 +63,21 @@ $(function() {
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">event_t Struct Reference</div>  </div>
+<div class="title">uel_event_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Events are special messages passed around the core. They represent tasks to be run at some point by the system.  
  <a href="structevent.html#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for event_t:</div>
+Collaboration diagram for uel_event_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structevent__coll__graph.png" border="0" usemap="#event__t_coll__map" alt="Collaboration graph"/></div>
-<map name="event__t_coll__map" id="event__t_coll__map">
-<area shape="rect" id="node2" href="unionevent_1_1detail.html" title="event_t::detail" alt="" coords="289,184,393,211"/>
-<area shape="rect" id="node3" href="structevent_1_1detail_1_1signal.html" title="Contains information related to an emitted signal. " alt="" coords="206,95,353,121"/>
-<area shape="rect" id="node6" href="structevent_1_1detail_1_1timer.html" title="Contains information suitable for scheduling an event at the scheduler. " alt="" coords="41,95,182,121"/>
-<area shape="rect" id="node9" href="structevent_1_1detail_1_1listener.html" title="Contains the context of a particular signal listener. " alt="" coords="377,95,531,121"/>
+<div class="center"><img src="structevent__coll__graph.png" border="0" usemap="#uel__event__t_coll__map" alt="Collaboration graph"/></div>
+<map name="uel__event__t_coll__map" id="uel__event__t_coll__map">
+<area shape="rect" id="node2" href="unionevent_1_1detail.html" title="uel_event_t::detail" alt="" coords="447,147,575,173"/>
+<area shape="rect" id="node3" href="structevent_1_1detail_1_1signal.html" title="Contains information related to an emitted signal. " alt="" coords="204,49,332,90"/>
+<area shape="rect" id="node6" href="structevent_1_1detail_1_1timer.html" title="Contains information suitable for scheduling an event at the scheduler. " alt="" coords="204,114,332,155"/>
+<area shape="rect" id="node9" href="structevent_1_1detail_1_1listener.html" title="Contains the context of a particular signal listener. " alt="" coords="204,179,332,221"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -89,22 +88,22 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a790a1af3e065d9fff7742aa5e0685b39"><td class="memItemLeft" align="right" valign="top"><a id="a790a1af3e065d9fff7742aa5e0685b39"></a>
-<a class="el" href="event_8h.html#aa34399f2f041fedcb9f1b437896cfcc7">event_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a790a1af3e065d9fff7742aa5e0685b39">type</a></td></tr>
-<tr class="memdesc:a790a1af3e065d9fff7742aa5e0685b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the event, as defined by <code>event_type_t</code> <br /></td></tr>
-<tr class="separator:a790a1af3e065d9fff7742aa5e0685b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a289dbb002d924fd2a9672bffd09bbdb4"><td class="memItemLeft" align="right" valign="top"><a id="a289dbb002d924fd2a9672bffd09bbdb4"></a>
-closure_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a289dbb002d924fd2a9672bffd09bbdb4">closure</a></td></tr>
-<tr class="memdesc:a289dbb002d924fd2a9672bffd09bbdb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The closure to be invoked a.k.a. the action to be run. <br /></td></tr>
-<tr class="separator:a289dbb002d924fd2a9672bffd09bbdb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1f2d27cf687939d4548c067ff691e9b"><td class="memItemLeft" align="right" valign="top"><a id="ad1f2d27cf687939d4548c067ff691e9b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#ad1f2d27cf687939d4548c067ff691e9b">repeating</a></td></tr>
-<tr class="memdesc:ad1f2d27cf687939d4548c067ff691e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks whether the event should be discarded after processing. Closure events have no use for this flag. <br /></td></tr>
-<tr class="separator:ad1f2d27cf687939d4548c067ff691e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66e4b6c4aa0c5b36887377c6570ce289"><td class="memItemLeft" align="right" valign="top"><a id="a66e4b6c4aa0c5b36887377c6570ce289"></a>
-union <a class="el" href="unionevent_1_1detail.html">event::detail</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a66e4b6c4aa0c5b36887377c6570ce289">detail</a></td></tr>
-<tr class="memdesc:a66e4b6c4aa0c5b36887377c6570ce289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents speciffic detail on a event depending on its type. <br /></td></tr>
-<tr class="separator:a66e4b6c4aa0c5b36887377c6570ce289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22c24ebb438dfad40f977484a1fa7a35"><td class="memItemLeft" align="right" valign="top"><a id="a22c24ebb438dfad40f977484a1fa7a35"></a>
+<a class="el" href="event_8h.html#a04647f8821482fc8f635924fc2f1539b">uel_event_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a22c24ebb438dfad40f977484a1fa7a35">type</a></td></tr>
+<tr class="memdesc:a22c24ebb438dfad40f977484a1fa7a35"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the event, as defined by <code>uel_event_type_t</code> <br /></td></tr>
+<tr class="separator:a22c24ebb438dfad40f977484a1fa7a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac834e055b38447126d27c0dec51498c"><td class="memItemLeft" align="right" valign="top"><a id="aac834e055b38447126d27c0dec51498c"></a>
+uel_closure_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#aac834e055b38447126d27c0dec51498c">closure</a></td></tr>
+<tr class="memdesc:aac834e055b38447126d27c0dec51498c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The closure to be invoked a.k.a. the action to be run. <br /></td></tr>
+<tr class="separator:aac834e055b38447126d27c0dec51498c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67fa1b9a469d09599d2931769862d07b"><td class="memItemLeft" align="right" valign="top"><a id="a67fa1b9a469d09599d2931769862d07b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a67fa1b9a469d09599d2931769862d07b">repeating</a></td></tr>
+<tr class="memdesc:a67fa1b9a469d09599d2931769862d07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks whether the event should be discarded after processing. Closure events have no use for this flag. <br /></td></tr>
+<tr class="separator:a67fa1b9a469d09599d2931769862d07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ec9daba3630f5b523a89d34f7f3767"><td class="memItemLeft" align="right" valign="top"><a id="a88ec9daba3630f5b523a89d34f7f3767"></a>
+union <a class="el" href="unionevent_1_1detail.html">event::detail</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html#a88ec9daba3630f5b523a89d34f7f3767">detail</a></td></tr>
+<tr class="memdesc:a88ec9daba3630f5b523a89d34f7f3767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents speciffic detail on a event depending on its type. <br /></td></tr>
+<tr class="separator:a88ec9daba3630f5b523a89d34f7f3767"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Events are special messages passed around the core. They represent tasks to be run at some point by the system. </p>

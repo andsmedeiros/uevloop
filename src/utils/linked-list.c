@@ -5,12 +5,12 @@
 #include <stdlib.h>
 /// \endcond
 
-void llist_init(llist_t *list){
+void uel_llist_init(uel_llist_t *list){
     list->head = list->tail = NULL;
     list->count = 0;
 }
 
-void llist_push_head(llist_t *list, llist_node_t *node){
+void uel_llist_push_head(uel_llist_t *list, uel_llist_node_t *node){
     node->next = NULL;
     if(list->head != NULL){
         list->head->next = node;
@@ -22,7 +22,7 @@ void llist_push_head(llist_t *list, llist_node_t *node){
     list->count++;
 }
 
-void llist_push_tail(llist_t *list, llist_node_t *node){
+void uel_llist_push_tail(uel_llist_t *list, uel_llist_node_t *node){
     node->next = list->tail;
     if(list->head == NULL){
         list->head = node;
@@ -31,10 +31,10 @@ void llist_push_tail(llist_t *list, llist_node_t *node){
     list->count++;
 }
 
-llist_node_t *llist_pop_head(llist_t *list){
+uel_llist_node_t *uel_llist_pop_head(uel_llist_t *list){
     if(list->head == NULL) return NULL;
 
-    llist_node_t *current = list->tail, *head = list->head;
+    uel_llist_node_t *current = list->tail, *head = list->head;
     while(current->next != head && current->next != NULL){
         current = current->next;
     }
@@ -44,30 +44,30 @@ llist_node_t *llist_pop_head(llist_t *list){
     return head;
 }
 
-llist_node_t *llist_pop_tail(llist_t *list){
+uel_llist_node_t *uel_llist_pop_tail(uel_llist_t *list){
     if(list->tail == NULL) return NULL;
 
-    llist_node_t *tail = list->tail;
+    uel_llist_node_t *tail = list->tail;
     list->tail = list->tail->next;
     list->count--;
     return tail;
 }
 
-llist_node_t *llist_peek_head(llist_t *list){
+uel_llist_node_t *uel_llist_peek_head(uel_llist_t *list){
     return list->head;
 }
-llist_node_t *llist_peek_tail(llist_t *list){
+uel_llist_node_t *uel_llist_peek_tail(uel_llist_t *list){
     return list->tail;
 }
 
-bool llist_remove(llist_t *list, llist_node_t *node){
+bool uel_llist_remove(uel_llist_t *list, uel_llist_node_t *node){
     if(node == list->tail){
         list->tail = node->next;
         list->count--;
         return true;
     }
 
-    llist_node_t *current = list->tail;
+    uel_llist_node_t *current = list->tail;
     while(current != NULL){
         if(current->next == node){
             current->next = node->next;
@@ -80,37 +80,37 @@ bool llist_remove(llist_t *list, llist_node_t *node){
     return false;
 }
 
-llist_t llist_remove_while(llist_t *list, closure_t *should_remove){
-    llist_t removed;
-    llist_init(&removed);
+uel_llist_t uel_llist_remove_while(uel_llist_t *list, uel_closure_t *should_remove){
+    uel_llist_t removed;
+    uel_llist_init(&removed);
 
-    llist_node_t *current;
-    while((current = llist_peek_tail(list)) != NULL){
-        bool fit_for_removal = (bool)closure_invoke(should_remove, current);
+    uel_llist_node_t *current;
+    while((current = uel_llist_peek_tail(list)) != NULL){
+        bool fit_for_removal = (bool)uel_closure_invoke(should_remove, current);
         if(fit_for_removal){
-            current = llist_pop_tail(list);
-            llist_push_head(&removed, current);
+            current = uel_llist_pop_tail(list);
+            uel_llist_push_head(&removed, current);
         }else break;
     }
     return removed;
 }
 
-void llist_insert_at(llist_t *list, llist_node_t *node, closure_t *should_insert){
-    llist_node_t *current = llist_peek_tail(list);
+void uel_llist_insert_at(uel_llist_t *list, uel_llist_node_t *node, uel_closure_t *should_insert){
+    uel_llist_node_t *current = uel_llist_peek_tail(list);
 
     if(current == NULL){
-        llist_push_tail(list, node);
+        uel_llist_push_tail(list, node);
     }else{
-        llist_node_t *nodes[2] = { NULL, current };
-        bool fit_for_insertion = (bool)closure_invoke(should_insert, (void *)&nodes);
+        uel_llist_node_t *nodes[2] = { NULL, current };
+        bool fit_for_insertion = (bool)uel_closure_invoke(should_insert, (void *)&nodes);
 
         if(fit_for_insertion){
-            llist_push_tail(list, node);
+            uel_llist_push_tail(list, node);
         }else{
             while(current != NULL && !fit_for_insertion){
                 nodes[0] = current;
                 nodes[1] = current->next;
-                fit_for_insertion = (bool)closure_invoke(should_insert, (void *)&nodes);
+                fit_for_insertion = (bool)uel_closure_invoke(should_insert, (void *)&nodes);
                 if(fit_for_insertion){
                     node->next = current->next;
                     current->next = node;

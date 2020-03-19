@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['relay',['relay',['../structapplication.html#acefadc6df12d91fa806364e885bf897b',1,'application']]],
-  ['relay_5fbuffer',['relay_buffer',['../structapplication.html#adc39fc2b11899ddcdb32e53ea2ad9b05',1,'application']]],
-  ['repeating',['repeating',['../structevent.html#ad1f2d27cf687939d4548c067ff691e9b',1,'event']]],
-  ['run_5fscheduler',['run_scheduler',['../structapplication.html#a24f738e140b391135a4f2d5f710d48d2',1,'application']]]
+  ['queue',['queue',['../structuel__objpool.html#a36c2a4bcb0eda229680daa4a03960506',1,'uel_objpool']]],
+  ['queues',['queues',['../structapplication.html#a461dd6893eb70ee86bac7c43a9a86578',1,'application::queues()'],['../structuel__evloop.html#aec967394710dd0b4b5184a8fd02d61a5',1,'uel_evloop::queues()'],['../structuel__scheduler.html#a962da3ed7102999d7379d2d26599160d',1,'uel_scheduler::queues()'],['../structuel__signal__relay.html#ae9438f0506aa721cbf56e917f58e0390',1,'uel_signal_relay::queues()']]]
 ];

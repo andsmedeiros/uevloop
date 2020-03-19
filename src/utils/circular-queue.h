@@ -3,8 +3,8 @@
   * \brief Defines circular queues, fast and efficient FIFO data structures
   */
 
-#ifndef CIRCULAR_QUEUE_H
-#define	CIRCULAR_QUEUE_H
+#ifndef UEL_CIRCULAR_QUEUE_H
+#define	UEL_CIRCULAR_QUEUE_H
 
 /// \cond
 #include <stdint.h>
@@ -19,8 +19,8 @@
   * Its capacity is **required** to be a power of two. This makes possible to
   * use fast modulo-2 arithmetic when dealing with the queue indices.
   */
-typedef struct cqueue cqueue_t;
-struct cqueue {
+typedef struct uel_cqueue uel_cqueue_t;
+struct uel_cqueue {
     //! The buffer that will contain the enqueued values.
     void **buffer;
     //! The size of the queue. Must be a power of two.
@@ -42,14 +42,14 @@ struct cqueue {
   * values.
   * \param size_log2n The size of the queue in its log2 form.
   */
-void cqueue_init(cqueue_t *queue, void **buffer, uintptr_t size_log2n);
+void uel_cqueue_init(uel_cqueue_t *queue, void **buffer, uintptr_t size_log2n);
 
 /** \brief Empties a queue by resetting its tail and count values.
   *
   * \param queue The queue to be cleared.
   * \param clear_buffer If this is set, completely de-initialises the queue.
   */
-void cqueue_clear(cqueue_t *queue, bool clear_buffer);
+void uel_cqueue_clear(uel_cqueue_t *queue, bool clear_buffer);
 
 /** \brief Pushes an element into the queue
   *
@@ -57,14 +57,14 @@ void cqueue_clear(cqueue_t *queue, bool clear_buffer);
   * \param element The element to be pushed into the queue
   * \return Whether the push operation was successfull
   */
-bool cqueue_push(cqueue_t *queue, void *element);
+bool uel_cqueue_push(uel_cqueue_t *queue, void *element);
 
 /** \brief Pops an element from the queue.
   *
   * \param queue The queue from where to pop
   * \return The oldest element in the queue, if it exists. Otherwise, NULL.
   */
-void *cqueue_pop(cqueue_t *queue);
+void *uel_cqueue_pop(uel_cqueue_t *queue);
 
 /** \brief Peeks the tail of the queue, where the oldest element is enqueued.
   * This is the element that will be returned on the next pop operation.
@@ -72,7 +72,7 @@ void *cqueue_pop(cqueue_t *queue);
   * \param queue The queue to peek
   * \return The oldest element in the queue if it exists. Otherwise, NULL.
   */
-void *cqueue_peek_tail(cqueue_t *queue);
+void *uel_cqueue_peek_tail(uel_cqueue_t *queue);
 
 /** \brief Peeks the head of the queue, where the newest element is enqueued.
 * This is the element that was enqueued on the last push operation.
@@ -80,27 +80,27 @@ void *cqueue_peek_tail(cqueue_t *queue);
 * \param queue The queue to peek
 * \return The newest element in the queue if it exists. Otherwise, NULL.
 */
-void *cqueue_peek_head(cqueue_t *queue);
+void *uel_cqueue_peek_head(uel_cqueue_t *queue);
 
 /** \brief Checks if the queue is full
   *
   * \param queue The queue to check
   * \return Whether the queue is full or not
   */
-bool cqueue_is_full(cqueue_t *queue);
+bool uel_cqueue_is_full(uel_cqueue_t *queue);
 
 /** \brief Checks if the queue is empty. Use this before popping from the queue.
 *
 * \param queue The queue to check
 * \return Whether the queue is empty or not
 */
-bool cqueue_is_empty(cqueue_t *queue);
+bool uel_cqueue_is_empty(uel_cqueue_t *queue);
 
 /** \brief Counts the number o elements in the queue
   *
   * \param queue The queue whoese elements should be counted
   * \returns The number of enqueued elements
   */
-uintptr_t cqueue_count(cqueue_t *queue);
+uintptr_t uel_cqueue_count(uel_cqueue_t *queue);
 
-#endif	/* CIRCULAR_QUEUE_H */
+#endif	/* UEL_CIRCULAR_QUEUE_H */

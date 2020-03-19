@@ -4,14 +4,14 @@
 #include <stdlib.h>
 /// \endcond
 
-void cqueue_init(cqueue_t *queue, void **buffer, uintptr_t size_log2n){
+void uel_cqueue_init(uel_cqueue_t *queue, void **buffer, uintptr_t size_log2n){
     queue->buffer = buffer;
     queue->size = 1<<size_log2n;
     queue->mask = queue->size - 1;
-    cqueue_clear(queue, false);
+    uel_cqueue_clear(queue, false);
 }
 
-void cqueue_clear(cqueue_t *queue, bool clear_buffer){
+void uel_cqueue_clear(uel_cqueue_t *queue, bool clear_buffer){
     queue->tail = 0;
     queue->count = 0;
     if(clear_buffer){
@@ -21,16 +21,16 @@ void cqueue_clear(cqueue_t *queue, bool clear_buffer){
     }
 }
 
-bool cqueue_push(cqueue_t *queue, void *element){
-    if(cqueue_is_full(queue)) return false;
+bool uel_cqueue_push(uel_cqueue_t *queue, void *element){
+    if(uel_cqueue_is_full(queue)) return false;
 
     const uintptr_t head = (++queue->count + queue->tail) & queue->mask;
     queue->buffer[head] = element;
     return true;
 }
 
-void *cqueue_pop(cqueue_t *queue){
-    if(cqueue_is_empty(queue)) return NULL;
+void *uel_cqueue_pop(uel_cqueue_t *queue){
+    if(uel_cqueue_is_empty(queue)) return NULL;
 
     queue->count--;
     queue->tail = (queue->tail + 1) & queue->mask;
@@ -39,26 +39,26 @@ void *cqueue_pop(cqueue_t *queue){
     return element;
 }
 
-void *cqueue_peek_tail(cqueue_t *queue){
-    if(cqueue_is_empty(queue)) return NULL;
+void *uel_cqueue_peek_tail(uel_cqueue_t *queue){
+    if(uel_cqueue_is_empty(queue)) return NULL;
 
     return queue->buffer[(queue->tail + 1) & queue->mask];
 }
 
-void *cqueue_peek_head(cqueue_t *queue){
-    if(cqueue_is_empty(queue)) return NULL;
+void *uel_cqueue_peek_head(uel_cqueue_t *queue){
+    if(uel_cqueue_is_empty(queue)) return NULL;
 
     return queue->buffer[(queue->tail + queue->count) & queue->mask];
 }
 
-bool cqueue_is_full(cqueue_t *queue){
+bool uel_cqueue_is_full(uel_cqueue_t *queue){
     return queue->size <= queue->count;
 }
 
-bool cqueue_is_empty(cqueue_t *queue){
+bool uel_cqueue_is_empty(uel_cqueue_t *queue){
     return queue->count == 0;
 }
 
-uintptr_t cqueue_count(cqueue_t *queue){
+uintptr_t uel_cqueue_count(uel_cqueue_t *queue){
     return queue->count;
 }

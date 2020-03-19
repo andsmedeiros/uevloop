@@ -4,22 +4,22 @@
 #include <stdlib.h>
 /// \endcond
 
-closure_t closure_create(
-    void * (* function)(closure_t *),
+uel_closure_t uel_closure_create(
+    void * (* function)(uel_closure_t *),
     void *context,
-    void (* destructor)(closure_t *)
+    void (* destructor)(uel_closure_t *)
 ){
-    closure_t closure = { function, context, destructor, NULL, NULL };
+    uel_closure_t closure = { function, context, destructor, NULL, NULL };
     return closure;
 }
 
-void *closure_invoke(closure_t *closure, void *params){
+void *uel_closure_invoke(uel_closure_t *closure, void *params){
     closure->params = params;
     closure->value = closure->function(closure);
     return closure->value;
 }
 
-void closure_destroy(closure_t *closure){
+void uel_closure_destroy(uel_closure_t *closure){
     if(closure->destructor != NULL) {
         closure->destructor(closure);
     }

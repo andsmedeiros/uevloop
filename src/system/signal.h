@@ -3,8 +3,8 @@
   * asynchronously between distant parts of the application
   */
 
-#ifndef SIGNAL_H
-#define SIGNAL_H
+#ifndef UEL_SIGNAL_H
+#define UEL_SIGNAL_H
 
 #include "containers/system-pools.h"
 #include "containers/system-queues.h"
@@ -12,18 +12,18 @@
 #include "../utils/closure.h"
 #include "event.h"
 
-/** \typedef signal_t
+/** \typedef uel_signal_t
   *
   * Any signal is defined as an unsigned integer type. This means that any signal
   * type is only valid within the scope defined by the relay designed to respond
   * to said signal.
   */
-typedef uintptr_t signal_t;
+typedef uintptr_t uel_signal_t;
 
 /** \brief Defines a reference type suitable to manipulate the actual listener
   * event's context.
   */
-typedef struct listener* signal_listener_t;
+typedef struct listener *uel_signal_listener_t;
 
 /** \brief Contains a signal vector and operates on in.
   *
@@ -35,16 +35,16 @@ typedef struct listener* signal_listener_t;
   * list corresponding to said signal. When that signal is emitted, each listener
   * closure in the list is invoked.
   */
-typedef struct signal_relay signal_relay_t;
-struct signal_relay{
+typedef struct uel_signal_relay uel_signal_relay_t;
+struct uel_signal_relay{
     //! Contains the signal vector. Must be large enough to contain every signal
     //! bound to this relay.
-    llist_t *signal_vector;
+    uel_llist_t *signal_vector;
     //! The system's internal queues. Upon emission, signals will be enqueued on
     //! one of these.
-    sysqueues_t *queues;
+    uel_sysqueues_t *queues;
     //! A quick reference to the system's internal pools
-    syspools_t *pools;
+    uel_syspools_t *pools;
     //! The number of signals registered at this relay.
     uintptr_t width;
 };
@@ -58,11 +58,11 @@ struct signal_relay{
   * this relay. Must be the number of signals bound to this relay wide.
   * \param width The number of signals bound to this relay.
   */
-void signal_relay_init(
-    signal_relay_t *relay,
-    syspools_t *pools,
-    sysqueues_t *queues,
-    llist_t *buffer,
+void uel_signal_relay_init(
+    uel_signal_relay_t *relay,
+    uel_syspools_t *pools,
+    uel_sysqueues_t *queues,
+    uel_llist_t *buffer,
     uintptr_t width
 );
 
@@ -74,10 +74,10 @@ void signal_relay_init(
   * closure will be invoked with whatever parameters are supplied during emission.
   * \return Returns a listener that references this particular operation
   */
-signal_listener_t signal_listen(
-    signal_t signal,
-    signal_relay_t *relay,
-    closure_t *closure
+uel_signal_listener_t uel_signal_listen(
+    uel_signal_t signal,
+    uel_signal_relay_t *relay,
+    uel_closure_t *closure
 );
 
 /** \brief Attaches a listener closure to some signal at a particular relay. The
@@ -89,10 +89,10 @@ signal_listener_t signal_listen(
   * closure will be invoked with whatever parameters are supplied during emission.
   * \return Returns a listener that references this particular operation
   */
-signal_listener_t signal_listen_once(
-    signal_t signal,
-    signal_relay_t *relay,
-    closure_t *closure
+uel_signal_listener_t uel_signal_listen_once(
+    uel_signal_t signal,
+    uel_signal_relay_t *relay,
+    uel_closure_t *closure
 );
 
 /** \brief Marks a signal listener as expired. When its corresponding signal is
@@ -101,7 +101,7 @@ signal_listener_t signal_listen_once(
   *
   + \param listener The listener that identifies the listen operation to be undone
   */
-void signal_unlisten(signal_listener_t listener);
+void uel_signal_unlisten(uel_signal_listener_t listener);
 
 /** \brief Emits a signal at the supplied relay. Any closure listening to this
   * signal will be asynchronously invoked.
@@ -111,6 +111,6 @@ void signal_unlisten(signal_listener_t listener);
   * \param params The parameters supplied to the listener's closure when it is
   * invoked.
   */
-void signal_emit(signal_t signal, signal_relay_t *relay, void *params);
+void uel_signal_emit(uel_signal_t signal, uel_signal_relay_t *relay, void *params);
 
-#endif /* end of include guard: SIGNAL_H */
+#endif /* end of include guard: UEL_SIGNAL_H */

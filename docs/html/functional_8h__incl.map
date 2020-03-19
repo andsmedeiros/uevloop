@@ -1,0 +1,7 @@
+<map id="src/utils/functional.h" name="src/utils/functional.h">
+<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="104,229,179,256"/>
+<area shape="rect" id="node3" href="$pipeline_8h.html" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially, composing their functionality. " alt="" coords="27,155,104,181"/>
+<area shape="rect" id="node4" href="$conditional_8h.html" title="Contains definitions of functional conditionals, structures that act as if&#45;else constructs. " alt="" coords="94,80,189,107"/>
+<area shape="rect" id="node5" href="$iterator_8h.html" title="Defines iterators, structures and functions suitable for enumerating other data structures. " alt="" coords="213,80,286,107"/>
+<area shape="rect" id="node6" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="229,155,317,181"/>
+</map>

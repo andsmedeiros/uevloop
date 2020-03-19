@@ -2,8 +2,8 @@
   * \brief Module responsible for running enqueued events and process them accordingly
   */
 
-#ifndef EVENT_LOOP_H
-#define EVENT_LOOP_H
+#ifndef UEL_EVENT_LOOP_H
+#define UEL_EVENT_LOOP_H
 
 #include "../utils/closure.h"
 #include "../system/containers/system-pools.h"
@@ -16,22 +16,22 @@
   * 1. The inbound event queue, which is the feeding point of the event loop.
   * 2. The outbound schedule queue, which holds reusable timers already run.
   */
-typedef struct evloop evloop_t;
-struct evloop{
-    syspools_t *pools; //!< Reference to the system's pools
-    sysqueues_t *queues; //!< Reference to the system's queues
+typedef struct uel_evloop uel_evloop_t;
+struct uel_evloop{
+    uel_syspools_t *pools; //!< Reference to the system's pools
+    uel_sysqueues_t *queues; //!< Reference to the system's queues
 };
 
 /** \brief Initialises an event loop
   *
-  * \param event_loop The evloop_t instance to be initialised
+  * \param event_loop The uel_evloop_t instance to be initialised
   * \param pools The system's internal pools
   * \param queues The system's internal queues
   */
-void evloop_init(
-    evloop_t *event_loop,
-    syspools_t *pools,
-    sysqueues_t *queues
+void uel_evloop_init(
+    uel_evloop_t *event_loop,
+    uel_syspools_t *pools,
+    uel_sysqueues_t *queues
 );
 
 /** \brief Triggers a runloop.
@@ -42,15 +42,15 @@ void evloop_init(
   *
   * Each iteration of this cycle is called a runloop.
   *
-  * \param event_loop The evloop_t instance to be run
+  * \param event_loop The uel_evloop_t instance to be run
   */
-void evloop_run(evloop_t *event_loop);
+void uel_evloop_run(uel_evloop_t *event_loop);
 
 /** \brief Enqueues a closure to be invoked
   *
-  * \param event_loop The evloop_t instance into which the closure will be enqueued
+  * \param event_loop The uel_evloop_t instance into which the closure will be enqueued
   * \param closure The closure to be enqueued
   */
-void evloop_enqueue_closure(evloop_t *event_loop, closure_t *closure);
+void uel_evloop_enqueue_closure(uel_evloop_t *event_loop, uel_closure_t *closure);
 
-#endif /* end of include guard: EVENT_LOOP_H */
+#endif /* end of include guard: UEL_EVENT_LOOP_H */

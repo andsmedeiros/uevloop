@@ -1,5 +1,6 @@
 
 
+
 # µEvLoop ![C/C++ CI](https://github.com/andsmedeiros/uevloop/workflows/C/C++%20CI/badge.svg?event=push)
 
 A fast and lightweight event loop aimed at embedded platforms in C99.
@@ -60,7 +61,7 @@ As closures are somewhat light, it is often useful to pass them around by value.
   #include <stdint.h>
   #include "utils/closure.h"
 
-  static void *add(closure_t *closure){
+  static void *add(uel_closure_t *closure){
     uintptr_t value1 = (uintptr_t)closure->context;
     uintptr_t value2 = (uintptr_t)closure->params;
 
@@ -70,10 +71,10 @@ As closures are somewhat light, it is often useful to pass them around by value.
   // ...
 
   // Binds the function `add` to the context (5)
-  closure_t add_five = closure_create(&add, (void *)5, NULL);
+  uel_closure_t add_five = uel_closure_create(&add, (void *)5, NULL);
 
   // Invokes the closure with the parameters set to (2)
-  uintptr_t result = (uintptr_t)closure_invoke(&add_five, (void *)2);
+  uintptr_t result = (uintptr_t)uel_closure_invoke(&add_five, (void *)2);
   // Result is 7
 
 ```
@@ -103,21 +104,20 @@ The size of µEvLoop's circular queues are **required** to be powers of two, so 
 #define BUFFER_SIZE         (1<<BUFFER_SIZE_LOG2N)  // 1<<5 == 2**5 == 32
 
 // ...
-
-cqueue_t queue;
+uel_cqueue_t queue;
 void *buffer[BUFFER_SIZE];
-// Created a queue with 32 (2**5) slots
-cqueue_init(&queue, buffer, BUFFER_SIZE_LOG2N);
+// Creates a queue with 32 (2**5) slots
+uel_cqueue_init(&queue, buffer, BUFFER_SIZE_LOG2N);
 
 // Push items in the queue
-cqueue_push(&queue, (void *)3);
-cqueue_push(&queue, (void *)2);
-cqueue_push(&queue, (void *)1);
+uel_cqueue_push(&queue, (void *)3)
+uel_cqueue_push(&queue, (void *)2)
+uel_cqueue_push(&queue, (void *)1);
 
 // Pop items from the queue
-uintptr_t value1 = (uintptr_t)cqueue_pop(&queue); // value1 is 3
-uintptr_t value2 = (uintptr_t)cqueue_pop(&queue); // value2 is 2
-uintptr_t value3 = (uintptr_t)cqueue_pop(&queue); // value3 is 1
+uintptr_t value1 = (uintptr_t) uel_cqueue_pop(&queue); // value1 is 3
+uintptr_t value2 = (uintptr_t) uel_cqueue_pop(&queue); // value2 is 2
+uintptr_t value3 = (uintptr_t) uel_cqueue_pop(&queue); // value3 is 1
 ```
 
 Circular queues store void pointers. As it is the case with closures, this make possible to store complex objects within the queue, but often typecasting to an smaller value type is more useful.
@@ -148,19 +148,19 @@ struct obj {
 
 // The log2 of our pool size.
 #define POOL_SIZE_LOG2N   (5)
-DECLARE_OBJPOOL_BUFFERS(obj_t, POOL_SIZE_LOG2N, my_pool);
+UEL_DECLARE_OBJPOOL_BUFFERS(obj_t, POOL_SIZE_LOG2N, my_pool);
 
-objpool_t my_pool;
-objpool_init(&my_pool, POOL_SIZE_LOG2N, sizeof(obj_t), OBJPOOL_BUFFERS(my_pool));
+uel_objpool_t my_pool;
+uel_objpool_init(&my_pool, POOL_SIZE_LOG2N, sizeof(obj_t),UEL_OBJPOOL_BUFFERS(my_pool));
 // my_pool now is a pool with 32 (2**5) obj_t
 
 // ...
 
 // Whenever the programmer needs a fresh obj_t
-obj_t *obj = (obj_t *)objpool_acquire(&my_pool);
+obj_t *obj = (obj_t *)uel_objpool_acquire(&my_pool);
 
 // When it is no longer needed, return it to the pool
-objpool_release(&my_pool, obj);
+uel_objpool_release(&my_pool, obj);
 ```
 
 ### Linked lists
@@ -176,21 +176,21 @@ objpool_release(&my_pool, obj);
 
 // ...
 
-llist_t list;
-llist_init(&list);
+uel_llist_t list;
+uel_llist_init(&list);
 
-llist_node_t nodes[2] = {
+uel_llist_node_t nodes[2] = {
   {(void *)1, NULL},
   {(void *)2, NULL}
 };
 
 // Push items into the list
-llist_push_head(&list, &nodes[0]);
-llist_push_head(&list, &nodes[1]);
+uel_llist_push_head(&list, &nodes[0]);
+uel_llist_push_head(&list, &nodes[1]);
 
 // List now is TAIL-> [1]-> [2]-> NULL. HEAD-> [2]
-llist_node_t *node1 = (llist_node_t *)llist_pop_tail(&list);
-llist_node_t *node2 = (llist_node_t *)llist_pop_tail(&list);
+uel_llist_node_t *node1 = (uel_llist_node_t *)llist_pop_tail(&list);
+uel_llist_node_t *node2 = (uel_llist_node_t *)llist_pop_tail(&list);
 
 //node1 == nodes[0] and node2 == nodes[1]
 ```
@@ -215,8 +215,8 @@ To configure the size of each pool created, edit `src/config.h`.
 
 // ...
 
-syspools_t pools;
-syspools_init(&pools);
+uel_syspools_t pools;
+uel_syspools_init(&pools);
 // This allocates two pools:
 //   1) pools.event_pool
 //   2) pools.llist_node_pool
@@ -238,8 +238,8 @@ Configure the size of each queue created in `src/config.h`.
 
 // ...
 
-sysqueues_t queues;
-sysqueues_init(&queues);
+uel_sysqueues_t queues;
+uel_sysqueues_init(&queues);
 // This allocates two queues:
 //   1) queues.event_queue (events ready to be processed are put here)
 //   2) queues.schedule_queue (events ready to be scheduled are put here)
@@ -257,23 +257,23 @@ The following code is a realistic minimal setup of the framework.
 #include <stdint.h>
 
 static volatile uint32_t counter = 0;
-static application_t my_app;
+static uel_application_t my_app;
 
 // 1 kHz timer
 void my_timer_isr(){
   my_timer_isr_flag = 0;
-  app_update_timer(&my_app, ++counter);
+  uel_app_update_timer(&my_app, ++counter);
 }
 
 int main (int argc, char *argv[]){
-  app_init(&my_app);
+  uel_app_init(&my_app);
 
   // Start scheduling timers through my_app.scheduler or enqueuing
   // closures through my_app.event_loop
   // Create modules that emit signals and listen to then from here
 
   while(1){  
-    app_tick(&my_app);
+    uel_app_tick(&my_app);
   }
 
   return 0;
@@ -300,14 +300,14 @@ This module needs access to system's pools and queues.
 // ...
 
 // Create the system containers
-syspools_t pools;
-syspools_init(&pools);
-sysqueues_t queues;
-sysqueues_init(&queues);
+uel_syspools_t pools;
+uel_syspools_init(&pools);
+uel_sysqueues_t queues;
+uel_sysqueues_init(&queues);
 
 // Create the scheduler
-scheduler_t scheduler;
-sch_init(&scheduler, &pools, &queues);
+uel_scheduer_t scheduler;
+uel_sch_init(&scheduler, &pools, &queues);
 ```
 
 #### Scheduler operation
@@ -320,7 +320,7 @@ The `scheduler` module accepts input of closures and scheduling info an then tur
 #include <stdlib.h>
 #include "utils/closure.h"
 
-static void *print_num(closure_t *closure){
+static void *print_num(uel_closure_t *closure){
   uintptr_t num = (uintptr_t)closure->context;
   printf("%d\n", num);
 
@@ -329,18 +329,18 @@ static void *print_num(closure_t *closure){
 
 // ...
 
-closure_t  print_one = closure_create(&print_num, (void *)1, NULL);
-closure_t  print_two = closure_create(&print_num, (void *)2, NULL);
-closure_t  print_three = closure_create(&print_num, (void *)3, NULL);
+uel_closure_t  print_one = uel_closure_create(&print_num, (void *)1, NULL);
+uel_closure_t  print_two = uel_closure_create(&print_num, (void *)2, NULL);
+uel_closure_t  print_three = uel_closure_create(&print_num, (void *)3, NULL);
 
 // Schedules to run 1000ms in the future.
-sch_run_later(&scheduler, 1000, print_one);
+uel_sch_run_later(&scheduler, 1000, print_one);
 
 // Schedules to run at intervals of 500ms, runs the first time after 500ms
-sch_run_at_intervals(&scheduler, 500, false, print_two);
+uel_sch_run_at_intervals(&scheduler, 500, false, print_two);
 
 // Schedules to run at intervals of 300ms, runs the first time the next runloop
-sch_run_at_intervals(&scheduler, 300, true, print_three);
+uel_sch_run_at_intervals(&scheduler, 300, true, print_three);
 ```
 
 The `scheduler` must be fed regularly to work. It needs both an update on the running time as an stimulus to process enqueued timers. Ideally, a hardware timer will be consistently incrementing a counter and feeding it at an ISR while in the main loop the scheduler is oriented to process its queue.
@@ -352,16 +352,16 @@ volatile uint32_t counter = 0;
 // 1kHz timer ISR
 void my_timer_isr(){
   my_timer_isr_flag = 0;
-  sch_update_timer(&scheduler, ++counter);
+  uel_sch_update_timer(&scheduler, ++counter);
 }
 
 // ...
 
 // On the main loop
-sch_manage_timers(&scheduler);
+uel_sch_manage_timers(&scheduler);
 ```
 
-When the function `sch_manage_timers` is called, two things happen:
+When the function `uel_sch_manage_timers` is called, two things happen:
 1. The `schedule_queue` is flushed  and every timer in it is scheduled accordingly;
 2. The scheduler iterates over the scheduled timer list from the beginning and breaks it when it finds a timer scheduled further in the future. It then proceeds to move each timer from the extracted list  to the `event_queue`, where they will be further collected and processed.
 
@@ -369,7 +369,7 @@ When the function `sch_manage_timers` is called, two things happen:
 
 There are two distinct factors that will determine the actual time resolution of the scheduler:
 1. the frequency of the feed in timer ISR
-2.  the frequency the function `sch_manage_timers` is called.
+2.  the frequency the function `uel_sch_manage_timers` is called.
 
 The basic resolution variable is the feed-in timer frequency. Having this update too sporadically will cause events scheduled to differing moments to be indistinguishable regarding their schedule (*e.g.*: most of the time, having the timer increment every 100ms will make any events scheduled to moments with less than 100ms of difference to each other to be run in the same runloop).
 
@@ -377,7 +377,7 @@ A good value for the timer ISR frequency is usually between 1 kHz - 200 Hz, but 
 
 There is little use having the feed-in timer ISR run at more than 1 kHz, as it is meant to measure milliseconds. Software timers are unlikely to be accurate enough for much greater frequencies anyway.
 
-If the `sch_manage_timers` function is not called frequently enough, events will start enqueuing and won't be served in time. Just make sure it is called when the counter is updated or when there are events on the schedule queue.
+If the `uel_sch_manage_timers` function is not called frequently enough, events will start enqueuing and won't be served in time. Just make sure it is called when the counter is updated or when there are events on the schedule queue.
 
 ### Event loop
 
@@ -393,19 +393,19 @@ The event loop requires access to system's internal pools and queues.
 #include "system/event-loop.h"
 
 // Create system containers
-syspools_t pools;
-syspools_init(&pools);
-sysqueues_t queues;
-sysqueues_init(&queues);
+uel_syspools_t pools;
+uel_syspools_init(&pools);
+uel_sysqueues_t queues;
+uel_sysqueues_init(&queues);
 
 // Create the event loop
-evloop_t loop;
-evloop_init(&loop, &pools, &queues);
+uel_evloop_t loop;
+uel_evloop_init(&loop, &pools, &queues);
 ```
 
 #### Event loop usage
 
-The event loop is mean to behave as a run-to-completion task scheduler. Its `evloop_run` function should be called as often as possible as to minimise execution latency. Each execution of `evloop_run` is called a *runloop* .
+The event loop is mean to behave as a run-to-completion task scheduler. Its `uel_evloop_run` function should be called as often as possible as to minimise execution latency. Each execution of `uel_evloop_run` is called a *runloop* .
 
 The only way the programmer interacts with it, besides creation / initialisation, is by enqueuing hand-tailored closures directly, but other system modules operate on the event loop behind the stage.
 
@@ -417,7 +417,7 @@ Any closure can be enqueued multiple times.
 
 // ...
 
-static void *increment(closure_t *closure){
+static void *increment(uel_closure_t *closure){
   uintptr_t *value = (uintptr_t *)closure->context;
   (*value)++;
 
@@ -427,21 +427,21 @@ static void *increment(closure_t *closure){
 // ...
 
 uintptr_t value = 0;
-closure_t closure = closure_create(&increment, (void *)&value, NULL);
+uel_closure_t closure = uel_closure_create(&increment, (void *)&value, NULL);
 
-evloop_enqueue_closure(&loop, &closure);
+uel_evloop_enqueue_closure(&loop, &closure);
 // value is 0
 
-evloop_run(&loop);  
+uel_evloop_run(&loop);  
 // value is 1
 
-evloop_enqueue_closure(&loop, &closure);
-evloop_enqueue_closure(&loop, &closure);
-evloop_run(&loop);
+uel_evloop_enqueue_closure(&loop, &closure);
+uel_evloop_enqueue_closure(&loop, &closure);
+uel_evloop_run(&loop);
 // value is 3
 
 ```
-***WARNING!*** `evloop_run` is the single most important function within µEvLoop. Almost every other core module depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
+***WARNING!*** `uel_evloop_run` is the single most important function within µEvLoop. Almost every other core module depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
 
  ### Signal
 
@@ -462,10 +462,10 @@ To be initialised, the relay must have access to the system's internal pools and
 #include "utils/linked-list.h"
 
 // Create the system containers
-syspools_t pools;
-syspools_init(&pools);
-sysqueues_t queues;
-sysqueues_init(&queues);
+uel_syspools_t pools;
+uel_syspools_init(&pools);
+uel_sysqueues_t queues;
+uel_sysqueues_init(&queues);
 
 // Define what signals will be available to this relay.
 // Doing so in an enum makes it easy to add new signals in the future.
@@ -476,18 +476,18 @@ enum my_module_signals {
 };
 
 // Declare the relay buffer. Note this array will be the number of signals large.
-llist_t buffer[SIGNAL_COUNT];
+uel_llist_t buffer[SIGNAL_COUNT];
 
 // Create the relay
-signal_relay_t relay;
-void signal_relay_init(&relay, &pools, &queues, buffer, SIGNAL_COUNT);
+uel_signal_relay_t relay;
+void uel_signal_relay_init(&relay, &pools, &queues, buffer, SIGNAL_COUNT);
  ```
 
  #### Signal operation
 
  ```c
 // This is the listener function.
-static void *respond_to_signal(closure_t *closure){
+static void *respond_to_signal(uel_closure_t *closure){
   uintptr_t num = (uintptr_t)closure->context;
   // Signals can be emitted with parameters, just like events in JS
   char c = (char)(uintptr_t)closure->params;
@@ -497,32 +497,29 @@ static void *respond_to_signal(closure_t *closure){
 }
 
 // Listeners can be persistent. They will fire once each time the signal is emitted
-closure_t respond_to_signal_1 = closure_create(&respond_to_signal, (void *)1, NULL);
-signal_listener_t listener_1 =
-  signal_listen(SIGNAL_1, &relay, &respond_to_signal_1);
+uel_closure_t respond_to_signal_1 = uel_closure_create(&respond_to_signal, (void *)1, NULL);
+uel_signal_listener_t listener_1 = uel_signal_listen(SIGNAL_1, &relay, &respond_to_signal_1);
 
 // Listeners can also be transient, so they fire ust on first emission
-closure_t respond_to_signal_2 = closure_create(&respond_to_signal, (void *)2, NULL);
-signal_listener_t listener_2 =
-  signal_listen_once(SIGNAL_2, &relay, &respond_to_signal_2);
+uel_closure_t respond_to_signal_2 = uel_closure_create(&respond_to_signal, (void *)2, NULL);
+uel_signal_listener_t listener_2 = uel_signal_listen_once(SIGNAL_2, &relay, &respond_to_signal_2);
 
 // ...
-
-signal_emit(SIGNAL_1, &relay, (void *)('a')); // prints 1a
-signal_emit(SIGNAL_2, &relay, (void *)('b')); // prints 2b
-signal_emit(SIGNAL_1, &relay, (void *)('c')); // prints 1c
-signal_emit(SIGNAL_2, &relay, (void *)('d')); // doesn't print anything
+uel_signal_emit(SIGNAL_1, &relay, (void *)('a')); // prints 1a
+uel_signal_emit(SIGNAL_2, &relay, (void *)('b')); // prints 2b
+uel_signal_emit(SIGNAL_1, &relay, (void *)('c')); // prints 1c
+uel_signal_emit(SIGNAL_2, &relay, (void *)('d')); // doesn't print anything
 ```
 
 Please note the listener function will not be executed immediately, despite what this last snippet can lead to believe. Internally, each closure will be sent to the event loop and only when it runs will the closures be invoked.
 
-You can also unlisten for events. This will prevent the listener returned by a `signal_listen()` or `signal_listen_once()` operation to have its closure invoked when the [event loop](#event-loop) performs the next runloop.
+You can also unlisten for events. This will prevent the listener returned by a `uel_signal_listen()` or `uel_signal_listen_once()` operation to have its closure invoked when the [event loop](#event-loop) performs the next runloop.
 Additionally, said listener will be removed from the signal vector on such opportunity.
 
 ```c
-  signal_unlisten(listener_1, &relay);
-  signal_unlisten(listener_2, &relay);  // This has no effect because the listener
-                                        // for SIGNAL_2 has already been marked as unlistened
+uel_signal_unlisten(listener_1, &relay);
+uel_signal_unlisten(listener_2, &relay);  // This has no effect because the listener
+                                          // for SIGNAL_2 has already been marked as unlistened
 ```
 
 ## Concurrency model
@@ -542,17 +539,17 @@ For instance, while running baremetal it may be only necessary to disable interr
 
 There are three macros that define critical section implementation:
 
-1. `UEVLOOP_CRITICAL_SECTION_OBJ_TYPE`
+1. `UEL_CRITICAL_SECTION_OBJ_TYPE`
 
-  If needed, a global critical section object can be declared. If this macro is defined, this object will be available to any critical section under the symbol `uevloop_critical_section`.
+  If needed, a global critical section object can be declared. If this macro is defined, this object will be available to any critical section under the symbol `uel_critical_section`.
 
-  The `UEVLOOP_CRITICAL_SECTION_OBJ_TYPE` macro defines the **type** of the object. It is the programmer's responsibility to declare the globally allocate and initialise the object.
+  The `UEL_CRITICAL_SECTION_OBJ_TYPE` macro defines the **type** of the object. It is the programmer's responsibility to declare, globally allocate and initialise the object.
 
-2. `UEVLOOP_CRITICAL_ENTER`
+2. `UEL_CRITICAL_ENTER`
 
   Enters a new critical section. From this point until the critical section exits, no other thread or ISR may attempt to access the system's shared memory.
 
-3. `UEVLOOP_CRITICAL_EXIT`
+3. `UEL_CRITICAL_EXIT`
 
   Exits the current critical section. After this is called, any shared memory is allowed to be claimed by some party.
 

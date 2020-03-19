@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -105,75 +104,75 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html">event_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent.html">uel_event_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Events are special messages passed around the core. They represent tasks to be run at some point by the system.  <a href="structevent.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionevent_1_1detail.html">event_t::detail</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionevent_1_1detail.html">uel_event_t::detail</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1timer.html">event_t::detail::timer</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1timer.html">uel_event_t::detail::timer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains information suitable for scheduling an event at the scheduler.  <a href="structevent_1_1detail_1_1timer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1signal.html">event_t::detail::signal</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1signal.html">uel_event_t::detail::signal</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains information related to an emitted <code>signal</code>.  <a href="structevent_1_1detail_1_1signal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1listener.html">event_t::detail::listener</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1listener.html">uel_event_t::detail::listener</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the context of a particular signal listener.  <a href="structevent_1_1detail_1_1listener.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aa34399f2f041fedcb9f1b437896cfcc7"><td class="memItemLeft" align="right" valign="top"><a id="aa34399f2f041fedcb9f1b437896cfcc7"></a>
-typedef enum <a class="el" href="event_8h.html#a430b444c74dd3fd1472a31714ec5f1ce">event_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#aa34399f2f041fedcb9f1b437896cfcc7">event_type_t</a></td></tr>
-<tr class="memdesc:aa34399f2f041fedcb9f1b437896cfcc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the event_type enum. <br /></td></tr>
-<tr class="separator:aa34399f2f041fedcb9f1b437896cfcc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04647f8821482fc8f635924fc2f1539b"><td class="memItemLeft" align="right" valign="top"><a id="a04647f8821482fc8f635924fc2f1539b"></a>
+typedef enum <a class="el" href="event_8h.html#a0a3805dfccf139ba6521d57e0b79fb60">uel_event_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a04647f8821482fc8f635924fc2f1539b">uel_event_type_t</a></td></tr>
+<tr class="memdesc:a04647f8821482fc8f635924fc2f1539b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the uel_event_type enum. <br /></td></tr>
+<tr class="separator:a04647f8821482fc8f635924fc2f1539b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a430b444c74dd3fd1472a31714ec5f1ce"><td class="memItemLeft" align="right" valign="top"><a id="a430b444c74dd3fd1472a31714ec5f1ce"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a430b444c74dd3fd1472a31714ec5f1ce">event_type</a> { <b>CLOSURE_EVENT</b>, 
+<tr class="memitem:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memItemLeft" align="right" valign="top"><a id="a0a3805dfccf139ba6521d57e0b79fb60"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a0a3805dfccf139ba6521d57e0b79fb60">uel_event_type</a> { <b>CLOSURE_EVENT</b>, 
 <b>TIMER_EVENT</b>, 
 <b>SIGNAL_EVENT</b>, 
 <b>SIGNAL_LISTENER_EVENT</b>
- }<tr class="memdesc:a430b444c74dd3fd1472a31714ec5f1ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible types of events understood by the core. <br /></td></tr>
+ }<tr class="memdesc:a0a3805dfccf139ba6521d57e0b79fb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible types of events understood by the core. <br /></td></tr>
 </td></tr>
-<tr class="separator:a430b444c74dd3fd1472a31714ec5f1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac6929704355fc0963b58671b7b3ee3df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ac6929704355fc0963b58671b7b3ee3df">event_destroy</a> (event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
-<tr class="memdesc:ac6929704355fc0963b58671b7b3ee3df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an event.  <a href="#ac6929704355fc0963b58671b7b3ee3df">More...</a><br /></td></tr>
-<tr class="separator:ac6929704355fc0963b58671b7b3ee3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7022b95708ef84c8321f4503f159fb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ae7022b95708ef84c8321f4503f159fb3">event_config_closure</a> (event_t *<a class="el" href="structevent.html">event</a>, closure_t *<a class="el" href="structclosure.html">closure</a>, bool repeating)</td></tr>
-<tr class="memdesc:ae7022b95708ef84c8321f4503f159fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a closure event.  <a href="#ae7022b95708ef84c8321f4503f159fb3">More...</a><br /></td></tr>
-<tr class="separator:ae7022b95708ef84c8321f4503f159fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2b234dfe7dc1540b31124ed659576eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#aa2b234dfe7dc1540b31124ed659576eb">event_config_signal</a> (event_t *<a class="el" href="structevent.html">event</a>, uintptr_t signal, llist_t *listeners, void *params)</td></tr>
-<tr class="memdesc:aa2b234dfe7dc1540b31124ed659576eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a signal event.  <a href="#aa2b234dfe7dc1540b31124ed659576eb">More...</a><br /></td></tr>
-<tr class="separator:aa2b234dfe7dc1540b31124ed659576eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7ddafe814eb81d1cfefb688b648079c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ac7ddafe814eb81d1cfefb688b648079c">event_config_signal_listener</a> (event_t *<a class="el" href="structevent.html">event</a>, closure_t *<a class="el" href="structclosure.html">closure</a>, bool repeating)</td></tr>
-<tr class="memdesc:ac7ddafe814eb81d1cfefb688b648079c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a signal listener event.  <a href="#ac7ddafe814eb81d1cfefb688b648079c">More...</a><br /></td></tr>
-<tr class="separator:ac7ddafe814eb81d1cfefb688b648079c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c8af99f6923dcf452f3f5e9926c339a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a1c8af99f6923dcf452f3f5e9926c339a">event_config_timer</a> (event_t *<a class="el" href="structevent.html">event</a>, uint16_t timeout_in_ms, bool repeating, bool immediate, closure_t *<a class="el" href="structclosure.html">closure</a>, uint32_t current_time)</td></tr>
-<tr class="memdesc:a1c8af99f6923dcf452f3f5e9926c339a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a timer event.  <a href="#a1c8af99f6923dcf452f3f5e9926c339a">More...</a><br /></td></tr>
-<tr class="separator:a1c8af99f6923dcf452f3f5e9926c339a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92a407ee2ed9e0be5304a2e01f570bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#af92a407ee2ed9e0be5304a2e01f570bf">uel_event_destroy</a> (uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:af92a407ee2ed9e0be5304a2e01f570bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an event.  <a href="#af92a407ee2ed9e0be5304a2e01f570bf">More...</a><br /></td></tr>
+<tr class="separator:af92a407ee2ed9e0be5304a2e01f570bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411f2c485451c8cab6a215601059ff25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a411f2c485451c8cab6a215601059ff25">uel_event_config_closure</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uel_closure_t *closure, bool repeating)</td></tr>
+<tr class="memdesc:a411f2c485451c8cab6a215601059ff25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a closure event.  <a href="#a411f2c485451c8cab6a215601059ff25">More...</a><br /></td></tr>
+<tr class="separator:a411f2c485451c8cab6a215601059ff25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2345bf8b0ddb2f59b4d5f35f0442d3cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a2345bf8b0ddb2f59b4d5f35f0442d3cf">uel_event_config_signal</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uintptr_t signal, uel_llist_t *listeners, void *params)</td></tr>
+<tr class="memdesc:a2345bf8b0ddb2f59b4d5f35f0442d3cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a signal event.  <a href="#a2345bf8b0ddb2f59b4d5f35f0442d3cf">More...</a><br /></td></tr>
+<tr class="separator:a2345bf8b0ddb2f59b4d5f35f0442d3cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f2472662aa1378f437ac46dd85088e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a4f2472662aa1378f437ac46dd85088e8">uel_event_config_signal_listener</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uel_closure_t *closure, bool repeating)</td></tr>
+<tr class="memdesc:a4f2472662aa1378f437ac46dd85088e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a signal listener event.  <a href="#a4f2472662aa1378f437ac46dd85088e8">More...</a><br /></td></tr>
+<tr class="separator:a4f2472662aa1378f437ac46dd85088e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7832c1e4c77adf1bd459949b2d1844da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a7832c1e4c77adf1bd459949b2d1844da">uel_event_config_timer</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uint16_t timeout_in_ms, bool repeating, bool immediate, uel_closure_t *closure, uint32_t current_time)</td></tr>
+<tr class="memdesc:a7832c1e4c77adf1bd459949b2d1844da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a timer event.  <a href="#a7832c1e4c77adf1bd459949b2d1844da">More...</a><br /></td></tr>
+<tr class="separator:a7832c1e4c77adf1bd459949b2d1844da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines events and methods to configure events. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ae7022b95708ef84c8321f4503f159fb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7022b95708ef84c8321f4503f159fb3">&#9670;&nbsp;</a></span>event_config_closure()</h2>
+<a id="a411f2c485451c8cab6a215601059ff25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a411f2c485451c8cab6a215601059ff25">&#9670;&nbsp;</a></span>uel_event_config_closure()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void event_config_closure </td>
+          <td class="memname">void uel_event_config_closure </td>
           <td>(</td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t *&#160;</td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
           <td class="paramname"><em>closure</em>, </td>
         </tr>
         <tr>
@@ -202,16 +201,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa2b234dfe7dc1540b31124ed659576eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2b234dfe7dc1540b31124ed659576eb">&#9670;&nbsp;</a></span>event_config_signal()</h2>
+<a id="a2345bf8b0ddb2f59b4d5f35f0442d3cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2345bf8b0ddb2f59b4d5f35f0442d3cf">&#9670;&nbsp;</a></span>uel_event_config_signal()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void event_config_signal </td>
+          <td class="memname">void uel_event_config_signal </td>
           <td>(</td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -223,7 +222,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">llist_t *&#160;</td>
+          <td class="paramtype">uel_llist_t *&#160;</td>
           <td class="paramname"><em>listeners</em>, </td>
         </tr>
         <tr>
@@ -253,22 +252,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac7ddafe814eb81d1cfefb688b648079c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7ddafe814eb81d1cfefb688b648079c">&#9670;&nbsp;</a></span>event_config_signal_listener()</h2>
+<a id="a4f2472662aa1378f437ac46dd85088e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f2472662aa1378f437ac46dd85088e8">&#9670;&nbsp;</a></span>uel_event_config_signal_listener()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void event_config_signal_listener </td>
+          <td class="memname">void uel_event_config_signal_listener </td>
           <td>(</td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t *&#160;</td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
           <td class="paramname"><em>closure</em>, </td>
         </tr>
         <tr>
@@ -297,16 +296,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1c8af99f6923dcf452f3f5e9926c339a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c8af99f6923dcf452f3f5e9926c339a">&#9670;&nbsp;</a></span>event_config_timer()</h2>
+<a id="a7832c1e4c77adf1bd459949b2d1844da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7832c1e4c77adf1bd459949b2d1844da">&#9670;&nbsp;</a></span>uel_event_config_timer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void event_config_timer </td>
+          <td class="memname">void uel_event_config_timer </td>
           <td>(</td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -330,7 +329,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t *&#160;</td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
           <td class="paramname"><em>closure</em>, </td>
         </tr>
         <tr>
@@ -362,16 +361,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac6929704355fc0963b58671b7b3ee3df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6929704355fc0963b58671b7b3ee3df">&#9670;&nbsp;</a></span>event_destroy()</h2>
+<a id="af92a407ee2ed9e0be5304a2e01f570bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af92a407ee2ed9e0be5304a2e01f570bf">&#9670;&nbsp;</a></span>uel_event_destroy()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void event_destroy </td>
+          <td class="memname">void uel_event_destroy </td>
           <td>(</td>
-          <td class="paramtype">event_t *&#160;</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
           <td class="paramname"><em>event</em></td><td>)</td>
           <td></td>
         </tr>
@@ -379,7 +378,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destroys an event. </p>
-<p>At the moment, all this does is invoke <code>closure_destroy</code> in the contained closure </p><dl class="params"><dt>Parameters</dt><dd>
+<p>At the moment, all this does is invoke <code>uel_closure_destroy</code> in the contained closure </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>The event to be destroyed </td></tr>
   </table>

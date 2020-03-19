@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.2.2</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -103,75 +102,73 @@ Include dependency graph for application.h:</div>
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="application_8h__dep__incl.png" border="0" usemap="#src_2system_2containers_2application_8hdep" alt=""/></div>
-<map name="src_2system_2containers_2application_8hdep" id="src_2system_2containers_2application_8hdep">
-</map>
 </div>
 </div>
 <p><a href="application_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html">application_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html">uel_application_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Top-level container for µEvLoop'd application.  <a href="structapplication.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a4850af607b50da73880b319ea7680126"><td class="memItemLeft" align="right" valign="top"><a id="a4850af607b50da73880b319ea7680126"></a>
-typedef enum <a class="el" href="application_8h.html#a74334abc7473dc49a5d5481b11f87fa8">app_event</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a4850af607b50da73880b319ea7680126">app_event_t</a></td></tr>
-<tr class="memdesc:a4850af607b50da73880b319ea7680126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the app_event enum. <br /></td></tr>
-<tr class="separator:a4850af607b50da73880b319ea7680126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a138e72d6aced8d43e9a2d0c63c830080"><td class="memItemLeft" align="right" valign="top"><a id="a138e72d6aced8d43e9a2d0c63c830080"></a>
+typedef enum <a class="el" href="application_8h.html#a335ab53567298b8918257c2970b388f2">uel_app_event</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a138e72d6aced8d43e9a2d0c63c830080">uel_app_event_t</a></td></tr>
+<tr class="memdesc:a138e72d6aced8d43e9a2d0c63c830080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the uel_app_event enum. <br /></td></tr>
+<tr class="separator:a138e72d6aced8d43e9a2d0c63c830080"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a74334abc7473dc49a5d5481b11f87fa8"><td class="memItemLeft" align="right" valign="top"><a id="a74334abc7473dc49a5d5481b11f87fa8"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a74334abc7473dc49a5d5481b11f87fa8">app_event</a> { <b>APP_READY</b> = 0, 
-<b>APP_CRASHED</b>, 
-<b>APP_IDLE</b>, 
-<b>APP_EVENT_COUNT</b>
- }<tr class="memdesc:a74334abc7473dc49a5d5481b11f87fa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Events emitted by the application relay. Unused ATM. <br /></td></tr>
+<tr class="memitem:a335ab53567298b8918257c2970b388f2"><td class="memItemLeft" align="right" valign="top"><a id="a335ab53567298b8918257c2970b388f2"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a335ab53567298b8918257c2970b388f2">uel_app_event</a> { <b>UEL_APP_READY</b> = 0, 
+<b>UEL_APP_CRASHED</b>, 
+<b>UEL_APP_IDLE</b>, 
+<b>UEL_APP_EVENT_COUNT</b>
+ }<tr class="memdesc:a335ab53567298b8918257c2970b388f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Events emitted by the application relay. Unused ATM. <br /></td></tr>
 </td></tr>
-<tr class="separator:a74334abc7473dc49a5d5481b11f87fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a335ab53567298b8918257c2970b388f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4e7aa187e2612f28e8483a797ec0d951"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a4e7aa187e2612f28e8483a797ec0d951">app_init</a> (application_t *app)</td></tr>
-<tr class="memdesc:a4e7aa187e2612f28e8483a797ec0d951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an application_t instance.  <a href="#a4e7aa187e2612f28e8483a797ec0d951">More...</a><br /></td></tr>
-<tr class="separator:a4e7aa187e2612f28e8483a797ec0d951"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c0f375ef58d963c19482d292363044c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a0c0f375ef58d963c19482d292363044c">app_tick</a> (application_t *app)</td></tr>
-<tr class="memdesc:a0c0f375ef58d963c19482d292363044c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ticks the application.  <a href="#a0c0f375ef58d963c19482d292363044c">More...</a><br /></td></tr>
-<tr class="separator:a0c0f375ef58d963c19482d292363044c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09474113c2e66d6bc83127dd304125f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a09474113c2e66d6bc83127dd304125f0">app_update_timer</a> (application_t *app, uint32_t timer)</td></tr>
-<tr class="memdesc:a09474113c2e66d6bc83127dd304125f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the internal timer of an application, located at the scheduler.  <a href="#a09474113c2e66d6bc83127dd304125f0">More...</a><br /></td></tr>
-<tr class="separator:a09474113c2e66d6bc83127dd304125f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7926654e8819e83d5f094b63d469317"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#aa7926654e8819e83d5f094b63d469317">app_run_later</a> (application_t *app, uint16_t timeout_in_ms, closure_t <a class="el" href="structclosure.html">closure</a>)</td></tr>
-<tr class="memdesc:aa7926654e8819e83d5f094b63d469317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="#aa7926654e8819e83d5f094b63d469317">More...</a><br /></td></tr>
-<tr class="separator:aa7926654e8819e83d5f094b63d469317"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4527d12c8bb4d52542dc61d51a8afbbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a4527d12c8bb4d52542dc61d51a8afbbd">app_run_at_intervals</a> (application_t *app, uint16_t interval_in_ms, bool immediate, closure_t <a class="el" href="structclosure.html">closure</a>)</td></tr>
-<tr class="memdesc:a4527d12c8bb4d52542dc61d51a8afbbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="#a4527d12c8bb4d52542dc61d51a8afbbd">More...</a><br /></td></tr>
-<tr class="separator:a4527d12c8bb4d52542dc61d51a8afbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3114c134c545d1c6d67495633f5878d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a3114c134c545d1c6d67495633f5878d0">app_enqueue_closure</a> (application_t *app, closure_t *<a class="el" href="structclosure.html">closure</a>)</td></tr>
-<tr class="memdesc:a3114c134c545d1c6d67495633f5878d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure to be invoked.  <a href="#a3114c134c545d1c6d67495633f5878d0">More...</a><br /></td></tr>
-<tr class="separator:a3114c134c545d1c6d67495633f5878d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab221d8fc71af4fbf92525a7691b039ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#ab221d8fc71af4fbf92525a7691b039ae">uel_app_init</a> (uel_application_t *app)</td></tr>
+<tr class="memdesc:ab221d8fc71af4fbf92525a7691b039ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an uel_application_t instance.  <a href="#ab221d8fc71af4fbf92525a7691b039ae">More...</a><br /></td></tr>
+<tr class="separator:ab221d8fc71af4fbf92525a7691b039ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbbe5a9f65d8b1168d00c270cff52085"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#adbbe5a9f65d8b1168d00c270cff52085">uel_app_tick</a> (uel_application_t *app)</td></tr>
+<tr class="memdesc:adbbe5a9f65d8b1168d00c270cff52085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ticks the application.  <a href="#adbbe5a9f65d8b1168d00c270cff52085">More...</a><br /></td></tr>
+<tr class="separator:adbbe5a9f65d8b1168d00c270cff52085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac33288da9d190eda72d9598b877b7f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#aac33288da9d190eda72d9598b877b7f7">uel_app_update_timer</a> (uel_application_t *app, uint32_t timer)</td></tr>
+<tr class="memdesc:aac33288da9d190eda72d9598b877b7f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the internal timer of an application, located at the scheduler.  <a href="#aac33288da9d190eda72d9598b877b7f7">More...</a><br /></td></tr>
+<tr class="separator:aac33288da9d190eda72d9598b877b7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be36a8d51d5eb055a11a350c8a6670e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a0be36a8d51d5eb055a11a350c8a6670e">uel_app_run_later</a> (uel_application_t *app, uint16_t timeout_in_ms, uel_closure_t closure)</td></tr>
+<tr class="memdesc:a0be36a8d51d5eb055a11a350c8a6670e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="#a0be36a8d51d5eb055a11a350c8a6670e">More...</a><br /></td></tr>
+<tr class="separator:a0be36a8d51d5eb055a11a350c8a6670e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65c2b70c8e592a12cdea8efd5c2b2399"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a65c2b70c8e592a12cdea8efd5c2b2399">uel_app_run_at_intervals</a> (uel_application_t *app, uint16_t interval_in_ms, bool immediate, uel_closure_t closure)</td></tr>
+<tr class="memdesc:a65c2b70c8e592a12cdea8efd5c2b2399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="#a65c2b70c8e592a12cdea8efd5c2b2399">More...</a><br /></td></tr>
+<tr class="separator:a65c2b70c8e592a12cdea8efd5c2b2399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4a7091b5194f4d9f9676598664e6570"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#ad4a7091b5194f4d9f9676598664e6570">uel_app_enqueue_closure</a> (uel_application_t *app, uel_closure_t *closure)</td></tr>
+<tr class="memdesc:ad4a7091b5194f4d9f9676598664e6570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure to be invoked.  <a href="#ad4a7091b5194f4d9f9676598664e6570">More...</a><br /></td></tr>
+<tr class="separator:ad4a7091b5194f4d9f9676598664e6570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The application module is a convenient top-level container for the system internals. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a3114c134c545d1c6d67495633f5878d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3114c134c545d1c6d67495633f5878d0">&#9670;&nbsp;</a></span>app_enqueue_closure()</h2>
+<a id="ad4a7091b5194f4d9f9676598664e6570"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4a7091b5194f4d9f9676598664e6570">&#9670;&nbsp;</a></span>uel_app_enqueue_closure()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void app_enqueue_closure </td>
+          <td class="memname">void uel_app_enqueue_closure </td>
           <td>(</td>
-          <td class="paramtype">application_t *&#160;</td>
+          <td class="paramtype">uel_application_t *&#160;</td>
           <td class="paramname"><em>app</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t *&#160;</td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
           <td class="paramname"><em>closure</em>&#160;</td>
         </tr>
         <tr>
@@ -183,10 +180,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enqueues a closure to be invoked. </p>
-<p>Proxies the call to <a class="el" href="event-loop_8h.html#a9297808d7ffc05da6358ce6672221b27" title="Enqueues a closure to be invoked. ">evloop_enqueue_closure()</a> with application_t::event_loop as parameter.</p>
+<p>Proxies the call to <a class="el" href="event-loop_8h.html#a5d240b660b8380c7e18509b97ec1bea0" title="Enqueues a closure to be invoked. ">uel_evloop_enqueue_closure()</a> with uel_application_t::event_loop as parameter.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
+    <tr><td class="paramname">app</td><td>The uel_application_t instance </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be enqueued </td></tr>
   </table>
   </dd>
@@ -194,42 +191,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4e7aa187e2612f28e8483a797ec0d951"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e7aa187e2612f28e8483a797ec0d951">&#9670;&nbsp;</a></span>app_init()</h2>
+<a id="ab221d8fc71af4fbf92525a7691b039ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab221d8fc71af4fbf92525a7691b039ae">&#9670;&nbsp;</a></span>uel_app_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void app_init </td>
+          <td class="memname">void uel_app_init </td>
           <td>(</td>
-          <td class="paramtype">application_t *&#160;</td>
+          <td class="paramtype">uel_application_t *&#160;</td>
           <td class="paramname"><em>app</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialises an application_t instance. </p>
+<p>Initialises an uel_application_t instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
+    <tr><td class="paramname">app</td><td>The uel_application_t instance </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a4527d12c8bb4d52542dc61d51a8afbbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4527d12c8bb4d52542dc61d51a8afbbd">&#9670;&nbsp;</a></span>app_run_at_intervals()</h2>
+<a id="a65c2b70c8e592a12cdea8efd5c2b2399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65c2b70c8e592a12cdea8efd5c2b2399">&#9670;&nbsp;</a></span>uel_app_run_at_intervals()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void app_run_at_intervals </td>
+          <td class="memname">void uel_app_run_at_intervals </td>
           <td>(</td>
-          <td class="paramtype">application_t *&#160;</td>
+          <td class="paramtype">uel_application_t *&#160;</td>
           <td class="paramname"><em>app</em>, </td>
         </tr>
         <tr>
@@ -247,7 +244,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t&#160;</td>
+          <td class="paramtype">uel_closure_t&#160;</td>
           <td class="paramname"><em>closure</em>&#160;</td>
         </tr>
         <tr>
@@ -259,10 +256,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enqueues a closure for execution at intervals. </p>
-<p>Proxies the call to <a class="el" href="scheduler_8h.html#a43e2339c242a52f788d74f30ce103ed4" title="Enqueues a closure for execution at intervals. ">sch_run_at_intervals()</a> with application_t::scheduler as parameter.</p>
+<p>Proxies the call to <a class="el" href="scheduler_8h.html#a52746796720015683526e18af42103bd" title="Enqueues a closure for execution at intervals. ">uel_sch_run_at_intervals()</a> with uel_application_t::scheduler as parameter.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
+    <tr><td class="paramname">app</td><td>The uel_application_t instance </td></tr>
     <tr><td class="paramname">interval_in_ms</td><td>The delay in milliseconds two executions of the closure </td></tr>
     <tr><td class="paramname">immediate</td><td>If this flag is set, the the event will be created with a due time to the current time. </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be invoked when the due time is reached </td></tr>
@@ -272,16 +269,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa7926654e8819e83d5f094b63d469317"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7926654e8819e83d5f094b63d469317">&#9670;&nbsp;</a></span>app_run_later()</h2>
+<a id="a0be36a8d51d5eb055a11a350c8a6670e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0be36a8d51d5eb055a11a350c8a6670e">&#9670;&nbsp;</a></span>uel_app_run_later()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void app_run_later </td>
+          <td class="memname">void uel_app_run_later </td>
           <td>(</td>
-          <td class="paramtype">application_t *&#160;</td>
+          <td class="paramtype">uel_application_t *&#160;</td>
           <td class="paramname"><em>app</em>, </td>
         </tr>
         <tr>
@@ -293,7 +290,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">closure_t&#160;</td>
+          <td class="paramtype">uel_closure_t&#160;</td>
           <td class="paramname"><em>closure</em>&#160;</td>
         </tr>
         <tr>
@@ -305,10 +302,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enqueues a closure for later execution. </p>
-<p>Proxies the call to <a class="el" href="scheduler_8h.html#af81e4cc41f273ded2745a9040ca2e056" title="Enqueues a closure for later execution. ">sch_run_later()</a> with application_t::scheduler as parameter.</p>
+<p>Proxies the call to <a class="el" href="scheduler_8h.html#a911ff88f32fa1cc40e15df35c69ab552" title="Enqueues a closure for later execution. ">uel_sch_run_later()</a> with uel_application_t::scheduler as parameter.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
+    <tr><td class="paramname">app</td><td>The uel_application_t instance </td></tr>
     <tr><td class="paramname">timeout_in_ms</td><td>The delay in milliseconds until the closure is run </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be invoked when the due time is reached </td></tr>
   </table>
@@ -317,16 +314,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0c0f375ef58d963c19482d292363044c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c0f375ef58d963c19482d292363044c">&#9670;&nbsp;</a></span>app_tick()</h2>
+<a id="adbbe5a9f65d8b1168d00c270cff52085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbbe5a9f65d8b1168d00c270cff52085">&#9670;&nbsp;</a></span>uel_app_tick()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void app_tick </td>
+          <td class="memname">void uel_app_tick </td>
           <td>(</td>
-          <td class="paramtype">application_t *&#160;</td>
+          <td class="paramtype">uel_application_t *&#160;</td>
           <td class="paramname"><em>app</em></td><td>)</td>
           <td></td>
         </tr>
@@ -340,23 +337,23 @@ Functions</h2></td></tr>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
+    <tr><td class="paramname">app</td><td>The uel_application_t instance </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a09474113c2e66d6bc83127dd304125f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09474113c2e66d6bc83127dd304125f0">&#9670;&nbsp;</a></span>app_update_timer()</h2>
+<a id="aac33288da9d190eda72d9598b877b7f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac33288da9d190eda72d9598b877b7f7">&#9670;&nbsp;</a></span>uel_app_update_timer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void app_update_timer </td>
+          <td class="memname">void uel_app_update_timer </td>
           <td>(</td>
-          <td class="paramtype">application_t *&#160;</td>
+          <td class="paramtype">uel_application_t *&#160;</td>
           <td class="paramname"><em>app</em>, </td>
         </tr>
         <tr>
@@ -376,7 +373,7 @@ Functions</h2></td></tr>
 <p>Updates the internal timer of an application, located at the scheduler. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>The application_t instance </td></tr>
+    <tr><td class="paramname">app</td><td>The uel_application_t instance </td></tr>
     <tr><td class="paramname">timer</td><td>The current application timer, in milliseconds </td></tr>
   </table>
   </dd>
