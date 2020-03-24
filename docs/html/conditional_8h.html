@@ -65,7 +65,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">conditional.h File Reference</div>  </div>
@@ -100,12 +99,6 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conditionals are constructs that provide functional flow control.  <a href="structuel__conditional.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ad5045086e4e9ca63a713b90a21d85ae5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conditional_8h.html#ad5045086e4e9ca63a713b90a21d85ae5">UEL_CONDITIONAL_DECLARE</a>(id,  test,  if_true,  if_false)</td></tr>
-<tr class="memdesc:ad5045086e4e9ca63a713b90a21d85ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro to create a conditional object and wrap it into a closure.  <a href="#ad5045086e4e9ca63a713b90a21d85ae5">More...</a><br /></td></tr>
-<tr class="separator:ad5045086e4e9ca63a713b90a21d85ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:acb6e7aa5cd25863e7a628d233a967412"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conditional_8h.html#acb6e7aa5cd25863e7a628d233a967412">uel_conditional_init</a> (uel_conditional_t *conditional, uel_closure_t test, uel_closure_t if_true, uel_closure_t if_false)</td></tr>
@@ -117,60 +110,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains definitions of functional conditionals, structures that act as if-else constructs. </p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ad5045086e4e9ca63a713b90a21d85ae5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5045086e4e9ca63a713b90a21d85ae5">&#9670;&nbsp;</a></span>UEL_CONDITIONAL_DECLARE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define UEL_CONDITIONAL_DECLARE</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">id, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">test, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">if_true, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">if_false&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">uel_conditional_t <span class="keywordtype">id</span>##_conditional;                                     \</div><div class="line">    uel_conditional_init(&amp;<span class="keywordtype">id</span>##_conditional, test, if_true, if_false);       \</div><div class="line">    uel_closure_t <span class="keywordtype">id</span> = uel_conditional_wrap(&amp;<span class="keywordtype">id</span>##_conditional);</div></div><!-- fragment -->
-<p>Helper macro to create a conditional object and wrap it into a closure. </p>
-<p>This macro will create, based on the input identifier, a conditional object (_conditional) and then wrap it into a closure ().</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>The identifier on which to base declared variables' names. </td></tr>
-    <tr><td class="paramname">test</td><td>The test closure </td></tr>
-    <tr><td class="paramname">if_true</td><td>The closure to be invoked if the test returns <code>true</code> </td></tr>
-    <tr><td class="paramname">if_false</td><td>The closure to be invoked if the test returns <code>false</code> </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a09ded07bf4d8645615a25557a87c996d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a09ded07bf4d8645615a25557a87c996d">&#9670;&nbsp;</a></span>uel_conditional_apply()</h2>
 

@@ -143,12 +143,11 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">uel_closure_t <span class="keywordtype">id</span>##_pipeline_closures[] = {__VA_ARGS__};                   \</div><div class="line">    uel_pipeline_t <span class="keywordtype">id</span>##_pipeline;                                             \</div><div class="line">    uel_pipeline_init(&amp;<span class="keywordtype">id</span>##_pipeline, <span class="keywordtype">id</span>##_pipeline_closures,                 \</div><div class="line">                    <span class="keyword">sizeof</span>(<span class="keywordtype">id</span>##_pipeline_closures) / <span class="keyword">sizeof</span>(uel_closure_t));  \</div><div class="line">    uel_closure_t <span class="keywordtype">id</span> = uel_pipeline_wrap(&amp;<span class="keywordtype">id</span>##_pipeline);</div></div><!-- fragment -->
+<b>Value:</b><div class="fragment"><div class="line">uel_closure_t <span class="keywordtype">id</span>##_pipeline_closures[] = {__VA_ARGS__};                   \</div><div class="line">    uel_pipeline_t <span class="keywordtype">id</span>##_pipeline;                                             \</div><div class="line">    uel_pipeline_init(&amp;<span class="keywordtype">id</span>##_pipeline, <span class="keywordtype">id</span>##_pipeline_closures,                 \</div><div class="line">                    <span class="keyword">sizeof</span>(<span class="keywordtype">id</span>##_pipeline_closures) / <span class="keyword">sizeof</span>(uel_closure_t));</div></div><!-- fragment -->
 <p>Helper macro to create a pipeline and its required data structures. </p>
 <p>This macro, based on the input identifier, declares:</p><ul>
-<li>a closure array with any supplied closures (_pipeline_closures)</li>
-<li>a pipeline object wrapping the closure array (_pipeline)</li>
-<li>a closure bound to this pipeline that applies it when invoked ()</li>
+<li>a closure array with any supplied closures ([id]_pipeline_closures)</li>
+<li>a pipeline object wrapping the closure array ([id]_pipeline)</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

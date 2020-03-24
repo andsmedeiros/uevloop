@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['uel_5fconditional_5fdeclare',['UEL_CONDITIONAL_DECLARE',['../conditional_8h.html#ad5045086e4e9ca63a713b90a21d85ae5',1,'conditional.h']]],
   ['uel_5fcritical_5fenter',['UEL_CRITICAL_ENTER',['../critical-section_8h.html#a7c0f97308e835939cf0404b167cc188a',1,'critical-section.h']]],
   ['uel_5fcritical_5fexit',['UEL_CRITICAL_EXIT',['../critical-section_8h.html#aebdb2b9597df1dac79b2fd88d58d6539',1,'critical-section.h']]],
   ['uel_5fdeclare_5fobjpool_5fbuffers',['UEL_DECLARE_OBJPOOL_BUFFERS',['../object-pool_8h.html#a6f94946d39d323f7ea0f409962c59f1e',1,'object-pool.h']]],
