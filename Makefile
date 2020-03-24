@@ -1,9 +1,10 @@
 # CC=clang-9
 CC=gcc
-CFLAGS=-I./src/ -I. -O1 -Wall -Werror -pedantic -std=c99 -g
+CFLAGS=-I./src/ -I. -Og -Wall -Werror -pedantic -std=c99 -g
 
-OBJ=build/system/event.o build/system/event-loop.o build/system/signal.o build/system/scheduler.o build/system/containers/application.o build/system/containers/system-queues.o build/system/containers/system-pools.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o
-TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o build/test/system/containers/system-pools.o build/test/system/containers/application.o build/test/system/containers/system-queues.o build/test/system/event-loop.o build/test/system/scheduler.o build/test/system/signal.o
+OBJ=build/system/event.o build/system/event-loop.o build/system/signal.o build/system/scheduler.o build/system/containers/application.o build/system/containers/system-queues.o build/system/containers/system-pools.o build/utils/circular-queue.o build/utils/closure.o build/utils/linked-list.o build/utils/object-pool.o build/utils/iterator.o build/utils/pipeline.o build/utils/conditional.o build/utils/functional.o
+
+TEST_OBJ=build/test/utils/circular-queue.o build/test/utils/closure.o build/test/utils/linked-list.o build/test/utils/object-pool.o build/test/system/event.o build/test/system/containers/system-pools.o build/test/system/containers/application.o build/test/system/containers/system-queues.o build/test/system/event-loop.o build/test/system/scheduler.o build/test/system/signal.o build/test/utils/conditional.o build/test/utils/pipeline.o build/test/utils/iterator.o build/test/utils/functional.o
 
 dist/libuevloop.so: $(OBJ)
 	mkdir -p dist
@@ -22,24 +23,24 @@ build/utils/%.o: src/utils/%.c src/utils/%.h
 	$(CC) -c -fpic  -o $@ $< $(CFLAGS) -fprofile-arcs -ftest-coverage
 
 dist/test: dist/libuevloop.so build/test.o $(TEST_OBJ)
-	$(CC) -L./dist -o dist/test build/test.o $(TEST_OBJ) -luevloop $(CFLAGS)
+	$(CC) -L./dist -o dist/test build/test.o $(TEST_OBJ) -luevloop -lm $(CFLAGS)
 
-build/test.o: test/test.c test/minunit.h
+build/test.o: test/test.c test/uelt.h
 	$(CC) -c -fpic -o build/test.o test/test.c $(CFLAGS)
 
-build/test/system/%.o: test/system/%.c test/system/%.h build/system/%.o test/minunit.h
+build/test/system/%.o: test/system/%.c test/system/%.h build/system/%.o test/uelt.h
 	mkdir -p build/test/system
 	$(CC) -c -fpic -o $@ $< $(CFLAGS)
 
-build/test/system/containers/%.o: test/system/containers/%.c test/system/containers/%.h build/system/containers/%.o test/minunit.h
+build/test/system/containers/%.o: test/system/containers/%.c test/system/containers/%.h build/system/containers/%.o test/uelt.h
 	mkdir -p build/test/system/containers
 	$(CC) -c -fpic -o $@ $< $(CFLAGS)
 
-build/test/utils/%.o: test/utils/%.c test/utils/%.h build/utils/%.o test/minunit.h
+build/test/utils/%.o: test/utils/%.c test/utils/%.h build/utils/%.o test/uelt.h
 	mkdir -p build/test/utils
 	$(CC) -c -fpic -o $@ $< $(CFLAGS)
 
-.PHONY: clean test coverage doc debug publish
+.PHONY: clean test coverage docs debug publish
 
 clean:
 	rm -rf build dist coverage docs

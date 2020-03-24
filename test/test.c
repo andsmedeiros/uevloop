@@ -5,6 +5,10 @@
 #include "test/utils/closure.h"
 #include "test/utils/linked-list.h"
 #include "test/utils/object-pool.h"
+#include "test/utils/conditional.h"
+#include "test/utils/pipeline.h"
+#include "test/utils/iterator.h"
+#include "test/utils/functional.h"
 #include "test/system/containers/system-pools.h"
 #include "test/system/containers/system-queues.h"
 #include "test/system/containers/application.h"
@@ -20,6 +24,10 @@ static char *run_all_tests(){
     uelt_run_test_group("closure", uel_closure_run_tests);
     uelt_run_test_group("llist", uel_llist_run_tests);
     uelt_run_test_group("objpool", objpool_run_tests);
+    uelt_run_test_group("conditional", uel_conditional_run_tests);
+    uelt_run_test_group("pipeline", uel_pipeline_run_tests);
+    uelt_run_test_group("iterator", uel_iterator_run_tests);
+    uelt_run_test_group("functional", uel_functional_run_tests);
     uelt_run_test_group("syspools", uel_syspools_run_tests);
     uelt_run_test_group("sysqueues", uel_sysqueues_run_tests);
     uelt_run_test_group("event", event_run_tests);

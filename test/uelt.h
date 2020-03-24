@@ -4,6 +4,7 @@
 /* built upon http://www.jera.com/techinfo/jtns/jtn002.html */
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
 #define uelt_assert(message, test) do {                                           \
     test_context.assertions_run++;                                                           \
