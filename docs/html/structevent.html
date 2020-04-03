@@ -74,10 +74,10 @@ Collaboration diagram for uel_event_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structevent__coll__graph.png" border="0" usemap="#uel__event__t_coll__map" alt="Collaboration graph"/></div>
 <map name="uel__event__t_coll__map" id="uel__event__t_coll__map">
-<area shape="rect" id="node2" href="unionevent_1_1detail.html" title="uel_event_t::detail" alt="" coords="447,147,575,173"/>
-<area shape="rect" id="node3" href="structevent_1_1detail_1_1signal.html" title="Contains information related to an emitted signal. " alt="" coords="204,49,332,90"/>
-<area shape="rect" id="node6" href="structevent_1_1detail_1_1timer.html" title="Contains information suitable for scheduling an event at the scheduler. " alt="" coords="204,114,332,155"/>
-<area shape="rect" id="node9" href="structevent_1_1detail_1_1listener.html" title="Contains the context of a particular signal listener. " alt="" coords="204,179,332,221"/>
+<area shape="rect" id="node2" href="unionevent_1_1detail.html" title="uel_event_t::detail" alt="" coords="511,204,639,231"/>
+<area shape="rect" id="node3" href="structevent_1_1detail_1_1signal.html" title="Contains information related to an emitted signal. " alt="" coords="268,49,396,90"/>
+<area shape="rect" id="node6" href="structevent_1_1detail_1_1timer.html" title="Contains information suitable for scheduling an event at the scheduler. " alt="" coords="268,171,396,213"/>
+<area shape="rect" id="node10" href="structevent_1_1detail_1_1listener.html" title="Contains the context of a particular signal listener. " alt="" coords="268,239,396,281"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -109,10 +109,10 @@ union <a class="el" href="unionevent_1_1detail.html">event::detail</a>&#160;</td
 <div class="textblock"><p>Events are special messages passed around the core. They represent tasks to be run at some point by the system. </p>
 <p>Events are bound to information on how and when they should be invoked. There are four types of events:</p>
 <ul>
-<li><code>CLOSURE_EVENT</code>: lifeless wrappers to closures.</li>
-<li><code>TIMER_EVENT</code>: contains scheduling information associated with some closure</li>
-<li><code>SIGNAL_EVENT</code>: contains information on the emission of a signal</li>
-<li><code>SIGNAL_LISTENER_EVENT</code>: represent a single listening operation</li>
+<li><code>UEL_CLOSURE_EVENT</code>: lifeless wrappers to closures.</li>
+<li><code>UEL_TIMER_EVENT</code>: contains scheduling information associated with some closure</li>
+<li><code>UEL_SIGNAL_EVENT</code>: contains information on the emission of a signal</li>
+<li><code>UEL_SIGNAL_LISTENER_EVENT</code>: represent a single listening operation</li>
 </ul>
 <p>Closure and timer events can be recurring, in which case they won't be discarded after processing by the event loop.</p>
 <p>Signal events are <em>always</em> discarded by the event loop. Signal listeners are never meant to be sent there. In their case, the <code>repeating</code> flag determines whether the signal should be able to fire multiple times or just once. </p>

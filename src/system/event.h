@@ -15,13 +15,24 @@
 
 //! Possible types of events understood by the core
 enum uel_event_type {
-    CLOSURE_EVENT,
-    TIMER_EVENT,
-    SIGNAL_EVENT,
-    SIGNAL_LISTENER_EVENT
+    UEL_CLOSURE_EVENT,
+    UEL_TIMER_EVENT,
+    UEL_SIGNAL_EVENT,
+    UEL_SIGNAL_LISTENER_EVENT
 };
 //! Alias to the uel_event_type enum.
 typedef enum uel_event_type uel_event_type_t;
+
+
+//! Possible statuses for a timer event
+enum uel_event_timer_status {
+    UEL_TIMER_RUNNING,
+    UEL_TIMER_PAUSED,
+    UEL_TIMER_CANCELLED
+};
+//! Alias to the uel_event_timer_status
+typedef enum uel_event_timer_status uel_event_timer_status_t;
+
 
 /** \brief Events are special messages passed around the core.
   * They represent tasks to be run at some point by the system.
@@ -29,10 +40,10 @@ typedef enum uel_event_type uel_event_type_t;
   * Events are bound to information on how and when they should be invoked.
   * There are four types of events:
   *
-  * - `CLOSURE_EVENT`: lifeless wrappers to closures.
-  * - `TIMER_EVENT`: contains scheduling information associated with some closure
-  * - `SIGNAL_EVENT`: contains information on the emission of a signal
-  * - `SIGNAL_LISTENER_EVENT`: represent a single listening operation
+  * - `UEL_CLOSURE_EVENT`: lifeless wrappers to closures.
+  * - `UEL_TIMER_EVENT`: contains scheduling information associated with some closure
+  * - `UEL_SIGNAL_EVENT`: contains information on the emission of a signal
+  * - `UEL_SIGNAL_LISTENER_EVENT`: represent a single listening operation
   *
   * Closure and timer events can be recurring, in which case they won't be discarded
   * after processing by the event loop.
@@ -59,6 +70,7 @@ struct event {
             */
             uint32_t due_time;
             uint16_t timeout; //!< Holds the interval between two executions of the timer
+            uel_event_timer_status_t status; //!< Current timer status
         } timer; //!< The scheduling information of this event. Relevant only for timers
         //! Contains information related to an emitted `signal`.
         struct signal{
@@ -133,5 +145,23 @@ void uel_event_config_timer(
     uel_closure_t *closure,
     uint32_t current_time
 );
+
+/** \brief Pauses a timer event
+  *
+  * \param event The timer event to be paused
+  */
+void uel_event_timer_pause(uel_event_t *event);
+
+/** \brief Resumes a paused timer event
+  *
+  * \param event The timer event to be resumed
+  */
+void uel_event_timer_resume(uel_event_t *event);
+
+/** \brief Cancels a timer event
+  *
+  * \param event The timer event to be cancelled
+  */
+void uel_event_timer_cancel(uel_event_t *event);
 
 #endif	/* UEL_EVENT_H */

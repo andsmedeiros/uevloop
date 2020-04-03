@@ -72,8 +72,6 @@ $(function() {
 Collaboration diagram for uel_scheduer_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structuel__scheduler__coll__graph.png" border="0" usemap="#uel__scheduer__t_coll__map" alt="Collaboration graph"/></div>
-<map name="uel__scheduer__t_coll__map" id="uel__scheduer__t_coll__map">
-</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -81,6 +79,9 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a9c71f717e4ca6878742aad2e147e9dd6"><td class="memItemLeft" align="right" valign="top">uel_llist_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__scheduler.html#a9c71f717e4ca6878742aad2e147e9dd6">timer_list</a></td></tr>
 <tr class="memdesc:a9c71f717e4ca6878742aad2e147e9dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scheduled timers linked list.  <a href="#a9c71f717e4ca6878742aad2e147e9dd6">More...</a><br /></td></tr>
 <tr class="separator:a9c71f717e4ca6878742aad2e147e9dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcdd34ae1b4f2889ce0e301bc1f52826"><td class="memItemLeft" align="right" valign="top">uel_llist_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__scheduler.html#abcdd34ae1b4f2889ce0e301bc1f52826">pause_list</a></td></tr>
+<tr class="memdesc:abcdd34ae1b4f2889ce0e301bc1f52826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Paused timers linked list.  <a href="#abcdd34ae1b4f2889ce0e301bc1f52826">More...</a><br /></td></tr>
+<tr class="separator:abcdd34ae1b4f2889ce0e301bc1f52826"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a599ff398356901589bed5930a77523c3"><td class="memItemLeft" align="right" valign="top"><a id="a599ff398356901589bed5930a77523c3"></a>
 uel_syspools_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__scheduler.html#a599ff398356901589bed5930a77523c3">pools</a></td></tr>
 <tr class="memdesc:a599ff398356901589bed5930a77523c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the system's pools. <br /></td></tr>
@@ -99,6 +100,23 @@ volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 <p>This object keeps track of time run since the application was launched. It also keeps a queue of events due to be processed sometime in the future.</p>
 <p>It feeds and is fed by the system queues. Timers due to be processed are put in the outbound event queue. Timers awaiting scheduling are put in the inbound schedule queue. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a id="abcdd34ae1b4f2889ce0e301bc1f52826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcdd34ae1b4f2889ce0e301bc1f52826">&#9670;&nbsp;</a></span>pause_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uel_llist_t uel_scheduer_t::pause_list</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Paused timers linked list. </p>
+<p>Holds events that had been scheduled but has been paused by the programmer. This is scanned for resumed timers every time <code>uel_sch_manage_timers</code> is called. </p>
+
+</div>
+</div>
 <a id="a9c71f717e4ca6878742aad2e147e9dd6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c71f717e4ca6878742aad2e147e9dd6">&#9670;&nbsp;</a></span>timer_list</h2>
 

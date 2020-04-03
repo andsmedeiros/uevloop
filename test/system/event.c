@@ -14,7 +14,7 @@ static char *should_config_uel_closure_event(){
 
     uel_event_config_closure(&event, &closure, false);
 
-    uelt_assert_ints_equal("event.type", CLOSURE_EVENT, event.type);
+    uelt_assert_ints_equal("event.type", UEL_CLOSURE_EVENT, event.type);
     uelt_assert_pointers_equal(
         "event.closure.function",
         &nop,
@@ -36,7 +36,7 @@ static char *should_config_timer_event(){
     uint16_t timeout_in_ms = 15000;
 
     uel_event_config_timer(&event, timeout_in_ms, true, false, &closure, timer);
-    uelt_assert_ints_equal("event.type", TIMER_EVENT, event.type);
+    uelt_assert_ints_equal("event.type", UEL_TIMER_EVENT, event.type);
     uelt_assert_pointers_equal(
         "event.closure.function",
         &nop,
@@ -47,11 +47,37 @@ static char *should_config_timer_event(){
         timeout_in_ms,
         event.detail.timer.timeout
     );
-    uelt_assert("event.repeating muts had been set", event.repeating);
+    uelt_assert("event.repeating", event.repeating);
     uelt_assert_ints_equal(
         "event.detail.timer.due_time",
         timer + timeout_in_ms,
         event.detail.timer.due_time
+    );
+    uelt_assert_ints_equal(
+        "event.detail.timer.status",
+        UEL_TIMER_RUNNING,
+        event.detail.timer.status
+    );
+
+    uel_event_timer_pause(&event);
+    uelt_assert_ints_equal(
+        "event.detail.timer.status",
+        UEL_TIMER_PAUSED,
+        event.detail.timer.status
+    );
+
+    uel_event_timer_resume(&event);
+    uelt_assert_ints_equal(
+        "event.detail.timer.status",
+        UEL_TIMER_RUNNING,
+        event.detail.timer.status
+    );
+
+    uel_event_timer_cancel(&event);
+    uelt_assert_ints_equal(
+        "event.detail.timer.status",
+        UEL_TIMER_CANCELLED,
+        event.detail.timer.status
     );
 
     return NULL;
@@ -70,7 +96,7 @@ static char *should_config_signal_event(){
         uel_llist_init(&listeners[i]);
     }
     uel_event_config_signal(&event, SIGNAL_0, listeners, (void *)&closure);
-    uelt_assert_ints_equal("event.type", SIGNAL_EVENT, event.type);
+    uelt_assert_ints_equal("event.type", UEL_SIGNAL_EVENT, event.type);
     uelt_assert_ints_equal(
         "event.detail.signal.value",
         SIGNAL_0,

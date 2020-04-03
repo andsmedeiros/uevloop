@@ -34,6 +34,15 @@ struct uel_scheduler{
       */
     uel_llist_t timer_list;
 
+    /** \brief Paused timers linked list
+      *
+      * Holds events that had been scheduled but has been paused by the
+      * programmer.
+      * This is scanned for resumed timers every time `uel_sch_manage_timers`
+      * is called.
+      */
+    uel_llist_t pause_list;
+
     uel_syspools_t *pools; //!< Reference to the system's pools
     uel_sysqueues_t *queues; //!< Reference to the system's queues
 
@@ -58,8 +67,9 @@ void uel_sch_init(
   * \param scheduler The uel_scheduer_t into which the event will be registered
   * \param timeout_in_ms The delay in milliseconds until the closure is run
   * \param closure The closure to be invoked when the due time is reached
+  * \returns The scheduled event
   */
-void uel_sch_run_later(
+uel_event_t *uel_sch_run_later(
     uel_scheduer_t *scheduler,
     uint16_t  timeout_in_ms,
     uel_closure_t closure
@@ -73,8 +83,9 @@ void uel_sch_run_later(
   * \param immediate If this flag is set, the the event will be created with a
   * due time to the current time.
   * \param closure The closure to be invoked when the due time is reached
+  * \returns The scheduled event
   */
-void uel_sch_run_at_intervals(
+uel_event_t *uel_sch_run_at_intervals(
     uel_scheduer_t *scheduler,
     uint16_t interval_in_ms,
     bool immediate,

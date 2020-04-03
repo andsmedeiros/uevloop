@@ -2,6 +2,7 @@
 
 
 
+
 # µEvLoop ![C/C++ CI](https://github.com/andsmedeiros/uevloop/workflows/C/C++%20CI/badge.svg?event=push)
 
 A fast and lightweight event loop aimed at embedded platforms in C99.
@@ -367,6 +368,27 @@ When the function `uel_sch_manage_timers` is called, two things happen:
 1. The `schedule_queue` is flushed  and every timer in it is scheduled accordingly;
 2. The scheduler iterates over the scheduled timer list from the beginning and breaks it when it finds a timer scheduled further in the future. It then proceeds to move each timer from the extracted list  to the `event_queue`, where they will be further collected and processed.
 
+#### Timer events
+
+Events are messages passed amongst the system internals that coordinate what tasks are to be run, when and in which order.
+Usually, the programmer don't have to interact directly with events, being *timer events* the only exception to this.
+The functions `uel_sch_run_later` and `uel_sch_run_at_intervals` return a `uel_event_t *`. With this handle, it is possible to pause and resume or even completely cancel said timer event.
+```C
+uel_event_t *timer = uel_sch_run_at_intervals(&scheduler, 100, false, print_one);
+
+// The event will be put on a hold queue in the scheduler
+uel_event_timer_pause(timer);  
+
+// The event will be rescheduled on the scheduler
+uel_event_timer_resume(timer);
+
+// The event will be ignored by the scheduler and destroyed at the `event loop`
+uel_event_timer_cancel(timer);
+```
+
+When pausing and resuming timer events, be aware of the internal's latencies: paused timers are only sent to the hold queue when their  scheduled time is hit. Also, when resumed, they are scheduled based solely on their period setting, being the elapsed time when they were paused completely ignored. Should a timer both scheduled *and* paused be resumed *before* its elapsed time is hit, it behaves as it was never paused.
+Regarding cancelled timer events, they are equally susceptible to internal latency as they will only be destroyed when processed by the `event loop`. However, cancelled timers are not meant to be reused anyway. As a rule of thumb, **never** use a timer event after it was cancelled.
+
 #### Scheduler time resolution
 
 There are two distinct factors that will determine the actual time resolution of the scheduler:
@@ -453,7 +475,7 @@ uel_evloop_run(&loop);
 
  #### Signals and relay initialisation
 
-To use signals, the programmer must first define what signals will be available in a particular relay, then create the relay bound to this events.
+To use signals, the programmer must first define what signals will be available in a particular relay, then create the relay bound to this signals.
 
 To be initialised, the relay must have access to the system's internal pools and queues. The programmer will also need to supply it a buffer of [linked lists](#linked-lists), where listeners will be stored.
 
@@ -533,6 +555,7 @@ Iterators are abstractions on arbitrary collections of items. They provide a uni
 There are two iterator specialisations shipped with µEvLoop:
 
 #### Array iterators
+
 ```c
 #include "utils/iterator.h"
 #define NUMS_LENGTH	5
@@ -543,6 +566,7 @@ uel_iterator_array_t array_iterator =
 ```
 
 #### Linked list iterators
+
 ```c
 #include "utils/iterator.h
 #include "utils/linked-list.h
@@ -747,6 +771,6 @@ I am also looking for a new job and needed to improve my portfolio.
 
 ## Roadmap
 
-* Make timer events cancellable / pausable / resumable
+* ~~Make timer events cancellable / pausable / resumable~~
 * Better error handling
 * Implement [application](#application) signals

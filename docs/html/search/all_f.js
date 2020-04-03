@@ -8,6 +8,7 @@ var searchData=
   ['signal_2eh',['signal.h',['../signal_8h.html',1,'']]],
   ['signal_5fvector',['signal_vector',['../structuel__signal__relay.html#a264ee9199e913c30ec6487d258093324',1,'uel_signal_relay']]],
   ['size',['size',['../structuel__cqueue.html#ad424eefbf635da1957a7c25a6b390a57',1,'uel_cqueue']]],
+  ['status',['status',['../structevent_1_1detail_1_1timer.html#a4f1d4e797c0995eec30502449c7a07f1',1,'event::detail::timer']]],
   ['syspools',['syspools',['../structsyspools.html',1,'']]],
   ['sysqueues',['sysqueues',['../structsysqueues.html',1,'']]],
   ['system_2dpools_2eh',['system-pools.h',['../system-pools_8h.html',1,'']]],

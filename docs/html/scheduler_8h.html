@@ -114,12 +114,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a7f4ae225987bb741ca824c83a96ce138"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a7f4ae225987bb741ca824c83a96ce138">uel_sch_init</a> (uel_scheduer_t *scheduler, uel_syspools_t *pools, uel_sysqueues_t *queues)</td></tr>
 <tr class="memdesc:a7f4ae225987bb741ca824c83a96ce138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a scheduler object.  <a href="#a7f4ae225987bb741ca824c83a96ce138">More...</a><br /></td></tr>
 <tr class="separator:a7f4ae225987bb741ca824c83a96ce138"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a911ff88f32fa1cc40e15df35c69ab552"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a911ff88f32fa1cc40e15df35c69ab552">uel_sch_run_later</a> (uel_scheduer_t *scheduler, uint16_t timeout_in_ms, uel_closure_t closure)</td></tr>
-<tr class="memdesc:a911ff88f32fa1cc40e15df35c69ab552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="#a911ff88f32fa1cc40e15df35c69ab552">More...</a><br /></td></tr>
-<tr class="separator:a911ff88f32fa1cc40e15df35c69ab552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52746796720015683526e18af42103bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a52746796720015683526e18af42103bd">uel_sch_run_at_intervals</a> (uel_scheduer_t *scheduler, uint16_t interval_in_ms, bool immediate, uel_closure_t closure)</td></tr>
-<tr class="memdesc:a52746796720015683526e18af42103bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="#a52746796720015683526e18af42103bd">More...</a><br /></td></tr>
-<tr class="separator:a52746796720015683526e18af42103bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a333113d0687725bae07d078938dddd49"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a333113d0687725bae07d078938dddd49">uel_sch_run_later</a> (uel_scheduer_t *scheduler, uint16_t timeout_in_ms, uel_closure_t closure)</td></tr>
+<tr class="memdesc:a333113d0687725bae07d078938dddd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="#a333113d0687725bae07d078938dddd49">More...</a><br /></td></tr>
+<tr class="separator:a333113d0687725bae07d078938dddd49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198217b08044371b5b07a32366dd3498"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a198217b08044371b5b07a32366dd3498">uel_sch_run_at_intervals</a> (uel_scheduer_t *scheduler, uint16_t interval_in_ms, bool immediate, uel_closure_t closure)</td></tr>
+<tr class="memdesc:a198217b08044371b5b07a32366dd3498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="#a198217b08044371b5b07a32366dd3498">More...</a><br /></td></tr>
+<tr class="separator:a198217b08044371b5b07a32366dd3498"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2666a61c55a518fd602cee03a014ed10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a2666a61c55a518fd602cee03a014ed10">uel_sch_manage_timers</a> (uel_scheduer_t *scheduler)</td></tr>
 <tr class="memdesc:a2666a61c55a518fd602cee03a014ed10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue timers that are due to be processed in the event queue.  <a href="#a2666a61c55a518fd602cee03a014ed10">More...</a><br /></td></tr>
 <tr class="separator:a2666a61c55a518fd602cee03a014ed10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,14 +201,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a52746796720015683526e18af42103bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52746796720015683526e18af42103bd">&#9670;&nbsp;</a></span>uel_sch_run_at_intervals()</h2>
+<a id="a198217b08044371b5b07a32366dd3498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a198217b08044371b5b07a32366dd3498">&#9670;&nbsp;</a></span>uel_sch_run_at_intervals()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void uel_sch_run_at_intervals </td>
+          <td class="memname">uel_event_t* uel_sch_run_at_intervals </td>
           <td>(</td>
           <td class="paramtype">uel_scheduer_t *&#160;</td>
           <td class="paramname"><em>scheduler</em>, </td>
@@ -249,17 +249,18 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The scheduled event </dd></dl>
 
 </div>
 </div>
-<a id="a911ff88f32fa1cc40e15df35c69ab552"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a911ff88f32fa1cc40e15df35c69ab552">&#9670;&nbsp;</a></span>uel_sch_run_later()</h2>
+<a id="a333113d0687725bae07d078938dddd49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a333113d0687725bae07d078938dddd49">&#9670;&nbsp;</a></span>uel_sch_run_later()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void uel_sch_run_later </td>
+          <td class="memname">uel_event_t* uel_sch_run_later </td>
           <td>(</td>
           <td class="paramtype">uel_scheduer_t *&#160;</td>
           <td class="paramname"><em>scheduler</em>, </td>
@@ -293,6 +294,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The scheduled event </dd></dl>
 
 </div>
 </div>

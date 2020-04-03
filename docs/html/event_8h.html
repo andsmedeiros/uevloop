@@ -125,16 +125,26 @@ Typedefs</h2></td></tr>
 typedef enum <a class="el" href="event_8h.html#a0a3805dfccf139ba6521d57e0b79fb60">uel_event_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a04647f8821482fc8f635924fc2f1539b">uel_event_type_t</a></td></tr>
 <tr class="memdesc:a04647f8821482fc8f635924fc2f1539b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the uel_event_type enum. <br /></td></tr>
 <tr class="separator:a04647f8821482fc8f635924fc2f1539b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada757ae763328a1774f87efe179e0d0d"><td class="memItemLeft" align="right" valign="top"><a id="ada757ae763328a1774f87efe179e0d0d"></a>
+typedef enum <a class="el" href="event_8h.html#ae586ca82fed67108457450a49661a4aa">uel_event_timer_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ada757ae763328a1774f87efe179e0d0d">uel_event_timer_status_t</a></td></tr>
+<tr class="memdesc:ada757ae763328a1774f87efe179e0d0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias to the uel_event_timer_status. <br /></td></tr>
+<tr class="separator:ada757ae763328a1774f87efe179e0d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memItemLeft" align="right" valign="top"><a id="a0a3805dfccf139ba6521d57e0b79fb60"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a0a3805dfccf139ba6521d57e0b79fb60">uel_event_type</a> { <b>CLOSURE_EVENT</b>, 
-<b>TIMER_EVENT</b>, 
-<b>SIGNAL_EVENT</b>, 
-<b>SIGNAL_LISTENER_EVENT</b>
+<tr class="memitem:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memItemLeft" align="right" valign="top"><a id="a0a3805dfccf139ba6521d57e0b79fb60"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a0a3805dfccf139ba6521d57e0b79fb60">uel_event_type</a> { <b>UEL_CLOSURE_EVENT</b>, 
+<b>UEL_TIMER_EVENT</b>, 
+<b>UEL_SIGNAL_EVENT</b>, 
+<b>UEL_SIGNAL_LISTENER_EVENT</b>
  }<tr class="memdesc:a0a3805dfccf139ba6521d57e0b79fb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible types of events understood by the core. <br /></td></tr>
 </td></tr>
 <tr class="separator:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae586ca82fed67108457450a49661a4aa"><td class="memItemLeft" align="right" valign="top"><a id="ae586ca82fed67108457450a49661a4aa"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ae586ca82fed67108457450a49661a4aa">uel_event_timer_status</a> { <b>UEL_TIMER_RUNNING</b>, 
+<b>UEL_TIMER_PAUSED</b>, 
+<b>UEL_TIMER_CANCELLED</b>
+ }<tr class="memdesc:ae586ca82fed67108457450a49661a4aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible statuses for a timer event. <br /></td></tr>
+</td></tr>
+<tr class="separator:ae586ca82fed67108457450a49661a4aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -153,6 +163,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a7832c1e4c77adf1bd459949b2d1844da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a7832c1e4c77adf1bd459949b2d1844da">uel_event_config_timer</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uint16_t timeout_in_ms, bool repeating, bool immediate, uel_closure_t *closure, uint32_t current_time)</td></tr>
 <tr class="memdesc:a7832c1e4c77adf1bd459949b2d1844da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a timer event.  <a href="#a7832c1e4c77adf1bd459949b2d1844da">More...</a><br /></td></tr>
 <tr class="separator:a7832c1e4c77adf1bd459949b2d1844da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7fa468eacdeaf628daa64808721dabd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#af7fa468eacdeaf628daa64808721dabd">uel_event_timer_pause</a> (uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:af7fa468eacdeaf628daa64808721dabd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses a timer event.  <a href="#af7fa468eacdeaf628daa64808721dabd">More...</a><br /></td></tr>
+<tr class="separator:af7fa468eacdeaf628daa64808721dabd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae876c8b387f90c2a05a78a922ed8c9fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ae876c8b387f90c2a05a78a922ed8c9fb">uel_event_timer_resume</a> (uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:ae876c8b387f90c2a05a78a922ed8c9fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes a paused timer event.  <a href="#ae876c8b387f90c2a05a78a922ed8c9fb">More...</a><br /></td></tr>
+<tr class="separator:ae876c8b387f90c2a05a78a922ed8c9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306a18151beee2907b06895f86f8837d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a306a18151beee2907b06895f86f8837d">uel_event_timer_cancel</a> (uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:a306a18151beee2907b06895f86f8837d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels a timer event.  <a href="#a306a18151beee2907b06895f86f8837d">More...</a><br /></td></tr>
+<tr class="separator:a306a18151beee2907b06895f86f8837d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines events and methods to configure events. </p>
@@ -381,6 +400,84 @@ Functions</h2></td></tr>
 <p>At the moment, all this does is invoke <code>uel_closure_destroy</code> in the contained closure </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>The event to be destroyed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a306a18151beee2907b06895f86f8837d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a306a18151beee2907b06895f86f8837d">&#9670;&nbsp;</a></span>uel_event_timer_cancel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uel_event_timer_cancel </td>
+          <td>(</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancels a timer event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The timer event to be cancelled </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af7fa468eacdeaf628daa64808721dabd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7fa468eacdeaf628daa64808721dabd">&#9670;&nbsp;</a></span>uel_event_timer_pause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uel_event_timer_pause </td>
+          <td>(</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pauses a timer event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The timer event to be paused </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae876c8b387f90c2a05a78a922ed8c9fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae876c8b387f90c2a05a78a922ed8c9fb">&#9670;&nbsp;</a></span>uel_event_timer_resume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uel_event_timer_resume </td>
+          <td>(</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resumes a paused timer event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The timer event to be resumed </td></tr>
   </table>
   </dd>
 </dl>

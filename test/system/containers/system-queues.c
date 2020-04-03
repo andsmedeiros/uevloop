@@ -32,9 +32,9 @@ static char *should_manipulate_the_event_queue(){
 
     uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
     uel_event_t events[3] = {
-        { CLOSURE_EVENT, closure, false, { { 0, 0 } } },
-        { TIMER_EVENT, closure, false, { { 0, 0 } } },
-        { SIGNAL_EVENT, closure, false, { { 0, 0 } } }
+        { UEL_CLOSURE_EVENT, closure, false, { { 0, 0 } } },
+        { UEL_TIMER_EVENT, closure, false, { { 0, 0 } } },
+        { UEL_SIGNAL_EVENT, closure, false, { { 0, 0 } } }
     };
 
     uel_sysqueues_enqueue_event(&queues, &events[0]);
@@ -59,14 +59,14 @@ static char *should_manipulate_the_event_queue(){
     uel_event_t *event;
     event = uel_sysqueues_get_enqueued_event(&queues);
     uelt_assert_pointer_not_null("event pointer", event);
-    uelt_assert_ints_equal("event type must be CLOSURE", CLOSURE_EVENT, event->type);    uelt_assert_ints_equal(
+    uelt_assert_ints_equal("event type must be CLOSURE", UEL_CLOSURE_EVENT, event->type);    uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",
         2,
         uel_sysqueues_count_enqueued_events(&queues)
     );
     event = uel_sysqueues_get_enqueued_event(&queues);
     uelt_assert_pointer_not_null("event pointer", event);
-    uelt_assert_ints_equal("event type must be TIMER", TIMER_EVENT, event->type);
+    uelt_assert_ints_equal("event type must be TIMER", UEL_TIMER_EVENT, event->type);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",
         1,
@@ -74,7 +74,7 @@ static char *should_manipulate_the_event_queue(){
     );
     event = uel_sysqueues_get_enqueued_event(&queues);
     uelt_assert_pointer_not_null("event pointer", event);
-    uelt_assert_ints_equal("event type must be SIGNAL", SIGNAL_EVENT, event->type);
+    uelt_assert_ints_equal("event type must be SIGNAL", UEL_SIGNAL_EVENT, event->type);
     uelt_assert_int_zero(
         "uel_sysqueues_count_enqueued_events",
         uel_sysqueues_count_enqueued_events(&queues)
@@ -89,9 +89,9 @@ static char *should_manipulate_the_schedule_queue(){
 
     uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
     uel_event_t events[3] = {
-        { CLOSURE_EVENT, closure, false, { { 0, 0 } } },
-        { TIMER_EVENT, closure, false, { { 0, 0 } } },
-        { SIGNAL_EVENT, closure, false, { { 0, 0 } } }
+        { UEL_CLOSURE_EVENT, closure, false, { { 0, 0 } } },
+        { UEL_TIMER_EVENT, closure, false, { { 0, 0 } } },
+        { UEL_SIGNAL_EVENT, closure, false, { { 0, 0 } } }
     };
 
     uel_sysqueues_schedule_event(&queues, &events[2]);
@@ -116,14 +116,14 @@ static char *should_manipulate_the_schedule_queue(){
     uel_event_t *event;
     event = uel_sysqueues_get_scheduled_event(&queues);
     uelt_assert_pointer_not_null("event pointer", event);
-    uelt_assert_ints_equal("event type must be SIGNAL", SIGNAL_EVENT, event->type);    uelt_assert_ints_equal(
+    uelt_assert_ints_equal("event type must be SIGNAL", UEL_SIGNAL_EVENT, event->type);    uelt_assert_ints_equal(
         "uel_sysqueues_count_scheduled_events",
         2,
         uel_sysqueues_count_scheduled_events(&queues)
     );
     event = uel_sysqueues_get_scheduled_event(&queues);
     uelt_assert_pointer_not_null("event pointer", event);
-    uelt_assert_ints_equal("event type must be TIMER", TIMER_EVENT, event->type);
+    uelt_assert_ints_equal("event type must be TIMER", UEL_TIMER_EVENT, event->type);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_scheduled_events",
         1,
@@ -131,7 +131,7 @@ static char *should_manipulate_the_schedule_queue(){
     );
     event = uel_sysqueues_get_scheduled_event(&queues);
     uelt_assert_pointer_not_null("event pointer", event);
-    uelt_assert_ints_equal("event type must be CLOSURE", CLOSURE_EVENT, event->type);
+    uelt_assert_ints_equal("event type must be CLOSURE", UEL_CLOSURE_EVENT, event->type);
     uelt_assert_int_zero(
         "uel_sysqueues_count_scheduled_events",
         uel_sysqueues_count_scheduled_events(&queues)

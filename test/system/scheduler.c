@@ -36,6 +36,12 @@ static char *should_init_scheduler(){
         scheduler.timer_list.head
     );
     uelt_assert_int_zero("scheduler.timer_list.count", scheduler.timer_list.count);
+    uelt_assert_pointers_equal(
+        "scheduler.pause_list.head",
+        scheduler.pause_list.tail,
+        scheduler.pause_list.head
+    );
+    uelt_assert_int_zero("scheduler.pause_list.count", scheduler.pause_list.count);
     uelt_assert_int_zero("scheduler.timer", scheduler.timer);
 
     return NULL;
@@ -243,6 +249,86 @@ static char *should_operate(){
     return NULL;
 }
 
+static char *should_handle_timer_statuses(){
+    DECLARE_SCHEDULER();
+    uint32_t counter = 0;
+
+    uel_closure_t do_nothing = uel_closure_create(nop, NULL, NULL);
+
+    uel_event_t *timer =
+        uel_sch_run_at_intervals(&scheduler, 10, false, do_nothing);
+    uel_sch_manage_timers(&scheduler);
+
+    uelt_assert_ints_equal(
+        "scheduler.timer_list.count",
+        1,
+        scheduler.timer_list.count
+    );
+    uelt_assert_int_zero("scheduler.pause_list.count", scheduler.pause_list.count);
+
+    uel_event_timer_pause(timer);
+    uelt_assert_ints_equal(
+        "scheduler.timer_list.count",
+        1,
+        scheduler.timer_list.count
+    );
+    uelt_assert_int_zero("scheduler.pause_list.count", scheduler.pause_list.count);
+
+    fast_forward(&scheduler, &counter, 9);
+    uel_sch_manage_timers(&scheduler);
+    uelt_assert_ints_equal(
+        "scheduler.timer_list.count",
+        1,
+        scheduler.timer_list.count
+    );
+    uelt_assert_int_zero("scheduler.pause_list.count", scheduler.pause_list.count);
+
+    fast_forward(&scheduler, &counter, 1);
+    uel_sch_manage_timers(&scheduler);
+    uelt_assert_int_zero(
+        "scheduler.timer_list.count",
+        scheduler.timer_list.count
+    );
+    uelt_assert_ints_equal(
+        "scheduler.pause_list.count",
+        1,
+        scheduler.pause_list.count
+    );
+
+    fast_forward(&scheduler, &counter, 11);
+    uel_sch_manage_timers(&scheduler);
+    uelt_assert_int_zero(
+        "scheduler.timer_list.count",
+        scheduler.timer_list.count
+    );
+    uelt_assert_ints_equal(
+        "scheduler.pause_list.count",
+        1,
+        scheduler.pause_list.count
+    );
+
+    uel_event_timer_resume(timer);
+    uel_sch_manage_timers(&scheduler);
+    uelt_assert_ints_equal(
+        "scheduler.timer_list.count",
+        1,
+        scheduler.timer_list.count
+    );
+    uelt_assert_int_zero("scheduler.pause_list.count", scheduler.pause_list.count);
+
+    uel_event_timer_cancel(timer);
+    fast_forward(&scheduler, &counter, 10);
+    uel_sch_manage_timers(&scheduler);
+    uelt_assert_ints_equal(
+        "scheduler.queues->event_queue.count",
+        1,
+        scheduler.queues->event_queue.count
+    );
+    uelt_assert_int_zero("scheduler.timer_list.count", scheduler.timer_list.count);
+
+    return NULL;
+}
+
 char *sch_run_tests(){
     uelt_run_test("should correctly initialise an scheduler", should_init_scheduler);
     uelt_run_test(
@@ -252,6 +338,10 @@ char *sch_run_tests(){
     uelt_run_test(
         "should correctly schedule interval timers in both immediate and delayed modes",
         should_schedule_intervals
+    );
+    uelt_run_test(
+        "should correctly handle timer events in different statuses",
+        should_handle_timer_statuses
     );
     uelt_run_test(
         "should correctly process events as they are input and run them when managing",

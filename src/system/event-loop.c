@@ -14,6 +14,14 @@ static inline bool run_closure_event(uel_evloop_t *event_loop, uel_event_t *even
 }
 
 static inline bool run_timer_event(uel_evloop_t *event_loop, uel_event_t *event){
+    switch (event->detail.timer.status) {
+        case UEL_TIMER_CANCELLED:
+            return false;
+        case UEL_TIMER_PAUSED:
+            uel_sysqueues_schedule_event(event_loop->queues, event);
+            return true;
+        default: break;
+    }
     uel_closure_invoke(&event->closure, event_loop);
     if (event->repeating) {
         event->detail.timer.due_time += event->detail.timer.timeout;
@@ -70,13 +78,13 @@ void uel_evloop_run(uel_evloop_t *event_loop){
     uel_event_t *event;
     while((event = uel_sysqueues_get_enqueued_event(event_loop->queues)) != NULL){
         switch(event->type){
-            case CLOSURE_EVENT:
+            case UEL_CLOSURE_EVENT:
                 if(run_closure_event(event_loop, event)) continue;
                 break;
-            case TIMER_EVENT:
+            case UEL_TIMER_EVENT:
                 if(run_timer_event(event_loop, event)) continue;
                 break;
-            case SIGNAL_EVENT:
+            case UEL_SIGNAL_EVENT:
                 run_signal_event(event_loop, event);
                 break;
             default: continue;

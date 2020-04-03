@@ -73,15 +73,74 @@ static char *should_schedule_expired_timers(){
     DECLARE_EVENT_LOOP();
 
     uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
-    uel_event_t timer;
-    uel_event_config_timer(&timer, 100, true, false, &closure, 0);
-    uel_sysqueues_enqueue_event(loop.queues, &timer);
+    uel_event_t *timer = uel_syspools_acquire_event(&pools);
+    uel_event_config_timer(timer, 100, true, false, &closure, 0);
+    uel_sysqueues_enqueue_event(loop.queues, timer);
     uel_evloop_run(&loop);
 
     uelt_assert_ints_equal(
         "uel_sysqueues_count_scheduled_events",
         1,
         uel_sysqueues_count_scheduled_events(&queues)
+    );
+
+    return NULL;
+}
+
+static char *should_handle_paused_and_cancelled_timers(){
+    DECLARE_EVENT_LOOP();
+    uint32_t counter = 0;
+
+    bool flag = false;
+    uel_closure_t closure = uel_closure_create(&mark_execution, (void *)&flag, NULL);
+
+    uel_event_t *timer = uel_syspools_acquire_event(loop.pools);
+    uel_event_config_timer(timer, 10, true, false, &closure, counter);
+    uel_sysqueues_enqueue_event(loop.queues, timer);
+    uelt_assert_ints_equal(
+        "uel_sysqueues_count_enqueued_events",
+        1,
+        uel_sysqueues_count_enqueued_events(loop.queues)
+    );
+
+    uel_event_timer_pause(timer);
+    uel_evloop_run(&loop);
+    uelt_assert_int_zero(
+        "uel_sysqueues_count_enqueued_events",
+        uel_sysqueues_count_enqueued_events(loop.queues)
+    );
+    uelt_assert_ints_equal(
+        "uel_sysqueues_count_scheduled_events",
+        1,
+        uel_sysqueues_count_scheduled_events(loop.queues)
+    );
+    uelt_assert_not("flag", flag);
+
+    timer = uel_syspools_acquire_event(loop.pools);
+    uel_event_config_timer(timer, 10, true, false, &closure, counter);
+    uel_sysqueues_enqueue_event(loop.queues, timer);
+    uelt_assert_ints_equal(
+        "uel_sysqueues_count_enqueued_events",
+        1,
+        uel_sysqueues_count_enqueued_events(loop.queues)
+    );
+
+    uel_event_timer_cancel(timer);
+    uel_evloop_run(&loop);
+    uelt_assert_int_zero(
+        "uel_sysqueues_count_enqueued_events",
+        uel_sysqueues_count_enqueued_events(loop.queues)
+    );
+    uelt_assert_ints_equal(
+        "uel_sysqueues_count_scheduled_events",
+        1,
+        uel_sysqueues_count_scheduled_events(loop.queues)
+    );
+    uelt_assert_not("flag", flag);
+    uelt_assert_ints_equal(
+        "pools.event_pool.queue.count",
+        UEL_SYSPOOLS_EVENT_POOL_SIZE - 1,
+        pools.event_pool.queue.count
     );
 
     return NULL;
@@ -101,9 +160,13 @@ char *uel_evloop_run_tests(){
         should_run_events
     );
     uelt_run_test(
-        "should correctly make run timers available for rescheduling if they " \
+        "should correctly make timers available for rescheduling if they " \
             "are repeating",
         should_schedule_expired_timers
+    );
+    uelt_run_test(
+        "should correctly handle paused and cancelled timers",
+        should_handle_paused_and_cancelled_timers
     );
 
     return NULL;
