@@ -1,6 +1,7 @@
 #include "functional.h"
 
 #include <stdlib.h>
+#include <stdint.h>
 
 #include "../uelt.h"
 #include "utils/functional.h"
@@ -135,28 +136,36 @@ static char *should_operate_map_closure(){
     uel_closure_t f = uel_func_map(&square_array);
 
     UEL_TEST_MAPPER_CONTEXT(v1, 0, 1, 2, 3, 4);
-    F(&v1_mapper);
+    uintptr_t target = F(&v1_mapper);
+    uelt_assert_pointers_equal("target", target, v1);
     uelt_assert_ints_equal("v1[0]", 0, (uintptr_t)v1[0]);
     uelt_assert_ints_equal("v1[1]", 1, (uintptr_t)v1[1]);
     uelt_assert_ints_equal("v1[2]", 4, (uintptr_t)v1[2]);
     uelt_assert_ints_equal("v1[3]", 9, (uintptr_t)v1[3]);
     uelt_assert_ints_equal("v1[4]", 16, (uintptr_t)v1[4]);
 
-    UEL_TEST_MAPPER_CONTEXT(v2, 1, 1, 1, 1, 1);
-    F(&v2_mapper);
+    UEL_TEST_MAPPER_CONTEXT(v2, 1, 1, 1, 1, 1, 1);
+    target = F(&v2_mapper);
+    uelt_assert_pointers_equal("target", target, v2);
     uelt_assert_ints_equal("v2[0]", 1, (uintptr_t)v2[0]);
     uelt_assert_ints_equal("v2[1]", 1, (uintptr_t)v2[1]);
     uelt_assert_ints_equal("v2[2]", 1, (uintptr_t)v2[2]);
     uelt_assert_ints_equal("v2[3]", 1, (uintptr_t)v2[3]);
     uelt_assert_ints_equal("v2[4]", 1, (uintptr_t)v2[4]);
+    uelt_assert_ints_equal("v2[5]", 1, (uintptr_t)v2[5]);
 
-    UEL_TEST_MAPPER_CONTEXT(v3, 1, 2, 3, 5, 7);
-    F(&v3_mapper);
+    
+    UEL_TEST_MAPPER_CONTEXT(v3, 1, 2, 3, 5, 7, 11, 13, 17);
+    target = F(&v3_mapper);
+    uelt_assert_pointers_equal("target", target, v3);
     uelt_assert_ints_equal("v3[0]", 1, (uintptr_t)v3[0]);
     uelt_assert_ints_equal("v3[1]", 4, (uintptr_t)v3[1]);
     uelt_assert_ints_equal("v3[2]", 9, (uintptr_t)v3[2]);
     uelt_assert_ints_equal("v3[3]", 25, (uintptr_t)v3[3]);
     uelt_assert_ints_equal("v3[4]", 49, (uintptr_t)v3[4]);
+    uelt_assert_ints_equal("v3[5]", 121, (uintptr_t)v3[5]);
+    uelt_assert_ints_equal("v3[6]", 169, (uintptr_t)v3[6]);
+    uelt_assert_ints_equal("v3[7]", 289, (uintptr_t)v3[7]);
 
     return NULL;
 }
