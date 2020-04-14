@@ -5,7 +5,7 @@
 #include <stdlib.h>
 /// \endcond
 
-#include "../config.h"
+#include "../uel_config.h"
 #include "../portability/critical-section.h"
 
 static void register_listener(

@@ -10,7 +10,7 @@
 /// \endcond
 
 #include "../event.h"
-#include "../../config.h"
+#include "../../uel_config.h"
 #include "../../utils/linked-list.h"
 #include "../../utils/object-pool.h"
 

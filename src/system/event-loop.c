@@ -5,7 +5,7 @@
 #include <stdbool.h>
 /// \endcond
 
-#include "../config.h"
+#include "../uel_config.h"
 #include "../portability/critical-section.h"
 
 static inline bool run_closure_event(uel_evloop_t *event_loop, uel_event_t *event){

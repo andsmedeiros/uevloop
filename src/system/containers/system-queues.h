@@ -10,7 +10,7 @@
 /// \endcond
 
 #include "../event.h"
-#include "../../config.h"
+#include "../../uel_config.h"
 #include "../../utils/circular-queue.h"
 
 /** \brief A container for the system's internal queues
