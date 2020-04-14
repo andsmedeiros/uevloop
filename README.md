@@ -1,11 +1,59 @@
-
-
-
-
-
 # µEvLoop ![C/C++ CI](https://github.com/andsmedeiros/uevloop/workflows/C/C++%20CI/badge.svg?event=push)
 
 A fast and lightweight event loop aimed at embedded platforms in C99.
+
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [About](#about)
+	- [*DISCLAIMER*](#disclaimer)
+- [Highlights](#highlights)
+- [API documentation](#api-documentation)
+- [Testing](#testing)
+	- [Test coverage](#test-coverage)
+- [Core data structures](#core-data-structures)
+	- [Closures](#closures)
+		- [Basic closure usage](#basic-closure-usage)
+		- [A word on (void \*)](#a-word-on-void-)
+	- [Circular queues](#circular-queues)
+		- [Basic circular queue usage](#basic-circular-queue-usage)
+	- [Object pools](#object-pools)
+		- [Basic object pool usage](#basic-object-pool-usage)
+	- [Linked lists](#linked-lists)
+		- [Basic linked list usage](#basic-linked-list-usage)
+- [Containers](#containers)
+	- [System pools](#system-pools)
+		- [System pools usage](#system-pools-usage)
+	- [System queues](#system-queues)
+		- [System queues usage](#system-queues-usage)
+	- [Application](#application)
+- [Core modules](#core-modules)
+	- [Scheduler](#scheduler)
+		- [Basic scheduler initialisation](#basic-scheduler-initialisation)
+		- [Scheduler operation](#scheduler-operation)
+		- [Timer events](#timer-events)
+		- [Scheduler time resolution](#scheduler-time-resolution)
+	- [Event loop](#event-loop)
+		- [Basic event loop initialisation](#basic-event-loop-initialisation)
+		- [Event loop usage](#event-loop-usage)
+	- [Signal](#signal)
+		- [Signals and relay initialisation](#signals-and-relay-initialisation)
+		- [Signal operation](#signal-operation)
+- [Appendix: Useful goodies](#appendix-useful-goodies)
+	- [Iterators](#iterators)
+		- [Array iterators](#array-iterators)
+		- [Linked list iterators](#linked-list-iterators)
+		- [Iterator operation](#iterator-operation)
+		- [Iteration helpers](#iteration-helpers)
+		- [Custom iterators](#custom-iterators)
+	- [Conditionals](#conditionals)
+	- [Pipelines](#pipelines)
+	- [Functional helpers](#functional-helpers)
+- [Concurrency model](#concurrency-model)
+	- [Critical sections](#critical-sections)
+- [Motivation](#motivation)
+- [Roadmap](#roadmap)
+
+<!-- /TOC -->
 
 ## About
 
@@ -81,7 +129,7 @@ As closures are somewhat light, it is often useful to pass them around by value.
 
 ```
 
-#### *A word on (void \*)*
+#### A word on (void \*)
 
 Closures take the context and parameters as a void pointer and return the same. This is meant to make possible to pass and return complex objects from them.
 
@@ -209,7 +257,7 @@ The `syspools` module is a container for the system internal object pools. It co
 
 The system pools module is meant to be internally operated only. The only responsibility of the programmer is to allocate, initialise and provide it to other core modules.
 
-To configure the size of each pool created, edit `src/config.h`.
+To configure the size of each pool created, edit `src/uel_config.h`.
 
 #### System pools usage
 
@@ -231,7 +279,7 @@ The `sysqueues` module contains the necessary queues for sharing data amongst th
 
 As is the case with system pools, the `sysqueues` module should not be directly operated by the programmer, except for declaration and initialisation.
 
-Configure the size of each queue created in `src/config.h`.
+Configure the size of each queue created in `src/uel_config.h`.
 
 
 #### System queues usage
@@ -467,13 +515,13 @@ uel_evloop_run(&loop);
 ```
 ***WARNING!*** `uel_evloop_run` is the single most important function within µEvLoop. Almost every other core module depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
 
- ### Signal
+### Signal
 
- Signals are similar to events in Javascript. It allows the programmer to message distant parts of the system to communicate with each other in a pub/sub fashion.
+Signals are similar to events in Javascript. It allows the programmer to message distant parts of the system to communicate with each other in a pub/sub fashion.
 
- At the centre of the signal `system` is the Signal Relay, a structure that bind specific signals to its listeners. When a signal is emitted, the relay will **asynchronously** run each listener registered for that signal. If the listener was not recurring, it will be destroyed upon execution by the event loop.
+At the centre of the signal `system` is the Signal Relay, a structure that bind specific signals to its listeners. When a signal is emitted, the relay will **asynchronously** run each listener registered for that signal. If the listener was not recurring, it will be destroyed upon execution by the event loop.
 
- #### Signals and relay initialisation
+#### Signals and relay initialisation
 
 To use signals, the programmer must first define what signals will be available in a particular relay, then create the relay bound to this signals.
 
@@ -507,9 +555,9 @@ uel_signal_relay_t relay;
 void uel_signal_relay_init(&relay, &pools, &queues, buffer, SIGNAL_COUNT);
  ```
 
- #### Signal operation
+#### Signal operation
 
- ```c
+```c
 // This is the listener function.
 static void *respond_to_signal(uel_closure_t *closure){
   uintptr_t num = (uintptr_t)closure->context;
