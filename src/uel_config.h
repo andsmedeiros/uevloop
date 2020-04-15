@@ -1,4 +1,4 @@
-/** \file config.h
+/** \file uel_config.h
   *
   * \brief Central repository of system configuration. This is meant to be edited by the
   * programmer as needed.

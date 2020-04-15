@@ -18,7 +18,8 @@ enum uel_event_type {
     UEL_CLOSURE_EVENT,
     UEL_TIMER_EVENT,
     UEL_SIGNAL_EVENT,
-    UEL_SIGNAL_LISTENER_EVENT
+    UEL_SIGNAL_LISTENER_EVENT,
+    UEL_OBSERVER_EVENT
 };
 //! Alias to the uel_event_type enum.
 typedef enum uel_event_type uel_event_type_t;
@@ -63,6 +64,7 @@ struct event {
     //! Allows to compact many speciffic details on various event types on a single
     //! memory slot. Pertinent content depends on the `type` member value.
     union detail{
+
         //! Contains information suitable for scheduling an event at the scheduler.
         struct timer{
             /** \brief The value the system timer must be at when this event's closure
@@ -72,11 +74,13 @@ struct event {
             uint16_t timeout; //!< Holds the interval between two executions of the timer
             uel_event_timer_status_t status; //!< Current timer status
         } timer; //!< The scheduling information of this event. Relevant only for timers
+
         //! Contains information related to an emitted `signal`.
         struct signal{
             uintptr_t value; //!< The integer value that identifies this signal
             uel_llist_t *listeners; //!< Reference to the signal listeners
         } signal; //!< The emission information of this event. Relevant only for signals
+
         //! Contains the context of a particular signal listener
         struct listener{
             /** When this flag is set, the `event_loop` will not run this event's
@@ -84,6 +88,14 @@ struct event {
               */
             bool unlistened;
         } listener; //!< The listening information of this event. Relevant only for signal listeners
+
+        //! Contains the reference to an observer variable
+        struct observer{
+            volatile uintptr_t *condition_var; //!< The address of a volatile value to observe
+            uintptr_t last_value; //!< The last value read
+            //! Whether this observer has been cancelled and is awaiting for destruction
+            bool cancelled;
+        } observer; //!< The observing information of this event. Relevant only for observers
     } detail; //!< Represents speciffic detail on a event depending on its type.
 };
 
@@ -125,6 +137,27 @@ void uel_event_config_signal(
   * after processing
   */
 void uel_event_config_signal_listener(uel_event_t *event, uel_closure_t *closure, bool repeating);
+
+/** \brief Configures an observer event
+  *
+  * \param event The event to be configured
+  * \param closure The closure to be invoked when the observed value changes
+  * \param condition_var The address of a volatile variable to be observed
+  * \param repeating Intructs the system whether should this event be disposed of
+  * after processing
+  */
+void uel_event_config_observer(
+    uel_event_t *event,
+    uel_closure_t *closure,
+    volatile uintptr_t *condition_var,
+    bool repeating
+);
+
+/** \brief Cancels an observer
+  *
+  * \param event The observer event to be cancelled
+  */
+void uel_event_observer_cancel(uel_event_t *event);
 
 /** \brief Configures a timer event
   * \param event The event to be configured

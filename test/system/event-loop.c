@@ -8,12 +8,12 @@
 #include "utils/closure.h"
 #include "../uelt.h"
 
-#define DECLARE_EVENT_LOOP()                                                    \
-    uel_syspools_t pools;                                                              \
-    uel_syspools_init(&pools);                                                         \
-    uel_sysqueues_t queues;                                                         \
-    uel_sysqueues_init(&queues);                                                    \
-    uel_evloop_t loop;                                                              \
+#define DECLARE_EVENT_LOOP()                    \
+    uel_syspools_t pools;                       \
+    uel_syspools_init(&pools);                  \
+    uel_sysqueues_t queues;                     \
+    uel_sysqueues_init(&queues);                \
+    uel_evloop_t loop;                          \
     uel_evloop_init(&loop, &pools, &queues);
 
 static char *should_init_event_loop(){
@@ -21,6 +21,7 @@ static char *should_init_event_loop(){
 
     uelt_assert_pointers_equal("evloop.system_pools", &pools, loop.pools);
     uelt_assert_pointers_equal("evloop.queues", &queues, loop.queues);
+    uelt_assert_int_zero("loop.observers.count", loop.observers.count);
 
     return NULL;
 }
@@ -146,6 +147,40 @@ static char *should_handle_paused_and_cancelled_timers(){
     return NULL;
 }
 
+static char *should_operate_observers(){
+    DECLARE_EVENT_LOOP();
+
+    volatile uintptr_t counter = 0;
+    bool flag = false;
+    uel_closure_t closure = uel_closure_create(&mark_execution, (void *)&flag, NULL);
+
+    uel_event_t *observer = uel_evloop_observe(&loop, &counter, &closure);
+    uelt_assert_ints_equal("loop.observers.count", 1, loop.observers.count);
+
+    uel_evloop_run(&loop);
+    uelt_assert_not("flag when value has not changed #1", flag);
+
+    counter = 100;
+    uel_evloop_run(&loop);
+    uelt_assert("flag when value has changed #1", flag);
+
+    flag = false;
+    uel_evloop_run(&loop);
+    uelt_assert_not("flag when value has not changed #2", flag);
+
+    counter = 0;
+    uel_evloop_run(&loop);
+    uelt_assert("flag when value has changed #2", flag);
+
+    flag = false;
+    uel_event_observer_cancel(observer);
+    uel_evloop_run(&loop);
+    uelt_assert_not("flag when value has not changed #3", flag);
+    uelt_assert_int_zero("loop.observers.count", loop.observers.count);
+
+    return NULL;
+}
+
 char *uel_evloop_run_tests(){
     uelt_run_test(
         "should correctly initialise an event loop",
@@ -167,6 +202,10 @@ char *uel_evloop_run_tests(){
     uelt_run_test(
         "should correctly handle paused and cancelled timers",
         should_handle_paused_and_cancelled_timers
+    );
+    uelt_run_test(
+        "should correctly operate observers",
+        should_operate_observers
     );
 
     return NULL;

@@ -116,6 +116,50 @@ static char *should_config_signal_event(){
     return NULL;
 }
 
+static char *should_config_signal_listener_event(){
+    uel_event_t event;
+    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+
+    uel_event_config_signal_listener(&event, &closure, true);
+    uelt_assert_ints_equal("event.type", UEL_SIGNAL_LISTENER_EVENT, event.type);
+    uelt_assert("event.repeating", event.repeating);
+    uelt_assert_not("event.detail.listener.unlistened", event.detail.listener.unlistened);
+
+    return NULL;
+}
+
+static char *should_config_observer_event(){
+    volatile uintptr_t cv = 10;
+    uel_event_t event;
+    uel_closure_t closure = uel_closure_create(nop, NULL, NULL);
+
+    uel_event_config_observer(&event, &closure, &cv, true);
+    uelt_assert_ints_equal("event.type", UEL_OBSERVER_EVENT, event.type);
+    uelt_assert("event.repeating", event.repeating);
+    uelt_assert_pointers_equal(
+        "event.detail.observer.condition_var",
+        &cv,
+        event.detail.observer.condition_var
+    );
+    uelt_assert_ints_equal(
+        "event.detail.observer.last_value",
+        cv,
+        event.detail.observer.last_value
+    );
+    uelt_assert_not(
+        "event.detail.observer.cancelled",
+        event.detail.observer.cancelled
+    );
+
+    uel_event_observer_cancel(&event);
+    uelt_assert(
+        "event.detail.observer.cancelled",
+        event.detail.observer.cancelled
+    );
+
+    return NULL;
+}
+
 static void uel_signal_destruction(uel_closure_t *closure){
     bool *destroyed = (bool *)closure->context;
     *destroyed = true;
@@ -157,6 +201,14 @@ char *event_run_tests(){
     uelt_run_test(
         "should correctly config a signal event",
         should_config_signal_event
+    );
+    uelt_run_test(
+        "should correctly config a signal listener event",
+        should_config_signal_listener_event
+    );
+    uelt_run_test(
+        "should correctly config an observer event",
+        should_config_observer_event
     );
     uelt_run_test(
         "should correctly destroy events and contained closures",

@@ -6,6 +6,7 @@
 /// \endcond
 
 #include "../uel_config.h"
+#include "../utils/iterator.h"
 #include "../portability/critical-section.h"
 
 static inline bool run_closure_event(uel_evloop_t *event_loop, uel_event_t *event){
@@ -65,6 +66,43 @@ static inline void run_signal_event(uel_evloop_t *event_loop, uel_event_t *signa
     }
 }
 
+static inline void *run_observer_event(uel_closure_t *closure){
+    uel_evloop_t *event_loop = (uel_evloop_t *)closure->context;
+    uel_llist_node_t *node = (uel_llist_node_t *)closure->params;
+    uel_event_t *event = (uel_event_t *)node->value;
+    struct observer *observer = &event->detail.observer;
+
+    if(!observer->cancelled){
+        uintptr_t value;
+        // Ensures lock-free synchronisation
+        do{
+            value = *observer->condition_var;
+        } while(value != *observer->condition_var);
+
+        if(value != observer->last_value){
+            uel_closure_invoke(&event->closure, (void *)value);
+            observer->last_value = value;
+        }
+    }
+
+    if (observer->cancelled || !event->repeating) {
+        uel_llist_remove(&event_loop->observers, node);
+        uel_event_destroy(event);
+        uel_syspools_release_event(event_loop->pools, event);
+        uel_syspools_release_llist_node(event_loop->pools, node);
+    }
+
+    return (void *)true;
+}
+
+static void register_observer(uel_evloop_t *event_loop, uel_event_t *observer){
+    uel_llist_node_t *node = uel_syspools_acquire_llist_node(event_loop->pools);
+    node->value = (void *)observer;
+    UEL_CRITICAL_ENTER;
+    uel_llist_push_head(&event_loop->observers, node);
+    UEL_CRITICAL_EXIT;
+}
+
 void uel_evloop_init(
     uel_evloop_t *event_loop,
     uel_syspools_t *pools,
@@ -72,6 +110,7 @@ void uel_evloop_init(
 ){
     event_loop->pools = pools;
     event_loop->queues = queues;
+    uel_llist_init(&event_loop->observers);
 }
 
 void uel_evloop_run(uel_evloop_t *event_loop){
@@ -92,10 +131,41 @@ void uel_evloop_run(uel_evloop_t *event_loop){
         uel_event_destroy(event);
         uel_syspools_release_event(event_loop->pools, event);
     }
+
+    uel_closure_t observe =
+        uel_closure_create(run_observer_event, (void *)event_loop, NULL);
+    uel_iterator_llist_t observer_it =
+        uel_iterator_llist_create(&event_loop->observers);
+    uel_iterator_foreach(&observer_it, &observe);
 }
 
 void uel_evloop_enqueue_closure(uel_evloop_t *event_loop, uel_closure_t *closure){
     uel_event_t *event = uel_syspools_acquire_event(event_loop->pools);
     uel_event_config_closure(event, closure, false);
     uel_sysqueues_enqueue_event(event_loop->queues, event);
+}
+
+
+uel_event_t *uel_evloop_observe(
+  uel_evloop_t *event_loop,
+  volatile uintptr_t *condition_var,
+  uel_closure_t *closure
+){
+    uel_event_t *observer = uel_syspools_acquire_event(event_loop->pools);
+    uel_event_config_observer(observer, closure, condition_var, true);
+    register_observer(event_loop, observer);
+
+    return observer;
+}
+
+uel_event_t *uel_evloop_observe_once(
+  uel_evloop_t *event_loop,
+  volatile uintptr_t *condition_var,
+  uel_closure_t *closure
+){
+    uel_event_t *observer = uel_syspools_acquire_event(event_loop->pools);
+    uel_event_config_observer(observer, closure, condition_var, false);
+    register_observer(event_loop, observer);
+
+    return observer;
 }

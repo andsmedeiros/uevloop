@@ -35,6 +35,7 @@ A fast and lightweight event loop aimed at embedded platforms in C99.
 	- [Event loop](#event-loop)
 		- [Basic event loop initialisation](#basic-event-loop-initialisation)
 		- [Event loop usage](#event-loop-usage)
+		- [Observers](#observers)
 	- [Signal](#signal)
 		- [Signals and relay initialisation](#signals-and-relay-initialisation)
 		- [Signal operation](#signal-operation)
@@ -419,7 +420,7 @@ When the function `uel_sch_manage_timers` is called, two things happen:
 #### Timer events
 
 Events are messages passed amongst the system internals that coordinate what tasks are to be run, when and in which order.
-Usually, the programmer don't have to interact directly with events, being *timer events* the only exception to this.
+Usually, the programmer don't have to interact directly with events, being *timer events* and [observers](#observers) the only exceptions to this.
 The functions `uel_sch_run_later` and `uel_sch_run_at_intervals` return a `uel_event_t *`. With this handle, it is possible to pause and resume or even completely cancel said timer event.
 ```C
 uel_event_t *timer = uel_sch_run_at_intervals(&scheduler, 100, false, print_one);
@@ -514,6 +515,40 @@ uel_evloop_run(&loop);
 
 ```
 ***WARNING!*** `uel_evloop_run` is the single most important function within µEvLoop. Almost every other core module depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
+
+#### Observers
+
+The event loop can be instructed to observe some arbitrary volatile value and react to changes in it.
+
+Because observers are completely passive, they are ideal for triggering side-effects from ISRs without **any** latency. However, each observer set does incur extra latency during runloops, as the observed value must be continuously polled.
+
+```c
+static volatile uintptr_t adc_reading = 0;
+
+void my_adc_isr(){
+  adc_reading  = my_adc_buffer;
+  my_adc_isr_flag = 0;
+}
+
+static void *process_adc_reading(uel_closure_t *closure){
+  uintptr_t value = (uintptr_t)closure->params;
+  // Do something with `value`
+
+  return NULL;
+}
+uel_closure_t processor =
+  uel_closure_create(process_adc_reading, NULL, NULL);
+
+// This ensures each runloop the `adc_reading` variable is polled and, in case
+// of changes to it, the `processor` closure is called with its new value as
+// parameter.
+uel_event_t *observer = uel_evloop_observe(&loop, &adc_reading, &processor);
+
+// When an observer isn't needed anymore, it can be disposed of to release any
+// used system resources.
+// **DON'T** use an observer after it has been cancelled.
+uel_event_observer_cancel(observer).
+```
 
 ### Signal
 

@@ -34,6 +34,23 @@ void uel_event_config_signal_listener(uel_event_t *event, uel_closure_t *closure
     event->detail.listener.unlistened = false;
 }
 
+void uel_event_config_observer(
+    uel_event_t *event,
+    uel_closure_t *closure,
+    volatile uintptr_t *condition_var,
+    bool repeating
+){
+    event->type = UEL_OBSERVER_EVENT;
+    event->closure = *closure;
+    event->repeating = repeating;
+    event->detail.observer.last_value = *condition_var;
+    event->detail.observer.condition_var = condition_var;
+}
+
+void uel_event_observer_cancel(uel_event_t *event){
+    event->detail.observer.cancelled = true;
+}
+
 void uel_event_config_timer(
     uel_event_t *event,
     uint16_t timeout_in_ms,

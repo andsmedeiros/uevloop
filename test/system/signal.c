@@ -16,15 +16,15 @@ enum test_signal_event {
 };
 
 #define DECLARE_SIGNAL_RELAY()                                                  \
-    uel_syspools_t pools;                                                           \
-    uel_syspools_init(&pools);                                                      \
-    uel_sysqueues_t queues;                                                         \
-    uel_sysqueues_init(&queues);                                                    \
-    uel_evloop_t loop;                                                              \
-    uel_evloop_init(&loop, &pools, &queues);                                        \
-    uel_llist_t relay_buffer[TEST_SIGNAL_EVENT_COUNT];                              \
-   uel_signal_relay_t relay;                                                       \
-   uel_signal_relay_init(                                                          \
+    uel_syspools_t pools;                                                       \
+    uel_syspools_init(&pools);                                                  \
+    uel_sysqueues_t queues;                                                     \
+    uel_sysqueues_init(&queues);                                                \
+    uel_evloop_t loop;                                                          \
+    uel_evloop_init(&loop, &pools, &queues);                                    \
+    uel_llist_t relay_buffer[TEST_SIGNAL_EVENT_COUNT];                          \
+    uel_signal_relay_t relay;                                                   \
+    uel_signal_relay_init(                                                      \
         &relay,                                                                 \
         &pools,                                                                 \
         &queues,                                                                \
@@ -60,7 +60,7 @@ static char *should_listen(){
     DECLARE_SIGNAL_RELAY();
 
     uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
-   uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
+    uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
 
     uelt_assert_ints_equal(
         "relay.signal_vector[0].count",
@@ -72,7 +72,7 @@ static char *should_listen(){
         relay.signal_vector[1].count
     );
 
-   uel_signal_listen(TEST_SIGNAL_EVENT_2, &relay, &closure);
+    uel_signal_listen(TEST_SIGNAL_EVENT_2, &relay, &closure);
 
     uelt_assert_ints_equal(
         "relay.signal_vector[0].count",
@@ -85,21 +85,21 @@ static char *should_listen(){
         relay.signal_vector[1].count
     );
 
-   uel_signal_listen_once(TEST_SIGNAL_EVENT_3, &relay, &closure);
+    uel_signal_listen_once(TEST_SIGNAL_EVENT_3, &relay, &closure);
     uelt_assert_ints_equal(
         "relay.signal_vector[2].count",
         1,
         relay.signal_vector[2].count
     );
 
-   uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
+    uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
     uelt_assert_ints_equal(
         "relay.signal_vector[0].count",
         2,
         relay.signal_vector[0].count
     );
 
-   uel_signal_listen_once(TEST_SIGNAL_EVENT_1, &relay, &closure);
+    uel_signal_listen_once(TEST_SIGNAL_EVENT_1, &relay, &closure);
     uelt_assert_ints_equal(
         "relay.signal_vector[0].count",
         3,
@@ -113,12 +113,12 @@ static char *should_unlisten(){
     DECLARE_SIGNAL_RELAY();
 
     uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
-   uel_signal_listener_t listener1 =
-       uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
-   uel_signal_listener_t listener2 =
-       uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
-   uel_signal_listener_t listener3 =
-       uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
+    uel_signal_listener_t listener1 =
+        uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
+    uel_signal_listener_t listener2 =
+        uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
+    uel_signal_listener_t listener3 =
+        uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
 
     uelt_assert_ints_equal(
         "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
@@ -127,9 +127,9 @@ static char *should_unlisten(){
     );
     uelt_assert_not("listener2->unlistened", listener2->unlistened);
 
-   uel_signal_unlisten(listener2);
+    uel_signal_unlisten(listener2);
     uelt_assert("listener2->unlistened", listener2->unlistened);
-   uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
+    uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal(
         "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
@@ -138,9 +138,9 @@ static char *should_unlisten(){
     );
 
     uelt_assert_not("listener3->unlistened", listener3->unlistened);
-   uel_signal_unlisten(listener3);
+    uel_signal_unlisten(listener3);
     uelt_assert("listener3->unlistened", listener3->unlistened);
-   uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
+    uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal(
         "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
@@ -149,9 +149,9 @@ static char *should_unlisten(){
     );
 
     uelt_assert_not("listener1->unlistened", listener1->unlistened);
-   uel_signal_unlisten(listener1);
+    uel_signal_unlisten(listener1);
     uelt_assert("listener1->unlistened", listener1->unlistened);
-   uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
+    uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, NULL);
     uel_evloop_run(&loop);
     uelt_assert_int_zero(
         "relay.signal_vector[TEST_SIGNAL_EVENT_1].count",
@@ -178,34 +178,36 @@ static char *should_emit(){
     uel_closure_t closure1 = uel_closure_create(&increment, &counter1, NULL);
     uel_closure_t closure2 = uel_closure_create(&increment, &counter2, NULL);
     uel_closure_t closure3 = uel_closure_create(&increment, &counter3, NULL);
-   uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure1);
-   uel_signal_listen(TEST_SIGNAL_EVENT_2, &relay, &closure2);
-   uel_signal_listen_once(TEST_SIGNAL_EVENT_3, &relay, &closure3);
+    uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure1);
+    uel_signal_listen(TEST_SIGNAL_EVENT_2, &relay, &closure2);
+    uel_signal_listen_once(TEST_SIGNAL_EVENT_3, &relay, &closure3);
 
-   uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, (void *)1);
+    uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, (void *)1);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal("counter1", 1, counter1);
 
-   uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, (void *)2);
+    uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, (void *)2);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal("counter1", 3, counter1);
 
-   uel_signal_emit(TEST_SIGNAL_EVENT_2, &relay, (void *)2);
+    uel_signal_emit(TEST_SIGNAL_EVENT_2, &relay, (void *)2);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal("counter2", 2, counter2);
 
-   uel_signal_emit(TEST_SIGNAL_EVENT_2, &relay, (void *)3);
+    uel_signal_emit(TEST_SIGNAL_EVENT_2, &relay, (void *)3);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal("counter2", 5, counter2);
 
-   uel_signal_emit(TEST_SIGNAL_EVENT_3, &relay, (void *)3);
+    uel_signal_emit(TEST_SIGNAL_EVENT_3, &relay, (void *)3);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal("counter3", 3, counter3);
 
-   uel_signal_emit(TEST_SIGNAL_EVENT_3, &relay, (void *)4);
+    uel_signal_emit(TEST_SIGNAL_EVENT_3, &relay, (void *)4);
     uel_evloop_run(&loop);
     uelt_assert_ints_equal("counter3", 3, counter3);
 
+//    uel_signal_emit_urgent(TEST_SIGNAL_EVENT_2, &relay, (void *)3);
+//    uelt_assert_ints_equal("counter2", 8, counter2);
 
     return NULL;
 }

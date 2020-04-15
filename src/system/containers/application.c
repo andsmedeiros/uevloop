@@ -42,6 +42,7 @@ void uel_app_run_later(
     uel_closure_t closure
 ){
     uel_sch_run_later(&app->scheduler, timeout_in_ms, closure);
+    app->run_scheduler = true;
 }
 
 void uel_app_run_at_intervals(
@@ -51,6 +52,7 @@ void uel_app_run_at_intervals(
   uel_closure_t closure
 ){
     uel_sch_run_at_intervals(&app->scheduler, interval_in_ms, immediate, closure);
+    app->run_scheduler = true;
 }
 
 void uel_app_enqueue_closure(uel_application_t *app, uel_closure_t *closure){

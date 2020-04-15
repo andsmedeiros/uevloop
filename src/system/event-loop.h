@@ -6,8 +6,9 @@
 #define UEL_EVENT_LOOP_H
 
 #include "../utils/closure.h"
-#include "../system/containers/system-pools.h"
-#include "../system/containers/system-queues.h"
+#include "../utils/linked-list.h"
+#include "containers/system-pools.h"
+#include "containers/system-queues.h"
 
 /** \brief The event loop object
   *
@@ -20,6 +21,7 @@ typedef struct uel_evloop uel_evloop_t;
 struct uel_evloop{
     uel_syspools_t *pools; //!< Reference to the system's pools
     uel_sysqueues_t *queues; //!< Reference to the system's queues
+    uel_llist_t observers; //!< Stores references to values to be observed
 };
 
 /** \brief Initialises an event loop
@@ -52,5 +54,34 @@ void uel_evloop_run(uel_evloop_t *event_loop);
   * \param closure The closure to be enqueued
   */
 void uel_evloop_enqueue_closure(uel_evloop_t *event_loop, uel_closure_t *closure);
+
+/** \brief Observes a value and reacts to changes in it
+  *
+  * \param event_loop The event loop where to register this observer
+  * \param condition_var The address of some data that should be observed
+  * \param closure The closure to be invoked when the observed value changes
+  *
+  * \returns The observer event representing this observation operation
+  */
+uel_event_t *uel_evloop_observe(
+    uel_evloop_t *event_loop,
+    volatile uintptr_t *condition_var,
+    uel_closure_t *closure
+);
+
+/** \brief Observes a value and reacts once to changes in it. Afterwards, the observer
+  * will be destroyed.
+  *
+  * \param event_loop The event loop where to register this observer
+  * \param condition_var The address of some data that should be observed
+  * \param closure The closure to be invoked when the observed value changes
+  *
+  * \returns The observer event representing this observation operation
+  */
+uel_event_t *uel_evloop_observe_once(
+    uel_evloop_t *event_loop,
+    volatile uintptr_t *condition_var,
+    uel_closure_t *closure
+);
 
 #endif /* end of include guard: UEL_EVENT_LOOP_H */
