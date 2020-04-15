@@ -22,6 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -84,14 +85,14 @@ Include dependency graph for signal.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="signal_8h__incl.png" border="0" usemap="#src_2system_2signal_8h" alt=""/></div>
 <map name="src_2system_2signal_8h" id="src_2system_2signal_8h">
-<area shape="rect" id="node2" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="251,80,426,107"/>
-<area shape="rect" id="node3" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="345,162,422,189"/>
-<area shape="rect" id="node4" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="301,319,416,345"/>
-<area shape="rect" id="node5" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="396,244,524,271"/>
-<area shape="rect" id="node9" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="40,80,226,107"/>
-<area shape="rect" id="node6" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="95,162,187,189"/>
-<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="212,155,321,196"/>
-<area shape="rect" id="node8" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="124,244,238,271"/>
+<area shape="rect" id="node2" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="233,80,408,107"/>
+<area shape="rect" id="node3" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="339,162,416,189"/>
+<area shape="rect" id="node4" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="295,319,410,345"/>
+<area shape="rect" id="node5" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="390,244,518,271"/>
+<area shape="rect" id="node9" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="22,80,208,107"/>
+<area shape="rect" id="node6" href="uel__config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="65,162,181,189"/>
+<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="206,155,315,196"/>
+<area shape="rect" id="node8" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="107,244,222,271"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -137,6 +138,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af849f4effe2577efe439387d3a8a710a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#af849f4effe2577efe439387d3a8a710a">uel_signal_emit</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, void *params)</td></tr>
 <tr class="memdesc:af849f4effe2577efe439387d3a8a710a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emits a signal at the supplied relay. Any closure listening to this signal will be asynchronously invoked.  <a href="#af849f4effe2577efe439387d3a8a710a">More...</a><br /></td></tr>
 <tr class="separator:af849f4effe2577efe439387d3a8a710a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe3a2b0a50ef63ba4e4cc2ac37f4c58d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#afe3a2b0a50ef63ba4e4cc2ac37f4c58d">uel_signal_emit_urgent</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, void *params)</td></tr>
+<tr class="memdesc:afe3a2b0a50ef63ba4e4cc2ac37f4c58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emits an urgent signal at the supplied relay. Any closure listening to this signal will be synchronously invoked.  <a href="#afe3a2b0a50ef63ba4e4cc2ac37f4c58d">More...</a><br /></td></tr>
+<tr class="separator:afe3a2b0a50ef63ba4e4cc2ac37f4c58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines signals and relays, structures used to communicate asynchronously between distant parts of the application. </p>
@@ -190,6 +194,50 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Emits a signal at the supplied relay. Any closure listening to this signal will be asynchronously invoked. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signal</td><td>The signal to be emitted </td></tr>
+    <tr><td class="paramname">relay</td><td>The relay where the signal is registered </td></tr>
+    <tr><td class="paramname">params</td><td>The parameters supplied to the listener's closure when it is invoked. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afe3a2b0a50ef63ba4e4cc2ac37f4c58d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe3a2b0a50ef63ba4e4cc2ac37f4c58d">&#9670;&nbsp;</a></span>uel_signal_emit_urgent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uel_signal_emit_urgent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a>&#160;</td>
+          <td class="paramname"><em>signal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uel_signal_relay_t *&#160;</td>
+          <td class="paramname"><em>relay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Emits an urgent signal at the supplied relay. Any closure listening to this signal will be synchronously invoked. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">signal</td><td>The signal to be emitted </td></tr>

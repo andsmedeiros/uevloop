@@ -22,6 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -118,6 +119,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1listener.html">uel_event_t::detail::listener</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the context of a particular signal listener.  <a href="structevent_1_1detail_1_1listener.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1observer.html">uel_event_t::detail::observer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the reference to an observer variable.  <a href="structevent_1_1detail_1_1observer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -132,10 +136,14 @@ typedef enum <a class="el" href="event_8h.html#ae586ca82fed67108457450a49661a4aa
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memItemLeft" align="right" valign="top"><a id="a0a3805dfccf139ba6521d57e0b79fb60"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a0a3805dfccf139ba6521d57e0b79fb60">uel_event_type</a> { <b>UEL_CLOSURE_EVENT</b>, 
+<tr class="memitem:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memItemLeft" align="right" valign="top"><a id="a0a3805dfccf139ba6521d57e0b79fb60"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a0a3805dfccf139ba6521d57e0b79fb60">uel_event_type</a> { <br />
+&#160;&#160;<b>UEL_CLOSURE_EVENT</b>, 
 <b>UEL_TIMER_EVENT</b>, 
 <b>UEL_SIGNAL_EVENT</b>, 
-<b>UEL_SIGNAL_LISTENER_EVENT</b>
+<b>UEL_SIGNAL_LISTENER_EVENT</b>, 
+<br />
+&#160;&#160;<b>UEL_OBSERVER_EVENT</b>
+<br />
  }<tr class="memdesc:a0a3805dfccf139ba6521d57e0b79fb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible types of events understood by the core. <br /></td></tr>
 </td></tr>
 <tr class="separator:a0a3805dfccf139ba6521d57e0b79fb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,6 +168,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a4f2472662aa1378f437ac46dd85088e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a4f2472662aa1378f437ac46dd85088e8">uel_event_config_signal_listener</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uel_closure_t *closure, bool repeating)</td></tr>
 <tr class="memdesc:a4f2472662aa1378f437ac46dd85088e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a signal listener event.  <a href="#a4f2472662aa1378f437ac46dd85088e8">More...</a><br /></td></tr>
 <tr class="separator:a4f2472662aa1378f437ac46dd85088e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc174dfecb1d892499c2edd5a1f5f879"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#afc174dfecb1d892499c2edd5a1f5f879">uel_event_config_observer</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uel_closure_t *closure, volatile uintptr_t *condition_var, bool repeating)</td></tr>
+<tr class="memdesc:afc174dfecb1d892499c2edd5a1f5f879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures an observer event.  <a href="#afc174dfecb1d892499c2edd5a1f5f879">More...</a><br /></td></tr>
+<tr class="separator:afc174dfecb1d892499c2edd5a1f5f879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ebbe62dc7e5749c447b28238499af6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ad3ebbe62dc7e5749c447b28238499af6">uel_event_observer_cancel</a> (uel_event_t *<a class="el" href="structevent.html">event</a>)</td></tr>
+<tr class="memdesc:ad3ebbe62dc7e5749c447b28238499af6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels an observer.  <a href="#ad3ebbe62dc7e5749c447b28238499af6">More...</a><br /></td></tr>
+<tr class="separator:ad3ebbe62dc7e5749c447b28238499af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7832c1e4c77adf1bd459949b2d1844da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a7832c1e4c77adf1bd459949b2d1844da">uel_event_config_timer</a> (uel_event_t *<a class="el" href="structevent.html">event</a>, uint16_t timeout_in_ms, bool repeating, bool immediate, uel_closure_t *closure, uint32_t current_time)</td></tr>
 <tr class="memdesc:a7832c1e4c77adf1bd459949b2d1844da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a timer event.  <a href="#a7832c1e4c77adf1bd459949b2d1844da">More...</a><br /></td></tr>
 <tr class="separator:a7832c1e4c77adf1bd459949b2d1844da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +227,57 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">event</td><td>The event to be configured </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be invoked when the event is run </td></tr>
+    <tr><td class="paramname">repeating</td><td>Intructs the system whether should this event be disposed of after processing </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc174dfecb1d892499c2edd5a1f5f879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc174dfecb1d892499c2edd5a1f5f879">&#9670;&nbsp;</a></span>uel_event_config_observer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uel_event_config_observer </td>
+          <td>(</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
+          <td class="paramname"><em>closure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">volatile uintptr_t *&#160;</td>
+          <td class="paramname"><em>condition_var</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>repeating</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configures an observer event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The event to be configured </td></tr>
+    <tr><td class="paramname">closure</td><td>The closure to be invoked when the observed value changes </td></tr>
+    <tr><td class="paramname">condition_var</td><td>The address of a volatile variable to be observed </td></tr>
     <tr><td class="paramname">repeating</td><td>Intructs the system whether should this event be disposed of after processing </td></tr>
   </table>
   </dd>
@@ -400,6 +465,32 @@ Functions</h2></td></tr>
 <p>At the moment, all this does is invoke <code>uel_closure_destroy</code> in the contained closure </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>The event to be destroyed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad3ebbe62dc7e5749c447b28238499af6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ebbe62dc7e5749c447b28238499af6">&#9670;&nbsp;</a></span>uel_event_observer_cancel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uel_event_observer_cancel </td>
+          <td>(</td>
+          <td class="paramtype">uel_event_t *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancels an observer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The observer event to be cancelled </td></tr>
   </table>
   </dd>
 </dl>

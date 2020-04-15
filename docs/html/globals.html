@@ -22,6 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -140,6 +141,9 @@ $(function() {
 <li>uel_event_config_closure()
 : <a class="el" href="event_8h.html#a411f2c485451c8cab6a215601059ff25">event.h</a>
 </li>
+<li>uel_event_config_observer()
+: <a class="el" href="event_8h.html#afc174dfecb1d892499c2edd5a1f5f879">event.h</a>
+</li>
 <li>uel_event_config_signal()
 : <a class="el" href="event_8h.html#a2345bf8b0ddb2f59b4d5f35f0442d3cf">event.h</a>
 </li>
@@ -151,6 +155,9 @@ $(function() {
 </li>
 <li>uel_event_destroy()
 : <a class="el" href="event_8h.html#af92a407ee2ed9e0be5304a2e01f570bf">event.h</a>
+</li>
+<li>uel_event_observer_cancel()
+: <a class="el" href="event_8h.html#ad3ebbe62dc7e5749c447b28238499af6">event.h</a>
 </li>
 <li>uel_event_timer_cancel()
 : <a class="el" href="event_8h.html#a306a18151beee2907b06895f86f8837d">event.h</a>
@@ -178,6 +185,12 @@ $(function() {
 </li>
 <li>uel_evloop_init()
 : <a class="el" href="event-loop_8h.html#abb6102256fd588588045a5743f07247d">event-loop.h</a>
+</li>
+<li>uel_evloop_observe()
+: <a class="el" href="event-loop_8h.html#af08a755b11d666cdfa0b35446d007d13">event-loop.h</a>
+</li>
+<li>uel_evloop_observe_once()
+: <a class="el" href="event-loop_8h.html#a67264e6232817d1f23288856dbd1a3bb">event-loop.h</a>
 </li>
 <li>uel_evloop_run()
 : <a class="el" href="event-loop_8h.html#ad5371df9faa7072e1fd11470448de901">event-loop.h</a>
@@ -329,6 +342,9 @@ $(function() {
 <li>uel_signal_emit()
 : <a class="el" href="signal_8h.html#af849f4effe2577efe439387d3a8a710a">signal.h</a>
 </li>
+<li>uel_signal_emit_urgent()
+: <a class="el" href="signal_8h.html#afe3a2b0a50ef63ba4e4cc2ac37f4c58d">signal.h</a>
+</li>
 <li>uel_signal_listen()
 : <a class="el" href="signal_8h.html#ac11a6acd9237d30551bc0dc8ba406189">signal.h</a>
 </li>
@@ -339,7 +355,7 @@ $(function() {
 : <a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">signal.h</a>
 </li>
 <li>UEL_SIGNAL_MAX_LISTENERS
-: <a class="el" href="config_8h.html#a7dec29ef683393c228642729b534fbf5">config.h</a>
+: <a class="el" href="uel__config_8h.html#a7dec29ef683393c228642729b534fbf5">uel_config.h</a>
 </li>
 <li>uel_signal_relay_init()
 : <a class="el" href="signal_8h.html#a8eaa68abe3e288c96eb0ae88d244364f">signal.h</a>
@@ -360,7 +376,7 @@ $(function() {
 : <a class="el" href="system-pools_8h.html#a338ddcefe15ac9790e2c246817b2bd86">system-pools.h</a>
 </li>
 <li>UEL_SYSPOOLS_EVENT_POOL_SIZE_LOG2N
-: <a class="el" href="config_8h.html#aacb6827b910a09fe40f49dfc22bc3a9b">config.h</a>
+: <a class="el" href="uel__config_8h.html#aacb6827b910a09fe40f49dfc22bc3a9b">uel_config.h</a>
 </li>
 <li>uel_syspools_init()
 : <a class="el" href="system-pools_8h.html#a737df9d7ca7c587711dc8c59d9f1c277">system-pools.h</a>
@@ -369,7 +385,7 @@ $(function() {
 : <a class="el" href="system-pools_8h.html#a5015b8b98a72b1642be11223dfd4b400">system-pools.h</a>
 </li>
 <li>UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N
-: <a class="el" href="config_8h.html#ab3932a51e5254319c1d0feb178a5b164">config.h</a>
+: <a class="el" href="uel__config_8h.html#ab3932a51e5254319c1d0feb178a5b164">uel_config.h</a>
 </li>
 <li>uel_syspools_release_event()
 : <a class="el" href="system-pools_8h.html#a52991a37f5e0da28ecc6161ed8932911">system-pools.h</a>
@@ -390,7 +406,7 @@ $(function() {
 : <a class="el" href="system-queues_8h.html#a1d616ec92aac7c521870c1ddfbfecba9">system-queues.h</a>
 </li>
 <li>UEL_SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N
-: <a class="el" href="config_8h.html#a89c8fac6285ec1a2ad001ee55d131e90">config.h</a>
+: <a class="el" href="uel__config_8h.html#a89c8fac6285ec1a2ad001ee55d131e90">uel_config.h</a>
 </li>
 <li>uel_sysqueues_get_enqueued_event()
 : <a class="el" href="system-queues_8h.html#a897b9899eefbe90ac11e651b5117bfd3">system-queues.h</a>
@@ -408,7 +424,7 @@ $(function() {
 : <a class="el" href="system-queues_8h.html#a0a913dc860f0136e0633381c33d1821e">system-queues.h</a>
 </li>
 <li>UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N
-: <a class="el" href="config_8h.html#af83cc01ed7c71a81a08be6340bff7f4b">config.h</a>
+: <a class="el" href="uel__config_8h.html#af83cc01ed7c71a81a08be6340bff7f4b">uel_config.h</a>
 </li>
 </ul>
 </div><!-- contents -->

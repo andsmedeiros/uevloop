@@ -22,6 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -75,7 +76,7 @@ $(function() {
 <p>A container for the system's internal queues.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="event_8h_source.html">../event.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="config_8h_source.html">../../config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uel__config_8h_source.html">../../uel_config.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="circular-queue_8h_source.html">../../utils/circular-queue.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for system-queues.h:</div>
@@ -83,8 +84,8 @@ Include dependency graph for system-queues.h:</div>
 <div class="center"><img src="system-queues_8h__incl.png" border="0" usemap="#src_2system_2containers_2system-queues_8h" alt=""/></div>
 <map name="src_2system_2containers_2system-queues_8h" id="src_2system_2containers_2system-queues_8h">
 <area shape="rect" id="node2" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="24,102,101,129"/>
-<area shape="rect" id="node5" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="126,102,218,129"/>
-<area shape="rect" id="node6" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="242,95,358,136"/>
+<area shape="rect" id="node5" href="uel__config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="126,102,242,129"/>
+<area shape="rect" id="node6" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="266,95,382,136"/>
 <area shape="rect" id="node3" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="5,259,120,285"/>
 <area shape="rect" id="node4" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="49,184,177,211"/>
 </map>
@@ -112,11 +113,11 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a1d616ec92aac7c521870c1ddfbfecba9"><td class="memItemLeft" align="right" valign="top"><a id="a1d616ec92aac7c521870c1ddfbfecba9"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a1d616ec92aac7c521870c1ddfbfecba9">UEL_SYSQUEUES_EVENT_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#a89c8fac6285ec1a2ad001ee55d131e90">UEL_SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N</a>)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a1d616ec92aac7c521870c1ddfbfecba9">UEL_SYSQUEUES_EVENT_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="uel__config_8h.html#a89c8fac6285ec1a2ad001ee55d131e90">UEL_SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N</a>)</td></tr>
 <tr class="memdesc:a1d616ec92aac7c521870c1ddfbfecba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_SYSQUEUES_EVENT_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
 <tr class="separator:a1d616ec92aac7c521870c1ddfbfecba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a913dc860f0136e0633381c33d1821e"><td class="memItemLeft" align="right" valign="top"><a id="a0a913dc860f0136e0633381c33d1821e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a0a913dc860f0136e0633381c33d1821e">UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#af83cc01ed7c71a81a08be6340bff7f4b">UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N</a>)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-queues_8h.html#a0a913dc860f0136e0633381c33d1821e">UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="uel__config_8h.html#af83cc01ed7c71a81a08be6340bff7f4b">UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N</a>)</td></tr>
 <tr class="memdesc:a0a913dc860f0136e0633381c33d1821e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_SYSQUEUES_SCHEDULE_QUEUE_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
 <tr class="separator:a0a913dc860f0136e0633381c33d1821e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">

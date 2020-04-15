@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['timer',['timer',['../structevent_1_1detail_1_1timer.html',1,'event::detail']]]
+  ['signal',['signal',['../structevent_1_1detail_1_1signal.html',1,'event::detail']]],
+  ['syspools',['syspools',['../structsyspools.html',1,'']]],
+  ['sysqueues',['sysqueues',['../structsysqueues.html',1,'']]]
 ];

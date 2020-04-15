@@ -1,6 +1,7 @@
 <map id="uel_event_t" name="uel_event_t">
-<area shape="rect" id="node2" href="$unionevent_1_1detail.html" title="uel_event_t::detail" alt="" coords="511,204,639,231"/>
-<area shape="rect" id="node3" href="$structevent_1_1detail_1_1signal.html" title="Contains information related to an emitted signal. " alt="" coords="268,49,396,90"/>
-<area shape="rect" id="node6" href="$structevent_1_1detail_1_1timer.html" title="Contains information suitable for scheduling an event at the scheduler. " alt="" coords="268,171,396,213"/>
-<area shape="rect" id="node10" href="$structevent_1_1detail_1_1listener.html" title="Contains the context of a particular signal listener. " alt="" coords="268,239,396,281"/>
+<area shape="rect" id="node2" href="$unionevent_1_1detail.html" title="uel_event_t::detail" alt="" coords="524,101,652,128"/>
+<area shape="rect" id="node3" href="$structevent_1_1detail_1_1observer.html" title="Contains the reference to an observer variable. " alt="" coords="281,94,409,135"/>
+<area shape="rect" id="node12" href="$structevent_1_1detail_1_1listener.html" title="Contains the context of a particular signal listener. " alt="" coords="281,29,409,70"/>
+<area shape="rect" id="node6" href="$structevent_1_1detail_1_1signal.html" title="Contains information related to an emitted signal. " alt="" coords="281,159,409,201"/>
+<area shape="rect" id="node8" href="$structevent_1_1detail_1_1timer.html" title="Contains information suitable for scheduling an event at the scheduler. " alt="" coords="281,289,409,330"/>
 </map>

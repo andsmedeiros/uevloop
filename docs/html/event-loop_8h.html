@@ -22,6 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
+   &#160;<span id="projectnumber">0.5.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -74,21 +75,22 @@ $(function() {
 <p>Module responsible for running enqueued events and process them accordingly.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="closure_8h_source.html">../utils/closure.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="system-pools_8h_source.html">../system/containers/system-pools.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="system-queues_8h_source.html">../system/containers/system-queues.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="linked-list_8h_source.html">../utils/linked-list.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="system-pools_8h_source.html">containers/system-pools.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="system-queues_8h_source.html">containers/system-queues.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for event-loop.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="event-loop_8h__incl.png" border="0" usemap="#src_2system_2event-loop_8h" alt=""/></div>
 <map name="src_2system_2event-loop_8h" id="src_2system_2event-loop_8h">
-<area shape="rect" id="node2" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="27,333,142,360"/>
-<area shape="rect" id="node3" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="83,80,224,121"/>
-<area shape="rect" id="node9" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="287,80,428,121"/>
-<area shape="rect" id="node4" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="96,177,174,203"/>
-<area shape="rect" id="node5" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="20,259,148,285"/>
-<area shape="rect" id="node6" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="332,177,424,203"/>
-<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="198,169,307,211"/>
-<area shape="rect" id="node8" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="314,259,428,285"/>
+<area shape="rect" id="node2" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="356,319,471,345"/>
+<area shape="rect" id="node3" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="349,244,477,271"/>
+<area shape="rect" id="node4" href="system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="250,80,425,107"/>
+<area shape="rect" id="node9" href="system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="15,80,201,107"/>
+<area shape="rect" id="node5" href="event_8h.html" title="Defines events and methods to configure events. " alt="" coords="299,162,376,189"/>
+<area shape="rect" id="node6" href="uel__config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="25,162,141,189"/>
+<area shape="rect" id="node7" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="165,155,275,196"/>
+<area shape="rect" id="node8" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="45,244,160,271"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -119,6 +121,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a5d240b660b8380c7e18509b97ec1bea0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a5d240b660b8380c7e18509b97ec1bea0">uel_evloop_enqueue_closure</a> (uel_evloop_t *event_loop, uel_closure_t *closure)</td></tr>
 <tr class="memdesc:a5d240b660b8380c7e18509b97ec1bea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure to be invoked.  <a href="#a5d240b660b8380c7e18509b97ec1bea0">More...</a><br /></td></tr>
 <tr class="separator:a5d240b660b8380c7e18509b97ec1bea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08a755b11d666cdfa0b35446d007d13"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#af08a755b11d666cdfa0b35446d007d13">uel_evloop_observe</a> (uel_evloop_t *event_loop, volatile uintptr_t *condition_var, uel_closure_t *closure)</td></tr>
+<tr class="memdesc:af08a755b11d666cdfa0b35446d007d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Observes a value and reacts to changes in it.  <a href="#af08a755b11d666cdfa0b35446d007d13">More...</a><br /></td></tr>
+<tr class="separator:af08a755b11d666cdfa0b35446d007d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67264e6232817d1f23288856dbd1a3bb"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event-loop_8h.html#a67264e6232817d1f23288856dbd1a3bb">uel_evloop_observe_once</a> (uel_evloop_t *event_loop, volatile uintptr_t *condition_var, uel_closure_t *closure)</td></tr>
+<tr class="memdesc:a67264e6232817d1f23288856dbd1a3bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Observes a value and reacts once to changes in it. Afterwards, the observer will be destroyed.  <a href="#a67264e6232817d1f23288856dbd1a3bb">More...</a><br /></td></tr>
+<tr class="separator:a67264e6232817d1f23288856dbd1a3bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Module responsible for running enqueued events and process them accordingly. </p>
@@ -201,6 +209,96 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af08a755b11d666cdfa0b35446d007d13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af08a755b11d666cdfa0b35446d007d13">&#9670;&nbsp;</a></span>uel_evloop_observe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uel_event_t* uel_evloop_observe </td>
+          <td>(</td>
+          <td class="paramtype">uel_evloop_t *&#160;</td>
+          <td class="paramname"><em>event_loop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">volatile uintptr_t *&#160;</td>
+          <td class="paramname"><em>condition_var</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
+          <td class="paramname"><em>closure</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Observes a value and reacts to changes in it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_loop</td><td>The event loop where to register this observer </td></tr>
+    <tr><td class="paramname">condition_var</td><td>The address of some data that should be observed </td></tr>
+    <tr><td class="paramname">closure</td><td>The closure to be invoked when the observed value changes</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The observer event representing this observation operation </dd></dl>
+
+</div>
+</div>
+<a id="a67264e6232817d1f23288856dbd1a3bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67264e6232817d1f23288856dbd1a3bb">&#9670;&nbsp;</a></span>uel_evloop_observe_once()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uel_event_t* uel_evloop_observe_once </td>
+          <td>(</td>
+          <td class="paramtype">uel_evloop_t *&#160;</td>
+          <td class="paramname"><em>event_loop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">volatile uintptr_t *&#160;</td>
+          <td class="paramname"><em>condition_var</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uel_closure_t *&#160;</td>
+          <td class="paramname"><em>closure</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Observes a value and reacts once to changes in it. Afterwards, the observer will be destroyed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_loop</td><td>The event loop where to register this observer </td></tr>
+    <tr><td class="paramname">condition_var</td><td>The address of some data that should be observed </td></tr>
+    <tr><td class="paramname">closure</td><td>The closure to be invoked when the observed value changes</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The observer event representing this observation operation </dd></dl>
 
 </div>
 </div>
