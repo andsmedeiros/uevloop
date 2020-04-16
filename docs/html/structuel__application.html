@@ -22,7 +22,6 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">µEvLoop
-   &#160;<span id="projectnumber">0.5.0</span>
    </div>
    <div id="projectbrief">A fast and lightweight event loop aimed at embedded platforms in C99.</div>
   </td>
@@ -68,43 +67,51 @@ $(function() {
 <div class="contents">
 
 <p>Top-level container for µEvLoop'd application.  
- <a href="structapplication.html#details">More...</a></p>
+ <a href="structuel__application.html#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for uel_application_t:</div>
 <div class="dyncontent">
-<div class="center"><img src="structapplication__coll__graph.png" border="0" usemap="#uel__application__t_coll__map" alt="Collaboration graph"/></div>
+<div class="center"><img src="structuel__application__coll__graph.png" border="0" usemap="#uel__application__t_coll__map" alt="Collaboration graph"/></div>
 <map name="uel__application__t_coll__map" id="uel__application__t_coll__map">
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr class="memitem:aa02469024d8619255c81f6aace13e36e"><td class="memItemLeft" align="right" valign="top"><a id="aa02469024d8619255c81f6aace13e36e"></a>
+uel_module_t **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#aa02469024d8619255c81f6aace13e36e">registry</a></td></tr>
+<tr class="memdesc:aa02469024d8619255c81f6aace13e36e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The modules managed by this application. <br /></td></tr>
+<tr class="separator:aa02469024d8619255c81f6aace13e36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f7f83e74289e75c9e54b26e67bae14d"><td class="memItemLeft" align="right" valign="top"><a id="a5f7f83e74289e75c9e54b26e67bae14d"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#a5f7f83e74289e75c9e54b26e67bae14d">registry_size</a></td></tr>
+<tr class="memdesc:a5f7f83e74289e75c9e54b26e67bae14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of modules managed by this application. <br /></td></tr>
+<tr class="separator:a5f7f83e74289e75c9e54b26e67bae14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af74c95c7a5b2c751e83a3bb6a5404e99"><td class="memItemLeft" align="right" valign="top"><a id="af74c95c7a5b2c751e83a3bb6a5404e99"></a>
-uel_syspools_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#af74c95c7a5b2c751e83a3bb6a5404e99">pools</a></td></tr>
+uel_syspools_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#af74c95c7a5b2c751e83a3bb6a5404e99">pools</a></td></tr>
 <tr class="memdesc:af74c95c7a5b2c751e83a3bb6a5404e99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system pools: events and llist nodes. <br /></td></tr>
 <tr class="separator:af74c95c7a5b2c751e83a3bb6a5404e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a461dd6893eb70ee86bac7c43a9a86578"><td class="memItemLeft" align="right" valign="top"><a id="a461dd6893eb70ee86bac7c43a9a86578"></a>
-uel_sysqueues_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a461dd6893eb70ee86bac7c43a9a86578">queues</a></td></tr>
+uel_sysqueues_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#a461dd6893eb70ee86bac7c43a9a86578">queues</a></td></tr>
 <tr class="memdesc:a461dd6893eb70ee86bac7c43a9a86578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the system event queues. <br /></td></tr>
 <tr class="separator:a461dd6893eb70ee86bac7c43a9a86578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a206cef9bc1164781d91a883a38b0f0d9"><td class="memItemLeft" align="right" valign="top"><a id="a206cef9bc1164781d91a883a38b0f0d9"></a>
-uel_evloop_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a206cef9bc1164781d91a883a38b0f0d9">event_loop</a></td></tr>
+uel_evloop_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#a206cef9bc1164781d91a883a38b0f0d9">event_loop</a></td></tr>
 <tr class="memdesc:a206cef9bc1164781d91a883a38b0f0d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application's event loop. <br /></td></tr>
 <tr class="separator:a206cef9bc1164781d91a883a38b0f0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a977b88c48d61a8688773b062f74fc78c"><td class="memItemLeft" align="right" valign="top"><a id="a977b88c48d61a8688773b062f74fc78c"></a>
-uel_scheduer_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a977b88c48d61a8688773b062f74fc78c">scheduler</a></td></tr>
+uel_scheduer_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#a977b88c48d61a8688773b062f74fc78c">scheduler</a></td></tr>
 <tr class="memdesc:a977b88c48d61a8688773b062f74fc78c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The applications's scheduler;. <br /></td></tr>
 <tr class="separator:a977b88c48d61a8688773b062f74fc78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f1ffb5e716efc10ffd63968098ce2eb"><td class="memItemLeft" align="right" valign="top"><a id="a5f1ffb5e716efc10ffd63968098ce2eb"></a>
-uel_signal_relay_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a5f1ffb5e716efc10ffd63968098ce2eb">relay</a></td></tr>
+uel_signal_relay_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#a5f1ffb5e716efc10ffd63968098ce2eb">relay</a></td></tr>
 <tr class="memdesc:a5f1ffb5e716efc10ffd63968098ce2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unused. <br /></td></tr>
 <tr class="separator:a5f1ffb5e716efc10ffd63968098ce2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dc1aab92e88e5776d1013b4eb35ec5e"><td class="memItemLeft" align="right" valign="top"><a id="a4dc1aab92e88e5776d1013b4eb35ec5e"></a>
-uel_llist_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#a4dc1aab92e88e5776d1013b4eb35ec5e">relay_buffer</a> [UEL_APP_EVENT_COUNT]</td></tr>
+uel_llist_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#a4dc1aab92e88e5776d1013b4eb35ec5e">relay_buffer</a> [UEL_APP_EVENT_COUNT]</td></tr>
 <tr class="memdesc:a4dc1aab92e88e5776d1013b4eb35ec5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unused. <br /></td></tr>
 <tr class="separator:a4dc1aab92e88e5776d1013b4eb35ec5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad66b5adaa8603cec1f8072d43cc582f5"><td class="memItemLeft" align="right" valign="top"><a id="ad66b5adaa8603cec1f8072d43cc582f5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication.html#ad66b5adaa8603cec1f8072d43cc582f5">run_scheduler</a></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__application.html#ad66b5adaa8603cec1f8072d43cc582f5">run_scheduler</a></td></tr>
 <tr class="memdesc:ad66b5adaa8603cec1f8072d43cc582f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks when it's time to wake the scheduler. <br /></td></tr>
 <tr class="separator:ad66b5adaa8603cec1f8072d43cc582f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

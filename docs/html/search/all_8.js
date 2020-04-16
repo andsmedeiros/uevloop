@@ -1,6 +1,7 @@
 var searchData=
 [
   ['last_5fvalue',['last_value',['../structevent_1_1detail_1_1observer.html#a7fb4b35e7ba0f0b0fbe8b28745e3daed',1,'event::detail::observer']]],
+  ['launch',['launch',['../structuel__module.html#a5a45b6478c665841c477f57386785cd4',1,'uel_module']]],
   ['limit',['limit',['../structuel__func__mapper.html#abfb2f5ced405ae371069abfd131a1895',1,'uel_func_mapper']]],
   ['linked_2dlist_2eh',['linked-list.h',['../linked-list_8h.html',1,'']]],
   ['listener',['listener',['../structevent_1_1detail_1_1listener.html',1,'uel_event_t::detail::listener'],['../unionevent_1_1detail.html#a356fbaa0c4c190593cd290fdb0361f74',1,'event::detail::listener()']]],

@@ -2,7 +2,7 @@ var searchData=
 [
   ['schedule_5fqueue',['schedule_queue',['../structsysqueues.html#a92e5df8975b6c6b1aa7f79df54da8565',1,'sysqueues']]],
   ['schedule_5fqueue_5fbuffer',['schedule_queue_buffer',['../structsysqueues.html#a3f90eebf85af0e239358c276ea741917',1,'sysqueues']]],
-  ['scheduler',['scheduler',['../structapplication.html#a977b88c48d61a8688773b062f74fc78c',1,'application']]],
+  ['scheduler',['scheduler',['../structuel__application.html#a977b88c48d61a8688773b062f74fc78c',1,'uel_application']]],
   ['scheduler_2eh',['scheduler.h',['../scheduler_8h.html',1,'']]],
   ['signal',['signal',['../structevent_1_1detail_1_1signal.html',1,'uel_event_t::detail::signal'],['../unionevent_1_1detail.html#a7e78bbbb955fed744150987c51a1ee1e',1,'event::detail::signal()']]],
   ['signal_2eh',['signal.h',['../signal_8h.html',1,'']]],

@@ -3,7 +3,7 @@
 <area shape="rect" id="node14" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="565,184,716,225"/>
 <area shape="rect" id="node3" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="333,184,484,225"/>
 <area shape="rect" id="node4" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="337,363,488,404"/>
-<area shape="rect" id="node6" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="181,281,343,307"/>
-<area shape="rect" id="node8" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="419,281,577,307"/>
-<area shape="rect" id="node10" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="602,281,738,307"/>
+<area shape="rect" id="node7" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="181,281,343,307"/>
+<area shape="rect" id="node9" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="419,281,577,307"/>
+<area shape="rect" id="node11" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="602,281,738,307"/>
 </map>

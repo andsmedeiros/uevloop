@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['event_5floop',['event_loop',['../structapplication.html#a206cef9bc1164781d91a883a38b0f0d9',1,'application']]],
-  ['event_5fpool',['event_pool',['../structsyspools.html#ade1008e5647b9da5d4497d1d3dceadf1',1,'syspools']]],
-  ['event_5fpool_5fbuffer',['event_pool_buffer',['../structsyspools.html#aae9b47623604d613f379342873517c7a',1,'syspools']]],
-  ['event_5fpool_5fqueue_5fbuffer',['event_pool_queue_buffer',['../structsyspools.html#ab54b76b022a0bff944791ca2ed3e157a',1,'syspools']]],
-  ['event_5fqueue',['event_queue',['../structsysqueues.html#a8ee3a87dc51095191300b5e90658d690',1,'sysqueues']]],
-  ['event_5fqueue_5fbuffer',['event_queue_buffer',['../structsysqueues.html#ae98fcac9a2822f2b2394a4c044f148a9',1,'sysqueues']]]
+  ['destination',['destination',['../structuel__func__mapper.html#a847f834606bbc994068aaa93ed705e3c',1,'uel_func_mapper']]],
+  ['destructor',['destructor',['../structuel__closure.html#a5162fbba0f3bd2856698adc3821b7941',1,'uel_closure']]],
+  ['detail',['detail',['../structevent.html#a88ec9daba3630f5b523a89d34f7f3767',1,'event']]],
+  ['due_5ftime',['due_time',['../structevent_1_1detail_1_1timer.html#a4d7e55d4f7eca4bdc03db1b0da401c77',1,'event::detail::timer']]]
 ];

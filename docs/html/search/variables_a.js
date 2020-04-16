@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['observer',['observer',['../unionevent_1_1detail.html#a1354c33feda94a7b7c62b70d276c5961',1,'event::detail']]],
-  ['observers',['observers',['../structuel__evloop.html#ac91617cd57a61785f2feb0748039836c',1,'uel_evloop']]]
+  ['next',['next',['../structuel__iterator.html#ada7746314484ac6b7c957387988dde60',1,'uel_iterator::next()'],['../structuel__llist__node.html#a7976a89a4700768e540bf5b164f2dc68',1,'uel_llist_node::next()']]]
 ];
