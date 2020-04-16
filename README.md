@@ -1,3 +1,4 @@
+
 # µEvLoop ![C/C++ CI](https://github.com/andsmedeiros/uevloop/workflows/C/C++%20CI/badge.svg?event=push)
 
 A fast and lightweight event loop aimed at embedded platforms in C99.
@@ -26,7 +27,8 @@ A fast and lightweight event loop aimed at embedded platforms in C99.
 	- [System queues](#system-queues)
 		- [System queues usage](#system-queues-usage)
 	- [Application](#application)
-- [Core modules](#core-modules)
+		- [Application registry](#application-registry)
+- [Core components](#core-components)
 	- [Scheduler](#scheduler)
 		- [Basic scheduler initialisation](#basic-scheduler-initialisation)
 		- [Scheduler operation](#scheduler-operation)
@@ -39,7 +41,13 @@ A fast and lightweight event loop aimed at embedded platforms in C99.
 	- [Signal](#signal)
 		- [Signals and relay initialisation](#signals-and-relay-initialisation)
 		- [Signal operation](#signal-operation)
-- [Appendix: Useful goodies](#appendix-useful-goodies)
+- [Appendix A: Modules](#appendix-a-modules)
+	- [Module creation](#module-creation)
+	- [Module registration](#module-registration)
+	- [Dependency Injection](#dependency-injection)
+		- [Parametrised injection](#parametrised-injection)
+		- [Ad-hoc injection](#ad-hoc-injection)
+- [Appendix B: Useful goodies](#appendix-b-useful-goodies)
 	- [Iterators](#iterators)
 		- [Array iterators](#array-iterators)
 		- [Linked list iterators](#linked-list-iterators)
@@ -254,9 +262,9 @@ They also encapsulates manipulation of these data structures inside [critical se
 
 ### System pools
 
-The `syspools` module is a container for the system internal object pools. It contains pools for events and linked list nodes used by the core modules.
+The `syspools` component is a container for the system internal object pools. It contains pools for events and linked list nodes used by the core components.
 
-The system pools module is meant to be internally operated only. The only responsibility of the programmer is to allocate, initialise and provide it to other core modules.
+The system pools component is meant to be internally operated only. The only responsibility of the programmer is to allocate, initialise and provide it to other core components.
 
 To configure the size of each pool created, edit `src/uel_config.h`.
 
@@ -276,9 +284,9 @@ uel_syspools_init(&pools);
 
 ### System queues
 
-The `sysqueues` module contains the necessary queues for sharing data amongst the core modules. It holds queues for events in differing statuses.
+The `sysqueues` component contains the necessary queues for sharing data amongst the core components. It holds queues for events in differing statuses.
 
-As is the case with system pools, the `sysqueues` module should not be directly operated by the programmer, except for declaration and initialisation.
+As is the case with system pools, the `sysqueues` component should not be directly operated by the programmer, except for declaration and initialisation.
 
 Configure the size of each queue created in `src/uel_config.h`.
 
@@ -299,9 +307,9 @@ uel_sysqueues_init(&queues);
 
 ### Application
 
-The `application` module is a convenient top-level container for all the internals of an µEvLoop'd app. It is not necessary at all but contains much of the boilerplate in a typical application.
+The `application` component is a convenient top-level container for all the internals of an µEvLoop'd app. It is not necessary at all but contains much of the boilerplate in a typical application.
 
-It also proxies functions to the [`event loop`](#event-loop) and [`scheduler`](#scheduler) modules, serving as a single point entry for the system operation.
+It also proxies functions to the [`event loop`](#event-loop) and [`scheduler`](#scheduler) components, serving as a single point entry for the system operation.
 
 The following code is a realistic minimal setup of the framework.
 ```c
@@ -320,9 +328,11 @@ void my_timer_isr(){
 int main (int argc, char *argv[]){
   uel_app_init(&my_app);
 
-  // Start scheduling timers through my_app.scheduler or enqueuing
-  // closures through my_app.event_loop
-  // Create modules that emit signals and listen to then from here
+  // From here, the programmer can:
+  // - Schedule timers with `uel_app_run_later` or `uel_app_run_at_intervals`
+  // - Enqueue closures with `uel_app_enqueue_closure`
+  // - Set up observers with `uel_app_observe`
+  // - Listen for signals set at other places
 
   while(1){  
     uel_app_tick(&my_app);
@@ -332,15 +342,19 @@ int main (int argc, char *argv[]){
 }
 ```
 
-## Core modules
+#### Application registry
+
+The `application` component can also keep a registry of modules to manage. See [Appendix A: Modules](#appendix-a-modules) for more information.
+
+## Core components
 
 ### Scheduler
 
-The scheduler is a module that keeps track of current execution time and closures to be run in the future. It provides similar functionality to the `setTimeout` and `setInterval` Javascript functions.
+The scheduler is a component that keeps track of current execution time and closures to be run in the future. It provides similar functionality to the `setTimeout` and `setInterval` Javascript functions.
 
 Two queues lead in and out of it: the inbound schedule_queue is externally fed events that should be scheduled and then accounted for; the outbound event_queue hold events that are due to be collected and processed.
 
-This module needs access to system's pools and queues.
+This component needs access to system's pools and queues.
 
 #### Basic scheduler initialisation
 
@@ -364,7 +378,7 @@ uel_sch_init(&scheduler, &pools, &queues);
 
 #### Scheduler operation
 
-The `scheduler` module accepts input of closures and scheduling info an then turns it into a timer event. This timer is then inserted in a timer list, which is sorted by each timer's due time.
+The `scheduler` component accepts input of closures and scheduling info an then turns it into a timer event. This timer is then inserted in a timer list, which is sorted by each timer's due time.
 
 ```c
 #include <stdio.h>
@@ -480,7 +494,7 @@ uel_evloop_init(&loop, &pools, &queues);
 
 The event loop is mean to behave as a run-to-completion task scheduler. Its `uel_evloop_run` function should be called as often as possible as to minimise execution latency. Each execution of `uel_evloop_run` is called a *runloop* .
 
-The only way the programmer interacts with it, besides creation / initialisation, is by enqueuing hand-tailored closures directly, but other system modules operate on the event loop behind the stage.
+The only way the programmer interacts with it, besides creation / initialisation, is by enqueuing hand-tailored closures directly, but other system components operate on the event loop behind the stage.
 
 Any closure can be enqueued multiple times.
 
@@ -514,7 +528,7 @@ uel_evloop_run(&loop);
 // value is 3
 
 ```
-***WARNING!*** `uel_evloop_run` is the single most important function within µEvLoop. Almost every other core module depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
+***WARNING!*** `uel_evloop_run` is the single most important function within µEvLoop. Almost every other core component depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
 
 #### Observers
 
@@ -576,7 +590,7 @@ uel_sysqueues_init(&queues);
 
 // Define what signals will be available to this relay.
 // Doing so in an enum makes it easy to add new signals in the future.
-enum my_module_signals {
+enum my_component_signals {
   SIGNAL_1 = 0,
   SIGNAL_2,
   SIGNAL_COUNT
@@ -629,7 +643,182 @@ uel_signal_unlisten(listener_2, &relay);  // This has no effect because the list
                                           // for SIGNAL_2 has already been marked as unlistened
 ```
 
-## Appendix: Useful goodies
+## Appendix A: Modules
+
+Modules are independent units of behaviour, self-contained and self-allocated, with clear lifecycle hooks, interface and dependencies. They enforce separation of concerns and isolation by making clear how your code interacts with the rest of the application.
+
+Modules are absolutely optional and very thin on the library side. They are basically a convention of how to write code in a fashion that works well with µEvLoop.
+
+Modules can serve as a variety of purposes:
+- They can act as bridges to static data, such as SFRs;
+- They can be object factories, meant to distribute and recycle objects to other modules;
+- They can act as services, background processes that interact with other parts of the application in a sattelite-fashion.
+
+### Module creation
+
+```c
+// File: my_module.h
+
+#include "utils/module.h"
+#include "system/containers/application.h"
+
+typedef struct my_module my_module_t; // Private implementation
+
+uel_module_t *my_module(uel_application_t *my_app);
+
+// Any functions' signatures to operate the module go here
+```
+```c
+// File: my_module.c
+
+#include "my_module.h"
+
+struct my_module {
+    uel_module_t base; // Inherits base interface
+
+    // Other properties
+};
+
+// Modules are meant to be static singletons
+static my_module_t module;
+
+// The config hook is used to prepare the module.
+// When it is fired by the `application`, all modules are guaranteed to be
+// registered, but may still be in an inconsistent state.
+// Modules are loaded in the order they are supplied, so previous modules will
+// already be configured.
+static void config(uel_module_t *mod){
+    // ...
+}
+
+// The launch hook is where the module should effectively start its functions.
+// All modules here are guaranteed to be registered and properly configurated.
+static void launch(uel_module_t *mod){
+    // ...
+}
+
+// The constructor function is the only mandatory symbol to be exported.
+// This function should initialise all independent or readly available data.
+// It must not be called more than once per module.
+uel_module_t *my_module(uel_application_t *my_app){
+    uel_module_init(&module.base, config, launch, my_app);
+
+    // Initialise other module's properties
+
+    return &module.base;
+}
+```  
+
+### Module registration
+
+Modules are operated by the `application` component. It is responsible for loading, configuring and launching each module.
+
+```c
+// File: my_app_modules.h
+
+#include "my_module.h"
+
+// Each module must be identified by a positive integer, zero-indexed.
+// Storing module IDs in an enum makes it easy to add new modules in the future.
+enum MY_APP_MODULES {
+    MY_MODULE,
+    // other modules...,
+    MY_APP_MODULE_COUNT
+};
+```
+
+```c
+// File: main.c
+
+#include <system/containers/application.h>
+#include "my_app_modules.h"
+
+// Creates the controlling application
+uel_application_t my_app;
+uel_app_init(&my_app);
+
+// Declares a list of module pointers to be supplied to the application.
+uel_module_t *modules[MY_APP_MODULE_COUNT];
+
+// Individually initialising pointers in the list ensures IDs always
+// match their corresponding module, even if they change during development.
+modules[MY_MODULE] = my_module(&my_app);
+
+// This loads the modules into the application:
+// - The module list is stored as the application registry;
+// - Each module's configuration hook is sequentially invoked, according to
+//   their position in the registry;
+// - Each module's launch hook is sequentially invoked, equally ordered by
+//   the registry.
+uel_app_load(&my_app, modules, MY_APP_MODULE_COUNT);
+```
+
+### Dependency Injection
+
+There are two method for injecting a registered module: *parametrised injection* and *ad-hoc injection*. Each is adequate for a different situation:
+
+#### Parametrised injection
+
+Parametrised dependencies are dependencies that are supplied during module construction.
+
+Given the following module header:
+```c
+// File: my_greeter.h
+
+#include "my_module.h"
+#include "utils/module.h"
+#include "system/containers/application.h"
+
+typedef struct my_greeter my_greeter_t;
+uel_module_t *my_greeter(
+    uel_application_t *my_app,
+    const char *name,         // <-- Parametrised dependency
+    my_module_t *other_module // <-- Dependencies can be other modules
+);
+```
+
+The application loading procedure would be:
+```c
+// File: my_app_modules.h
+
+enum MY_APP_MODULES {
+    MY_MODULE,
+    MY_GREETER,
+    MY_APP_MODULE_COUNT
+};
+```
+```c
+// File: main.c
+
+uel_module_t *modules[MY_APP_MODULE_COUNT];
+
+modules[MY_MODULE] = my_module(&my_app);
+
+// Injects parametrised dependencies `name` and `other_module`
+modules[MY_GREETER] =
+    my_greeter(&my_app, "King Kong", (my_module_t *)modules[MY_MODULE]);
+
+uel_app_load(&my_app, modules, MY_APP_MODULE_COUNT)
+```
+
+Parametrised injection facilitates reasoning about what each module depends on and in which order they are loaded. This is the preferable way to inject dependencies into modules.
+
+#### Ad-hoc injection
+Ad-hoc injections can occur anywhere, including places outside the scope of the application's managed modules.
+
+```c
+// ANYWHERE with access to `my_app`:
+
+#include <system/containers/application.h>
+#include "my_greeter.h"
+#include "my_app_modules.h"
+
+my_greeter_t *greeter = (my_greeter_t *)uel_app_require(&my_app, MY_GREETER);
+```
+
+While Ad-hoc injections seem easier, they make more difficult to know on which modules some particular piece of code depends on. Also, because they require the modules to already be loaded into the registry, they cannot be used during the configuration phase.
+
+## Appendix B: Useful goodies
 
 ### Iterators
 
@@ -820,7 +1009,7 @@ Please read [the docs](https://andsmedeiros.github.io/uevloop/html/functional_8h
 
 µEvLoop is meant to run baremetal, primarily in simple single-core MCUs. That said, nothing stops it from being employed as a side library in RTOSes or in full-fledged x86_64 multi-threaded desktop applications.
 
-Communication between asynchronous contexts, such as ISRs and side threads, is done through some shared data structures defined inside the library's core modules. As whenever dealing with non-atomic shared memory, there must be synchronisation between accesses to these structures as to avoid memory corruption.
+Communication between asynchronous contexts, such as ISRs and side threads, is done through some shared data structures defined inside the library's core components. As whenever dealing with non-atomic shared memory, there must be synchronisation between accesses to these structures as to avoid memory corruption.
 
 µEvLoop does not try to implement a universal locking scheme fit for any device. Instead, some generic critical section definition is provided.
 
@@ -854,6 +1043,8 @@ I am also looking for a new job and needed to improve my portfolio.
 
 ## Roadmap
 
-* ~~Make timer events cancellable / pausable / resumable~~
 * Better error handling
+* More lifecycle hooks for modules
+* Application teardown/exit
+* Getter and setter closures
 * Implement [application](#application) signals
