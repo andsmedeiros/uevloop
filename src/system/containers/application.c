@@ -21,6 +21,8 @@ void uel_app_init(uel_application_t *app){
         UEL_APP_EVENT_COUNT
     );
     app->run_scheduler = true;
+    app->registry = NULL;
+    app->registry_size = 0;
 }
 
 void uel_app_boot(uel_application_t *app, uel_module_t **modules, size_t module_count){

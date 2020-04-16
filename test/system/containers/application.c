@@ -18,6 +18,8 @@ enum TEST_APP_MODULES {
 static char *should_init_app(){
     DECLARE_APP();
 
+    uelt_assert_pointer_null("app.registry", app.registry);
+    uelt_assert_int_zero("app.registry_size", app.registry_size);
     uelt_assert_pointers_equal(
         "app.pools.event_pool.buffer",
         app.pools.event_pool_buffer,
