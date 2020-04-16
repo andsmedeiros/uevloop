@@ -25,7 +25,7 @@ void uel_app_init(uel_application_t *app){
     app->registry_size = 0;
 }
 
-void uel_app_boot(uel_application_t *app, uel_module_t **modules, size_t module_count){
+void uel_app_load(uel_application_t *app, uel_module_t **modules, size_t module_count){
     for (size_t i = 0; i < module_count; i++) {
         uel_module_config(modules[i]);
     }

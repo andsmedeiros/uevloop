@@ -101,7 +101,7 @@ static char *should_handle_modules(){
     modules[TEST_APP_MOD0] = &module0.base;
     modules[TEST_APP_MOD1] = &module1.base;
 
-    uel_app_boot(&app, modules, TEST_APP_MOD_COUNT);
+    uel_app_load(&app, modules, TEST_APP_MOD_COUNT);
     uelt_assert_pointers_equal("app.registry", modules, app.registry);
     uelt_assert_ints_equal("app.registry_size", TEST_APP_MOD_COUNT, app.registry_size);
     uelt_assert_ints_equal("module0.configs", 1, module0.configs);

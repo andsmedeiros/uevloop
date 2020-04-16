@@ -53,13 +53,13 @@ struct uel_application{
   */
 void uel_app_init(uel_application_t *app);
 
-/** \brief Boots an application, initiliasing each module registered
+/** \brief Loads modules into an application and run their lifecycle hooks
   *
-  * \param app The application to be booted
-  * \param modules The modules to be loaded by the application
+  * \param app The application onto which to load the modules
+  * \param modules The modules to be loaded
   * \param module_count The number of modules being loaded
   */
-void uel_app_boot(uel_application_t *app, uel_module_t **modules, size_t module_count);
+void uel_app_load(uel_application_t *app, uel_module_t **modules, size_t module_count);
 
 /** \brief Fetches a module from the app's registry
   *
@@ -142,7 +142,7 @@ void uel_app_enqueue_closure(uel_application_t *app, uel_closure_t *closure);
   * \param condition_var The address of the value to be observed
   * \param closure The closure to be invoked on change dection
   *
-  * \retrns The observer event associated with this operation
+  * \returns The observer event associated with this operation
   */
 uel_event_t *uel_app_observe(
     uel_application_t *app,
