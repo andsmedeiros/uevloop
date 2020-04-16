@@ -9,6 +9,7 @@
 #include "test/utils/pipeline.h"
 #include "test/utils/iterator.h"
 #include "test/utils/functional.h"
+#include "test/utils/module.h"
 #include "test/system/containers/system-pools.h"
 #include "test/system/containers/system-queues.h"
 #include "test/system/containers/application.h"
@@ -28,6 +29,7 @@ static char *run_all_tests(){
     uelt_run_test_group("pipeline", uel_pipeline_run_tests);
     uelt_run_test_group("iterator", uel_iterator_run_tests);
     uelt_run_test_group("functional", uel_functional_run_tests);
+    uelt_run_test_group("module", uel_module_run_tests);
     uelt_run_test_group("syspools", uel_syspools_run_tests);
     uelt_run_test_group("sysqueues", uel_sysqueues_run_tests);
     uelt_run_test_group("event", event_run_tests);
