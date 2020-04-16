@@ -80,25 +80,34 @@ static char *should_init_app(){
     return NULL;
 }
 
-static unsigned int configs = 0, launches = 0;
-static void config(uel_module_t *mod){ configs++; }
-static void launch(uel_module_t *mod){ launches++; }
+
+struct test_module {
+    uel_module_t base;
+    unsigned int configs;
+    unsigned int launches;
+};
+
+static void config(uel_module_t *mod){ ((struct test_module *)mod)->configs++; }
+static void launch(uel_module_t *mod){ ((struct test_module *)mod)->launches++; }
 
 static char *should_handle_modules(){
     DECLARE_APP();
 
-    uel_module_t module0, module1;
-    uel_module_init(&module0, config, launch, &app);
-    uel_module_init(&module1, config, launch, &app);
+    struct test_module module0 = { .configs = 0, .launches = 0 };
+    struct test_module module1 = { .configs = 0, .launches = 0 };
+    uel_module_init(&module0.base, config, launch, &app);
+    uel_module_init(&module1.base, config, launch, &app);
     uel_module_t *modules[TEST_APP_MOD_COUNT];
-    modules[TEST_APP_MOD0] = &module0;
-    modules[TEST_APP_MOD1] = &module1;
+    modules[TEST_APP_MOD0] = &module0.base;
+    modules[TEST_APP_MOD1] = &module1.base;
 
     uel_app_boot(&app, modules, TEST_APP_MOD_COUNT);
     uelt_assert_pointers_equal("app.registry", modules, app.registry);
     uelt_assert_ints_equal("app.registry_size", TEST_APP_MOD_COUNT, app.registry_size);
-    uelt_assert_ints_equal("configs", 2, configs);
-    uelt_assert_ints_equal("launches", 2, launches);
+    uelt_assert_ints_equal("module0.configs", 1, module0.configs);
+    uelt_assert_ints_equal("module0.launches", 1, module0.launches);
+    uelt_assert_ints_equal("module1.configs", 1, module1.configs);
+    uelt_assert_ints_equal("module1.launches", 1, module1.launches);
 
     uel_module_t *mod0 = uel_app_require(&app, TEST_APP_MOD0);
     uelt_assert_pointers_equal("mod0", &module0, mod0);
@@ -242,6 +251,12 @@ static char *should_proxy_functions(){
         2,
         uel_sysqueues_count_scheduled_events(&app.queues)
     );
+
+    volatile uintptr_t counter = 0;
+    uel_event_t *observer = uel_app_observe(&app, &counter, &closure);
+    uelt_assert_ints_equal("app.event_loop.observers.count", 1, app.event_loop.observers.count);
+    uelt_assert_pointer_not_null("observer", observer);
+    uelt_assert_pointers_equal(observer->detail.observer.condition_var, &counter, observer->detail.observer.condition_var);
 
     return NULL;
 }

@@ -96,8 +96,9 @@ void uel_app_update_timer(uel_application_t *app, uint32_t timer);
   * \param app The uel_application_t instance
   * \param timeout_in_ms The delay in milliseconds until the closure is run
   * \param closure The closure to be invoked when the due time is reached
+  * \returns The timer event associated with this operation
   */
-  void uel_app_run_later(
+  uel_event_t *uel_app_run_later(
       uel_application_t *app,
       uint16_t timeout_in_ms,
       uel_closure_t closure
@@ -113,8 +114,9 @@ void uel_app_update_timer(uel_application_t *app, uint32_t timer);
   * \param immediate If this flag is set, the the event will be created with a
   * due time to the current time.
   * \param closure The closure to be invoked when the due time is reached
+  * \returns The timer event associated with this operation
   */
-void uel_app_run_at_intervals(
+uel_event_t *uel_app_run_at_intervals(
     uel_application_t *app,
     uint16_t interval_in_ms,
     bool immediate,
@@ -130,5 +132,22 @@ void uel_app_run_at_intervals(
   * \param closure The closure to be enqueued
   */
 void uel_app_enqueue_closure(uel_application_t *app, uel_closure_t *closure);
+
+/** \brief Sets up an observer
+  *
+  * Proxies the call to `uel_evloop_observe()` with uel_application_t::event_loop
+  * as parameter.
+  *
+  * \param app The `uel_application_t` instance
+  * \param condition_var The address of the value to be observed
+  * \param closure The closure to be invoked on change dection
+  *
+  * \retrns The observer event associated with this operation
+  */
+uel_event_t *uel_app_observe(
+    uel_application_t *app,
+    volatile uintptr_t *condition_var,
+    uel_closure_t *closure
+);
 
 #endif /* end of include guard: UEL_APPLICATION_H */
