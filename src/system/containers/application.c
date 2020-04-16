@@ -23,6 +23,21 @@ void uel_app_init(uel_application_t *app){
     app->run_scheduler = true;
 }
 
+void uel_app_boot(uel_application_t *app, uel_module_t **modules, size_t module_count){
+    for (size_t i = 0; i < module_count; i++) {
+        uel_module_config(modules[i]);
+    }
+    for (size_t i = 0; i < module_count; i++) {
+        uel_module_launch(modules[i]);
+    }
+    app->registry_size = module_count;
+    app->registry = modules;
+}
+
+uel_module_t *uel_app_require(uel_application_t *app, size_t id){
+    return app->registry[id];
+}
+
 void uel_app_update_timer(uel_application_t *app, uint32_t timer){
     uel_sch_update_timer(&app->scheduler, timer);
     app->run_scheduler = true;

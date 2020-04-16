@@ -2,10 +2,17 @@
 
 #include <stdlib.h>
 #include "system/containers/application.h"
-#include "../../uelt.h"
+#include "utils/module.h"
+#include "test/uelt.h"
 
-#define DECLARE_APP()                                                           \
-    uel_application_t app;                                                          \
+enum TEST_APP_MODULES {
+    TEST_APP_MOD0,
+    TEST_APP_MOD1,
+    TEST_APP_MOD_COUNT
+};
+
+#define DECLARE_APP()                               \
+    uel_application_t app;                          \
     uel_app_init(&app);
 
 static char *should_init_app(){
@@ -68,6 +75,34 @@ static char *should_init_app(){
     );
     uelt_assert_ints_equal("app.relay.width", UEL_APP_EVENT_COUNT, app.relay.width);
     uelt_assert("app.run_scheduler must had been set", app.run_scheduler);
+    return NULL;
+}
+
+static unsigned int configs = 0, launches = 0;
+static void config(uel_module_t *mod){ configs++; }
+static void launch(uel_module_t *mod){ launches++; }
+
+static char *should_handle_modules(){
+    DECLARE_APP();
+
+    uel_module_t module0, module1;
+    uel_module_init(&module0, config, launch, &app);
+    uel_module_init(&module1, config, launch, &app);
+    uel_module_t *modules[TEST_APP_MOD_COUNT];
+    modules[TEST_APP_MOD0] = &module0;
+    modules[TEST_APP_MOD1] = &module1;
+
+    uel_app_boot(&app, modules, TEST_APP_MOD_COUNT);
+    uelt_assert_pointers_equal("app.registry", modules, app.registry);
+    uelt_assert_ints_equal("app.registry_size", TEST_APP_MOD_COUNT, app.registry_size);
+    uelt_assert_ints_equal("configs", 2, configs);
+    uelt_assert_ints_equal("launches", 2, launches);
+
+    uel_module_t *mod0 = uel_app_require(&app, TEST_APP_MOD0);
+    uelt_assert_pointers_equal("mod0", &module0, mod0);
+    uel_module_t *mod1 = uel_app_require(&app, TEST_APP_MOD1);
+    uelt_assert_pointers_equal("mod1", &module1, mod1);
+
     return NULL;
 }
 
@@ -212,6 +247,7 @@ static char *should_proxy_functions(){
 char *uel_app_run_tests(){
 
     uelt_run_test("should correctly initialise an application", should_init_app);
+    uelt_run_test("should correctly handle modules", should_handle_modules);
     uelt_run_test(
         "should correctly update an application internal timer",
         should_update_timer

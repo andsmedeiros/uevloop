@@ -8,13 +8,15 @@
 /// \cond
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 /// \endcond
 
 #include "system-pools.h"
 #include "system-queues.h"
-#include "../event-loop.h"
-#include "../scheduler.h"
-#include "../signal.h"
+#include "system/event-loop.h"
+#include "system/scheduler.h"
+#include "system/signal.h"
+#include "utils/module.h"
 
 //! Events emitted by the application relay. Unused ATM.
 enum uel_app_event{
@@ -33,13 +35,15 @@ typedef enum uel_app_event uel_app_event_t;
   * It contains all the system insternals and manages the scheduler and event
   * loops queues automatically.
   */
-typedef struct application uel_application_t;
-struct application{
+typedef struct uel_application uel_application_t;
+struct uel_application{
+    uel_module_t **registry; //!< The modules managed by this application
+    size_t registry_size; //!< The number of modules managed by this application
     uel_syspools_t pools; //!< Holds the system pools: events and llist nodes
     uel_sysqueues_t queues; //!< Holds the system event queues
     uel_evloop_t event_loop; //!< The application's event loop
     uel_scheduer_t scheduler;  //!< The applications's scheduler;
-   uel_signal_relay_t relay;   //!< Unused
+    uel_signal_relay_t relay;   //!< Unused
     uel_llist_t relay_buffer[UEL_APP_EVENT_COUNT]; //!< Unused
     bool run_scheduler; //!< Marks when it's time to wake the scheduler
 };
@@ -48,6 +52,23 @@ struct application{
   * \param app The uel_application_t instance
   */
 void uel_app_init(uel_application_t *app);
+
+/** \brief Boots an application, initiliasing each module registered
+  *
+  * \param app The application to be booted
+  * \param modules The modules to be loaded by the application
+  * \param module_count The number of modules being loaded
+  */
+void uel_app_boot(uel_application_t *app, uel_module_t **modules, size_t module_count);
+
+/** \brief Fetches a module from the app's registry
+  *
+  * \param app The application from where to fetch the module
+  * \param id The module ID  to be fetched
+  *
+  * \returns The module at `id`th position in the registry
+  */
+uel_module_t *uel_app_require(uel_application_t *app, size_t id);
 
 /** \brief Ticks the application.
   *
