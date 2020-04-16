@@ -1,4 +1,4 @@
-/** \file Defines modules, isolated units of behaviour with lifecycle hooks.
+/** \file module.h Defines modules, isolated units of behaviour with lifecycle hooks.
   */
 
 #ifndef UEL_MODULE_H
