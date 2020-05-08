@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 #define uelt_assert(message, test) do {                                           \
     test_context.assertions_run++;                                                           \
@@ -71,6 +72,18 @@
 
 #define uelt_assert_int_not_zero(id, supplied) do {           \
     uelt_assert_ints_not_equal(id, 0, supplied);              \
+} while(0)
+
+#define uelt_assert_str_blank(id, string) do {  \
+    uelt_assert_ints_equal(id, 0, string[0]);   \
+} while(0)
+
+#define uelt_assert_str_not_blank(id, string) do {  \
+    uelt_assert_ints_not_equal(id, 0, string[0]);   \
+} while(0)
+
+#define uelt_assert_strs_equal(id, expected, supplied) do {     \
+    uelt_assert_ints_equal(id, 0, strcmp(expected, supplied));  \
 } while(0)
 
 #define uelt_run_test(id, test) do {                                        \
