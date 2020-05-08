@@ -2,16 +2,16 @@
 
 void uel_objpool_init(
     uel_objpool_t *pool,
-    uintptr_t size_log2n,
-    uintptr_t item_size,
+    size_t size_log2n,
+    size_t item_size,
     uint8_t *buffer,
     void **queue_buffer
 ){
     pool->buffer = buffer;
     uel_cqueue_init(&pool->queue, queue_buffer, size_log2n);
-    uintptr_t i;
+    size_t i;
     for(i = 0; i < pool->queue.size; i++){
-        uel_cqueue_push(&pool->queue, (void *)(&pool->buffer[i * item_size]));
+        uel_cqueue_push(&pool->queue, (void *)(buffer + i * item_size));
     }
 }
 

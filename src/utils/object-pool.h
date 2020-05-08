@@ -10,6 +10,7 @@
 
 /// \cond
 #include <stdint.h>
+#include <stdlib.h>
 /// \endcond
 
 /** \brief Pre-allocated memory bound to speciffic types suitable for providing
@@ -43,8 +44,8 @@ struct uel_objpool {
   */
 void uel_objpool_init(
     uel_objpool_t *pool,
-    uintptr_t size_log2n,
-    uintptr_t item_size,
+    size_t size_log2n,
+    size_t item_size,
     uint8_t *buffer,
     void **queue_buffer
 );
@@ -82,7 +83,7 @@ bool uel_objpool_is_empty(uel_objpool_t *pool);
   * \param id A valid identifier for the pools.
   */
 #define UEL_DECLARE_OBJPOOL_BUFFERS(type, size_log2n, id)           \
-    uint8_t id##_pool_buffer[(1<<size_log2n) * sizeof(type)];   \
+    type id##_pool_buffer[(1<<size_log2n)];                         \
     void *id##_pool_queue_buffer[1<<size_log2n];
 
 /** \brief Refers to a previously declared buffer set.

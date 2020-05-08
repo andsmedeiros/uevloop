@@ -37,7 +37,7 @@ static char *should_acquire_objects(){
         object_t *obj = (object_t *)uel_objpool_acquire(&pool);
         uelt_assert_pointers_equal(
             "uel_objpool_acquire()",
-            &main_pool_buffer[i * sizeof(object_t)],
+            &main_pool_buffer[i],
             obj
         );
     }
