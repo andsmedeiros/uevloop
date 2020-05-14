@@ -9,9 +9,9 @@
 #include <stdint.h>
 /// \endcond
 
-#include "../event.h"
-#include "../../uel_config.h"
-#include "../../utils/circular-queue.h"
+#include "uevloop/system/event.h"
+#include "uevloop/uel_config.h"
+#include "uevloop/utils/circular-queue.h"
 
 /** \brief A container for the system's internal queues
   *

@@ -11,7 +11,7 @@
 #include <stdlib.h>
 /// \endcond
 
-#include "closure.h"
+#include "uevloop/utils/closure.h"
 
 /** \brief A pipeline is an ordered closure list to be run in sequence.
   *

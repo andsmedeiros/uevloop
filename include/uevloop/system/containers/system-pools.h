@@ -9,10 +9,10 @@
 #include <stdint.h>
 /// \endcond
 
-#include "../event.h"
-#include "../../uel_config.h"
-#include "../../utils/linked-list.h"
-#include "../../utils/object-pool.h"
+#include "uevloop/system/event.h"
+#include "uevloop/uel_config.h"
+#include "uevloop/utils/linked-list.h"
+#include "uevloop/utils/object-pool.h"
 
 
 

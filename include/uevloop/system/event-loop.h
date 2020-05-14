@@ -5,10 +5,10 @@
 #ifndef UEL_EVENT_LOOP_H
 #define UEL_EVENT_LOOP_H
 
-#include "../utils/closure.h"
-#include "../utils/linked-list.h"
-#include "containers/system-pools.h"
-#include "containers/system-queues.h"
+#include "uevloop/utils/closure.h"
+#include "uevloop/utils/linked-list.h"
+#include "uevloop/system/containers/system-pools.h"
+#include "uevloop/system/containers/system-queues.h"
 
 /** \brief The event loop object
   *

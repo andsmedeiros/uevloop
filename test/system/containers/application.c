@@ -1,8 +1,8 @@
 #include "application.h"
 
 #include <stdlib.h>
-#include "system/containers/application.h"
-#include "utils/module.h"
+#include "uevloop/system/containers/application.h"
+#include "uevloop/utils/module.h"
 #include "test/uelt.h"
 
 enum TEST_APP_MODULES {

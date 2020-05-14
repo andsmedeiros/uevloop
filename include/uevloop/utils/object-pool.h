@@ -6,7 +6,7 @@
 #ifndef UEL_OBJECT_POOL_H
 #define	UEL_OBJECT_POOL_H
 
-#include "circular-queue.h"
+#include "uevloop/utils/circular-queue.h"
 
 /// \cond
 #include <stdint.h>

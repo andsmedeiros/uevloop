@@ -1,13 +1,13 @@
-#include "event-loop.h"
+#include "uevloop/system/event-loop.h"
 
 /// \cond
 #include <stdlib.h>
 #include <stdbool.h>
 /// \endcond
 
-#include "../uel_config.h"
-#include "../utils/iterator.h"
-#include "../portability/critical-section.h"
+#include "uevloop/uel_config.h"
+#include "uevloop/utils/iterator.h"
+#include "uevloop/portability/critical-section.h"
 
 static inline bool run_closure_event(uel_evloop_t *event_loop, uel_event_t *event){
     uel_closure_invoke(&event->closure, event_loop);

@@ -11,12 +11,12 @@
 #include <stdlib.h>
 /// \endcond
 
-#include "system-pools.h"
-#include "system-queues.h"
-#include "system/event-loop.h"
-#include "system/scheduler.h"
-#include "system/signal.h"
-#include "utils/module.h"
+#include "uevloop/system/containers/system-pools.h"
+#include "uevloop/system/containers/system-queues.h"
+#include "uevloop/system/event-loop.h"
+#include "uevloop/system/scheduler.h"
+#include "uevloop/system/signal.h"
+#include "uevloop/utils/module.h"
 
 //! Events emitted by the application relay. Unused ATM.
 enum uel_app_event{

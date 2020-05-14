@@ -10,10 +10,10 @@
 #include <stdint.h>
 /// \endcond
 
-#include "containers/system-pools.h"
-#include "containers/system-queues.h"
-#include "../utils/linked-list.h"
-#include "../utils/closure.h"
+#include "uevloop/system/containers/system-pools.h"
+#include "uevloop/system/containers/system-queues.h"
+#include "uevloop/utils/linked-list.h"
+#include "uevloop/utils/closure.h"
 
 /** \brief The scheduler object.
   *

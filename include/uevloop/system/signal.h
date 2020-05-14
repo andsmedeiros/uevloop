@@ -6,11 +6,11 @@
 #ifndef UEL_SIGNAL_H
 #define UEL_SIGNAL_H
 
-#include "containers/system-pools.h"
-#include "containers/system-queues.h"
-#include "../utils/linked-list.h"
-#include "../utils/closure.h"
-#include "event.h"
+#include "uevloop/system/containers/system-pools.h"
+#include "uevloop/system/containers/system-queues.h"
+#include "uevloop/system/event.h"
+#include "uevloop/utils/linked-list.h"
+#include "uevloop/utils/closure.h"
 
 /** \typedef uel_signal_t
   *

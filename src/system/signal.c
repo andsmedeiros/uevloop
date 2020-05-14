@@ -1,12 +1,12 @@
-#include "signal.h"
+#include "uevloop/system/signal.h"
 
 /// \cond
 #include <stdbool.h>
 #include <stdlib.h>
 /// \endcond
 
-#include "../uel_config.h"
-#include "../portability/critical-section.h"
+#include "uevloop/uel_config.h"
+#include "uevloop/portability/critical-section.h"
 
 static void register_listener(
     uel_signal_t signal,

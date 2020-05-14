@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-#include "system/containers/system-queues.h"
+#include "uevloop/system/containers/system-queues.h"
 #include "../../uelt.h"
 
 static char *should_init_sysqueues(){

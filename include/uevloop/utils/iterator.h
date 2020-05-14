@@ -12,8 +12,8 @@
 #include <limits.h>
 /// \endcond
 
-#include "linked-list.h"
-#include "closure.h"
+#include "uevloop/utils/linked-list.h"
+#include "uevloop/utils/closure.h"
 
 /** \brief Iterators are data structures that wrap arbitrary collections of data
   * and define ways of enumerating them.

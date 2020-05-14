@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #include "../uelt.h"
-#include "utils/functional.h"
+#include "uevloop/utils/functional.h"
 #include "math.h"
 
 #define F(X) (uintptr_t)uel_closure_invoke(&f, (void *)X)
@@ -154,7 +154,7 @@ static char *should_operate_map_closure(){
     uelt_assert_ints_equal("v2[4]", 1, (uintptr_t)v2[4]);
     uelt_assert_ints_equal("v2[5]", 1, (uintptr_t)v2[5]);
 
-    
+
     UEL_TEST_MAPPER_CONTEXT(v3, 1, 2, 3, 5, 7, 11, 13, 17);
     target = F(&v3_mapper);
     uelt_assert_pointers_equal("target", target, v3);

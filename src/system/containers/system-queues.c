@@ -1,5 +1,5 @@
-#include "system-queues.h"
-#include "../../portability/critical-section.h"
+#include "uevloop/system/containers/system-queues.h"
+#include "uevloop/portability/critical-section.h"
 
 void uel_sysqueues_init(uel_sysqueues_t *queues){
     uel_cqueue_init(

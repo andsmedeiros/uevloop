@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #include "../uelt.h"
-#include "utils/pipeline.h"
+#include "uevloop/utils/pipeline.h"
 
 void *nop1(uel_closure_t *closure){ return NULL; }
 void *nop2(uel_closure_t *closure){ return NULL; }

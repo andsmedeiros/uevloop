@@ -7,7 +7,7 @@
 #ifndef UEL_CONDITIONAL_H
 #define UEL_CONDITIONAL_H
 
-#include "closure.h"
+#include "uevloop/utils/closure.h"
 
 /** \brief Conditionals are constructs that provide functional flow control.
   *

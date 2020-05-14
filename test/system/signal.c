@@ -1,11 +1,11 @@
 #include "signal.h"
 
 #include <stdlib.h>
-#include "utils/linked-list.h"
-#include "system/signal.h"
-#include "system/event-loop.h"
-#include "system/containers/system-pools.h"
-#include "system/containers/system-queues.h"
+#include "uevloop/utils/linked-list.h"
+#include "uevloop/system/signal.h"
+#include "uevloop/system/event-loop.h"
+#include "uevloop/system/containers/system-pools.h"
+#include "uevloop/system/containers/system-queues.h"
 #include "../uelt.h"
 
 enum test_signal_event {

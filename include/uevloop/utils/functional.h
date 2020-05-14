@@ -10,10 +10,10 @@
 #include <stdlib.h>
 /// \endcond
 
-#include "closure.h"
-#include "pipeline.h"
-#include "conditional.h"
-#include "iterator.h"
+#include "uevloop/utils/closure.h"
+#include "uevloop/utils/pipeline.h"
+#include "uevloop/utils/conditional.h"
+#include "uevloop/utils/iterator.h"
 
 /** \brief Maps elements of an iterator to an area of memory. Each element is
   * assigned to a `void` pointer slot.

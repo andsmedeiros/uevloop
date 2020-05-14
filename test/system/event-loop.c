@@ -2,10 +2,10 @@
 
 #include <stdlib.h>
 
-#include "system/event-loop.h"
-#include "system/containers/system-pools.h"
-#include "utils/circular-queue.h"
-#include "utils/closure.h"
+#include "uevloop/system/event-loop.h"
+#include "uevloop/system/containers/system-pools.h"
+#include "uevloop/utils/circular-queue.h"
+#include "uevloop/utils/closure.h"
 #include "../uelt.h"
 
 #define DECLARE_EVENT_LOOP()                    \

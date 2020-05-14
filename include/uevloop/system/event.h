@@ -10,8 +10,8 @@
 #include <stdbool.h>
 /// \endcond
 
-#include "../utils/closure.h"
-#include "../utils/linked-list.h"
+#include "uevloop/utils/closure.h"
+#include "uevloop/utils/linked-list.h"
 
 //! Possible types of events understood by the core
 enum uel_event_type {

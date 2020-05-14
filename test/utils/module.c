@@ -2,8 +2,8 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include "utils/module.h"
-#include <system/containers/application.h>
+#include "uevloop/utils/module.h"
+#include "uevloop/system/containers/application.h"
 #include "test/uelt.h"
 
 static bool config_done = false, launch_done = false;

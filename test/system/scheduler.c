@@ -2,11 +2,11 @@
 
 #include <stdlib.h>
 
-#include "utils/closure.h"
-#include "system/containers/system-pools.h"
-#include "system/containers/system-queues.h"
-#include "system/scheduler.h"
-#include "system/event-loop.h"
+#include "uevloop/utils/closure.h"
+#include "uevloop/system/containers/system-pools.h"
+#include "uevloop/system/containers/system-queues.h"
+#include "uevloop/system/scheduler.h"
+#include "uevloop/system/event-loop.h"
 #include "../uelt.h"
 
 #define DECLARE_SCHEDULER()                                                    \

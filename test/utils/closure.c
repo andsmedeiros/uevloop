@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 #include "../uelt.h"
-#include "utils/closure.h"
+#include "uevloop/utils/closure.h"
 
 static void *nop1(uel_closure_t *closure){ return NULL; }
 static void nop2(uel_closure_t *closure){}

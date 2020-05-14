@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <math.h>
 
-#include "utils/circular-queue.h"
+#include "uevloop/utils/circular-queue.h"
 #include "../uelt.h"
 
 #define BUFFER_SIZE_LOG2N   (5)

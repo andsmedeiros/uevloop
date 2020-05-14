@@ -11,7 +11,7 @@
 #include <stdbool.h>
 /// \endcond
 
-#include "closure.h"
+#include "uevloop/utils/closure.h"
 
 //! Defines a node of the linked list. Holds a void pointer.
 typedef struct uel_llist_node uel_llist_node_t;
