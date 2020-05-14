@@ -5,6 +5,7 @@
 #include "test/utils/closure.h"
 #include "test/utils/linked-list.h"
 #include "test/utils/object-pool.h"
+#include "test/utils/automatic-pool.h"
 #include "test/utils/conditional.h"
 #include "test/utils/pipeline.h"
 #include "test/utils/iterator.h"
@@ -25,6 +26,7 @@ static char *run_all_tests(){
     uelt_run_test_group("closure", uel_closure_run_tests);
     uelt_run_test_group("llist", uel_llist_run_tests);
     uelt_run_test_group("objpool", objpool_run_tests);
+    uelt_run_test_group("autopool", uel_autopool_run_tests);
     uelt_run_test_group("conditional", uel_conditional_run_tests);
     uelt_run_test_group("pipeline", uel_pipeline_run_tests);
     uelt_run_test_group("iterator", uel_iterator_run_tests);
