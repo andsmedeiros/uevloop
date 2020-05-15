@@ -43,11 +43,11 @@
 }while(0)
 
 #define uelt_assert_pointers_equal(id, expected, supplied) do {                       \
-    uelt_assert_equals(id, (void *)(uintptr_t)expected, (void *)(uintptr_t)supplied, "%u"); \
+    uelt_assert_equals(id, (void *)(uintptr_t)expected, (void *)(uintptr_t)supplied, "%lu"); \
 } while(0)
 
 #define uelt_assert_pointers_not_equal(id, expected, supplied) do {           \
-    uelt_assert_not_equals(id, (void *)expected, (void *)supplied, "%u");     \
+    uelt_assert_not_equals(id, (void *)expected, (void *)supplied, "%lu");     \
 } while(0)
 
 #define uelt_assert_pointer_null(id, pointer) do{     \
