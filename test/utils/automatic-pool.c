@@ -78,6 +78,40 @@ static char *should_manage_objects() {
     return NULL;
 }
 
+static void *construct(uel_closure_t *closure) {
+    struct test_obj * obj = (struct test_obj *)closure->params;
+    obj->c = 'C';
+    obj->i = 10;
+    return NULL;
+}
+static void *destruct(uel_closure_t *closure) {
+    struct test_obj * obj = (struct test_obj *)closure->params;
+    obj->c = 'D';
+    obj->i = 1;
+    return NULL;
+}
+
+static char *should_construct_and_destruct_objects() {
+    UEL_DECLARE_AUTOPOOL_BUFFERS(struct test_obj, 2, test);
+    uel_autopool_t pool;
+    uel_autopool_init(&pool, 2, sizeof(struct test_obj), UEL_AUTOPOOL_BUFFERS(test));
+
+    uel_autopool_set_constructor(&pool, uel_closure_create(construct, NULL, NULL));
+    uel_autopool_set_destructor(&pool, uel_closure_create(destruct, NULL, NULL));
+
+    struct test_obj **obj = (struct test_obj **)uel_autopool_alloc(&pool);
+
+    uelt_assert_equals("(**obj).c", 'C', (**obj).c, "%c");
+    uelt_assert_ints_equal("(**obj).i", 10, (**obj).i);
+
+    uel_autoptr_dealloc((uel_autoptr_t *)obj);
+
+    uelt_assert_equals("(**obj).c", 'D', (**obj).c, "%c");
+    uelt_assert_ints_equal("(**obj).i", 1, (**obj).i);
+
+    return NULL;
+}
+
 char *uel_autopool_run_tests(){
 
     uelt_run_test(
@@ -87,6 +121,10 @@ char *uel_autopool_run_tests(){
     uelt_run_test(
         "should correctly manage objects' lifetime",
         should_manage_objects
+    );
+    uelt_run_test(
+        "should correctly construct and destruct objects",
+        should_construct_and_destruct_objects
     );
 
     return NULL;

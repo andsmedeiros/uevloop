@@ -1,7 +1,10 @@
 #include "uevloop/utils/automatic-pool.h"
 
-void uel_autoptr_dealloc(uel_autoptr_t *autoptr){
-    uel_objpool_release(autoptr->source, autoptr);
+static void *nop(uel_closure_t *closure) { return NULL; }
+
+void uel_autoptr_dealloc(uel_autoptr_t *autoptr) {
+    uel_closure_invoke(&autoptr->source->destructor, autoptr->object);
+    uel_objpool_release(&autoptr->source->autoptr_pool, autoptr);
 }
 
 void uel_autopool_init(
@@ -14,7 +17,7 @@ void uel_autopool_init(
 ){
     for (size_t i = 0; i < (1<<size_log2n); i++) {
         autoptr_buffer[i].object = (void *)(object_buffer + i * item_size);
-        autoptr_buffer[i].source = &pool->autoptr_pool;
+        autoptr_buffer[i].source = pool;
     }
     uel_objpool_init(
         &pool->autoptr_pool,
@@ -23,12 +26,24 @@ void uel_autopool_init(
         (uint8_t *)autoptr_buffer,
         queue_buffer
     );
+    pool->constructor = uel_closure_create(nop, NULL, NULL);
+    pool->destructor = uel_closure_create(nop, NULL, NULL);
 }
 
 uel_autoptr_t *uel_autopool_alloc(uel_autopool_t *pool){
-    return uel_objpool_acquire(&pool->autoptr_pool);
+    uel_autoptr_t *autoptr = uel_objpool_acquire(&pool->autoptr_pool);
+    uel_closure_invoke(&pool->constructor, autoptr->object);
+    return autoptr;
 }
 
 bool uel_autopool_is_empty(uel_autopool_t *pool){
     return uel_objpool_is_empty(&pool->autoptr_pool);
+}
+
+void uel_autopool_set_constructor(uel_autopool_t *pool, uel_closure_t constructor) {
+    pool->constructor = constructor;
+}
+
+void uel_autopool_set_destructor(uel_autopool_t *pool, uel_closure_t destructor) {
+    pool->destructor = destructor;
 }
