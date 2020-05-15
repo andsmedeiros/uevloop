@@ -2,9 +2,10 @@
 
 static void *nop(uel_closure_t *closure) { return NULL; }
 
-void uel_autoptr_dealloc(uel_autoptr_t *autoptr) {
-    uel_closure_invoke(&autoptr->source->destructor, autoptr->object);
-    uel_objpool_release(&autoptr->source->autoptr_pool, autoptr);
+void uel_autoptr_dealloc(uel_autoptr_t autoptr) {
+    struct uel_autoptr *ptr = (struct uel_autoptr *)autoptr;
+    uel_closure_invoke(&ptr->source->destructor, *autoptr);
+    uel_objpool_release(&ptr->source->autoptr_pool, autoptr);
 }
 
 void uel_autopool_init(
@@ -12,7 +13,7 @@ void uel_autopool_init(
     size_t size_log2n,
     size_t item_size,
     uint8_t *object_buffer,
-    uel_autoptr_t *autoptr_buffer,
+    struct uel_autoptr *autoptr_buffer,
     void **queue_buffer
 ){
     for (size_t i = 0; i < (1<<size_log2n); i++) {
@@ -22,7 +23,7 @@ void uel_autopool_init(
     uel_objpool_init(
         &pool->autoptr_pool,
         size_log2n,
-        sizeof(uel_autoptr_t),
+        sizeof(struct uel_autoptr),
         (uint8_t *)autoptr_buffer,
         queue_buffer
     );
@@ -30,9 +31,10 @@ void uel_autopool_init(
     pool->destructor = uel_closure_create(nop, NULL, NULL);
 }
 
-uel_autoptr_t *uel_autopool_alloc(uel_autopool_t *pool){
-    uel_autoptr_t *autoptr = uel_objpool_acquire(&pool->autoptr_pool);
-    uel_closure_invoke(&pool->constructor, autoptr->object);
+uel_autoptr_t uel_autopool_alloc(uel_autopool_t *pool){
+    uel_autoptr_t autoptr =
+        (uel_autoptr_t)uel_objpool_acquire(&pool->autoptr_pool);
+    uel_closure_invoke(&pool->constructor, *autoptr);
     return autoptr;
 }
 

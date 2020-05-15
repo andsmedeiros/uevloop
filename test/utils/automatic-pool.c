@@ -45,13 +45,17 @@ static char *should_manage_objects() {
 
     uelt_assert_not("pool isn't empty", uel_autopool_is_empty(&pool));
 
-    uel_autoptr_t *objs[4];
+    uel_autoptr_t objs[4];
     for (size_t i = 0; i < 4; i++) {
-        uel_autoptr_t *obj = uel_autopool_alloc(&pool);
+        uel_autoptr_t obj = uel_autopool_alloc(&pool);
+        uelt_assert_pointer_not_null("obj", obj);
         uelt_assert_pointers_equal("obj", &test_pool_buffer[i], obj);
-        uelt_assert_pointers_equal("obj->object", &test_buffer[i], obj->object);
-        uelt_assert_pointers_equal("obj->source", &pool.autoptr_pool, obj->source);
-        uelt_assert_pointers_equal("*(void **)obj", &test_buffer[i], *(void **)obj);
+        uelt_assert_pointers_equal("*obj", &test_buffer[i], *obj);
+        uelt_assert_pointers_equal(
+            "((struct uel_autoptr *)obj)->source",
+            &pool.autoptr_pool,
+            ((struct uel_autoptr *)obj)->source
+        );
         objs[i] = obj;
     }
 
@@ -104,7 +108,7 @@ static char *should_construct_and_destruct_objects() {
     uelt_assert_equals("(**obj).c", 'C', (**obj).c, "%c");
     uelt_assert_ints_equal("(**obj).i", 10, (**obj).i);
 
-    uel_autoptr_dealloc((uel_autoptr_t *)obj);
+    uel_autoptr_dealloc((uel_autoptr_t)obj);
 
     uelt_assert_equals("(**obj).c", 'D', (**obj).c, "%c");
     uelt_assert_ints_equal("(**obj).i", 1, (**obj).i);

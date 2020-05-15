@@ -23,11 +23,15 @@ struct uel_autopool;
   * The programmer can safely cast a `uel_autoptr_t` to a `void *` or a pointer
   * to whatever type the wrapped object is.
   */
-typedef struct uel_autoptr uel_autoptr_t;
 struct uel_autoptr {
     void *object; //!< A pointer to the wrapped object
     struct uel_autopool *source; //!< The pool where the autoptr object was issued
 };
+
+/** \brief Aliases `uel_autoptr_t` to `void **` so it can be cast to pointers to
+  * other types
+  */
+typedef void ** uel_autoptr_t;
 
 /** \brief Deallocates an automatic pointer.
   *
@@ -37,7 +41,7 @@ struct uel_autoptr {
   * \see uel_autopool_set_destructor()
   * \warning The object **must** not be used after it's dealloc'ed.
   */
-void uel_autoptr_dealloc(uel_autoptr_t *autoptr);
+void uel_autoptr_dealloc(uel_autoptr_t autoptr);
 
 /** \brief Automatic pools are wrappers to object pools. They manage the
   * acquisition and release cycle from objects issued at the pool by wrapping
@@ -68,7 +72,7 @@ void uel_autopool_init(
     size_t size_log2n,
     size_t item_size,
     uint8_t *object_buffer,
-    uel_autoptr_t *autoptr_buffer,
+    struct uel_autoptr *autoptr_buffer,
     void **queue_buffer
 );
 
@@ -83,7 +87,7 @@ void uel_autopool_init(
   * \returns An autopointer wrapping the acquired object or NULL if one could
   * not be acquired.
   */
-uel_autoptr_t *uel_autopool_alloc(uel_autopool_t *pool);
+uel_autoptr_t uel_autopool_alloc(uel_autopool_t *pool);
 
 
 /** \brief Checks if a pool is depleted
@@ -129,7 +133,7 @@ void uel_autopool_set_destructor(uel_autopool_t *pool, uel_closure_t destructor)
   */
 #define UEL_DECLARE_AUTOPOOL_BUFFERS(type, size_log2n, id)          \
     type id##_buffer[(1<<size_log2n)];                              \
-    uel_autoptr_t id##_pool_buffer[1<<size_log2n];                  \
+    struct uel_autoptr id##_pool_buffer[1<<size_log2n];             \
     void *id##_pool_queue_buffer[1<<size_log2n];
 
 /** \brief Refers to a previously declared buffer set.
