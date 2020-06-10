@@ -5,7 +5,7 @@
 #include <stdbool.h>
 /// \endcond
 
-#include "uevloop/uel_config.h"
+#include "uevloop/config.h"
 #include "uevloop/utils/iterator.h"
 #include "uevloop/portability/critical-section.h"
 
@@ -66,7 +66,7 @@ static inline void run_signal_event(uel_evloop_t *event_loop, uel_event_t *signa
     }
 }
 
-static inline void *run_observer_event(uel_closure_t *closure){
+static void *run_observer_event(uel_closure_t *closure){
     uel_evloop_t *event_loop = (uel_evloop_t *)closure->context;
     uel_llist_node_t *node = (uel_llist_node_t *)closure->params;
     uel_event_t *event = (uel_event_t *)node->value;

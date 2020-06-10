@@ -178,6 +178,20 @@ static char *should_operate_observers(){
     uelt_assert_not("flag when value has not changed #3", flag);
     uelt_assert_int_zero("loop.observers.count", loop.observers.count);
 
+    observer = uel_evloop_observe_once(&loop, &counter, &closure);
+    uelt_assert_ints_equal("loop.observers.count", 1, loop.observers.count);
+
+    counter = 100;
+    uel_evloop_run(&loop);
+    uelt_assert("flag when value has changed #4", flag);
+    uelt_assert_int_zero("loop.observers.count", loop.observers.count);
+
+    flag = false;
+    counter = 0;
+    uel_evloop_run(&loop);
+    uelt_assert_not("flag when value has changed #5", flag);
+    uelt_assert_int_zero("loop.observers.count", loop.observers.count);
+
     return NULL;
 }
 
