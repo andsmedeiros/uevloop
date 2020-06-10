@@ -45,6 +45,7 @@ void uel_event_config_observer(
     event->repeating = repeating;
     event->detail.observer.last_value = *condition_var;
     event->detail.observer.condition_var = condition_var;
+    event->detail.observer.cancelled = false;
 }
 
 void uel_event_observer_cancel(uel_event_t *event){

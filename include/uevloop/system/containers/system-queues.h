@@ -10,7 +10,7 @@
 /// \endcond
 
 #include "uevloop/system/event.h"
-#include "uevloop/uel_config.h"
+#include "uevloop/config.h"
 #include "uevloop/utils/circular-queue.h"
 
 /** \brief A container for the system's internal queues

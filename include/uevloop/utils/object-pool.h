@@ -84,7 +84,7 @@ bool uel_objpool_is_empty(uel_objpool_t *pool);
   */
 #define UEL_DECLARE_OBJPOOL_BUFFERS(type, size_log2n, id)           \
     type id##_pool_buffer[(1<<size_log2n)];                         \
-    void *id##_pool_queue_buffer[1<<size_log2n];
+    void *id##_pool_queue_buffer[1<<size_log2n]
 
 /** \brief Refers to a previously declared buffer set.
   *

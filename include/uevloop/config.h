@@ -1,4 +1,4 @@
-/** \file uel_config.h
+/** \file config.h
   *
   * \brief Central repository of system configuration. This is meant to be edited by the
   * programmer as needed.
@@ -29,6 +29,16 @@
 
 //! \brief Defines the max number of listeners to be attached to an speciffic
 //! signal in a single relay
-#define UEL_SIGNAL_MAX_LISTENERS 5
+#define UEL_SIGNAL_MAX_LISTENERS    (5)
+
+/* PROMISE MODULE CONFIGURATION */
+
+//! The size of the promise pool in log2 form. Default to 32 promises.
+#define UEL_PROMISE_POOL_SIZE_LOG2N (5)
+
+//! The size of the segment pool in log2 form. Defaults to 128 segments (4 x promises)
+#define UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N (UEL_PROMISE_POOL_SIZE_LOG2N + 2)
+
+//! Enable promise chain functions aliases: THEN, CATCH, AFTER, ALWAYS
 
 #endif /* end of include guard: UEL_CONFIG_H */

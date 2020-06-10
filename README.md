@@ -266,7 +266,7 @@ The `syspools` component is a container for the system internal object pools. It
 
 The system pools component is meant to be internally operated only. The only responsibility of the programmer is to allocate, initialise and provide it to other core components.
 
-To configure the size of each pool created, edit `src/uel_config.h`.
+To configure the size of each pool created, edit `src/config.h`.
 
 #### System pools usage
 
@@ -288,7 +288,7 @@ The `sysqueues` component contains the necessary queues for sharing data amongst
 
 As is the case with system pools, the `sysqueues` component should not be directly operated by the programmer, except for declaration and initialisation.
 
-Configure the size of each queue created in `src/uel_config.h`.
+Configure the size of each queue created in `src/config.h`.
 
 
 #### System queues usage
