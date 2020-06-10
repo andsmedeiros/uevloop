@@ -5,7 +5,7 @@
 #include <stdlib.h>
 /// \endcond
 
-#include "uevloop/uel_config.h"
+#include "uevloop/config.h"
 #include "uevloop/portability/critical-section.h"
 
 static void register_listener(
@@ -74,4 +74,23 @@ void uel_signal_emit(uel_signal_t signal, uel_signal_relay_t *relay, void *param
         uel_event_config_signal(event, signal, listeners, params);
         uel_sysqueues_enqueue_event(relay->queues, event);
     }
+}
+
+uel_signal_listener_t uel_signal_resolve_promise(
+    uel_signal_t signal,
+    uel_signal_relay_t *relay,
+    uel_promise_t *promise
+) {
+    uel_closure_t resolver = uel_promise_resolver(promise);
+    return uel_signal_listen_once(signal, relay, &resolver);
+}
+
+
+uel_signal_listener_t uel_signal_reject_promise(
+    uel_signal_t signal,
+    uel_signal_relay_t *relay,
+    uel_promise_t *promise
+) {
+    uel_closure_t rejecter = uel_promise_rejecter(promise);
+    return uel_signal_listen_once(signal, relay, &rejecter);
 }

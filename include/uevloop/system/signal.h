@@ -6,11 +6,12 @@
 #ifndef UEL_SIGNAL_H
 #define UEL_SIGNAL_H
 
+#include "uevloop/utils/linked-list.h"
+#include "uevloop/utils/closure.h"
 #include "uevloop/system/containers/system-pools.h"
 #include "uevloop/system/containers/system-queues.h"
 #include "uevloop/system/event.h"
-#include "uevloop/utils/linked-list.h"
-#include "uevloop/utils/closure.h"
+#include "uevloop/system/promise.h"
 
 /** \typedef uel_signal_t
   *
@@ -112,5 +113,33 @@ void uel_signal_unlisten(uel_signal_listener_t listener);
   * invoked.
   */
 void uel_signal_emit(uel_signal_t signal, uel_signal_relay_t *relay, void *params);
+
+/** \brief Attaches a non-repeating listener that resolves the provided promise
+  * upon emission.
+  *
+  * \param signal The signal to be listened for
+  * \param relay The relay where the signal is registered
+  * \param promise The promise to be resolved upon signal emission
+  * \returns The listener associated with this operation
+  */
+uel_signal_listener_t uel_signal_resolve_promise(
+    uel_signal_t signal,
+    uel_signal_relay_t *relay,
+    uel_promise_t *promise
+);
+
+/** \brief Attaches a non-repeating listener that rejects the provided promise
+  * upon emission.
+  *
+  * \param signal The signal to be listened for
+  * \param relay The relay where the signal is registered
+  * \param promise The promise to be rejected upon signal emission
+  * \returns The listener associated with this operation
+  */
+uel_signal_listener_t uel_signal_reject_promise(
+    uel_signal_t signal,
+    uel_signal_relay_t *relay,
+    uel_promise_t *promise
+);
 
 #endif /* end of include guard: UEL_SIGNAL_H */

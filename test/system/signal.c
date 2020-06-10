@@ -206,8 +206,56 @@ static char *should_emit(){
     uel_evloop_run(&loop);
     uelt_assert_ints_equal("counter3", 3, counter3);
 
-//    uel_signal_emit_urgent(TEST_SIGNAL_EVENT_2, &relay, (void *)3);
-//    uelt_assert_ints_equal("counter2", 8, counter2);
+    return NULL;
+}
+
+char *should_handle_promises_from_signals() {
+    DECLARE_SIGNAL_RELAY();
+    UEL_DECLARE_OBJPOOL_BUFFERS(uel_promise_t, 4, promise);
+    uel_objpool_t promise_pool;
+    uel_objpool_init(
+        &promise_pool,
+        4,
+        sizeof(uel_promise_t),
+        UEL_OBJPOOL_BUFFERS(promise)
+    );
+    UEL_DECLARE_OBJPOOL_BUFFERS(uel_promise_segment_t, 6, segment);
+    uel_objpool_t segment_pool;
+    uel_objpool_init(
+        &segment_pool,
+        6,
+        sizeof(uel_promise_segment_t),
+        UEL_OBJPOOL_BUFFERS(segment)
+    );
+    uel_promise_store_t store =
+        uel_promise_store_create(&promise_pool, &segment_pool);
+
+    uel_promise_t *p1 = uel_promise_create(&store, uel_nop());
+    uel_promise_t *p2 = uel_promise_create(&store, uel_nop());
+
+    uel_signal_resolve_promise(TEST_SIGNAL_EVENT_1, &relay, p1);
+    uel_signal_reject_promise(TEST_SIGNAL_EVENT_2, &relay, p2);
+
+    uelt_assert_ints_equal("p1->state", UEL_PROMISE_PENDING, p1->state);
+    uelt_assert_ints_equal("p2->state", UEL_PROMISE_PENDING, p2->state);
+
+    uel_signal_emit(TEST_SIGNAL_EVENT_1, &relay, (void *)1);
+    uel_evloop_run(&loop);
+
+    uelt_assert_ints_equal("p1->state", UEL_PROMISE_RESOLVED, p1->state);
+    uelt_assert_pointers_equal("p1->value", (void *)1, p1->value);
+
+    uel_signal_emit(TEST_SIGNAL_EVENT_2, &relay, (void *)2);
+    uel_evloop_run(&loop);
+
+    uelt_assert_ints_equal("p2->state", UEL_PROMISE_REJECTED, p2->state);
+    uelt_assert_pointers_equal("p2->value", (void *)2, p2->value);
+
+    uel_signal_emit(TEST_SIGNAL_EVENT_2, &relay, (void *)3);
+    uel_evloop_run(&loop);
+
+    uelt_assert_ints_equal("p2->state", UEL_PROMISE_REJECTED, p2->state);
+    uelt_assert_pointers_equal("p2->value", (void *)2, p2->value);
 
     return NULL;
 }
@@ -228,6 +276,10 @@ char *uel_signal_run_tests(){
     uelt_run_test(
         "should correctly emit diferent signals",
         should_emit
+    );
+    uelt_run_test(
+        "should correctly settle promises based on emitted signals",
+        should_handle_promises_from_signals
     );
 
     return NULL;
