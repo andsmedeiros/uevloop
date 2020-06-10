@@ -9,12 +9,11 @@
 #include <stdint.h>
 /// \endcond
 
-#include "uevloop/system/event.h"
-#include "uevloop/uel_config.h"
+#include "uevloop/config.h"
 #include "uevloop/utils/linked-list.h"
 #include "uevloop/utils/object-pool.h"
-
-
+#include "uevloop/system/event.h"
+#include "uevloop/system/promise.h"
 
 /** \brief A container for the system pools
   *
@@ -27,7 +26,7 @@ struct syspools{
     //! Unrolls the `UEL_SYSPOOLS_EVENT_POOL_SIZE_LOG2N` value to its power-of-two form
     #define UEL_SYSPOOLS_EVENT_POOL_SIZE (1<<UEL_SYSPOOLS_EVENT_POOL_SIZE_LOG2N)
     //! The buffer used to store events in the event pool
-    uint8_t event_pool_buffer[UEL_SYSPOOLS_EVENT_POOL_SIZE * sizeof(uel_event_t)];
+    uel_event_t event_pool_buffer[UEL_SYSPOOLS_EVENT_POOL_SIZE];
     //! The buffer used to store event pointers in the event pool queue
     void *event_pool_queue_buffer[UEL_SYSPOOLS_EVENT_POOL_SIZE];
     //! The event pool object. Contains all the events used by the core.
@@ -36,12 +35,32 @@ struct syspools{
     //! Unrolls the `UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N` value to its power-of-two form
     #define UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE (1<<UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N)
     //! The buffer used to store llist nodes in the llist node pool
-    uint8_t llist_node_pool_buffer[UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE * sizeof(uel_llist_node_t)];
+    uel_llist_node_t llist_node_pool_buffer[UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE];
     //! The budder used to store llist node pointers in the llist node pool queue
     void *llist_node_pool_queue_buffer[UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE];
     //! The llist node pool object. Contains all llist nodes used by the core.
     uel_objpool_t llist_node_pool;
 
+    //! Unrolls the `UEL_PROMISE_POOL_SIZE_LOG2N` value to its power-of-two form
+    #define UEL_PROMISE_POOL_SIZE (1<<UEL_PROMISE_POOL_SIZE_LOG2N)
+    //! The buffer used to store promises in the promise pool
+    uel_promise_t promise_pool_buffer[UEL_PROMISE_POOL_SIZE];
+    //! The buffer used to store promise pointers in the promise pool queue
+    void *promise_pool_queue_buffer[UEL_PROMISE_POOL_SIZE];
+    //! The promise pool object. Contains all the promises available to use
+    uel_objpool_t promise_pool;
+
+    //! Unrolls the `UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N` value to its power-of-two form
+    #define UEL_PROMISE_SEGMENT_POOL_SIZE (1<<UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N)
+    //! The buffer used to store promise segments in the segment pool
+    uel_promise_segment_t segment_pool_buffer[UEL_PROMISE_SEGMENT_POOL_SIZE];
+    //! The buffer used to store promise segment pointers in the segment pool queue
+    void *segment_pool_queue_buffer[UEL_PROMISE_SEGMENT_POOL_SIZE];
+    //! The segment pool object. Contains all the promise segments available to use
+    uel_objpool_t segment_pool;
+
+    //! An object that aggregates promise and segment pools
+    uel_promise_store_t promise_store;
 };
 
 /** \brief Initialise the system pools
