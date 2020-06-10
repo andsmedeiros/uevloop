@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stddef.h>
 #include <stdio.h>
 #include "uelt.h"
 #include "test/utils/circular-queue.h"
@@ -18,6 +18,7 @@
 #include "test/system/scheduler.h"
 #include "test/system/event-loop.h"
 #include "test/system/signal.h"
+#include "test/system/promise.h"
 
 uelt_context_t test_context = DEFAULT_TEST_CONTEXT;
 
@@ -38,6 +39,7 @@ static char *run_all_tests(){
     uelt_run_test_group("scheduler", sch_run_tests);
     uelt_run_test_group("evloop", uel_evloop_run_tests);
     uelt_run_test_group("signal", uel_signal_run_tests);
+    uelt_run_test_group("promise", uel_promise_run_tests);
     uelt_run_test_group("app", uel_app_run_tests);
 
     return NULL;
