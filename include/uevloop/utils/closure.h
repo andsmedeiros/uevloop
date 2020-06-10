@@ -70,4 +70,11 @@ void *uel_closure_invoke(uel_closure_t *closure, void *params);
   */
 void uel_closure_destroy(uel_closure_t *closure);
 
+/** \brief Returns a closure that does nothing.
+  *
+  * The returned closure can be passed as parameters to functions that take
+  * closures as callbacks when the caller does not need to callback.
+  */
+uel_closure_t uel_nop();
+
 #endif	/* UEL_CLOSURE_H */

@@ -93,11 +93,28 @@ static char *should_check_uel_closure_return(){
     return NULL;
 }
 
+static char *should_create_nop() {
+    uel_closure_t nop = uel_nop();
+    uelt_assert_pointer_not_null("nop.function", (uintptr_t)nop.function);
+    uelt_assert_pointer_null("nop.context", nop.context);
+    uelt_assert_pointer_null("nop.params", nop.params);
+    uelt_assert_pointer_null("nop.destructor", nop.destructor);
+    uelt_assert_pointer_null("nop.value", nop.value);
+
+    void *arg = NULL, *value = (void *)1;
+    value = uel_closure_invoke(&nop, arg);
+    uelt_assert_pointer_null("arg", arg);
+    uelt_assert_pointer_null("value", value);
+
+    return NULL;
+}
+
 char * uel_closure_run_tests(){
     uelt_run_test("should correctly create closure", should_create_closure);
     uelt_run_test("should correctly invoke closure", should_invoke_closure);
     uelt_run_test("should correctly destroy closure", should_destroy_closure);
     uelt_run_test("should verify the closure's returned value", should_check_uel_closure_return);
+    uelt_run_test("should create a nop closure", should_create_nop);
 
     return NULL;
 }

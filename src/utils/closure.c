@@ -4,6 +4,8 @@
 #include <stdlib.h>
 /// \endcond
 
+static void *nop(uel_closure_t *closure){ return NULL; }
+
 uel_closure_t uel_closure_create(
     void * (* function)(uel_closure_t *),
     void *context,
@@ -23,4 +25,8 @@ void uel_closure_destroy(uel_closure_t *closure){
     if(closure->destructor != NULL) {
         closure->destructor(closure);
     }
+}
+
+uel_closure_t uel_nop() {
+    return uel_closure_create(nop, NULL, NULL);
 }

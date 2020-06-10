@@ -82,8 +82,16 @@
     uelt_assert_ints_not_equal(id, 0, string[0]);   \
 } while(0)
 
-#define uelt_assert_strs_equal(id, expected, supplied) do {     \
-    uelt_assert_ints_equal(id, 0, strcmp(expected, supplied));  \
+#define uelt_assert_strs_equal(id, expected, supplied) do {               \
+    test_context.assertions_run++;                                                           \
+    if(strcmp(expected, supplied) != 0){                            \
+        const char *template =                                                  \
+            "Assertion failed: on '%s', expected '%s' but got '%s'.\n\n"  \
+            "@%s:%d> %s";                                                       \
+        snprintf(test_context.assertion_error, 256, template, id, expected, supplied,                           \
+            __FILE__, __LINE__, __func__);                                      \
+        return test_context.assertion_error;                                                           \
+    }                                                                       \
 } while(0)
 
 #define uelt_run_test(id, test) do {                                        \
