@@ -170,7 +170,7 @@ void uel_promise_reject(uel_promise_t *promise, void *value) {
     flush_segments(promise);
 }
 
-void uel_promise_settle(
+void uel_promise_resettle(
     uel_promise_t *promise,
     uel_promise_state_t state,
     void *value

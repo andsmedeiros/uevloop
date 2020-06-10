@@ -181,7 +181,7 @@ void uel_promise_resolve(uel_promise_t *promise, void *value);
   */
 void uel_promise_reject(uel_promise_t *promise, void *value);
 
-/** \brief Settles a promise as the supplied state. Unlike `uel_promise_resolve()`
+/** \brief Resettles a promise as the supplied state. Unlike `uel_promise_resolve()`
   * and `uel_promise_reject()`, does **not** invoke the synchronous segments.
   *
   * This function should be used to switch execution paths during synchronous
@@ -189,11 +189,11 @@ void uel_promise_reject(uel_promise_t *promise, void *value);
   * by a particular segment. If the promise is settled as pending, the synchronous
   * processing phase is interrupted.
   *
-  * \param promise The promise to be settled
+  * \param promise The promise to be resettled
   * \param state The new promise state
   * \param value The new promise value
   */
-void uel_promise_settle(
+void uel_promise_resettle(
     uel_promise_t *promise,
     uel_promise_state_t state,
     void *value

@@ -345,17 +345,17 @@ static char *should_operate_late_rejected_promises() {
 
 static void *resettle_resolved(uel_closure_t *closure) {
     uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_settle(promise, UEL_PROMISE_RESOLVED, closure->context);
+    uel_promise_resettle(promise, UEL_PROMISE_RESOLVED, closure->context);
     return NULL;
 }
 static void *resettle_rejected(uel_closure_t *closure) {
     uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_settle(promise, UEL_PROMISE_REJECTED, closure->context);
+    uel_promise_resettle(promise, UEL_PROMISE_REJECTED, closure->context);
     return NULL;
 }
 static void *resettle_pending(uel_closure_t *closure) {
     uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_settle(promise, UEL_PROMISE_PENDING, closure->context);
+    uel_promise_resettle(promise, UEL_PROMISE_PENDING, closure->context);
     return NULL;
 }
 char *should_resettle() {
