@@ -1,0 +1,8 @@
+<map id="include/uevloop/system/promise.h" name="include/uevloop/system/promise.h">
+<area shape="rect" id="node1" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="298,5,475,47"/>
+<area shape="rect" id="node2" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="219,95,418,136"/>
+<area shape="rect" id="node6" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="431,184,608,225"/>
+<area shape="rect" id="node3" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="126,273,308,315"/>
+<area shape="rect" id="node4" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="28,184,206,225"/>
+<area shape="rect" id="node5" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="230,184,407,225"/>
+</map>

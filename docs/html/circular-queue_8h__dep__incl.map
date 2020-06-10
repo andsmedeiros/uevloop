@@ -1,9 +1,12 @@
-<map id="src/utils/circular&#45;queue.h" name="src/utils/circular&#45;queue.h">
-<area shape="rect" id="node2" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="335,102,482,129"/>
-<area shape="rect" id="node14" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="565,184,716,225"/>
-<area shape="rect" id="node3" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="333,184,484,225"/>
-<area shape="rect" id="node4" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals. " alt="" coords="337,363,488,404"/>
-<area shape="rect" id="node7" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly. " alt="" coords="181,281,343,307"/>
-<area shape="rect" id="node9" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future. " alt="" coords="419,281,577,307"/>
-<area shape="rect" id="node11" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="602,281,738,307"/>
+<map id="include/uevloop/utils/circular&#45;queue.h" name="include/uevloop/utils/circular&#45;queue.h">
+<area shape="rect" id="node1" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="182,5,339,47"/>
+<area shape="rect" id="node2" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="98,273,308,315"/>
+<area shape="rect" id="node7" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="298,95,455,136"/>
+<area shape="rect" id="node3" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="226,452,409,493"/>
+<area shape="rect" id="node4" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="28,363,205,404"/>
+<area shape="rect" id="node5" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="229,363,406,404"/>
+<area shape="rect" id="node6" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="482,363,660,404"/>
+<area shape="rect" id="node8" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="336,273,534,315"/>
+<area shape="rect" id="node9" href="$promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="473,184,650,225"/>
+<area shape="rect" id="node10" href="$automatic-pool_8h.html" title="Defines automatic pointers and automatic pools, objects that wrap object pools and objects managed by..." alt="" coords="240,184,398,225"/>
 </map>

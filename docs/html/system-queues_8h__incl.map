@@ -1,7 +1,8 @@
-<map id="src/system/containers/system&#45;queues.h" name="src/system/containers/system&#45;queues.h">
-<area shape="rect" id="node2" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="24,102,101,129"/>
-<area shape="rect" id="node5" href="$uel__config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="126,102,242,129"/>
-<area shape="rect" id="node6" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="266,95,382,136"/>
-<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="5,259,120,285"/>
-<area shape="rect" id="node4" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="49,184,177,211"/>
+<map id="include/uevloop/system/containers/system&#45;queues.h" name="include/uevloop/system/containers/system&#45;queues.h">
+<area shape="rect" id="node1" title="A container for the system&#39;s internal queues." alt="" coords="168,5,379,47"/>
+<area shape="rect" id="node2" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="5,102,184,129"/>
+<area shape="rect" id="node5" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="208,102,339,129"/>
+<area shape="rect" id="node6" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="363,95,522,136"/>
+<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="10,273,179,300"/>
+<area shape="rect" id="node4" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="76,184,225,225"/>
 </map>

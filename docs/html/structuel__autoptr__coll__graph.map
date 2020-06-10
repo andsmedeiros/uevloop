@@ -1,0 +1,7 @@
+<map id="uel_autoptr" name="uel_autoptr">
+<area shape="rect" id="node1" title="Automatic pointers are pointers wrapped by information of where they were issued." alt="" coords="136,199,232,225"/>
+<area shape="rect" id="node2" href="$structuel__autopool.html" title="Automatic pools are wrappers to object pools. They manage the acquisition and release cycle from obje..." alt="" coords="67,109,186,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="139,5,247,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="211,109,272,136"/>
+</map>

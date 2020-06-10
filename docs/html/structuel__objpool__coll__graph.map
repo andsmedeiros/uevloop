@@ -1,2 +1,5 @@
 <map id="uel_objpool_t" name="uel_objpool_t">
+<area shape="rect" id="node1" title="Pre&#45;allocated memory bound to speciffic types suitable for providing dynamic object management in the..." alt="" coords="49,95,158,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,84,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="108,5,216,32"/>
 </map>

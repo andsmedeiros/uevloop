@@ -1,0 +1,6 @@
+<map id="include/uevloop/utils/automatic&#45;pool.h" name="include/uevloop/utils/automatic&#45;pool.h">
+<area shape="rect" id="node1" title="Defines automatic pointers and automatic pools, objects that wrap object pools and objects managed by..." alt="" coords="98,5,255,47"/>
+<area shape="rect" id="node2" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="9,95,160,136"/>
+<area shape="rect" id="node4" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="184,102,353,129"/>
+<area shape="rect" id="node3" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="5,184,164,225"/>
+</map>

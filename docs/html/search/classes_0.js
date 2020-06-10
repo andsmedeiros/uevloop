@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['detail',['detail',['../unionevent_1_1detail.html',1,'event']]]
+  ['detail_290',['detail',['../unionevent_1_1detail.html',1,'event']]]
 ];

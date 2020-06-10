@@ -1,10 +1,12 @@
-<map id="src/system/event&#45;loop.h" name="src/system/event&#45;loop.h">
-<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="356,319,471,345"/>
-<area shape="rect" id="node3" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="349,244,477,271"/>
-<area shape="rect" id="node4" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools. " alt="" coords="250,80,425,107"/>
-<area shape="rect" id="node9" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues. " alt="" coords="15,80,201,107"/>
-<area shape="rect" id="node5" href="$event_8h.html" title="Defines events and methods to configure events. " alt="" coords="299,162,376,189"/>
-<area shape="rect" id="node6" href="$uel__config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed..." alt="" coords="25,162,141,189"/>
-<area shape="rect" id="node7" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use. " alt="" coords="165,155,275,196"/>
-<area shape="rect" id="node8" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures. " alt="" coords="45,244,160,271"/>
+<map id="include/uevloop/system/event&#45;loop.h" name="include/uevloop/system/event&#45;loop.h">
+<area shape="rect" id="node1" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="26,5,204,47"/>
+<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="82,355,252,382"/>
+<area shape="rect" id="node3" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="35,259,184,300"/>
+<area shape="rect" id="node4" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="104,95,302,136"/>
+<area shape="rect" id="node10" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="326,95,525,136"/>
+<area shape="rect" id="node5" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="331,266,462,293"/>
+<area shape="rect" id="node6" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="537,259,688,300"/>
+<area shape="rect" id="node8" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="135,184,314,211"/>
+<area shape="rect" id="node9" href="$promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="439,184,634,211"/>
+<area shape="rect" id="node7" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="589,348,748,389"/>
 </map>

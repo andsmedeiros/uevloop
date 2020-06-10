@@ -1,2 +1,5 @@
 <map id="uel_llist_node_t" name="uel_llist_node_t">
+<area shape="rect" id="node1" title="Defines a node of the linked list. Holds a void pointer." alt="" coords="72,95,196,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="165,5,226,32"/>
 </map>

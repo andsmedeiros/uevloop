@@ -1,2 +1,5 @@
 <map id="uel_sysqueues_t" name="uel_sysqueues_t">
+<area shape="rect" id="node1" title="A container for the system&#39;s internal queues." alt="" coords="63,109,194,136"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,113,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="169,5,230,32"/>
 </map>

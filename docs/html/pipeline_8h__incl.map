@@ -1,3 +1,4 @@
-<map id="src/utils/pipeline.h" name="src/utils/pipeline.h">
-<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="31,80,106,107"/>
+<map id="include/uevloop/utils/pipeline.h" name="include/uevloop/utils/pipeline.h">
+<area shape="rect" id="node1" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially,..." alt="" coords="11,5,169,47"/>
+<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="5,95,175,121"/>
 </map>

@@ -1,2 +1,10 @@
 <map id="uel_syspools_t" name="uel_syspools_t">
+<area shape="rect" id="node1" title="A container for the system pools." alt="" coords="381,161,500,188"/>
+<area shape="rect" id="node2" title=" " alt="" coords="37,9,152,36"/>
+<area shape="rect" id="node3" title=" " alt="" coords="33,60,157,87"/>
+<area shape="rect" id="node4" title=" " alt="" coords="45,111,144,137"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,161,184,188"/>
+<area shape="rect" id="node6" title=" " alt="" coords="17,212,172,239"/>
+<area shape="rect" id="node7" title=" " alt="" coords="40,296,149,323"/>
+<area shape="rect" id="node8" title=" " alt="" coords="64,444,125,471"/>
 </map>

@@ -1,4 +1,3 @@
-
 # µEvLoop ![C/C++ CI](https://github.com/andsmedeiros/uevloop/workflows/C/C++%20CI/badge.svg?event=push)
 
 A fast and lightweight event loop aimed at embedded platforms in C99.
@@ -41,13 +40,23 @@ A fast and lightweight event loop aimed at embedded platforms in C99.
 	- [Signal](#signal)
 		- [Signals and relay initialisation](#signals-and-relay-initialisation)
 		- [Signal operation](#signal-operation)
-- [Appendix A: Modules](#appendix-a-modules)
+- [Appendix A: Promises](#appendix-a-promises)
+	- [Promise stores](#promise-stores)
+		- [Promise store creation](#promise-store-creation)
+	- [Promises and segments](#promises-and-segments)
+		- [Promise creation](#promise-creation)
+		- [Promise settling](#promise-settling)
+		- [Segments](#segments)
+		- [Segment chains and promise resettling](#segment-chains-and-promise-resettling)
+		- [Nested promises](#nested-promises)
+		- [Promise destroying and promise helpers](#promise-destroying-and-promise-helpers)
+- [Appendix B: Modules](#appendix-b-modules)
 	- [Module creation](#module-creation)
 	- [Module registration](#module-registration)
 	- [Dependency Injection](#dependency-injection)
 		- [Parametrised injection](#parametrised-injection)
 		- [Ad-hoc injection](#ad-hoc-injection)
-- [Appendix B: Useful goodies](#appendix-b-useful-goodies)
+- [Appendix C: Useful goodies](#appendix-c-useful-goodies)
 	- [Iterators](#iterators)
 		- [Array iterators](#array-iterators)
 		- [Linked list iterators](#linked-list-iterators)
@@ -57,6 +66,10 @@ A fast and lightweight event loop aimed at embedded platforms in C99.
 	- [Conditionals](#conditionals)
 	- [Pipelines](#pipelines)
 	- [Functional helpers](#functional-helpers)
+	- [Automatic pools and automatic pointers](#automatic-pools-and-automatic-pointers)
+		- [Automatic pool creation](#automatic-pool-creation)
+		- [Automatic pool operation and automatic pointer destruction](#automatic-pool-operation-and-automatic-pointer-destruction)
+		- [Automatic pool constructors and destructors](#automatic-pool-constructors-and-destructors)
 - [Concurrency model](#concurrency-model)
 	- [Critical sections](#critical-sections)
 - [Motivation](#motivation)
@@ -643,7 +656,371 @@ uel_signal_unlisten(listener_2, &relay);  // This has no effect because the list
                                           // for SIGNAL_2 has already been marked as unlistened
 ```
 
-## Appendix A: Modules
+## Appendix A: Promises
+
+Promises are data structures that bind an asynchronous operation to the possible execution paths that derive from its result. They are heavily inspired by Javascript promises.
+
+Promises allow for very clean asynchronous code and exceptional error handling.
+
+### Promise stores
+
+All promises must be created at a store, to where they will come back once destroyed. A promise store encapsulates object pools for promises and segments, the two composing pieces for promise operation.
+
+#### Promise store creation
+
+Promise store need access to two object pools, one for promises and one for segments.
+```C
+#include <uevloop/utils/object-pools.h>
+#include <uevloop/system/promise.h>
+
+#define PROMISE_STORE_SIZE_LOG2N    4   // 16 promises
+#define SEGMENT_STORE_SIZE_LOG2N    6   // 64 segments
+
+...
+
+uel_objpool_t promise_pool;
+uel_objpool_t segment_pool;
+UEL_DECLARE_OBJPOOL_BUFFERS(uel_promise_t, PROMISE_STORE_SIZE_LOG2N, promise);
+UEL_DECLARE_OBJPOOL_BUFFERS(uel_promise_segment_t, SEGMENT_STORE_SIZE_LOG2N, segment);
+uel_objpool_init(
+    &promise_pool,
+    PROMISE_STORE_SIZE_LOG2N,
+    sizeof(uel_promise_t),
+    UEL_OBJPOOL_BUFFERS(promise)
+);
+uel_objpool_init(
+    &segment_pool,
+    SEGMENT_STORE_SIZE_LOG2N,
+    sizeof(uel_promise_segment_t),
+    UEL_OBJPOOL_BUFFERS(segment)
+);
+
+uel_promise_store_t store = uel_promise_store_create(&promise_pool, &segment_pool);
+```
+
+The [system pools component](#system-pools) contains a promise store. Its pools can have their size configured by modifying the `uevloop/config.h` file.
+
+### Promises and segments
+
+As mentioned above, promises and segments are the two building blocks for composing asynchronous chains of events. Promises represent the asynchronous operation *per se* and segments are the synchronous processing that occurs when a promise settles.
+
+Settling a promise means transitioning it into either **resolved** or **rejected** states which respectively indicate success or error of the asynchronous operation, optionally assigning a value to the promise.
+
+#### Promise creation
+
+There are two necessary pieces for creating a promise: a store and a constructor closure that starts the asynchronous operation.
+
+```C
+void *start_some_async(uel_closure_t *closure){
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    ...
+    return NULL; // return value is ignored
+}
+
+...
+
+uel_promise_t *promise =
+    uel_promise_create(&store, uel_closure_create(start_some_async, NULL, NULL));
+```
+
+When the promise is created, `start_some_async` is invoked immediately, taking the promise pointer as parameter.
+
+On creation, promises are in the **pending** state. This means its asynchronous operation has not been completed yet and the promise does not hold any meaningful value.
+
+#### Promise settling
+
+Once the operation is completed (and this can also be synchronously done from inside the constructor closure),
+there are two functions for signalling either success or failure of the asynchronous operation:
+
+```C
+uel_promise_resolve(promise1, (void *)SOME_VALUE); // operation succeeded
+uel_promise_reject(promise2, (void *)SOME_ERROR);  // operation failed
+```
+
+#### Segments
+
+Segments represent the synchronous phase that follows a promise settling. They contain two closures, one for handling resolved promises and one for handling rejected promises. Either one is chosen at runtime, depending on the settled state of the promise, and is invoked with the promise as parameter.
+
+Depending on the promise state, attaching segments have different effects. When a promise is pending, attached segments just get enqueued for execution once the promise is settled. Should the promise be already settled, attached segments get processed immediately instead.
+
+```C
+#include <stdio.h>
+
+void *report_success(uel_closure_t *closure) {
+    char *tag = (char *)closure->context;
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    printf("promise %s resolved with %d\n", tag, promise->value);
+    return NULL;
+}
+
+void *report_error(uel_closure_t *closure) {
+    char *tag = (char *)closure->context;
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    printf("promise %s rejected with %d\n", tag, promise->value);
+    return NULL;
+}
+
+...
+
+// Assume p1, p2 and p3 as pending, resolved and rejected promises, respectively
+// p2 is resolved with (uintptr_t)10 and p3 is rejected with (uintptr_t)100
+
+uel_promise_after(
+    p1,
+    uel_closure_create(report_success, (void *)"p1", NULL),
+    uel_closure_create(report_error, (void *)"p1", NULL)
+);
+// Neither closure gets invoked. Instead, a new segment containing them is enqueued.
+
+uel_promise_after(
+    p2,
+    uel_closure_create(report_success, (void *)"p2", NULL),  
+    uel_closure_create(report_error, (void *)"p2", NULL)
+);
+// As the promise is already resolved, instead of enqueueing a segment, the first
+// closure is invoked.
+// "p2 resolved with 10" is printed
+
+uel_promise_after(
+    p3,
+    uel_closure_create(report_success, (void *)"p3", NULL),  
+    uel_closure_create(report_error, (void *)"p3", NULL)
+);
+// Similarly, as the promise is already rejected, the second closure gets invoked
+// immediately.
+// "p3 rejected with 100" is printed
+
+uel_promise_resolve(p1, (uintptr_t)1);
+// Upon settling, segments are removed from the queue and processed.
+// "p1 resolved with 1" is printed
+```
+
+The `uel_promise_after()` function takes two closures as parameters. This is useful for splitting the execution path in two mutually exclusive routes depending on the settled state of the promise.
+
+There are three other functions for enqueuing segments. They can be used for attaching segments that only produce effects on specific settled states or attaching the same closure to both states:
+
+```C
+uel_promise_then(my_promise, my_closure);
+// `my_closure` is invoked only when `my_promise` is resolved.
+// The added segment is ignored if the promise is rejected.
+
+uel_promise_catch(my_promise, my_closure);
+// `my_closure` is invoked only when `my_promise` is rejected.
+// The added segment is ignored if the promise is resolved.
+
+uel_promise_always(my_promise, my_closure);
+// `my_closure` is invoked always upon settling, regardless of the settled state
+```
+
+#### Segment chains and promise resettling
+
+Any number of segments can be attached to some promise. They will be either processed immediately, in case the promise is already settled, or enqueued for processing upon settling in the future. Regardless, attached segments are always processed in registration order.
+
+Chaining segments is useful because segments have the ability to commute between execution paths through *promise resettling*. To resettle a promise means changing its state and value.
+
+```C
+void *store_char(uel_closure_t *closure) {
+    unsigned char *var = (unsigned char *)closure->context;
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    if((uintptr_t)promise->value <= 255) {
+        *var = (unsigned char)(uintptr_t)promise->value;
+    } else {
+        uel_promise_resettle(UEL_PROMISE_REJECTED, (void *)"Value too big");
+    }
+    return NULL;
+}
+
+void *report_error(uel_closure_t *closure) {
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    printf("promise was rejected with error '%s'\n", (char *)promise->value);
+    return NULL;
+}
+
+void *done(uel_closure_t *closure) {
+    static char *states[3] = { "pending", "resolved", "rejected" };
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    printf("operation done with state '%s'\n", states[promise->state]);
+}
+
+unsigned char c1 = 0;
+uel_promise_t *p1 = uel_promise_create(&store, uel_nop()); // Creates a pending promise
+uel_promise_then(p1, uel_closure_create(store_char, (void *)&c1, NULL));
+uel_promise_catch(p1, uel_closure_create(report_error, NULL, NULL));
+uel_promsie_always(p1, uel_closure_create(done, NULL, NULL));
+```
+This builds a segment chain attached to promise `p1`. Each segment added describes one synchronous step to be executed for each of the two settled states.
+
+Segments are processed sequentially, from first to last, starting with the closure relative to the state the promise was settled as. The following table illustrates this chain:
+
+|   State   | Segment 1  |  Segment 2   |   Segment 3   |
+|:---------:|:----------:|:------------:|:-------------:|
+| resolved  | store_char |      nop     |     done      |
+| rejected  |     nop    | report_error |     done      |
+
+The outcome of this chain is determined upon settling. For example, given the following resolution:
+
+```C
+uel_promise_resolve(p1, (void *)10);
+```
+
+The first closure invoked is `store_char`, in segment 1. In the closure function, the test condition `promise->value <= 255` is true, so the closure proceeds to store its value in the c1 variable.
+
+As the promise remains resolved, it advances to segment 2, where it finds a `nop` (no-operation). This is due to the segment being attached via `uel_promise_catch`.
+
+The promise then advances to segment 3, where it finds the `done` closure. The process then ends and the promise retains its state and value (`UEL_PROMISE_RESOLVED` and `(void *)10` in this case). By then, c1 holds `(char)10` and `operation done with state 'resolved'` is printed.
+
+If instead the promise was resolved as:
+```C
+uel_promise_resolve(p1, (void *)1000);
+```
+Then the test condition `promise->value <= 255` would have failed. The `store_char` would then skip storing the value and would rather *resettle* the promise as rejected, with some error message as value. This effectively commutes the execution path to the *rejected* branch.
+
+Once the `store_char` returns, as the promise is now rejected, the `report_error` closure is invoked and `promise was rejected with error 'Value too big'` is printed. The `done` closure is then invoked and prints `operation done with state 'rejected'`.
+
+Similarly, if instead the promise had been rejected as:
+```C
+uel_promise_reject(p1, (void *)"Asynchronous operation failed");
+```
+Segment 1 would be ignored, `report_error` would be invoked and print `promise was rejected with error 'Asynchronous operation failed'` and, at segment 3, `done` would be invoked and print `operation done with state 'rejected'`.
+
+Resettling can also be used for recovering from errors if it commutes back to `resolved` state. This constitutes an excellent exception system that allows errors raised in loose asynchronous operations to be rescued consistently Even exclusively synchronous processes can benefit from this error rescuing system.
+
+As a last note, segments can also resettle a promise as `pending`. This halts the synchronous stage immediately, leaving any unprocessed segments in place. This phase can be restarted by either resolving or rejecting the promise again.
+
+#### Nested promises
+
+Promises can be nested into each other, allowing for complex asynchronous operations to compose a single segment chain. This provides superb flow control for related asynchronous operations that would otherwise produce a lot of spaghetti code.
+
+Whenever a promise segment returns any non-null value, it is cast to a promise pointer. The original promise then transitions back to `pending` state and awaits for the returned promise to settle. Once this new promise is settled, the original promise is resumed with whatever state and value the new promise was settled as.
+
+For instance, suppose the programmer is programming an MCU that possesses an ADC with an arbitrarily long buffer and a DMA channel. The program must start the ADC, which will sample `N` times and store it in its buffer. After `N` samples have been taken, the DMA channel must be instructed to move it out of the ADC buffer into some memory-mapped buffer, where it will be processed.
+
+This could be easily accomplished with signals or callbacks, but would eventually lead to confusing and discontinuous code. With nested promises, however, it is easy to describe the whole process into one single chain.
+
+Suppose this is the implementation for the DMA and ADC modules:
+
+```C
+// ADC implementation
+static uel_promise_t *adc_promise;
+
+// This ISR is called when the ADC finishes sampling
+// the instructed number of samples
+static void adc_isr() {
+    uel_promise_resolve(adc_promise, (void *)ADC_BUFFER);
+    adc_promise = NULL;
+    adc_isr_flag = 0;
+}
+
+// Launches the ADC and returns. This effectively starts an asynchronous operation.
+static void *start_adc(uel_closure_t *closure) {
+    uintptr_t count = (uintptr_t)closure->context;
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    ADC_COUNT = count;
+    ADC_START = 1;
+    adc_promise = promise;
+    return NULL;
+}
+
+// Public interface function. Returns a promise that,
+// when resolved, will contain the address of the buffer where
+// data was sampled
+uel_promise_t *adc_read(uintptr_t count) {
+    return uel_promise_create(
+        &store,
+        uel_closure_create(start_adc, (void *)count, NULL)
+    );
+}
+
+// DMA implementation
+static uel_promise_ t *dma_promise;
+
+// This ISR is called when the DMA channel has finished
+// moving data
+static void dma_isr() {
+    uel_promise_resolve(dma_promise, (void *)DMA_DESTINATION);
+    dma_promise = NULL;
+    dma_isr_flag = 0;
+}
+
+// Auxiliary structure to hold DMA mapping information
+struct dma_mapping {
+    void *source;
+    void *destination;
+    uintptr_t count;
+};
+
+// Launches the DMA channel, starting an asynchronous operation
+static void *start_dma(uel_closure_t *closure) {
+    struct dma_mapping *mapping = (struct dma_mapping *)closure->context;
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    DMA_SOURCE = mapping->source;
+    DMA_DESTINATION = mapping->destination;
+    DMA_COUNT = mapping->count;
+    DMA_START = 1;
+    adc_promise = promise;
+    return NULL;
+}
+
+// Public interface function.
+// Returns a promise that, when resolved, will hold the address
+// of the buffer to where data was moved
+uel_promise_t *dma_move(void *destination, void *source, uintptr_t count) {
+    struct dma_mapping mapping = { source, destination, count };
+    return uel_promise_create(
+        &store,
+        uel_closure_create(start_adc, (void *)&mapping, NULL)
+    );
+}
+
+```
+
+Implementing the project requirements is this simple:
+
+```C
+#define N  10 // Will take 10 samples
+
+static void *move_from_buffer(uel_closure_t *closure) {
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    void *source = promise->value;
+    void *destination = closure->context;
+    return (void *)dma_move(destination, source, N);
+}
+
+static void *data_moved(uel_closure_t *closure) {
+    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    printf("Data moved to %p\n", promise->value);
+    return NULL;
+}
+
+// ...
+
+uel_promise_t *promise = adc_read(N);
+unsigned char destination[N];
+uel_promise_then(promise, uel_closure_create(move_from_buffer, (void *)destination, NULL));
+uel_promise_then(promise, uel_closure_create(data_moved, NULL, NULL));
+
+```
+
+Note that, in the above example, promises are resolved **synchronously** inside the ISR's. This may be not desirable due to performance reasons, but can be easily improved by enqueueing a closure that resolves nested promises into the [event loop](#event-loop).
+
+#### Promise destroying and promise helpers
+
+To destroy a promise, call `uel_promise_destroy()`. This will release all segments and then the promise itself. Settling a promise after it has been destroyed is undefined behaviour.
+
+Because settling and destroying promises are so frequent, there are helper functions that emit closures that automate this work:
+
+```C
+// When invoked, destroys the promise
+uel_closure_t destroyer = uel_promise_destroyer(promise);
+
+// When invoked with some value, resolves the promise with that value
+uel_closure_t resolver = uel_promise_resolver(promise);
+
+// When invoked with some value, rejects the promise with that value
+uel_closure_t rejecter = uel_promise_rejecter(promise);
+```
+
+## Appendix B: Modules
 
 Modules are independent units of behaviour, self-contained and self-allocated, with clear lifecycle hooks, interface and dependencies. They enforce separation of concerns and isolation by making clear how your code interacts with the rest of the application.
 
@@ -818,7 +1195,7 @@ my_greeter_t *greeter = (my_greeter_t *)uel_app_require(&my_app, MY_GREETER);
 
 While Ad-hoc injections seem easier, they make more difficult to know on which modules some particular piece of code depends on. Also, because they require the modules to already be loaded into the registry, they cannot be used during the configuration phase.
 
-## Appendix B: Useful goodies
+## Appendix C: Useful goodies
 
 ### Iterators
 
@@ -1005,6 +1382,84 @@ To make more suitable to asynchronous contexts, there are numerous helpers that 
 
 Please read [the docs](https://andsmedeiros.github.io/uevloop/html/functional_8h.html) to find out more about them.
 
+### Automatic pools and automatic pointers
+
+Automatic pools are wrappers objects that enhance the abilities of object pools. They allow constructors and destructors to be attached and, instead of yielding bare pointers, yield `uel_autoptr_t` automatic pointers.
+
+Automatic pointers are objects that associate some object to the pool it is from, making it trivial to destroy the object regardless of access to its source. An automatic pointer issued to an object of type `T` can be safely cast to `T**`. Casting to any other pointer type is undefined behaviour.
+
+#### Automatic pool creation
+
+Automatic pools are created and initialised in very similar ways to object pools:
+
+```C
+#define TUPLE_POOL_SIZE_LOG2N    5    // 32 tuples
+struct tuple {
+    int a;
+    int b;
+};
+UEL_DECLARE_AUTOPOOL_BUFFERS(struct tuple, TUPLE_POOL_SIZE_LOG2N, tuple);
+uel_autopool_t tuple_pool;
+uel_autopool_init(
+    &tuple_pool,
+    TUPLE_POOL_SIZE_LOG2N,
+    sizeof(struct tuple),
+    UEL_AUTOPOOL_BUFFERS(tuple)
+);
+```
+
+#### Automatic pool operation and automatic pointer destruction
+
+After an automatic pool has been created, it can allocate and deallocate objects, just like object pools.
+
+```C
+struct tuple **t = (struct tuple **)uel_autopool_alloc(&tuple_pool);
+if(t) {
+    (**t).a = 1;
+    (**t).b = 10;
+    uel_autoptr_dealloc((uel_autoptr_t)t);
+}
+```
+
+#### Automatic pool constructors and destructors
+
+It is possible to attach a constructor and a destructor to some automatic pool. This are closures that will be invoked upon object allocation and deallocation, taking a **bare** pointer to the object being operated on.
+
+```C
+static void *default_tuple(uel_closure_t *closure) {
+    struct tuple *value = (struct tuple *)closure->context;
+    struct tuple *t = (struct tuple *)closure->params;
+    *t = *value;
+    return NULL;
+}
+
+static void *zero_tuple(uel_closure_t *closure) {
+    struct tuple *t = (struct tuple *)closure->params;
+    t->a = 0;
+    t->b = 0;
+    return NULL;
+}
+
+// ...
+
+static struct tuple default_value = { 10, 100 };
+uel_autopool_set_contructor(
+    &tuple_pool,
+    uel_closure_create(default_tuple, (void *)&default_value, NULL)
+);
+uel_autopool_set_destructor(
+    &tuple_pool,
+    uel_closure_create(zero_tuple, NULL, NULL)
+);
+
+struct tuple **t1 =
+    (struct tuple **)uel_autopool_alloc(&tuple_pool);
+// t1.a = 10, t1.b = 100
+
+uel_autoptr_dealloc((uel_autoptr_t)t1);
+// before t1 is dealloc'ed t1.a = 0, t1.b = 0
+```
+
 ## Concurrency model
 
 µEvLoop is meant to run baremetal, primarily in simple single-core MCUs. That said, nothing stops it from being employed as a side library in RTOSes or in full-fledged x86_64 multi-threaded desktop applications.
@@ -1046,5 +1501,4 @@ I am also looking for a new job and needed to improve my portfolio.
 * Better error handling
 * More lifecycle hooks for modules
 * Application teardown/exit
-* Getter and setter closures
 * Implement [application](#application) signals

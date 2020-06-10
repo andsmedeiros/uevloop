@@ -1,3 +1,4 @@
-<map id="src/utils/pipeline.h" name="src/utils/pipeline.h">
-<area shape="rect" id="node2" href="$functional_8h.html" title="Contains helpers for composing and augumenting closures. " alt="" coords="5,80,144,107"/>
+<map id="include/uevloop/utils/pipeline.h" name="include/uevloop/utils/pipeline.h">
+<area shape="rect" id="node1" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially,..." alt="" coords="5,5,163,47"/>
+<area shape="rect" id="node2" href="$functional_8h.html" title="Contains helpers for composing and augumenting closures." alt="" coords="5,95,163,136"/>
 </map>

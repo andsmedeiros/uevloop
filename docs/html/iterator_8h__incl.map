@@ -1,4 +1,5 @@
-<map id="src/utils/iterator.h" name="src/utils/iterator.h">
-<area shape="rect" id="node2" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it. " alt="" coords="5,80,93,107"/>
-<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts. " alt="" coords="52,155,127,181"/>
+<map id="include/uevloop/utils/iterator.h" name="include/uevloop/utils/iterator.h">
+<area shape="rect" id="node1" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="57,5,215,47"/>
+<area shape="rect" id="node2" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="5,95,155,136"/>
+<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="51,184,221,211"/>
 </map>

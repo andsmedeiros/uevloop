@@ -1,2 +1,7 @@
 <map id="uel_signal_relay_t" name="uel_signal_relay_t">
+<area shape="rect" id="node1" title="Contains a signal vector and operates on in." alt="" coords="208,95,348,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,135,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="159,5,255,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="279,5,421,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="445,5,522,32"/>
 </map>
