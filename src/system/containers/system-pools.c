@@ -14,20 +14,6 @@ void uel_syspools_init(uel_syspools_t *pools){
         sizeof(uel_llist_node_t),
        UEL_OBJPOOL_BUFFERS_AT(llist_node, pools)
     );
-    uel_objpool_init(
-        &pools->promise_pool,
-        UEL_PROMISE_POOL_SIZE_LOG2N,
-        sizeof(uel_promise_t),
-       UEL_OBJPOOL_BUFFERS_AT(promise, pools)
-    );
-    uel_objpool_init(
-        &pools->segment_pool,
-        UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N,
-        sizeof(uel_promise_segment_t),
-       UEL_OBJPOOL_BUFFERS_AT(segment, pools)
-    );
-    pools->promise_store =
-        uel_promise_store_create(&pools->promise_pool, &pools->segment_pool);
 }
 
 uel_event_t *uel_syspools_acquire_event(uel_syspools_t *pools){

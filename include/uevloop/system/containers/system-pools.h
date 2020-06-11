@@ -13,7 +13,6 @@
 #include "uevloop/utils/linked-list.h"
 #include "uevloop/utils/object-pool.h"
 #include "uevloop/system/event.h"
-#include "uevloop/system/promise.h"
 
 /** \brief A container for the system pools
   *
@@ -40,27 +39,6 @@ struct syspools{
     void *llist_node_pool_queue_buffer[UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE];
     //! The llist node pool object. Contains all llist nodes used by the core.
     uel_objpool_t llist_node_pool;
-
-    //! Unrolls the `UEL_PROMISE_POOL_SIZE_LOG2N` value to its power-of-two form
-    #define UEL_PROMISE_POOL_SIZE (1<<UEL_PROMISE_POOL_SIZE_LOG2N)
-    //! The buffer used to store promises in the promise pool
-    uel_promise_t promise_pool_buffer[UEL_PROMISE_POOL_SIZE];
-    //! The buffer used to store promise pointers in the promise pool queue
-    void *promise_pool_queue_buffer[UEL_PROMISE_POOL_SIZE];
-    //! The promise pool object. Contains all the promises available to use
-    uel_objpool_t promise_pool;
-
-    //! Unrolls the `UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N` value to its power-of-two form
-    #define UEL_PROMISE_SEGMENT_POOL_SIZE (1<<UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N)
-    //! The buffer used to store promise segments in the segment pool
-    uel_promise_segment_t segment_pool_buffer[UEL_PROMISE_SEGMENT_POOL_SIZE];
-    //! The buffer used to store promise segment pointers in the segment pool queue
-    void *segment_pool_queue_buffer[UEL_PROMISE_SEGMENT_POOL_SIZE];
-    //! The segment pool object. Contains all the promise segments available to use
-    uel_objpool_t segment_pool;
-
-    //! An object that aggregates promise and segment pools
-    uel_promise_store_t promise_store;
 };
 
 /** \brief Initialise the system pools

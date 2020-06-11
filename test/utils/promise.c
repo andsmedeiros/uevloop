@@ -2,7 +2,7 @@
 #include "test/uelt.h"
 #include "uevloop/utils/object-pool.h"
 #include "uevloop/utils/closure.h"
-#include "uevloop/system/promise.h"
+#include "uevloop/utils/promise.h"
 
 #include <stddef.h>
 

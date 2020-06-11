@@ -8,10 +8,10 @@
 
 #include "uevloop/utils/linked-list.h"
 #include "uevloop/utils/closure.h"
+#include "uevloop/utils/promise.h"
 #include "uevloop/system/containers/system-pools.h"
 #include "uevloop/system/containers/system-queues.h"
 #include "uevloop/system/event.h"
-#include "uevloop/system/promise.h"
 
 /** \typedef uel_signal_t
   *

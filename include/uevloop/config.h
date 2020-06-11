@@ -43,16 +43,7 @@
 
 /* PROMISE MODULE CONFIGURATION */
 
-#ifndef UEL_PROMISE_POOL_SIZE_LOG2N
-//! The size of the promise pool in log2 form. Default to 32 promises.
-#define UEL_PROMISE_POOL_SIZE_LOG2N (5)
-#endif /* UEL_PROMISE_POOL_SIZE_LOG2N */
-
-#ifndef UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N
-//! The size of the segment pool in log2 form. Defaults to 128 segments (4 x promises)
-#define UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N (UEL_PROMISE_POOL_SIZE_LOG2N + 2)
-#endif /* UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N */
-
 //! Enable promise chain functions aliases: THEN, CATCH, AFTER, ALWAYS
+#define UEL_PROMISE_SHORTCUTS
 
 #endif /* end of include guard: UEL_CONFIG_H */
