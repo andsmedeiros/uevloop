@@ -24,7 +24,7 @@ typedef uintptr_t uel_signal_t;
 /** \brief Defines a reference type suitable to manipulate the actual listener
   * event's context.
   */
-typedef struct listener *uel_signal_listener_t;
+typedef struct uel_event_listener *uel_signal_listener_t;
 
 /** \brief Contains a signal vector and operates on in.
   *

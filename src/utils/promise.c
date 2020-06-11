@@ -3,22 +3,22 @@
 
 #include <stddef.h>
 
-static void *rejecter(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->context;
-    uel_promise_reject(promise, closure->params);
+static void *rejecter(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)context;
+    uel_promise_reject(promise, params);
 
     return NULL;
 }
 
-static void *resolver(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->context;
-    uel_promise_resolve(promise, closure->params);
+static void *resolver(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)context;
+    uel_promise_resolve(promise, params);
 
     return NULL;
 }
 
-static void *destroyer(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->context;
+static void *destroyer(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)context;
 
     UEL_CRITICAL_ENTER;
     uel_objpool_release(promise->source->promise_pool, (void *)promise);
@@ -180,12 +180,12 @@ void uel_promise_resettle(
 }
 
 uel_closure_t uel_promise_resolver(uel_promise_t *promise) {
-    return uel_closure_create(resolver, (void *)promise, NULL);
+    return uel_closure_create(resolver, (void *)promise);
 }
 
 uel_closure_t uel_promise_rejecter(uel_promise_t *promise) {
-    return uel_closure_create(rejecter, (void *)promise, NULL);
+    return uel_closure_create(rejecter, (void *)promise);
 }
 uel_closure_t uel_promise_destroyer(uel_promise_t *promise) {
-    return uel_closure_create(destroyer, (void *)promise, NULL);
+    return uel_closure_create(destroyer, (void *)promise);
 }

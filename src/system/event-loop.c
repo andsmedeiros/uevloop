@@ -56,21 +56,20 @@ static inline void run_signal_event(uel_evloop_t *event_loop, uel_event_t *signa
 
     for(unsigned int uel_closure_count = i, i = 0; i < uel_closure_count; i++){
         uel_closure_t *closure = &closures[i];
-        uel_closure_invoke(closure, signal->closure.params);
+        uel_closure_invoke(closure, signal->value);
     }
     for(unsigned int node_count = j, j = 0; j < node_count; j++){
         uel_event_t *event = removed_nodes[j]->value;
-        uel_event_destroy(event);
         uel_syspools_release_event(event_loop->pools, event);
         uel_syspools_release_llist_node(event_loop->pools, removed_nodes[j]);
     }
 }
 
-static void *run_observer_event(uel_closure_t *closure){
-    uel_evloop_t *event_loop = (uel_evloop_t *)closure->context;
-    uel_llist_node_t *node = (uel_llist_node_t *)closure->params;
+static void *run_observer_event(void *context, void *params){
+    uel_evloop_t *event_loop = (uel_evloop_t *)context;
+    uel_llist_node_t *node = (uel_llist_node_t *)params;
     uel_event_t *event = (uel_event_t *)node->value;
-    struct observer *observer = &event->detail.observer;
+    struct uel_event_observer *observer = &event->detail.observer;
 
     if(!observer->cancelled){
         uintptr_t value;
@@ -87,7 +86,6 @@ static void *run_observer_event(uel_closure_t *closure){
 
     if (observer->cancelled || !event->repeating) {
         uel_llist_remove(&event_loop->observers, node);
-        uel_event_destroy(event);
         uel_syspools_release_event(event_loop->pools, event);
         uel_syspools_release_llist_node(event_loop->pools, node);
     }
@@ -128,12 +126,11 @@ void uel_evloop_run(uel_evloop_t *event_loop){
                 break;
             default: continue;
         }
-        uel_event_destroy(event);
         uel_syspools_release_event(event_loop->pools, event);
     }
 
     uel_closure_t observe =
-        uel_closure_create(run_observer_event, (void *)event_loop, NULL);
+        uel_closure_create(run_observer_event, (void *)event_loop);
     uel_iterator_llist_t observer_it =
         uel_iterator_llist_create(&event_loop->observers);
     uel_iterator_foreach(&observer_it, &observe);

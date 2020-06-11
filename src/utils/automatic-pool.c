@@ -1,7 +1,5 @@
 #include "uevloop/utils/automatic-pool.h"
 
-static void *nop(uel_closure_t *closure) { return NULL; }
-
 void uel_autoptr_dealloc(uel_autoptr_t autoptr) {
     struct uel_autoptr *ptr = (struct uel_autoptr *)autoptr;
     uel_closure_invoke(&ptr->source->destructor, *autoptr);
@@ -27,8 +25,8 @@ void uel_autopool_init(
         (uint8_t *)autoptr_buffer,
         queue_buffer
     );
-    pool->constructor = uel_closure_create(nop, NULL, NULL);
-    pool->destructor = uel_closure_create(nop, NULL, NULL);
+    pool->constructor = uel_nop();
+    pool->destructor = uel_nop();
 }
 
 uel_autoptr_t uel_autopool_alloc(uel_autopool_t *pool){

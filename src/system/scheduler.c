@@ -6,17 +6,17 @@
 
 #include "uevloop/system/event.h"
 
-static void *is_past_due_time(uel_closure_t *closure){
-    uint32_t current_time = *(uint32_t *)closure->context;
-    uel_llist_node_t *node = (uel_llist_node_t *)closure->params;
+static void *is_past_due_time(void *context, void *params){
+    uint32_t current_time = *(uint32_t *)context;
+    uel_llist_node_t *node = (uel_llist_node_t *)params;
     uel_event_t *event = (uel_event_t *)node->value;
     bool fit_for_removal = event->detail.timer.due_time <= current_time;
     return (void *)fit_for_removal;
 }
 
-static void *place_in_order(uel_closure_t *closure){
-    uint32_t due_time = *(uint32_t *)closure->context;
-    uel_llist_node_t **nodes = (uel_llist_node_t **)closure->params;
+static void *place_in_order(void *context, void *params){
+    uint32_t due_time = *(uint32_t *)context;
+    uel_llist_node_t **nodes = (uel_llist_node_t **)params;
 
     bool fits = false;
     if(nodes[1] == NULL){
@@ -40,8 +40,7 @@ static void enqueue_timer(uel_scheduer_t *scheduler, uel_event_t *timer){
     node->value = (void *)timer;
     uel_closure_t in_order = uel_closure_create(
         place_in_order,
-        (void *)&timer->detail.timer.due_time,
-        NULL
+        (void *)&timer->detail.timer.due_time
     );
     uel_llist_insert_at(&scheduler->timer_list, node, &in_order);
 }
@@ -56,8 +55,7 @@ static void reschedule_resumed_timers(uel_scheduer_t *scheduler){
                 scheduler->timer + timer->detail.timer.timeout;
             uel_closure_t in_order = uel_closure_create(
                 place_in_order,
-                (void *)&timer->detail.timer.due_time,
-                NULL
+                (void *)&timer->detail.timer.due_time
             );
             uel_llist_insert_at(&scheduler->timer_list, current, &in_order);
         }
@@ -67,7 +65,7 @@ static void reschedule_resumed_timers(uel_scheduer_t *scheduler){
 
 static void enqueue_expired_timers(uel_scheduer_t *scheduler){
     uel_closure_t closure =
-        uel_closure_create(&is_past_due_time, (void *)&scheduler->timer, NULL);
+        uel_closure_create(&is_past_due_time, (void *)&scheduler->timer);
     uel_llist_t expired_timers = uel_llist_remove_while(&scheduler->timer_list, &closure);
     uel_llist_node_t *current = expired_timers.tail;
     while(current != NULL){
