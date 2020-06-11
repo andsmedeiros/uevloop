@@ -69,18 +69,18 @@ static char *should_create_and_destroy_promise() {
     return NULL;
 }
 
-static void *nop1(uel_closure_t *closure) { return NULL; }
-static void *nop2(uel_closure_t *closure) { return NULL; }
-static void *nop3(uel_closure_t *closure) { return NULL; }
-static void *nop4(uel_closure_t *closure) { return NULL; }
-static void *nop5(uel_closure_t *closure) { return NULL; }
+static void *nop1(void *context, void *params) { return NULL; }
+static void *nop2(void *context, void *params) { return NULL; }
+static void *nop3(void *context, void *params) { return NULL; }
+static void *nop4(void *context, void *params) { return NULL; }
+static void *nop5(void *context, void *params) { return NULL; }
 static char *should_enqueue_segments() {
     DECLARE_STORE;
 
     uintptr_t a, b, c, d, e;
     uel_promise_t *promise = uel_promise_create(&store, uel_nop());
 
-    uel_promise_then(promise, uel_closure_create(nop1, (void *)&a, NULL));
+    uel_promise_then(promise, uel_closure_create(nop1, (void *)&a));
     uelt_assert_pointer_not_null("promise->first_segment", promise->first_segment);
     uelt_assert_pointer_not_null("promise->last_segment", promise->last_segment);
     uelt_assert_pointers_equal(
@@ -101,8 +101,8 @@ static char *should_enqueue_segments() {
 
     uel_promise_after(
         promise,
-        uel_closure_create(nop2, (void *)&b, NULL),
-        uel_closure_create(nop3, (void *)&c, NULL)
+        uel_closure_create(nop2, (void *)&b),
+        uel_closure_create(nop3, (void *)&c)
     );
     uelt_assert_pointer_not_null("promise->first_segment", promise->first_segment);
     uelt_assert_pointer_not_null("promise->last_segment", promise->last_segment);
@@ -137,7 +137,7 @@ static char *should_enqueue_segments() {
         promise->last_segment->reject.context
     );
 
-    uel_promise_catch(promise, uel_closure_create(nop4, (void *)&d, NULL));
+    uel_promise_catch(promise, uel_closure_create(nop4, (void *)&d));
     uelt_assert_pointer_not_null("promise->first_segment", promise->first_segment);
     uelt_assert_pointer_not_null("promise->last_segment", promise->last_segment);
     uelt_assert_pointers_equal(
@@ -156,7 +156,7 @@ static char *should_enqueue_segments() {
         promise->last_segment->reject.context
     );
 
-    uel_promise_always(promise, uel_closure_create(nop5, (void *)&e, NULL));
+    uel_promise_always(promise, uel_closure_create(nop5, (void *)&e));
     uelt_assert_pointer_not_null("promise->first_segment", promise->first_segment);
     uelt_assert_pointer_not_null("promise->last_segment", promise->last_segment);
     uelt_assert_pointers_equal(
@@ -187,19 +187,19 @@ static char *should_enqueue_segments() {
     return NULL;
 }
 
-static void *resolves(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_resolve(promise, closure->context);
+static void *resolves(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
+    uel_promise_resolve(promise, context);
     return NULL;
 }
-static void *rejects(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_reject(promise, closure->context);
+static void *rejects(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
+    uel_promise_reject(promise, context);
     return NULL;
 }
-static void *store_char(uel_closure_t *closure) {
-    unsigned char *var = (unsigned char *)closure->context;
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+static void *store_char(void *context, void *params) {
+    unsigned char *var = (unsigned char *)context;
+    uel_promise_t *promise = (uel_promise_t *)params;
     unsigned char value = (unsigned char)(uintptr_t)promise->value;
     *var = value;
 
@@ -210,7 +210,7 @@ static char *should_operate_immediately_resolved_promises() {
 
     uel_promise_t *promise = uel_promise_create(
         &store,
-        uel_closure_create(resolves, (void *)((uintptr_t)'x'), NULL)
+        uel_closure_create(resolves, (void *)((uintptr_t)'x'))
     );
 
     uelt_assert_ints_equal("promise->state", UEL_PROMISE_RESOLVED, promise->state);
@@ -219,18 +219,18 @@ static char *should_operate_immediately_resolved_promises() {
     unsigned char a = '0', b = '0';
     uel_promise_after(
         promise,
-        uel_closure_create(store_char, (void *)&a, NULL),
-        uel_closure_create(store_char, (void *)&b, NULL)
+        uel_closure_create(store_char, (void *)&a),
+        uel_closure_create(store_char, (void *)&b)
     );
     uelt_assert_equals("a", 'x', a, "%c");
     uelt_assert_equals("b", '0', b, "%c");
 
     unsigned char c = '0', d = '0';
-    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c, NULL));
+    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c));
     uelt_assert_equals("c", '0', c, "%c");
     uelt_assert_equals("d", '0', d, "%c");
 
-    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d, NULL));
+    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d));
     uelt_assert_equals("c", '0', c, "%c");
     uelt_assert_equals("d", 'x', d, "%c");
 
@@ -242,7 +242,7 @@ static char *should_operate_immediately_rejected_promises() {
 
     uel_promise_t *promise = uel_promise_create(
         &store,
-        uel_closure_create(rejects, (void *)((uintptr_t)'x'), NULL)
+        uel_closure_create(rejects, (void *)((uintptr_t)'x'))
     );
 
     uelt_assert_ints_equal("promise->state", UEL_PROMISE_REJECTED, promise->state);
@@ -251,18 +251,18 @@ static char *should_operate_immediately_rejected_promises() {
     unsigned char a = '0', b = '0';
     uel_promise_after(
         promise,
-        uel_closure_create(store_char, (void *)&a, NULL),
-        uel_closure_create(store_char, (void *)&b, NULL)
+        uel_closure_create(store_char, (void *)&a),
+        uel_closure_create(store_char, (void *)&b)
     );
     uelt_assert_equals("a", '0', a, "%c");
     uelt_assert_equals("b", 'x', b, "%c");
 
     unsigned char c = '0', d = '0';
-    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c, NULL));
+    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c));
     uelt_assert_equals("c", 'x', c, "%c");
     uelt_assert_equals("d", '0', d, "%c");
 
-    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d, NULL));
+    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d));
     uelt_assert_equals("c", 'x', c, "%c");
     uelt_assert_equals("d", '0', d, "%c");
 
@@ -279,18 +279,18 @@ static char *should_operate_late_resolved_promises() {
     unsigned char a = '0', b = '0';
     uel_promise_after(
         promise,
-        uel_closure_create(store_char, (void *)&a, NULL),
-        uel_closure_create(store_char, (void *)&b, NULL)
+        uel_closure_create(store_char, (void *)&a),
+        uel_closure_create(store_char, (void *)&b)
     );
     uelt_assert_equals("a", '0', a, "%c");
     uelt_assert_equals("b", '0', b, "%c");
 
     unsigned char c = '0', d = '0';
-    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c, NULL));
+    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c));
     uelt_assert_equals("c", '0', c, "%c");
     uelt_assert_equals("d", '0', d, "%c");
 
-    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d, NULL));
+    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d));
     uelt_assert_equals("c", '0', c, "%c");
     uelt_assert_equals("d", '0', d, "%c");
 
@@ -317,18 +317,18 @@ static char *should_operate_late_rejected_promises() {
     unsigned char a = '0', b = '0';
     uel_promise_after(
         promise,
-        uel_closure_create(store_char, (void *)&a, NULL),
-        uel_closure_create(store_char, (void *)&b, NULL)
+        uel_closure_create(store_char, (void *)&a),
+        uel_closure_create(store_char, (void *)&b)
     );
     uelt_assert_equals("a", '0', a, "%c");
     uelt_assert_equals("b", '0', b, "%c");
 
     unsigned char c = '0', d = '0';
-    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c, NULL));
+    uel_promise_catch(promise, uel_closure_create(store_char, (void *)&c));
     uelt_assert_equals("c", '0', c, "%c");
     uelt_assert_equals("d", '0', d, "%c");
 
-    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d, NULL));
+    uel_promise_then(promise, uel_closure_create(store_char, (void *)&d));
     uelt_assert_equals("c", '0', c, "%c");
     uelt_assert_equals("d", '0', d, "%c");
 
@@ -343,19 +343,19 @@ static char *should_operate_late_rejected_promises() {
     return NULL;
 }
 
-static void *resettle_resolved(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_resettle(promise, UEL_PROMISE_RESOLVED, closure->context);
+static void *resettle_resolved(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
+    uel_promise_resettle(promise, UEL_PROMISE_RESOLVED, context);
     return NULL;
 }
-static void *resettle_rejected(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_resettle(promise, UEL_PROMISE_REJECTED, closure->context);
+static void *resettle_rejected(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
+    uel_promise_resettle(promise, UEL_PROMISE_REJECTED, context);
     return NULL;
 }
-static void *resettle_pending(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
-    uel_promise_resettle(promise, UEL_PROMISE_PENDING, closure->context);
+static void *resettle_pending(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
+    uel_promise_resettle(promise, UEL_PROMISE_PENDING, context);
     return NULL;
 }
 char *should_resettle() {
@@ -363,22 +363,22 @@ char *should_resettle() {
 
     uel_promise_t *promise = uel_promise_create(&store, uel_nop());
     char steps[8] = "0000000";
-    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[0], NULL));
-    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[1], NULL));
+    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[0]));
+    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[1]));
     uel_promise_after(
         promise,
-        uel_closure_create(resettle_rejected, (void *)((uintptr_t)'e'), NULL),
-        uel_closure_create(store_char, (void *)&steps[2], NULL)
+        uel_closure_create(resettle_rejected, (void *)((uintptr_t)'e')),
+        uel_closure_create(store_char, (void *)&steps[2])
     );
-    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[3], NULL));
+    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[3]));
     uel_promise_after(
         promise,
-        uel_closure_create(store_char, (void *)&steps[4], NULL),
-        uel_closure_create(resettle_resolved, (void *)((uintptr_t)'s'), NULL)
+        uel_closure_create(store_char, (void *)&steps[4]),
+        uel_closure_create(resettle_resolved, (void *)((uintptr_t)'s'))
     );
-    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[5], NULL));
-    uel_promise_always(promise, uel_closure_create(resettle_pending, NULL, NULL));
-    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[6], NULL));
+    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[5]));
+    uel_promise_always(promise, uel_closure_create(resettle_pending, NULL));
+    uel_promise_always(promise, uel_closure_create(store_char, (void *)&steps[6]));
 
     uelt_assert_strs_equal("steps before resolution", "0000000", steps);
 
@@ -400,11 +400,11 @@ char *should_resettle() {
     return NULL;
 }
 
-static void *deref_context(uel_closure_t *closure) {
-    return closure->context;
+static void *deref_context(void *context, void *params) {
+    return context;
 }
-static void *mark_execution(uel_closure_t *closure) {
-    bool *flag = (bool *)closure->context;
+static void *mark_execution(void *context, void *params) {
+    bool *flag = (bool *)context;
     *flag = true;
     return NULL;
 }
@@ -417,13 +417,13 @@ char *should_handle_subpromises() {
 
     bool b1 = false, b2 = false, b3 = false;
 
-    uel_promise_always(p1, uel_closure_create(mark_execution, (void *)&b1, NULL));
-    uel_promise_always(p1, uel_closure_create(deref_context, (void *)p2, NULL));
+    uel_promise_always(p1, uel_closure_create(mark_execution, (void *)&b1));
+    uel_promise_always(p1, uel_closure_create(deref_context, (void *)p2));
 
-    uel_promise_always(p2, uel_closure_create(mark_execution, (void *)&b2, NULL));
-    uel_promise_always(p2, uel_closure_create(deref_context, (void *)p3, NULL));
+    uel_promise_always(p2, uel_closure_create(mark_execution, (void *)&b2));
+    uel_promise_always(p2, uel_closure_create(deref_context, (void *)p3));
 
-    uel_promise_always(p3, uel_closure_create(mark_execution, (void *)&b3, NULL));
+    uel_promise_always(p3, uel_closure_create(mark_execution, (void *)&b3));
 
     uelt_assert_ints_equal("p1->state", UEL_PROMISE_PENDING, p1->state);
     uelt_assert_not("b1", b1);

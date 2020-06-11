@@ -55,11 +55,11 @@ static char *should_init_signal_relay(){
     return NULL;
 }
 
-static void *nop(uel_closure_t *closure){ return NULL; }
+static void *nop(void *context, void *params){ return NULL; }
 static char *should_listen(){
     DECLARE_SIGNAL_RELAY();
 
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
 
     uelt_assert_ints_equal(
@@ -112,7 +112,7 @@ static char *should_listen(){
 static char *should_unlisten(){
     DECLARE_SIGNAL_RELAY();
 
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_signal_listener_t listener1 =
         uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure);
     uel_signal_listener_t listener2 =
@@ -162,9 +162,9 @@ static char *should_unlisten(){
 }
 
 
-static void *increment(uel_closure_t *closure){
-    uintptr_t *counter = (uintptr_t *)closure->context;
-    uintptr_t amount = (uintptr_t)closure->params;
+static void *increment(void *context, void *params){
+    uintptr_t *counter = (uintptr_t *)context;
+    uintptr_t amount = (uintptr_t)params;
 
     *counter += amount;
 
@@ -175,9 +175,9 @@ static char *should_emit(){
 
     uintptr_t counter1 = 0, counter2 = 0, counter3 = 0;
 
-    uel_closure_t closure1 = uel_closure_create(&increment, &counter1, NULL);
-    uel_closure_t closure2 = uel_closure_create(&increment, &counter2, NULL);
-    uel_closure_t closure3 = uel_closure_create(&increment, &counter3, NULL);
+    uel_closure_t closure1 = uel_closure_create(&increment, &counter1);
+    uel_closure_t closure2 = uel_closure_create(&increment, &counter2);
+    uel_closure_t closure3 = uel_closure_create(&increment, &counter3);
     uel_signal_listen(TEST_SIGNAL_EVENT_1, &relay, &closure1);
     uel_signal_listen(TEST_SIGNAL_EVENT_2, &relay, &closure2);
     uel_signal_listen_once(TEST_SIGNAL_EVENT_3, &relay, &closure3);

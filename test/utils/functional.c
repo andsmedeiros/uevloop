@@ -9,22 +9,22 @@
 
 #define F(X) (uintptr_t)uel_closure_invoke(&f, (void *)X)
 
-static void *exponentiate(uel_closure_t *closure){
-    uintptr_t power = (uintptr_t)closure->context;
-    uintptr_t base = (uintptr_t)closure->params;
+static void *exponentiate(void *context, void *params){
+    uintptr_t power = (uintptr_t)context;
+    uintptr_t base = (uintptr_t)params;
 
     return (void *)(uintptr_t)pow(base, power);
 }
-static void *add(uel_closure_t *closure){
-    uintptr_t term1 = (uintptr_t)closure->context;
-    uintptr_t term2 = (uintptr_t)closure->params;
+static void *add(void *context, void *params){
+    uintptr_t term1 = (uintptr_t)context;
+    uintptr_t term2 = (uintptr_t)params;
 
     return (void *)(uintptr_t)(term1 + term2);
 }
 
 static char *should_operate_pipeline_closure(){
-    uel_closure_t square = uel_closure_create(exponentiate, (void *)2, NULL);
-    uel_closure_t increment = uel_closure_create(add, (void *)1, NULL);
+    uel_closure_t square = uel_closure_create(exponentiate, (void *)2);
+    uel_closure_t increment = uel_closure_create(add, (void *)1);
     UEL_PIPELINE_DECLARE(math, square, increment);
 
     uel_closure_t f = uel_func_pipeline(&math_pipeline);
@@ -38,17 +38,17 @@ static char *should_operate_pipeline_closure(){
     return NULL;
 }
 
-static void *is_divisible(uel_closure_t *closure){
-    uintptr_t divisor = (uintptr_t)closure->context;
-    uintptr_t dividend = (uintptr_t)closure->params;
+static void *is_divisible(void *context, void *params){
+    uintptr_t divisor = (uintptr_t)context;
+    uintptr_t dividend = (uintptr_t)params;
 
     return (void *)(uintptr_t)(dividend % divisor == 0);
 }
 
 static char *should_operate_conditional_closure(){
-    uel_closure_t square = uel_closure_create(exponentiate, (void *)2, NULL);
-    uel_closure_t increment = uel_closure_create(add, (void *)1, NULL);
-    uel_closure_t is_even = uel_closure_create(is_divisible, (void *)2, NULL);
+    uel_closure_t square = uel_closure_create(exponentiate, (void *)2);
+    uel_closure_t increment = uel_closure_create(add, (void *)1);
+    uel_closure_t is_even = uel_closure_create(is_divisible, (void *)2);
 
     uel_conditional_t math_conditional;
     uel_conditional_init(&math_conditional, is_even, square, increment);
@@ -64,20 +64,20 @@ static char *should_operate_conditional_closure(){
     return NULL;
 }
 
-static void *accumulate(uel_closure_t *closure){
-    uintptr_t *destination = (uintptr_t *)closure->context;
-    uintptr_t value = *(uintptr_t *)closure->params;
+static void *accumulate(void *context, void *params){
+    uintptr_t *destination = (uintptr_t *)context;
+    uintptr_t value = *(uintptr_t *)params;
 
     *destination += value;
     return (void *)(uintptr_t)true;
 }
-static void *deref_context(uel_closure_t *closure){
-    return (void *)*(uintptr_t *)closure->context;
+static void *deref_context(void *context, void *params){
+    return (void *)*(uintptr_t *)context;
 }
 static char *should_operate_foreach_closure(){
     uintptr_t acc = 0;
     uel_closure_t accumulate_into_acc =
-        uel_closure_create(accumulate, (void *)&acc, NULL);
+        uel_closure_create(accumulate, (void *)&acc);
     uel_closure_t accumulate_array = uel_func_foreach(&accumulate_into_acc);
     uelt_assert_pointers_equal(
         "accumulate_array.context",
@@ -85,7 +85,7 @@ static char *should_operate_foreach_closure(){
         accumulate_array.context
     );
 
-    uel_closure_t yield_acc = uel_closure_create(deref_context, (void *)&acc, NULL);
+    uel_closure_t yield_acc = uel_closure_create(deref_context, (void *)&acc);
     UEL_PIPELINE_DECLARE(f, accumulate_array, yield_acc);
     uel_closure_t f = uel_func_pipeline(&f_pipeline);
 
@@ -125,11 +125,11 @@ static char *should_operate_foreach_closure(){
     uel_func_mapper_init(&id##_mapper, (uel_iterator_t *)&id##_iterator,    \
                                             id, ARRAY_SIZE(id##_nums));
 
-static void *deref_uintptr_param(uel_closure_t *closure){
-    return (void *)*(uintptr_t *)closure->params;
+static void *deref_uintptr_param(void *context, void *params){
+    return (void *)*(uintptr_t *)params;
 }
 static char *should_operate_map_closure(){
-    uel_closure_t squared = uel_closure_create(exponentiate, (void *)2, NULL);
+    uel_closure_t squared = uel_closure_create(exponentiate, (void *)2);
     UEL_PIPELINE_DECLARE(square_array, {deref_uintptr_param}, squared);
     uel_closure_t square_array = uel_func_pipeline(&square_array_pipeline);
 
@@ -170,11 +170,11 @@ static char *should_operate_map_closure(){
     return NULL;
 }
 
-static void *deref_bool_param(uel_closure_t *closure){
-    return (void *)*(bool *)closure->params;
+static void *deref_bool_param(void *context, void *params){
+    return (void *)*(bool *)params;
 }
 static char *should_operate_find_closure(){
-    uel_closure_t is_true = uel_closure_create(deref_bool_param, NULL, NULL);
+    uel_closure_t is_true = uel_closure_create(deref_bool_param, NULL);
     uel_closure_t f = uel_func_find(&is_true);
 
     bool v1_values[] = {true, false, false, true, false};
@@ -193,7 +193,7 @@ static char *should_operate_find_closure(){
 }
 
 static char *should_operate_count_closure(){
-    uel_closure_t is_true = uel_closure_create(deref_bool_param, NULL, NULL);
+    uel_closure_t is_true = uel_closure_create(deref_bool_param, NULL);
     uel_closure_t f = uel_func_count(&is_true);
 
     bool v1_values[] = {true, false, false, true, false};
@@ -216,7 +216,7 @@ static char *should_operate_count_closure(){
 }
 
 static char *should_operate_all_none_any_closure(){
-    uel_closure_t is_true = uel_closure_create(deref_bool_param, NULL, NULL);
+    uel_closure_t is_true = uel_closure_create(deref_bool_param, NULL);
     uel_closure_t all_true = uel_func_all(&is_true);
     uel_closure_t all_false = uel_func_none(&is_true);
     uel_closure_t any_true = uel_func_any(&is_true);

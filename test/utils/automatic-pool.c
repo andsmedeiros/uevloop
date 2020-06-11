@@ -82,14 +82,14 @@ static char *should_manage_objects() {
     return NULL;
 }
 
-static void *construct(uel_closure_t *closure) {
-    struct test_obj * obj = (struct test_obj *)closure->params;
+static void *construct(void *context, void *params) {
+    struct test_obj * obj = (struct test_obj *)params;
     obj->c = 'C';
     obj->i = 10;
     return NULL;
 }
-static void *destruct(uel_closure_t *closure) {
-    struct test_obj * obj = (struct test_obj *)closure->params;
+static void *destruct(void *context, void *params) {
+    struct test_obj * obj = (struct test_obj *)params;
     obj->c = 'D';
     obj->i = 1;
     return NULL;
@@ -100,8 +100,8 @@ static char *should_construct_and_destruct_objects() {
     uel_autopool_t pool;
     uel_autopool_init(&pool, 2, sizeof(struct test_obj), UEL_AUTOPOOL_BUFFERS(test));
 
-    uel_autopool_set_constructor(&pool, uel_closure_create(construct, NULL, NULL));
-    uel_autopool_set_destructor(&pool, uel_closure_create(destruct, NULL, NULL));
+    uel_autopool_set_constructor(&pool, uel_closure_create(construct, NULL));
+    uel_autopool_set_destructor(&pool, uel_closure_create(destruct, NULL));
 
     struct test_obj **obj = (struct test_obj **)uel_autopool_alloc(&pool);
 

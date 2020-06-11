@@ -26,11 +26,11 @@ static char *should_init_event_loop(){
     return NULL;
 }
 
-static void *nop(uel_closure_t *closure){ return NULL; }
+static void *nop(void *context, void *params){ return NULL; }
 static char *should_enqueue_closures(){
     DECLARE_EVENT_LOOP();
 
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_evloop_enqueue_closure(&loop, &closure);
 
     uelt_assert_ints_equal(
@@ -41,8 +41,8 @@ static char *should_enqueue_closures(){
     return NULL;
 }
 
-static void *mark_execution(uel_closure_t *closure){
-    bool *executed = (bool *)closure->context;
+static void *mark_execution(void *context, void *params){
+    bool *executed = (bool *)context;
     *executed = true;
 
     return NULL;
@@ -51,11 +51,11 @@ static char *should_run_events(){
     DECLARE_EVENT_LOOP();
 
     bool done1 = false;
-    uel_closure_t closure1 = uel_closure_create(&mark_execution, (void *)&done1, NULL);
+    uel_closure_t closure1 = uel_closure_create(&mark_execution, (void *)&done1);
     uel_evloop_enqueue_closure(&loop, &closure1);
 
     bool done2 = false;
-    uel_closure_t closure2 = uel_closure_create(&mark_execution, (void *)&done2, NULL);
+    uel_closure_t closure2 = uel_closure_create(&mark_execution, (void *)&done2);
     uel_evloop_enqueue_closure(&loop, &closure2);
 
     uel_evloop_run(&loop);
@@ -73,7 +73,7 @@ static char *should_run_events(){
 static char *should_schedule_expired_timers(){
     DECLARE_EVENT_LOOP();
 
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_event_t *timer = uel_syspools_acquire_event(&pools);
     uel_event_config_timer(timer, 100, true, false, &closure, 0);
     uel_sysqueues_enqueue_event(loop.queues, timer);
@@ -93,7 +93,7 @@ static char *should_handle_paused_and_cancelled_timers(){
     uint32_t counter = 0;
 
     bool flag = false;
-    uel_closure_t closure = uel_closure_create(&mark_execution, (void *)&flag, NULL);
+    uel_closure_t closure = uel_closure_create(&mark_execution, (void *)&flag);
 
     uel_event_t *timer = uel_syspools_acquire_event(loop.pools);
     uel_event_config_timer(timer, 10, true, false, &closure, counter);
@@ -152,7 +152,7 @@ static char *should_operate_observers(){
 
     volatile uintptr_t counter = 0;
     bool flag = false;
-    uel_closure_t closure = uel_closure_create(&mark_execution, (void *)&flag, NULL);
+    uel_closure_t closure = uel_closure_create(&mark_execution, (void *)&flag);
 
     uel_event_t *observer = uel_evloop_observe(&loop, &counter, &closure);
     uelt_assert_ints_equal("loop.observers.count", 1, loop.observers.count);

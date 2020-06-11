@@ -107,9 +107,9 @@ static char *should_peek_elements(){
     return NULL;
 }
 
-static void *less_than(uel_closure_t *closure){
-    uintptr_t threshold = (uintptr_t)closure->context;
-    uel_llist_node_t *node = (uel_llist_node_t *)closure->params;
+static void *less_than(void *context, void *params){
+    uintptr_t threshold = (uintptr_t)context;
+    uel_llist_node_t *node = (uel_llist_node_t *)params;
     uintptr_t value = (uintptr_t)node->value;
     return (void*)(uintptr_t)(value < threshold);
 }
@@ -129,7 +129,7 @@ static char *should_remove_elements_until_condition(){
 
     for(uintptr_t i = 0; i < 7; i++) uel_llist_push_head(&list, &nodes[i]);
 
-    uel_closure_t less_than_five = uel_closure_create(&less_than, (void *)5, NULL);
+    uel_closure_t less_than_five = uel_closure_create(&less_than, (void *)5);
     uel_llist_t removed = uel_llist_remove_while(&list, &less_than_five);
 
     uelt_assert_ints_equal("list.count", 3, list.count);
@@ -144,8 +144,8 @@ static char *should_remove_elements_until_condition(){
 }
 
 
-static void *between_ranges(uel_closure_t *closure){
-    uel_llist_node_t **nodes = (uel_llist_node_t **)closure->params;
+static void *between_ranges(void *context, void *params){
+    uel_llist_node_t **nodes = (uel_llist_node_t **)params;
     bool fits = false;
 
     if(nodes[1] == NULL){
@@ -173,7 +173,7 @@ static char *should_insert_element_when_condition(){
     for(uintptr_t i = 0; i < 6; i++) uel_llist_push_head(&list, &nodes[i]);
 
     uel_llist_node_t node = { (void *)2, NULL };
-    uel_closure_t is_between_ranges = uel_closure_create(&between_ranges, NULL, NULL);
+    uel_closure_t is_between_ranges = uel_closure_create(&between_ranges, NULL);
     uel_llist_insert_at(&list, &node, &is_between_ranges);
 
     uelt_assert_ints_equal("list.count", 7, list.count);

@@ -6,13 +6,13 @@
 #include "../uelt.h"
 #include "uevloop/utils/pipeline.h"
 
-void *nop1(uel_closure_t *closure){ return NULL; }
-void *nop2(uel_closure_t *closure){ return NULL; }
+void *nop1(void *context, void *params){ return NULL; }
+void *nop2(void *context, void *params){ return NULL; }
 
 static char *should_initialise_pipeline(){
     UEL_PIPELINE_DECLARE(test,
-        uel_closure_create(nop1, NULL, NULL),
-        uel_closure_create(nop2, NULL, NULL)
+        uel_closure_create(nop1, NULL),
+        uel_closure_create(nop2, NULL)
     );
 
     uelt_assert_pointers_equal(
@@ -25,17 +25,17 @@ static char *should_initialise_pipeline(){
     return NULL;
 }
 
-static void *mark_flag(uel_closure_t *closure){
-    bool *flag = (bool *)closure->context;
-    bool value = (bool)closure->params;
+static void *mark_flag(void *context, void *params){
+    bool *flag = (bool *)context;
+    bool value = (bool)params;
     *flag = value;
 
     return (void *)value;
 }
 
-static void *increment_and_store(uel_closure_t *closure){
-    uintptr_t *slot = (uintptr_t *)closure->context;
-    uintptr_t value = (uintptr_t)closure->params;
+static void *increment_and_store(void *context, void *params){
+    uintptr_t *slot = (uintptr_t *)context;
+    uintptr_t value = (uintptr_t)params;
 
     *slot = value + 1;
 
@@ -44,9 +44,9 @@ static void *increment_and_store(uel_closure_t *closure){
 static char *should_operate_pipeline(){
     bool flags[] = {false, false, false};
     UEL_PIPELINE_DECLARE(flags,
-        uel_closure_create(mark_flag, (void *)&flags[0], NULL),
-        uel_closure_create(mark_flag, (void *)&flags[1], NULL),
-        uel_closure_create(mark_flag, (void *)&flags[2], NULL)
+        uel_closure_create(mark_flag, (void *)&flags[0]),
+        uel_closure_create(mark_flag, (void *)&flags[1]),
+        uel_closure_create(mark_flag, (void *)&flags[2])
     );
 
     uel_pipeline_apply(&flags_pipeline, (void *)true);
@@ -63,9 +63,9 @@ static char *should_operate_pipeline(){
 
     uintptr_t numbers[] = {0, 0, 0};
     UEL_PIPELINE_DECLARE(nums,
-        uel_closure_create(increment_and_store, (void *)&numbers[0], NULL),
-        uel_closure_create(increment_and_store, (void *)&numbers[1], NULL),
-        uel_closure_create(increment_and_store, (void *)&numbers[2], NULL),
+        uel_closure_create(increment_and_store, (void *)&numbers[0]),
+        uel_closure_create(increment_and_store, (void *)&numbers[1]),
+        uel_closure_create(increment_and_store, (void *)&numbers[2]),
     );
 
     uel_pipeline_apply(&nums_pipeline, (void *)5);

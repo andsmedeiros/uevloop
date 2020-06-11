@@ -157,8 +157,8 @@ static char *should_set_uel_scheduer_run_flag(){
     return NULL;
 }
 
-static void *increment(uel_closure_t *closure){
-    uintptr_t *counter = (uintptr_t *)closure->context;
+static void *increment(void *context, void *params){
+    uintptr_t *counter = (uintptr_t *)context;
     (*counter)++;
 
     return NULL;
@@ -168,9 +168,9 @@ static char *should_tick(){
 
     uintptr_t counter1 = 0, counter2 = 0, counter3 = 0;
 
-    uel_closure_t closure1 = uel_closure_create(&increment, (void *)&counter1, NULL);
-    uel_closure_t closure2 = uel_closure_create(&increment, (void *)&counter2, NULL);
-    uel_closure_t closure3 = uel_closure_create(&increment, (void *)&counter3, NULL);
+    uel_closure_t closure1 = uel_closure_create(&increment, (void *)&counter1);
+    uel_closure_t closure2 = uel_closure_create(&increment, (void *)&counter2);
+    uel_closure_t closure3 = uel_closure_create(&increment, (void *)&counter3);
 
     uel_evloop_enqueue_closure(&app.event_loop, &closure1);
     uel_sch_run_later(&app.scheduler, 100, closure2);
@@ -196,13 +196,13 @@ static char *should_tick(){
     return NULL;
 }
 
-static void *nop(uel_closure_t *closure){
+static void *nop(void *context, void *params){
     return NULL;
 }
 static char *should_proxy_functions(){
     DECLARE_APP();
 
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
 
     uel_app_enqueue_closure(&app, &closure);
     uelt_assert_ints_equal(

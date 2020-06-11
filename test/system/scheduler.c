@@ -47,11 +47,11 @@ static char *should_init_scheduler(){
     return NULL;
 }
 
-static void *nop(uel_closure_t *closure){ return NULL; }
+static void *nop(void *context, void *params){ return NULL; }
 static char *should_schedule_for_later_execution(){
     DECLARE_SCHEDULER();
 
-    uel_sch_run_later(&scheduler, 1000, uel_closure_create(&nop, NULL, NULL));
+    uel_sch_run_later(&scheduler, 1000, uel_closure_create(&nop, NULL));
     uelt_assert_ints_equal(
         "uel_sysqueues_count_scheduled_events",
         1,
@@ -77,7 +77,7 @@ static char *should_schedule_for_later_execution(){
         event->closure.function
     );
 
-    uel_sch_run_later(&scheduler, 500, uel_closure_create(&nop, NULL, NULL));
+    uel_sch_run_later(&scheduler, 500, uel_closure_create(&nop, NULL));
     uelt_assert_ints_equal(
         "uel_sysqueues_count_scheduled_events",
         1,
@@ -102,7 +102,7 @@ static char *should_schedule_for_later_execution(){
 
 static char *should_schedule_intervals(){
     DECLARE_SCHEDULER();
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
 
     {
         uel_sch_run_at_intervals(&scheduler, 1000, true, closure);
@@ -185,8 +185,8 @@ static void operate(uel_scheduer_t *scheduler, uel_evloop_t *loop){
     uel_sch_manage_timers(scheduler);
     uel_evloop_run(loop);
 }
-static void *uel_signal_execution(uel_closure_t *closure){
-    bool *executed = (bool *)closure->context;
+static void *uel_signal_execution(void *context, void *params){
+    bool *executed = (bool *)context;
     *executed = true;
     return NULL;
 }
@@ -205,13 +205,13 @@ static char *should_operate(){
     uel_sch_run_later(
         &scheduler,
         3,
-        uel_closure_create(uel_signal_execution, (void *)&success1, NULL)
+        uel_closure_create(uel_signal_execution, (void *)&success1)
     );
     uel_sch_run_at_intervals(
         &scheduler,
         5,
         true,
-        uel_closure_create(uel_signal_execution, (void *)&success2, NULL)
+        uel_closure_create(uel_signal_execution, (void *)&success2)
     );
     uelt_assert_not("success1 must had been unset", success1);
     uelt_assert_not("success2 must had been unset", success2);
@@ -253,7 +253,7 @@ static char *should_handle_timer_statuses(){
     DECLARE_SCHEDULER();
     uint32_t counter = 0;
 
-    uel_closure_t do_nothing = uel_closure_create(nop, NULL, NULL);
+    uel_closure_t do_nothing = uel_closure_create(nop, NULL);
 
     uel_event_t *timer =
         uel_sch_run_at_intervals(&scheduler, 10, false, do_nothing);

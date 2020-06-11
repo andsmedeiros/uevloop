@@ -84,18 +84,18 @@ static char *should_iterate_llist(){
     return NULL;
 }
 
-static void *accumulate(uel_closure_t *closure){
-    int *acc = (int *)closure->context;
-    int number = *(int *)closure->params;
+static void *accumulate(void *context, void *params){
+    int *acc = (int *)context;
+    int number = *(int *)params;
 
     *acc += number;
     return (void *)true;
 }
 
-static void *count_until_multiple_of_five(uel_closure_t *closure){
-    int number = *(int *)closure->params;
+static void *count_until_multiple_of_five(void *context, void *params){
+    int number = *(int *)params;
     if(number % 5 != 0){
-        int *counter = (int *)closure->context;
+        int *counter = (int *)context;
         (*counter)++;
         return (void *)true;
     }else{
@@ -106,7 +106,7 @@ static char *should_operate_iterator_foreach(){
     UEL_TEST_DECLARE_ITERATOR_ARRAY();
 
     int sum = 0;
-    uel_closure_t closure1 = uel_closure_create(accumulate, (void *)&sum, NULL);
+    uel_closure_t closure1 = uel_closure_create(accumulate, (void *)&sum);
 
     bool success = uel_iterator_foreach((uel_iterator_t *)&iterator, &closure1);
     uelt_assert_ints_equal("sum of array members", 15, sum);
@@ -114,7 +114,7 @@ static char *should_operate_iterator_foreach(){
 
     int counter = 0;
     uel_closure_t closure2 =
-        uel_closure_create(count_until_multiple_of_five, (void *)&counter, NULL);
+        uel_closure_create(count_until_multiple_of_five, (void *)&counter);
 
     success = uel_iterator_foreach((uel_iterator_t *)&iterator, &closure2);
     uelt_assert_ints_equal(
@@ -127,8 +127,8 @@ static char *should_operate_iterator_foreach(){
     return NULL;
 }
 
-static void *increment(uel_closure_t *closure){
-    int number = *(int *)closure->params;
+static void *increment(void *context, void *params){
+    int number = *(int *)params;
     return (void *)(uintptr_t)(number + 1);
 }
 
@@ -136,7 +136,7 @@ static char *should_operate_iterator_map(){
     UEL_TEST_DECLARE_ITERATOR_LLIST();
 
     void *incremented[7] = {0};
-    uel_closure_t closure = uel_closure_create(increment, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(increment, NULL);
 
     size_t iterated =
         uel_iterator_map((uel_iterator_t *)&iterator, &closure, incremented, 5);
@@ -193,28 +193,28 @@ static char *should_operate_iterator_map(){
     return NULL;
 }
 
-static void *is_divisible(uel_closure_t *closure){
-    uintptr_t divisor = (uintptr_t)closure->context;
-    int dividend = *(int *)closure->params;
+static void *is_divisible(void *context, void *params){
+    uintptr_t divisor = (uintptr_t)context;
+    int dividend = *(int *)params;
 
     return (void *)(uintptr_t)((dividend % divisor) == 0);
 }
 static char *should_operate_iterator_find(){
     UEL_TEST_DECLARE_ITERATOR_ARRAY()
 
-    uel_closure_t is_divisible_by_1 = uel_closure_create(is_divisible, (void *)1, NULL);
+    uel_closure_t is_divisible_by_1 = uel_closure_create(is_divisible, (void *)1);
     void *div_by_1 = uel_iterator_find((uel_iterator_t *)&iterator, &is_divisible_by_1);
     uelt_assert_pointers_equal("div_by_1", &nums[0], div_by_1);
 
-    uel_closure_t is_divisible_by_2 = uel_closure_create(is_divisible, (void *)2, NULL);
+    uel_closure_t is_divisible_by_2 = uel_closure_create(is_divisible, (void *)2);
     void *div_by_2 = uel_iterator_find((uel_iterator_t *)&iterator, &is_divisible_by_2);
     uelt_assert_pointers_equal("div_by_2", &nums[1], div_by_2);
 
-    uel_closure_t is_divisible_by_5 = uel_closure_create(is_divisible, (void *)5, NULL);
+    uel_closure_t is_divisible_by_5 = uel_closure_create(is_divisible, (void *)5);
     void *div_by_5 = uel_iterator_find((uel_iterator_t *)&iterator, &is_divisible_by_5);
     uelt_assert_pointers_equal("div_by_5", &nums[4], div_by_5);
 
-    uel_closure_t is_divisible_by_10 = uel_closure_create(is_divisible, (void *)10, NULL);
+    uel_closure_t is_divisible_by_10 = uel_closure_create(is_divisible, (void *)10);
     void *div_by_10 = uel_iterator_find((uel_iterator_t *)&iterator, &is_divisible_by_10);
     uelt_assert_pointer_null("div_by_10", div_by_10);
 
@@ -225,37 +225,37 @@ static char *should_operate_iterator_count(){
     int nums[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     uel_iterator_array_t iterator = uel_iterator_array_create(nums, 10, sizeof(int));
 
-    uel_closure_t is_divisible_by_1 = uel_closure_create(is_divisible, (void *)1, NULL);
+    uel_closure_t is_divisible_by_1 = uel_closure_create(is_divisible, (void *)1);
     size_t count_div_by_1 = uel_iterator_count((uel_iterator_t *)&iterator, &is_divisible_by_1);
     uelt_assert_ints_equal("count_div_by_1", 10, count_div_by_1);
 
-    uel_closure_t is_divisible_by_2 = uel_closure_create(is_divisible, (void *)2, NULL);
+    uel_closure_t is_divisible_by_2 = uel_closure_create(is_divisible, (void *)2);
     size_t count_div_by_2 = uel_iterator_count((uel_iterator_t *)&iterator, &is_divisible_by_2);
     uelt_assert_ints_equal("count_div_by_2", 5, count_div_by_2);
 
-    uel_closure_t is_divisible_by_3 = uel_closure_create(is_divisible, (void *)3, NULL);
+    uel_closure_t is_divisible_by_3 = uel_closure_create(is_divisible, (void *)3);
     size_t count_div_by_3 = uel_iterator_count((uel_iterator_t *)&iterator, &is_divisible_by_3);
     uelt_assert_ints_equal("count_div_by_3", 3, count_div_by_3);
 
-    uel_closure_t is_divisible_by_5 = uel_closure_create(is_divisible, (void *)5, NULL);
+    uel_closure_t is_divisible_by_5 = uel_closure_create(is_divisible, (void *)5);
     size_t count_div_by_5 = uel_iterator_count((uel_iterator_t *)&iterator, &is_divisible_by_5);
     uelt_assert_ints_equal("count_div_by_5", 2, count_div_by_5);
 
-    uel_closure_t is_divisible_by_10 = uel_closure_create(is_divisible, (void *)10, NULL);
+    uel_closure_t is_divisible_by_10 = uel_closure_create(is_divisible, (void *)10);
     size_t count_div_by_10 = uel_iterator_count((uel_iterator_t *)&iterator, &is_divisible_by_10);
     uelt_assert_ints_equal("count_div_by_10", 1, count_div_by_10);
 
     return NULL;
 }
 
-void *is_num(uel_closure_t *closure){
-    uintptr_t num1 = (uintptr_t)closure->context;
-    int *num2 = (int *)closure->params;
+void *is_num(void *context, void *params){
+    uintptr_t num1 = (uintptr_t)context;
+    int *num2 = (int *)params;
     return (void *)(uintptr_t)(*num2 == num1);
 }
 static char *should_operate_iterator_all_none_any(){
-    uel_closure_t is_one = uel_closure_create(is_num, (void *)1, NULL);
-    uel_closure_t is_zero = uel_closure_create(is_num, (void *)0, NULL);
+    uel_closure_t is_one = uel_closure_create(is_num, (void *)1);
+    uel_closure_t is_zero = uel_closure_create(is_num, (void *)0);
 
     int all_ones[] = { 1, 1, 1, 1, 1 };
     uel_iterator_array_t ones_iterator = uel_iterator_array_create(all_ones, 5, sizeof(int));

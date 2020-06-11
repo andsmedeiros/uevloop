@@ -4,24 +4,24 @@
 #include "../uelt.h"
 #include "uevloop/utils/conditional.h"
 
-static void *is_divisible(uel_closure_t *closure){
-    uintptr_t divisor = (uintptr_t)closure->context;
-    uintptr_t dividend = (uintptr_t)closure->params;
+static void *is_divisible(void *context, void *params){
+    uintptr_t divisor = (uintptr_t)context;
+    uintptr_t dividend = (uintptr_t)params;
     return (void *)(uintptr_t)((dividend % divisor) == 0);
 }
 
-static void *store_number(uel_closure_t *closure){
-    uintptr_t *target =  (uintptr_t *)closure->context;
-    uintptr_t number = (uintptr_t)closure->params;
+static void *store_number(void *context, void *params){
+    uintptr_t *target =  (uintptr_t *)context;
+    uintptr_t number = (uintptr_t)params;
     *target = number;
     return NULL;
 }
 
 char *should_initialise_conditional(){
     uintptr_t num1 = 0, num2 = 0;
-    uel_closure_t is_even = uel_closure_create(is_divisible, (void *)2, NULL);
-    uel_closure_t store_at_num1 = uel_closure_create(store_number, &num1, NULL);
-    uel_closure_t store_at_num2 = uel_closure_create(store_number, &num2, NULL);
+    uel_closure_t is_even = uel_closure_create(is_divisible, (void *)2);
+    uel_closure_t store_at_num1 = uel_closure_create(store_number, &num1);
+    uel_closure_t store_at_num2 = uel_closure_create(store_number, &num2);
 
     uel_conditional_t conditional;
     uel_conditional_init(&conditional, is_even, store_at_num1, store_at_num2);
@@ -58,9 +58,9 @@ char *should_initialise_conditional(){
 
 char *should_apply_conditional(){
     uintptr_t num1 = 0, num2 = 0;
-    uel_closure_t is_even = uel_closure_create(is_divisible, (void *)2, NULL);
-    uel_closure_t store_at_num1 = uel_closure_create(store_number, &num1, NULL);
-    uel_closure_t store_at_num2 = uel_closure_create(store_number, &num2, NULL);
+    uel_closure_t is_even = uel_closure_create(is_divisible, (void *)2);
+    uel_closure_t store_at_num1 = uel_closure_create(store_number, &num1);
+    uel_closure_t store_at_num2 = uel_closure_create(store_number, &num2);
 
     uel_conditional_t conditional;
     uel_conditional_init(&conditional, is_even, store_at_num1, store_at_num2);
