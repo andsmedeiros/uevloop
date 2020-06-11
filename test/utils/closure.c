@@ -7,38 +7,34 @@
 #include "../uelt.h"
 #include "uevloop/utils/closure.h"
 
-static void *nop1(uel_closure_t *closure){ return NULL; }
-static void nop2(uel_closure_t *closure){}
+static void *nop1(void *context, void *params){ return NULL; }
 static char *should_create_closure(){
     uint8_t context = 18;
 
-    uel_closure_t closure = uel_closure_create(&nop1, &context, &nop2);
+    uel_closure_t closure = uel_closure_create(&nop1, &context);
     uelt_assert_pointers_equal("closure.function", closure.function, &nop1);
     uelt_assert_pointers_equal("closure.context", closure.context, &context);
-    uelt_assert_pointers_equal("closure.destructor", closure.destructor, &nop2);
-    uelt_assert_pointer_null("closure.params", closure.params);
-    uelt_assert_pointer_null("closure.value", closure.value);
 
     return NULL;
 }
 
-static void *uel_signal_execution(uel_closure_t *closure){
-    bool *success = (bool *)closure->context;
+static void *uel_signal_execution(void *context, void *params){
+    bool *success = (bool *)context;
     *success = true;
 
     return NULL;
 }
-static void *echo_param(uel_closure_t *closure){
-    char *text = (char *)closure->params;
+static void *echo_param(void *context, void *params){
+    char *text = (char *)params;
     return (void *)text;
 }
 static char *should_invoke_closure(){
     bool success = false;
-    uel_closure_t signaler = uel_closure_create(uel_signal_execution, &success, NULL);
+    uel_closure_t signaler = uel_closure_create(uel_signal_execution, &success);
     uel_closure_invoke(&signaler, NULL);
     uelt_assert("uel_closure_invoke() must have had set success to true", success);
 
-    uel_closure_t repeater = uel_closure_create(&echo_param, NULL, NULL);
+    uel_closure_t repeater = uel_closure_create(&echo_param, NULL);
     const char *string = "Peas, nuts and peanuts.";
     const char *value = uel_closure_invoke(&repeater, (void *)string);
     uelt_assert_pointers_equal("uel_closure_invoke(&repeater)", string, value);
@@ -46,39 +42,21 @@ static char *should_invoke_closure(){
     return NULL;
 }
 
-static void uel_signal_destruction(uel_closure_t *closure){
-    bool *destroyed = (bool *)closure->context;
-    *destroyed = true;
-}
-static char *should_destroy_closure(){
-    bool destroyed = false;
-    uel_closure_t closure = uel_closure_create(&nop1, &destroyed, uel_signal_destruction);
-    uel_closure_invoke(&closure, NULL);
-    uelt_assert_not(
-        "uel_closure_invoke() must not have changed destroyed value",
-        destroyed
-    );
-    uel_closure_destroy(&closure);
-    uelt_assert("uel_closure_destroy() must have had set destroyed to true", destroyed);
-
-    return NULL;
-}
-
-static void *add(uel_closure_t *closure){
-    uint8_t a = (uint8_t)(uintptr_t)closure->context;
-    uint8_t b = (uint8_t)(uintptr_t)closure->params;
+static void *add(void *context, void *params){
+    uint8_t a = (uint8_t)(uintptr_t)context;
+    uint8_t b = (uint8_t)(uintptr_t)params;
     return (void *)(uintptr_t)(a + b);
 }
-static void *multiply(uel_closure_t *closure){
-    uint8_t a = (uint8_t)(uintptr_t)closure->context;
-    uint8_t b = (uint8_t)(uintptr_t)closure->params;
+static void *multiply(void *context, void *params){
+    uint8_t a = (uint8_t)(uintptr_t)context;
+    uint8_t b = (uint8_t)(uintptr_t)params;
     return (void *)(uintptr_t)(a * b);
 }
 static char *should_check_uel_closure_return(){
-    uel_closure_t plus_two = uel_closure_create(&add, (void *)2, NULL);
-    uel_closure_t plus_three = uel_closure_create(&add, (void *)3, NULL);
-    uel_closure_t times_two = uel_closure_create(&multiply, (void *)2, NULL);
-    uel_closure_t times_three = uel_closure_create(&multiply, (void *)3, NULL);
+    uel_closure_t plus_two = uel_closure_create(&add, (void *)2);
+    uel_closure_t plus_three = uel_closure_create(&add, (void *)3);
+    uel_closure_t times_two = uel_closure_create(&multiply, (void *)2);
+    uel_closure_t times_three = uel_closure_create(&multiply, (void *)3);
 
     uint8_t res1 = (uint8_t)(uintptr_t)uel_closure_invoke(&plus_two, (void *)25);
     uint8_t res2 = (uint8_t)(uintptr_t)uel_closure_invoke(&plus_three, (void *)176);
@@ -97,9 +75,6 @@ static char *should_create_nop() {
     uel_closure_t nop = uel_nop();
     uelt_assert_pointer_not_null("nop.function", (uintptr_t)nop.function);
     uelt_assert_pointer_null("nop.context", nop.context);
-    uelt_assert_pointer_null("nop.params", nop.params);
-    uelt_assert_pointer_null("nop.destructor", nop.destructor);
-    uelt_assert_pointer_null("nop.value", nop.value);
 
     void *arg = NULL, *value = (void *)1;
     value = uel_closure_invoke(&nop, arg);
@@ -112,7 +87,6 @@ static char *should_create_nop() {
 char * uel_closure_run_tests(){
     uelt_run_test("should correctly create closure", should_create_closure);
     uelt_run_test("should correctly invoke closure", should_invoke_closure);
-    uelt_run_test("should correctly destroy closure", should_destroy_closure);
     uelt_run_test("should verify the closure's returned value", should_check_uel_closure_return);
     uelt_run_test("should create a nop closure", should_create_nop);
 

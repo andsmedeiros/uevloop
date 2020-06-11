@@ -6,11 +6,11 @@
 #include "uevloop/system/event.h"
 #include "../uelt.h"
 
-static void *nop(uel_closure_t *closure){ return NULL; }
+static void *nop(void *context, void *params){ return NULL; }
 
 static char *should_config_uel_closure_event(){
     uel_event_t event;
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
 
     uel_event_config_closure(&event, &closure, false);
 
@@ -30,7 +30,7 @@ static char *should_config_uel_closure_event(){
 
 static char *should_config_timer_event(){
     uel_event_t event;
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
 
     uint32_t timer = 326680;
     uint16_t timeout_in_ms = 15000;
@@ -89,7 +89,7 @@ typedef enum uel_event_test_signals {
 
 static char *should_config_signal_event(){
     uel_event_t event;
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_llist_t listeners[SIGNAL_MAX];
 
     for (size_t i = 0; i < SIGNAL_MAX; i++) {
@@ -107,18 +107,14 @@ static char *should_config_signal_event(){
         &listeners,
         event.detail.signal.listeners
     );
-    uelt_assert_pointers_equal(
-        "event.closure.params",
-        &closure,
-        event.closure.params
-    );
+    uelt_assert_pointers_equal("event.value", &closure, event.value);
 
     return NULL;
 }
 
 static char *should_config_signal_listener_event(){
     uel_event_t event;
-    uel_closure_t closure = uel_closure_create(&nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(&nop, NULL);
 
     uel_event_config_signal_listener(&event, &closure, true);
     uelt_assert_ints_equal("event.type", UEL_SIGNAL_LISTENER_EVENT, event.type);
@@ -131,7 +127,7 @@ static char *should_config_signal_listener_event(){
 static char *should_config_observer_event(){
     volatile uintptr_t cv = 10;
     uel_event_t event;
-    uel_closure_t closure = uel_closure_create(nop, NULL, NULL);
+    uel_closure_t closure = uel_closure_create(nop, NULL);
 
     uel_event_config_observer(&event, &closure, &cv, true);
     uelt_assert_ints_equal("event.type", UEL_OBSERVER_EVENT, event.type);
@@ -160,35 +156,6 @@ static char *should_config_observer_event(){
     return NULL;
 }
 
-static void uel_signal_destruction(uel_closure_t *closure){
-    bool *destroyed = (bool *)closure->context;
-    *destroyed = true;
-}
-static char *should_destroy_events(){
-    {
-        uel_event_t event;
-        bool destroyed = false;
-
-        uel_closure_t closure = uel_closure_create(&nop, &destroyed, uel_signal_destruction);
-        uel_event_config_closure(&event, &closure, false);
-        uel_event_destroy(&event);
-
-        uelt_assert("destroyed must had been set on closure event destruction", destroyed);
-    }
-    {
-        uel_event_t event;
-        bool destroyed = false;
-
-        uel_closure_t closure = uel_closure_create(&nop, &destroyed, uel_signal_destruction);
-        uel_event_config_timer(&event, 1000, false, true, &closure, 10000);
-        uel_event_destroy(&event);
-
-        uelt_assert("destroyed must had been set on timer event destruction", destroyed);
-    }
-
-    return NULL;
-}
-
 char *event_run_tests(){
     uelt_run_test(
         "should correctly config a closure event",
@@ -209,10 +176,6 @@ char *event_run_tests(){
     uelt_run_test(
         "should correctly config an observer event",
         should_config_observer_event
-    );
-    uelt_run_test(
-        "should correctly destroy events and contained closures",
-        should_destroy_events
     );
 
     return NULL;

@@ -39,12 +39,13 @@ typedef enum uel_event_timer_status uel_event_timer_status_t;
   * They represent tasks to be run at some point by the system.
   *
   * Events are bound to information on how and when they should be invoked.
-  * There are four types of events:
+  * There are five types of events:
   *
   * - `UEL_CLOSURE_EVENT`: lifeless wrappers to closures.
   * - `UEL_TIMER_EVENT`: contains scheduling information associated with some closure
   * - `UEL_SIGNAL_EVENT`: contains information on the emission of a signal
   * - `UEL_SIGNAL_LISTENER_EVENT`: represent a single listening operation
+  * - `UEL_OBSERVER_EVENT`: represents a variable being observer by the event loop
   *
   * Closure and timer events can be recurring, in which case they won't be discarded
   * after processing by the event loop.
@@ -57,16 +58,15 @@ typedef struct event uel_event_t;
 struct event {
     uel_event_type_t type; //!< The type of the event, as defined by `uel_event_type_t`
     uel_closure_t closure; //!< The closure to be invoked a.k.a. the action to be run
-    /** \brief Marks whether the event should be discarded after processing.
-      * Closure events have no use for this flag
-      */
-    bool repeating;
+    void *value; //!< The value the closure should be invoked with
+    bool repeating; //!< Marks whether the event should be discarded after processing.
+
     //! Allows to compact many speciffic details on various event types on a single
     //! memory slot. Pertinent content depends on the `type` member value.
-    union detail{
+    union uel_event_detail {
 
         //! Contains information suitable for scheduling an event at the scheduler.
-        struct timer{
+        struct uel_event_timer {
             /** \brief The value the system timer must be at when this event's closure
             * should be invoked. This is a best effort value.
             */
@@ -76,13 +76,13 @@ struct event {
         } timer; //!< The scheduling information of this event. Relevant only for timers
 
         //! Contains information related to an emitted `signal`.
-        struct signal{
+        struct uel_event_signal {
             uintptr_t value; //!< The integer value that identifies this signal
             uel_llist_t *listeners; //!< Reference to the signal listeners
         } signal; //!< The emission information of this event. Relevant only for signals
 
         //! Contains the context of a particular signal listener
-        struct listener{
+        struct uel_event_listener {
             /** When this flag is set, the `event_loop` will not run this event's
               * closure. Additionally, the event will be destroyed.
               */
@@ -90,7 +90,7 @@ struct event {
         } listener; //!< The listening information of this event. Relevant only for signal listeners
 
         //! Contains the reference to an observer variable
-        struct observer{
+        struct uel_event_observer {
             volatile uintptr_t *condition_var; //!< The address of a volatile value to observe
             uintptr_t last_value; //!< The last value read
             //! Whether this observer has been cancelled and is awaiting for destruction
@@ -98,13 +98,6 @@ struct event {
         } observer; //!< The observing information of this event. Relevant only for observers
     } detail; //!< Represents speciffic detail on a event depending on its type.
 };
-
-/** \brief Destroys an event
-  *
-  * At the moment, all this does is invoke `uel_closure_destroy` in the contained closure
-  * \param event The event to be destroyed
-  */
-void uel_event_destroy(uel_event_t *event);
 
 /** \brief Configures a closure event
   *

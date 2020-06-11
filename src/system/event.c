@@ -4,10 +4,6 @@
 #include <stdlib.h>
 /// \endcond
 
-void uel_event_destroy(uel_event_t *event){
-    uel_closure_destroy(&event->closure);
-}
-
 void uel_event_config_closure(uel_event_t *event, uel_closure_t *closure, bool repeating){
     event->type = UEL_CLOSURE_EVENT;
     event->closure = *closure;
@@ -20,11 +16,11 @@ void uel_event_config_signal(
     uel_llist_t *listeners,
     void *params
 ){
-    event->closure = uel_closure_create(NULL, NULL, NULL);
+    event->closure = uel_closure_create(NULL, NULL);
     event->type = UEL_SIGNAL_EVENT;
     event->detail.signal.value = signal;
     event->detail.signal.listeners = listeners;
-    event->closure.params = params;
+    event->value = params;
 }
 
 void uel_event_config_signal_listener(uel_event_t *event, uel_closure_t *closure, bool repeating){
