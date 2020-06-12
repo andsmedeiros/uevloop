@@ -79,25 +79,25 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="linked-list_8h_source.html">uevloop/utils/linked-list.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="closure_8h_source.html">uevloop/utils/closure.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="promise_8h_source.html">uevloop/utils/promise.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="system-pools_8h_source.html">uevloop/system/containers/system-pools.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="system-queues_8h_source.html">uevloop/system/containers/system-queues.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="event_8h_source.html">uevloop/system/event.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="promise_8h_source.html">uevloop/system/promise.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for signal.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="signal_8h__incl.png" border="0" usemap="#include_2uevloop_2system_2signal_8h" alt=""/></div>
 <map name="include_2uevloop_2system_2signal_8h" id="include_2uevloop_2system_2signal_8h">
-<area shape="rect" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="31,5,208,47"/>
-<area shape="rect" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="61,259,210,300"/>
-<area shape="rect" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="5,355,175,382"/>
-<area shape="rect" href="system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="311,95,509,136"/>
-<area shape="rect" href="event_8h.html" title="Defines events and methods to configure events." alt="" coords="38,184,217,211"/>
-<area shape="rect" href="promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="443,184,638,211"/>
-<area shape="rect" href="system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="88,95,287,136"/>
-<area shape="rect" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="315,266,446,293"/>
-<area shape="rect" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="521,259,672,300"/>
-<area shape="rect" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="220,348,379,389"/>
+<area shape="rect" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="171,5,349,47"/>
+<area shape="rect" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="5,273,155,315"/>
+<area shape="rect" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="367,363,537,389"/>
+<area shape="rect" href="promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="495,102,670,129"/>
+<area shape="rect" href="system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="50,95,249,136"/>
+<area shape="rect" href="event_8h.html" title="Defines events and methods to configure events." alt="" coords="51,191,229,218"/>
+<area shape="rect" href="system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="273,95,471,136"/>
+<area shape="rect" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="429,191,560,218"/>
+<area shape="rect" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="254,184,405,225"/>
+<area shape="rect" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="350,273,509,315"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -122,32 +122,32 @@ Data Structures</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a4321d8b0f2c6bc3c0cc143e1bb1d1a2b"><td class="memItemLeft" align="right" valign="top">typedef uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a></td></tr>
 <tr class="separator:a4321d8b0f2c6bc3c0cc143e1bb1d1a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed43c905892afdade78cae462a3addee"><td class="memItemLeft" align="right" valign="top"><a id="aed43c905892afdade78cae462a3addee"></a>
-typedef struct listener *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a></td></tr>
-<tr class="memdesc:aed43c905892afdade78cae462a3addee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a reference type suitable to manipulate the actual listener event's context. <br /></td></tr>
-<tr class="separator:aed43c905892afdade78cae462a3addee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf4ce9806bae5489706f0409f0a58067"><td class="memItemLeft" align="right" valign="top"><a id="acf4ce9806bae5489706f0409f0a58067"></a>
+typedef struct uel_event_listener *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a></td></tr>
+<tr class="memdesc:acf4ce9806bae5489706f0409f0a58067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a reference type suitable to manipulate the actual listener event's context. <br /></td></tr>
+<tr class="separator:acf4ce9806bae5489706f0409f0a58067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8eaa68abe3e288c96eb0ae88d244364f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a8eaa68abe3e288c96eb0ae88d244364f">uel_signal_relay_init</a> (uel_signal_relay_t *relay, uel_syspools_t *pools, uel_sysqueues_t *queues, uel_llist_t *buffer, uintptr_t width)</td></tr>
 <tr class="memdesc:a8eaa68abe3e288c96eb0ae88d244364f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a signal relay.  <a href="signal_8h.html#a8eaa68abe3e288c96eb0ae88d244364f">More...</a><br /></td></tr>
 <tr class="separator:a8eaa68abe3e288c96eb0ae88d244364f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac11a6acd9237d30551bc0dc8ba406189"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#ac11a6acd9237d30551bc0dc8ba406189">uel_signal_listen</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_closure_t *closure)</td></tr>
+<tr class="memitem:ac11a6acd9237d30551bc0dc8ba406189"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#ac11a6acd9237d30551bc0dc8ba406189">uel_signal_listen</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_closure_t *closure)</td></tr>
 <tr class="memdesc:ac11a6acd9237d30551bc0dc8ba406189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a listener closure to some signal at a particular relay.  <a href="signal_8h.html#ac11a6acd9237d30551bc0dc8ba406189">More...</a><br /></td></tr>
 <tr class="separator:ac11a6acd9237d30551bc0dc8ba406189"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d59d4a7b4c0c5f6b1d271ed6e8a8212"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a6d59d4a7b4c0c5f6b1d271ed6e8a8212">uel_signal_listen_once</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_closure_t *closure)</td></tr>
+<tr class="memitem:a6d59d4a7b4c0c5f6b1d271ed6e8a8212"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a6d59d4a7b4c0c5f6b1d271ed6e8a8212">uel_signal_listen_once</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_closure_t *closure)</td></tr>
 <tr class="memdesc:a6d59d4a7b4c0c5f6b1d271ed6e8a8212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a listener closure to some signal at a particular relay. The listener closure will be invoked only once.  <a href="signal_8h.html#a6d59d4a7b4c0c5f6b1d271ed6e8a8212">More...</a><br /></td></tr>
 <tr class="separator:a6d59d4a7b4c0c5f6b1d271ed6e8a8212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fb31014f6cec7acf29e7de4b66fe531"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a3fb31014f6cec7acf29e7de4b66fe531">uel_signal_unlisten</a> (<a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a> listener)</td></tr>
+<tr class="memitem:a3fb31014f6cec7acf29e7de4b66fe531"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a3fb31014f6cec7acf29e7de4b66fe531">uel_signal_unlisten</a> (<a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a> listener)</td></tr>
 <tr class="memdesc:a3fb31014f6cec7acf29e7de4b66fe531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks a signal listener as expired. When its corresponding signal is emitted, this listener's closure will not be invoked and the listener will be destroyed.  <a href="signal_8h.html#a3fb31014f6cec7acf29e7de4b66fe531">More...</a><br /></td></tr>
 <tr class="separator:a3fb31014f6cec7acf29e7de4b66fe531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af849f4effe2577efe439387d3a8a710a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#af849f4effe2577efe439387d3a8a710a">uel_signal_emit</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, void *params)</td></tr>
 <tr class="memdesc:af849f4effe2577efe439387d3a8a710a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emits a signal at the supplied relay. Any closure listening to this signal will be asynchronously invoked.  <a href="signal_8h.html#af849f4effe2577efe439387d3a8a710a">More...</a><br /></td></tr>
 <tr class="separator:af849f4effe2577efe439387d3a8a710a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b208dd90b74c52c2775518c242f7c8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a1b208dd90b74c52c2775518c242f7c8a">uel_signal_resolve_promise</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_promise_t *promise)</td></tr>
+<tr class="memitem:a1b208dd90b74c52c2775518c242f7c8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a1b208dd90b74c52c2775518c242f7c8a">uel_signal_resolve_promise</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_promise_t *promise)</td></tr>
 <tr class="memdesc:a1b208dd90b74c52c2775518c242f7c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a non-repeating listener that resolves the provided promise upon emission.  <a href="signal_8h.html#a1b208dd90b74c52c2775518c242f7c8a">More...</a><br /></td></tr>
 <tr class="separator:a1b208dd90b74c52c2775518c242f7c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dafdd735ff9f06ddc2b0c80862e8af6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a9dafdd735ff9f06ddc2b0c80862e8af6">uel_signal_reject_promise</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_promise_t *promise)</td></tr>
+<tr class="memitem:a9dafdd735ff9f06ddc2b0c80862e8af6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="signal_8h.html#a9dafdd735ff9f06ddc2b0c80862e8af6">uel_signal_reject_promise</a> (<a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a> signal, uel_signal_relay_t *relay, uel_promise_t *promise)</td></tr>
 <tr class="memdesc:a9dafdd735ff9f06ddc2b0c80862e8af6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches a non-repeating listener that rejects the provided promise upon emission.  <a href="signal_8h.html#a9dafdd735ff9f06ddc2b0c80862e8af6">More...</a><br /></td></tr>
 <tr class="separator:a9dafdd735ff9f06ddc2b0c80862e8af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -221,7 +221,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a> uel_signal_listen </td>
+          <td class="memname"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a> uel_signal_listen </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a>&#160;</td>
           <td class="paramname"><em>signal</em>, </td>
@@ -266,7 +266,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a> uel_signal_listen_once </td>
+          <td class="memname"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a> uel_signal_listen_once </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a>&#160;</td>
           <td class="paramname"><em>signal</em>, </td>
@@ -311,7 +311,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a> uel_signal_reject_promise </td>
+          <td class="memname"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a> uel_signal_reject_promise </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a>&#160;</td>
           <td class="paramname"><em>signal</em>, </td>
@@ -414,7 +414,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a> uel_signal_resolve_promise </td>
+          <td class="memname"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a> uel_signal_resolve_promise </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b">uel_signal_t</a>&#160;</td>
           <td class="paramname"><em>signal</em>, </td>
@@ -461,7 +461,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void uel_signal_unlisten </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="signal_8h.html#aed43c905892afdade78cae462a3addee">uel_signal_listener_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="signal_8h.html#acf4ce9806bae5489706f0409f0a58067">uel_signal_listener_t</a>&#160;</td>
           <td class="paramname"><em>listener</em></td><td>)</td>
           <td></td>
         </tr>

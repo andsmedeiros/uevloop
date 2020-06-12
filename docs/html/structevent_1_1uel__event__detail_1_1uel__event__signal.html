@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>µEvLoop: uel_event_t::detail::timer Struct Reference</title>
+<title>µEvLoop: uel_event_t::uel_event_detail::uel_event_signal Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,50 +62,45 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="structevent.html">event</a></li><li class="navelem"><a class="el" href="unionevent_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="structevent_1_1detail_1_1timer.html">timer</a></li>  </ul>
+<li class="navelem"><a class="el" href="structevent.html">event</a></li><li class="navelem"><a class="el" href="unionevent_1_1uel__event__detail.html">uel_event_detail</a></li><li class="navelem"><a class="el" href="structevent_1_1uel__event__detail_1_1uel__event__signal.html">uel_event_signal</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">uel_event_t::detail::timer Struct Reference</div>  </div>
+<div class="title">uel_event_t::uel_event_detail::uel_event_signal Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Contains information suitable for scheduling an event at the scheduler.  
- <a href="structevent_1_1detail_1_1timer.html#details">More...</a></p>
+<p>Contains information related to an emitted <code>signal</code>.  
+ <a href="structevent_1_1uel__event__detail_1_1uel__event__signal.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="event_8h_source.html">event.h</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for uel_event_t::detail::timer:</div>
+Collaboration diagram for uel_event_t::uel_event_detail::uel_event_signal:</div>
 <div class="dyncontent">
-<div class="center"><img src="structevent_1_1detail_1_1timer__coll__graph.png" border="0" usemap="#uel__event__t_1_1detail_1_1timer_coll__map" alt="Collaboration graph"/></div>
-<map name="uel__event__t_1_1detail_1_1timer_coll__map" id="uel__event__t_1_1detail_1_1timer_coll__map">
-<area shape="rect" title="Contains information suitable for scheduling an event at the scheduler." alt="" coords="165,109,308,151"/>
-<area shape="rect" title=" " alt="" coords="5,5,175,47"/>
-<area shape="rect" title=" " alt="" coords="199,13,274,39"/>
-<area shape="rect" title=" " alt="" coords="298,13,373,39"/>
+<div class="center"><img src="structevent_1_1uel__event__detail_1_1uel__event__signal__coll__graph.png" border="0" usemap="#uel__event__t_1_1uel__event__detail_1_1uel__event__signal_coll__map" alt="Collaboration graph"/></div>
+<map name="uel__event__t_1_1uel__event__detail_1_1uel__event__signal_coll__map" id="uel__event__t_1_1uel__event__detail_1_1uel__event__signal_coll__map">
+<area shape="rect" title="Contains information related to an emitted signal." alt="" coords="8,95,192,136"/>
+<area shape="rect" title=" " alt="" coords="5,5,91,32"/>
+<area shape="rect" title=" " alt="" coords="115,5,192,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a4d7e55d4f7eca4bdc03db1b0da401c77"><td class="memItemLeft" align="right" valign="top"><a id="a4d7e55d4f7eca4bdc03db1b0da401c77"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1timer.html#a4d7e55d4f7eca4bdc03db1b0da401c77">due_time</a></td></tr>
-<tr class="memdesc:a4d7e55d4f7eca4bdc03db1b0da401c77"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value the system timer must be at when this event's closure should be invoked. This is a best effort value. <br /></td></tr>
-<tr class="separator:a4d7e55d4f7eca4bdc03db1b0da401c77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4318bc9a15950935250073134fee126a"><td class="memItemLeft" align="right" valign="top"><a id="a4318bc9a15950935250073134fee126a"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1timer.html#a4318bc9a15950935250073134fee126a">timeout</a></td></tr>
-<tr class="memdesc:a4318bc9a15950935250073134fee126a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the interval between two executions of the timer. <br /></td></tr>
-<tr class="separator:a4318bc9a15950935250073134fee126a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f1d4e797c0995eec30502449c7a07f1"><td class="memItemLeft" align="right" valign="top"><a id="a4f1d4e797c0995eec30502449c7a07f1"></a>
-<a class="el" href="event_8h.html#ada757ae763328a1774f87efe179e0d0d">uel_event_timer_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1timer.html#a4f1d4e797c0995eec30502449c7a07f1">status</a></td></tr>
-<tr class="memdesc:a4f1d4e797c0995eec30502449c7a07f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current timer status. <br /></td></tr>
-<tr class="separator:a4f1d4e797c0995eec30502449c7a07f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74bcb07d316f77b7a2ec6efc3a62fe31"><td class="memItemLeft" align="right" valign="top"><a id="a74bcb07d316f77b7a2ec6efc3a62fe31"></a>
+uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1uel__event__detail_1_1uel__event__signal.html#a74bcb07d316f77b7a2ec6efc3a62fe31">value</a></td></tr>
+<tr class="memdesc:a74bcb07d316f77b7a2ec6efc3a62fe31"><td class="mdescLeft">&#160;</td><td class="mdescRight">The integer value that identifies this signal. <br /></td></tr>
+<tr class="separator:a74bcb07d316f77b7a2ec6efc3a62fe31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab003ff58199d9d50fa51b17532d75895"><td class="memItemLeft" align="right" valign="top"><a id="ab003ff58199d9d50fa51b17532d75895"></a>
+uel_llist_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1uel__event__detail_1_1uel__event__signal.html#ab003ff58199d9d50fa51b17532d75895">listeners</a></td></tr>
+<tr class="memdesc:ab003ff58199d9d50fa51b17532d75895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the signal listeners. <br /></td></tr>
+<tr class="separator:ab003ff58199d9d50fa51b17532d75895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains information suitable for scheduling an event at the scheduler. </p>
+<div class="textblock"><p>Contains information related to an emitted <code>signal</code>. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/uevloop/system/<a class="el" href="event_8h_source.html">event.h</a></li>
 </ul>

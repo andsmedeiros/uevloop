@@ -94,31 +94,35 @@ $(function() {
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="event-loop_8h.html#ad5371df9faa7072e1fd11470448de901">uel_evloop_run</a>(uel_evloop_t *event_loop);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="event-loop_8h.html#a5d240b660b8380c7e18509b97ec1bea0">uel_evloop_enqueue_closure</a>(uel_evloop_t *event_loop, uel_closure_t *closure);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;uel_event_t *<a class="code" href="event-loop_8h.html#af08a755b11d666cdfa0b35446d007d13">uel_evloop_observe</a>(</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    uel_evloop_t *event_loop,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">volatile</span> uintptr_t *condition_var,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    uel_closure_t *closure</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;uel_event_t *<a class="code" href="event-loop_8h.html#a67264e6232817d1f23288856dbd1a3bb">uel_evloop_observe_once</a>(</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    uel_evloop_t *event_loop,</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">volatile</span> uintptr_t *condition_var,</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    uel_closure_t *closure</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* end of include guard: UEL_EVENT_LOOP_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> <a class="code" href="event-loop_8h.html#a1d3464894f0281c7b1f4c9c18dddcaf4">uel_evloop_enqueue_closure</a>(</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    uel_evloop_t *event_loop,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    uel_closure_t *closure,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> *value</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;uel_event_t *<a class="code" href="event-loop_8h.html#af08a755b11d666cdfa0b35446d007d13">uel_evloop_observe</a>(</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    uel_evloop_t *event_loop,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">volatile</span> uintptr_t *condition_var,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    uel_closure_t *closure</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;uel_event_t *<a class="code" href="event-loop_8h.html#a67264e6232817d1f23288856dbd1a3bb">uel_evloop_observe_once</a>(</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    uel_evloop_t *event_loop,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">volatile</span> uintptr_t *condition_var,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    uel_closure_t *closure</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* end of include guard: UEL_EVENT_LOOP_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="alinked-list_8h_html"><div class="ttname"><a href="linked-list_8h.html">linked-list.h</a></div><div class="ttdoc">Defines a simple implementation of linked lists and functions to manipulate it.</div></div>
 <div class="ttc" id="aevent-loop_8h_html_ad5371df9faa7072e1fd11470448de901"><div class="ttname"><a href="event-loop_8h.html#ad5371df9faa7072e1fd11470448de901">uel_evloop_run</a></div><div class="ttdeci">void uel_evloop_run(uel_evloop_t *event_loop)</div><div class="ttdoc">Triggers a runloop.</div></div>
 <div class="ttc" id="aevent-loop_8h_html_abb6102256fd588588045a5743f07247d"><div class="ttname"><a href="event-loop_8h.html#abb6102256fd588588045a5743f07247d">uel_evloop_init</a></div><div class="ttdeci">void uel_evloop_init(uel_evloop_t *event_loop, uel_syspools_t *pools, uel_sysqueues_t *queues)</div><div class="ttdoc">Initialises an event loop.</div></div>
 <div class="ttc" id="astructuel__evloop_html_a47a9ebe4361677bce4f550f3d08b74bb"><div class="ttname"><a href="structuel__evloop.html#a47a9ebe4361677bce4f550f3d08b74bb">uel_evloop::pools</a></div><div class="ttdeci">uel_syspools_t * pools</div><div class="ttdoc">Reference to the system's pools.</div><div class="ttdef"><b>Definition:</b> event-loop.h:22</div></div>
 <div class="ttc" id="aclosure_8h_html"><div class="ttname"><a href="closure_8h.html">closure.h</a></div><div class="ttdoc">Defines closures, objects that bind functions to creating and calling contexts.</div></div>
-<div class="ttc" id="aevent-loop_8h_html_a5d240b660b8380c7e18509b97ec1bea0"><div class="ttname"><a href="event-loop_8h.html#a5d240b660b8380c7e18509b97ec1bea0">uel_evloop_enqueue_closure</a></div><div class="ttdeci">void uel_evloop_enqueue_closure(uel_evloop_t *event_loop, uel_closure_t *closure)</div><div class="ttdoc">Enqueues a closure to be invoked.</div></div>
 <div class="ttc" id="astructuel__evloop_html_aec967394710dd0b4b5184a8fd02d61a5"><div class="ttname"><a href="structuel__evloop.html#aec967394710dd0b4b5184a8fd02d61a5">uel_evloop::queues</a></div><div class="ttdeci">uel_sysqueues_t * queues</div><div class="ttdoc">Reference to the system's queues.</div><div class="ttdef"><b>Definition:</b> event-loop.h:23</div></div>
 <div class="ttc" id="aevent-loop_8h_html_af08a755b11d666cdfa0b35446d007d13"><div class="ttname"><a href="event-loop_8h.html#af08a755b11d666cdfa0b35446d007d13">uel_evloop_observe</a></div><div class="ttdeci">uel_event_t * uel_evloop_observe(uel_evloop_t *event_loop, volatile uintptr_t *condition_var, uel_closure_t *closure)</div><div class="ttdoc">Observes a value and reacts to changes in it.</div></div>
 <div class="ttc" id="astructuel__evloop_html_ac91617cd57a61785f2feb0748039836c"><div class="ttname"><a href="structuel__evloop.html#ac91617cd57a61785f2feb0748039836c">uel_evloop::observers</a></div><div class="ttdeci">uel_llist_t observers</div><div class="ttdoc">Stores references to values to be observed.</div><div class="ttdef"><b>Definition:</b> event-loop.h:24</div></div>
+<div class="ttc" id="aevent-loop_8h_html_a1d3464894f0281c7b1f4c9c18dddcaf4"><div class="ttname"><a href="event-loop_8h.html#a1d3464894f0281c7b1f4c9c18dddcaf4">uel_evloop_enqueue_closure</a></div><div class="ttdeci">void uel_evloop_enqueue_closure(uel_evloop_t *event_loop, uel_closure_t *closure, void *value)</div><div class="ttdoc">Enqueues a closure to be invoked.</div></div>
 <div class="ttc" id="astructuel__evloop_html"><div class="ttname"><a href="structuel__evloop.html">uel_evloop</a></div><div class="ttdoc">The event loop object.</div><div class="ttdef"><b>Definition:</b> event-loop.h:21</div></div>
 <div class="ttc" id="aevent-loop_8h_html_a67264e6232817d1f23288856dbd1a3bb"><div class="ttname"><a href="event-loop_8h.html#a67264e6232817d1f23288856dbd1a3bb">uel_evloop_observe_once</a></div><div class="ttdeci">uel_event_t * uel_evloop_observe_once(uel_evloop_t *event_loop, volatile uintptr_t *condition_var, uel_closure_t *closure)</div><div class="ttdoc">Observes a value and reacts once to changes in it. Afterwards, the observer will be destroyed.</div></div>
 <div class="ttc" id="asystem-queues_8h_html"><div class="ttname"><a href="system-queues_8h.html">system-queues.h</a></div><div class="ttdoc">A container for the system's internal queues.</div></div>

@@ -76,41 +76,27 @@ Collaboration diagram for uel_closure_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structuel__closure__coll__graph.png" border="0" usemap="#uel__closure__t_coll__map" alt="Collaboration graph"/></div>
 <map name="uel__closure__t_coll__map" id="uel__closure__t_coll__map">
-<area shape="rect" title="Defines a closure, a tuple &lt;function, context, destructor&gt;" alt="" coords="243,124,351,151"/>
-<area shape="rect" title=" " alt="" coords="5,5,180,32"/>
-<area shape="rect" title=" " alt="" coords="204,5,389,32"/>
-<area shape="rect" title=" " alt="" coords="414,5,475,32"/>
+<area shape="rect" title="Defines a closure, a tuple &lt;function, context, destructor&gt;" alt="" coords="109,109,217,136"/>
+<area shape="rect" title=" " alt="" coords="5,5,180,47"/>
+<area shape="rect" title=" " alt="" coords="205,13,266,39"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:ab83ac4bc96497d067f80c6907b5bc0b9"><td class="memItemLeft" align="right" valign="top"><a id="ab83ac4bc96497d067f80c6907b5bc0b9"></a>
-void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__closure.html#ab83ac4bc96497d067f80c6907b5bc0b9">function</a> )(uel_closure_t *)</td></tr>
-<tr class="memdesc:ab83ac4bc96497d067f80c6907b5bc0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function to be run when the closure is invoked. Must task a reference to the closure as param and returns a void pointer. <br /></td></tr>
-<tr class="separator:ab83ac4bc96497d067f80c6907b5bc0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53af2a72baa02fe3d0b18e20aff59a66"><td class="memItemLeft" align="right" valign="top"><a id="a53af2a72baa02fe3d0b18e20aff59a66"></a>
+<a class="el" href="closure_8h.html#a04cc5d51a9c86aeedcd6641b43dd8564">uel_closure_function_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__closure.html#a53af2a72baa02fe3d0b18e20aff59a66">function</a></td></tr>
+<tr class="memdesc:a53af2a72baa02fe3d0b18e20aff59a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function to be run when the closure is invoked. Must take two pointers ar arguments, one for the context and one for closure parameters. Must return a void pointer. <br /></td></tr>
+<tr class="separator:a53af2a72baa02fe3d0b18e20aff59a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae22a9c4275f31ab9741ef42479ce59cf"><td class="memItemLeft" align="right" valign="top"><a id="ae22a9c4275f31ab9741ef42479ce59cf"></a>
 void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__closure.html#ae22a9c4275f31ab9741ef42479ce59cf">context</a></td></tr>
 <tr class="memdesc:ae22a9c4275f31ab9741ef42479ce59cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The context supplied to the closure durint creation. This context will be available during the function execution. <br /></td></tr>
 <tr class="separator:ae22a9c4275f31ab9741ef42479ce59cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac989171c937629ae40dc66998af4cc51"><td class="memItemLeft" align="right" valign="top"><a id="ac989171c937629ae40dc66998af4cc51"></a>
-void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__closure.html#ac989171c937629ae40dc66998af4cc51">destructor</a> )(uel_closure_t *)</td></tr>
-<tr class="memdesc:ac989171c937629ae40dc66998af4cc51"><td class="mdescLeft">&#160;</td><td class="mdescRight">The closure destructor that will be run on <code>uel_closure_destroy</code>. If your closure context needs tearing down, attach a custom destructor. It should be responsible by freeing any memory allocated from the heap, if any, or returning dynamic objects contained in the context to their respective pools. <br /></td></tr>
-<tr class="separator:ac989171c937629ae40dc66998af4cc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af91fa75e00ce70e64fd629b57b104878"><td class="memItemLeft" align="right" valign="top"><a id="af91fa75e00ce70e64fd629b57b104878"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__closure.html#af91fa75e00ce70e64fd629b57b104878">params</a></td></tr>
-<tr class="memdesc:af91fa75e00ce70e64fd629b57b104878"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parameters supplied by the closure invokation. <br /></td></tr>
-<tr class="separator:af91fa75e00ce70e64fd629b57b104878"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5d57ecd44c70969ffee4c6058143f72"><td class="memItemLeft" align="right" valign="top"><a id="ad5d57ecd44c70969ffee4c6058143f72"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuel__closure.html#ad5d57ecd44c70969ffee4c6058143f72">value</a></td></tr>
-<tr class="memdesc:ad5d57ecd44c70969ffee4c6058143f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value returned by the last closure invokation. <br /></td></tr>
-<tr class="separator:ad5d57ecd44c70969ffee4c6058143f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines a closure, a tuple &lt;function, context, destructor&gt; </p>
 <p>A closure is a data structure that binds some function to a predetermined context. When the function is run, this context will be available to the function body.</p>
-<p>When invoking the closure, additional parameters may be passed along and will also be available to the function body. The function can also return a value that will be passed back by the <code>uel_closure_invoke</code> function.</p>
-<p>An optional destructor may also be attached. If it is, it will be called on closure destruction by the <code>uel_closure_destroy</code> function. </p>
+<p>When invoking the closure, additional parameters may be passed along and will also be available to the function body. The function can also return a value that will be passed back by the <code>uel_closure_invoke</code> function. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/uevloop/utils/<a class="el" href="closure_8h_source.html">closure.h</a></li>
 </ul>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['event_291',['event',['../structevent.html',1,'']]]
+  ['syspools_286',['syspools',['../structsyspools.html',1,'']]],
+  ['sysqueues_287',['sysqueues',['../structsysqueues.html',1,'']]]
 ];

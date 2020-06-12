@@ -85,16 +85,15 @@ Include dependency graph for scheduler.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="scheduler_8h__incl.png" border="0" usemap="#include_2uevloop_2system_2scheduler_8h" alt=""/></div>
 <map name="include_2uevloop_2system_2scheduler_8h" id="include_2uevloop_2system_2scheduler_8h">
-<area shape="rect" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="468,5,645,47"/>
-<area shape="rect" href="system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="369,95,568,136"/>
-<area shape="rect" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="595,259,745,300"/>
-<area shape="rect" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="528,355,697,382"/>
-<area shape="rect" href="system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="104,95,303,136"/>
-<area shape="rect" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="241,266,371,293"/>
-<area shape="rect" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="65,259,216,300"/>
-<area shape="rect" href="event_8h.html" title="Defines events and methods to configure events." alt="" coords="466,184,645,211"/>
-<area shape="rect" href="promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="247,184,442,211"/>
-<area shape="rect" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="5,348,164,389"/>
+<area shape="rect" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="444,5,621,47"/>
+<area shape="rect" href="system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="345,95,544,136"/>
+<area shape="rect" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="486,273,635,315"/>
+<area shape="rect" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="476,363,645,389"/>
+<area shape="rect" href="system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="57,95,256,136"/>
+<area shape="rect" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="25,191,155,218"/>
+<area shape="rect" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="180,184,331,225"/>
+<area shape="rect" href="event_8h.html" title="Defines events and methods to configure events." alt="" coords="355,191,534,218"/>
+<area shape="rect" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="43,273,201,315"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -120,12 +119,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a7f4ae225987bb741ca824c83a96ce138"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a7f4ae225987bb741ca824c83a96ce138">uel_sch_init</a> (uel_scheduer_t *scheduler, uel_syspools_t *pools, uel_sysqueues_t *queues)</td></tr>
 <tr class="memdesc:a7f4ae225987bb741ca824c83a96ce138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises a scheduler object.  <a href="scheduler_8h.html#a7f4ae225987bb741ca824c83a96ce138">More...</a><br /></td></tr>
 <tr class="separator:a7f4ae225987bb741ca824c83a96ce138"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a333113d0687725bae07d078938dddd49"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a333113d0687725bae07d078938dddd49">uel_sch_run_later</a> (uel_scheduer_t *scheduler, uint16_t timeout_in_ms, uel_closure_t closure)</td></tr>
-<tr class="memdesc:a333113d0687725bae07d078938dddd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="scheduler_8h.html#a333113d0687725bae07d078938dddd49">More...</a><br /></td></tr>
-<tr class="separator:a333113d0687725bae07d078938dddd49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a198217b08044371b5b07a32366dd3498"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a198217b08044371b5b07a32366dd3498">uel_sch_run_at_intervals</a> (uel_scheduer_t *scheduler, uint16_t interval_in_ms, bool immediate, uel_closure_t closure)</td></tr>
-<tr class="memdesc:a198217b08044371b5b07a32366dd3498"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="scheduler_8h.html#a198217b08044371b5b07a32366dd3498">More...</a><br /></td></tr>
-<tr class="separator:a198217b08044371b5b07a32366dd3498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5909fddc1856cc1b980a0445602c67c"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#ad5909fddc1856cc1b980a0445602c67c">uel_sch_run_later</a> (uel_scheduer_t *scheduler, uint16_t timeout_in_ms, uel_closure_t closure, void *value)</td></tr>
+<tr class="memdesc:ad5909fddc1856cc1b980a0445602c67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for later execution.  <a href="scheduler_8h.html#ad5909fddc1856cc1b980a0445602c67c">More...</a><br /></td></tr>
+<tr class="separator:ad5909fddc1856cc1b980a0445602c67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a993056042a7649e1e7375eb2bb588d"><td class="memItemLeft" align="right" valign="top">uel_event_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a6a993056042a7649e1e7375eb2bb588d">uel_sch_run_at_intervals</a> (uel_scheduer_t *scheduler, uint16_t interval_in_ms, bool immediate, uel_closure_t closure, void *value)</td></tr>
+<tr class="memdesc:a6a993056042a7649e1e7375eb2bb588d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a closure for execution at intervals.  <a href="scheduler_8h.html#a6a993056042a7649e1e7375eb2bb588d">More...</a><br /></td></tr>
+<tr class="separator:a6a993056042a7649e1e7375eb2bb588d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2666a61c55a518fd602cee03a014ed10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a2666a61c55a518fd602cee03a014ed10">uel_sch_manage_timers</a> (uel_scheduer_t *scheduler)</td></tr>
 <tr class="memdesc:a2666a61c55a518fd602cee03a014ed10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueue timers that are due to be processed in the event queue.  <a href="scheduler_8h.html#a2666a61c55a518fd602cee03a014ed10">More...</a><br /></td></tr>
 <tr class="separator:a2666a61c55a518fd602cee03a014ed10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,8 +206,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a198217b08044371b5b07a32366dd3498"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a198217b08044371b5b07a32366dd3498">&#9670;&nbsp;</a></span>uel_sch_run_at_intervals()</h2>
+<a id="a6a993056042a7649e1e7375eb2bb588d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a993056042a7649e1e7375eb2bb588d">&#9670;&nbsp;</a></span>uel_sch_run_at_intervals()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +234,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uel_closure_t&#160;</td>
-          <td class="paramname"><em>closure</em>&#160;</td>
+          <td class="paramname"><em>closure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -252,6 +257,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">interval_in_ms</td><td>The delay in milliseconds two executions of the closure </td></tr>
     <tr><td class="paramname">immediate</td><td>If this flag is set, the the event will be created with a due time to the current time. </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be invoked when the due time is reached </td></tr>
+    <tr><td class="paramname">value</td><td>The value to invoked the closure with </td></tr>
   </table>
   </dd>
 </dl>
@@ -259,8 +265,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a333113d0687725bae07d078938dddd49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a333113d0687725bae07d078938dddd49">&#9670;&nbsp;</a></span>uel_sch_run_later()</h2>
+<a id="ad5909fddc1856cc1b980a0445602c67c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5909fddc1856cc1b980a0445602c67c">&#9670;&nbsp;</a></span>uel_sch_run_later()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +287,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uel_closure_t&#160;</td>
-          <td class="paramname"><em>closure</em>&#160;</td>
+          <td class="paramname"><em>closure</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -297,6 +309,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">scheduler</td><td>The uel_scheduer_t into which the event will be registered </td></tr>
     <tr><td class="paramname">timeout_in_ms</td><td>The delay in milliseconds until the closure is run </td></tr>
     <tr><td class="paramname">closure</td><td>The closure to be invoked when the due time is reached </td></tr>
+    <tr><td class="paramname">value</td><td>The value to invoked the closure with </td></tr>
   </table>
   </dd>
 </dl>

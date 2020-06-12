@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>µEvLoop: uel_event_t::detail::observer Struct Reference</title>
+<title>µEvLoop: uel_event_t::uel_event_detail::uel_event_listener Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,60 +62,51 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="structevent.html">event</a></li><li class="navelem"><a class="el" href="unionevent_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="structevent_1_1detail_1_1observer.html">observer</a></li>  </ul>
+<li class="navelem"><a class="el" href="structevent.html">event</a></li><li class="navelem"><a class="el" href="unionevent_1_1uel__event__detail.html">uel_event_detail</a></li><li class="navelem"><a class="el" href="structevent_1_1uel__event__detail_1_1uel__event__listener.html">uel_event_listener</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">uel_event_t::detail::observer Struct Reference</div>  </div>
+<div class="title">uel_event_t::uel_event_detail::uel_event_listener Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Contains the reference to an observer variable.  
- <a href="structevent_1_1detail_1_1observer.html#details">More...</a></p>
+<p>Contains the context of a particular signal listener.  
+ <a href="structevent_1_1uel__event__detail_1_1uel__event__listener.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="event_8h_source.html">event.h</a>&gt;</code></p>
 <div class="dynheader">
-Collaboration diagram for uel_event_t::detail::observer:</div>
+Collaboration diagram for uel_event_t::uel_event_detail::uel_event_listener:</div>
 <div class="dyncontent">
-<div class="center"><img src="structevent_1_1detail_1_1observer__coll__graph.png" border="0" usemap="#uel__event__t_1_1detail_1_1observer_coll__map" alt="Collaboration graph"/></div>
-<map name="uel__event__t_1_1detail_1_1observer_coll__map" id="uel__event__t_1_1detail_1_1observer_coll__map">
-<area shape="rect" title="Contains the reference to an observer variable." alt="" coords="7,109,150,151"/>
-<area shape="rect" title=" " alt="" coords="5,5,56,32"/>
-<area shape="rect" title=" " alt="" coords="89,5,167,32"/>
+<div class="center"><img src="structevent_1_1uel__event__detail_1_1uel__event__listener__coll__graph.png" border="0" usemap="#uel__event__t_1_1uel__event__detail_1_1uel__event__listener_coll__map" alt="Collaboration graph"/></div>
+<map name="uel__event__t_1_1uel__event__detail_1_1uel__event__listener_coll__map" id="uel__event__t_1_1uel__event__detail_1_1uel__event__listener_coll__map">
+<area shape="rect" title="Contains the context of a particular signal listener." alt="" coords="5,95,200,136"/>
+<area shape="rect" title=" " alt="" coords="77,5,128,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a613f34deeafb6552fa8513c82a1dfd80"><td class="memItemLeft" align="right" valign="top"><a id="a613f34deeafb6552fa8513c82a1dfd80"></a>
-volatile uintptr_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1observer.html#a613f34deeafb6552fa8513c82a1dfd80">condition_var</a></td></tr>
-<tr class="memdesc:a613f34deeafb6552fa8513c82a1dfd80"><td class="mdescLeft">&#160;</td><td class="mdescRight">The address of a volatile value to observe. <br /></td></tr>
-<tr class="separator:a613f34deeafb6552fa8513c82a1dfd80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fb4b35e7ba0f0b0fbe8b28745e3daed"><td class="memItemLeft" align="right" valign="top">uintptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1observer.html#a7fb4b35e7ba0f0b0fbe8b28745e3daed">last_value</a></td></tr>
-<tr class="separator:a7fb4b35e7ba0f0b0fbe8b28745e3daed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1f84bdfe13b865a45580f8672c48f61"><td class="memItemLeft" align="right" valign="top"><a id="aa1f84bdfe13b865a45580f8672c48f61"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1detail_1_1observer.html#aa1f84bdfe13b865a45580f8672c48f61">cancelled</a></td></tr>
-<tr class="memdesc:aa1f84bdfe13b865a45580f8672c48f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether this observer has been cancelled and is awaiting for destruction. <br /></td></tr>
-<tr class="separator:aa1f84bdfe13b865a45580f8672c48f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c68240052221e1ebbab4a9c1c096512"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structevent_1_1uel__event__detail_1_1uel__event__listener.html#a7c68240052221e1ebbab4a9c1c096512">unlistened</a></td></tr>
+<tr class="separator:a7c68240052221e1ebbab4a9c1c096512"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains the reference to an observer variable. </p>
+<div class="textblock"><p>Contains the context of a particular signal listener. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="a7fb4b35e7ba0f0b0fbe8b28745e3daed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fb4b35e7ba0f0b0fbe8b28745e3daed">&#9670;&nbsp;</a></span>last_value</h2>
+<a id="a7c68240052221e1ebbab4a9c1c096512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c68240052221e1ebbab4a9c1c096512">&#9670;&nbsp;</a></span>unlistened</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uintptr_t uel_event_t::detail::observer::last_value</td>
+          <td class="memname">bool uel_event_t::uel_event_detail::uel_event_listener::unlistened</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The last value read </p>
+<p>When this flag is set, the <code>event_loop</code> will not run this event's closure. Additionally, the event will be destroyed. </p>
 
 </div>
 </div>

@@ -81,20 +81,18 @@ $(function() {
 <code>#include &quot;<a class="el" href="linked-list_8h_source.html">uevloop/utils/linked-list.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="object-pool_8h_source.html">uevloop/utils/object-pool.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="event_8h_source.html">uevloop/system/event.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="promise_8h_source.html">uevloop/system/promise.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for system-pools.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="system-pools_8h__incl.png" border="0" usemap="#include_2uevloop_2system_2containers_2system-pools_8h" alt=""/></div>
 <map name="include_2uevloop_2system_2containers_2system-pools_8h" id="include_2uevloop_2system_2containers_2system-pools_8h">
-<area shape="rect" title="A container for the system&#39;s internal pools." alt="" coords="199,5,398,47"/>
-<area shape="rect" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="241,177,372,203"/>
-<area shape="rect" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="5,169,155,211"/>
-<area shape="rect" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="482,169,633,211"/>
-<area shape="rect" href="event_8h.html" title="Defines events and methods to configure events." alt="" coords="83,95,261,121"/>
-<area shape="rect" href="promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="336,95,531,121"/>
-<area shape="rect" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="107,266,277,293"/>
-<area shape="rect" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="478,259,637,300"/>
+<area shape="rect" title="A container for the system&#39;s internal pools." alt="" coords="193,5,391,47"/>
+<area shape="rect" href="config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="5,102,136,129"/>
+<area shape="rect" href="linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="315,184,464,225"/>
+<area shape="rect" href="object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="161,95,311,136"/>
+<area shape="rect" href="event_8h.html" title="Defines events and methods to configure events." alt="" coords="387,102,565,129"/>
+<area shape="rect" href="closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="361,273,530,300"/>
+<area shape="rect" href="circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="131,184,290,225"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -128,14 +126,6 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a5015b8b98a72b1642be11223dfd4b400">UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#ab3932a51e5254319c1d0feb178a5b164">UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N</a>)</td></tr>
 <tr class="memdesc:a5015b8b98a72b1642be11223dfd4b400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_SYSPOOLS_LLIST_NODE_POOL_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
 <tr class="separator:a5015b8b98a72b1642be11223dfd4b400"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e91ee1d3fd9f41e0d2ef0bef15d283a"><td class="memItemLeft" align="right" valign="top"><a id="a1e91ee1d3fd9f41e0d2ef0bef15d283a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a1e91ee1d3fd9f41e0d2ef0bef15d283a">UEL_PROMISE_POOL_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#a424d6c9415dec565252058c32bdfb278">UEL_PROMISE_POOL_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:a1e91ee1d3fd9f41e0d2ef0bef15d283a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_PROMISE_POOL_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:a1e91ee1d3fd9f41e0d2ef0bef15d283a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47773ebfe12b99c180a4b78adcb887d8"><td class="memItemLeft" align="right" valign="top"><a id="a47773ebfe12b99c180a4b78adcb887d8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system-pools_8h.html#a47773ebfe12b99c180a4b78adcb887d8">UEL_PROMISE_SEGMENT_POOL_SIZE</a>&#160;&#160;&#160;(1&lt;&lt;<a class="el" href="config_8h.html#ae71487056ac7f43e0154a53e30be21fb">UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N</a>)</td></tr>
-<tr class="memdesc:a47773ebfe12b99c180a4b78adcb887d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unrolls the <code>UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N</code> value to its power-of-two form. <br /></td></tr>
-<tr class="separator:a47773ebfe12b99c180a4b78adcb887d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>

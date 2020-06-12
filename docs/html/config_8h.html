@@ -80,14 +80,14 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="config_8h__dep__incl.png" border="0" usemap="#include_2uevloop_2config_8hdep" alt=""/></div>
 <map name="include_2uevloop_2config_8hdep" id="include_2uevloop_2config_8hdep">
-<area shape="rect" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="208,5,389,32"/>
-<area shape="rect" href="system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="155,169,354,211"/>
-<area shape="rect" href="system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="377,169,588,211"/>
-<area shape="rect" href="promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="83,80,260,121"/>
-<area shape="rect" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="228,348,411,389"/>
-<area shape="rect" href="event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="231,259,408,300"/>
-<area shape="rect" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="432,259,610,300"/>
-<area shape="rect" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="30,259,207,300"/>
+<area shape="rect" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="271,5,452,32"/>
+<area shape="rect" href="system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="34,80,233,121"/>
+<area shape="rect" href="system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="256,80,467,121"/>
+<area shape="rect" href="promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="491,80,648,121"/>
+<area shape="rect" href="application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="225,259,407,300"/>
+<area shape="rect" href="event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="227,169,405,211"/>
+<area shape="rect" href="scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="26,169,203,211"/>
+<area shape="rect" href="signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="481,169,658,211"/>
 </map>
 </div>
 </div>
@@ -115,14 +115,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#a7dec29ef683393c228642729b534fbf5">UEL_SIGNAL_MAX_LISTENERS</a>&#160;&#160;&#160;(5)</td></tr>
 <tr class="memdesc:a7dec29ef683393c228642729b534fbf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the max number of listeners to be attached to an speciffic signal in a single relay. <br /></td></tr>
 <tr class="separator:a7dec29ef683393c228642729b534fbf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a424d6c9415dec565252058c32bdfb278"><td class="memItemLeft" align="right" valign="top"><a id="a424d6c9415dec565252058c32bdfb278"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#a424d6c9415dec565252058c32bdfb278">UEL_PROMISE_POOL_SIZE_LOG2N</a>&#160;&#160;&#160;(5)</td></tr>
-<tr class="memdesc:a424d6c9415dec565252058c32bdfb278"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the promise pool in log2 form. Default to 32 promises. <br /></td></tr>
-<tr class="separator:a424d6c9415dec565252058c32bdfb278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae71487056ac7f43e0154a53e30be21fb"><td class="memItemLeft" align="right" valign="top"><a id="ae71487056ac7f43e0154a53e30be21fb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#ae71487056ac7f43e0154a53e30be21fb">UEL_PROMISE_SEGMENT_POOL_SIZE_LOG2N</a>&#160;&#160;&#160;(<a class="el" href="config_8h.html#a424d6c9415dec565252058c32bdfb278">UEL_PROMISE_POOL_SIZE_LOG2N</a> + 2)</td></tr>
-<tr class="memdesc:ae71487056ac7f43e0154a53e30be21fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the segment pool in log2 form. Defaults to 128 segments (4 x promises) <br /></td></tr>
-<tr class="separator:ae71487056ac7f43e0154a53e30be21fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a815cda45b611ac94d7b7b56bbeb12e1c"><td class="memItemLeft" align="right" valign="top"><a id="a815cda45b611ac94d7b7b56bbeb12e1c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8h.html#a815cda45b611ac94d7b7b56bbeb12e1c">UEL_PROMISE_SHORTCUTS</a></td></tr>
+<tr class="memdesc:a815cda45b611ac94d7b7b56bbeb12e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable promise chain functions aliases: THEN, CATCH, AFTER, ALWAYS. <br /></td></tr>
+<tr class="separator:a815cda45b611ac94d7b7b56bbeb12e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Central repository of system configuration. This is meant to be edited by the programmer as needed. </p>

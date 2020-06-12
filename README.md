@@ -91,10 +91,14 @@ It is aimed at environments with very restricted resources, but can be run on al
 ## Highlights
 
 * As minimalist and loose-coupled as possible.
-* Does not allocate any dynamic memory on its own. All static memory needed is either allocated explicitly by the user or implicitly by [containers](#containers).
+* Does not allocate any dynamic memory on its own. All memory needed is statically allocated either explicitly by the user or implicitly by [containers](#containers).
 * Small memory footprint and runtime latency.
 * Does not try to make assumptions about the underlying system.
+* Extremely portable and conforming to ISO C99.
 * Depends only on a very small subset of the standard libc, mostly for fixed size integers and booleans.
+* Allows for excellent execution predictability and ease of debugging.
+* Can be used baremetal or alongside RTOSes.
+* Well tested and well documented.
 
 ## API documentation
 
@@ -116,44 +120,41 @@ To generate code coverage reports, run `make coverage`. This requires `gcov`, `l
 
 These data structures are used across the whole framework. They can also be used by the programmer in userspace as required.
 
-Core data structures can be found on the `src/utils` directory.
-
 **All core data structures are unsafe. Be sure to wrap access to them in [critical sections](#critical-sections) if you mean to share them amongst contexts asynchronous to each other.**
 
 ### Closures
 
-A closure is an object that binds a function to some context. When invoked with arbitrary parameters, the bound function is called with both context and parameters available. With closures, some very powerful programming patterns, as functional composition, becomes way easier to implement.
+A closure is an object that binds a function to some context. When invoked with arbitrary parameters, the bound function is called with both context and parameters available. With closures, some very powerful programming patterns, as functional composition, become way easier to implement.
 
-As closures are somewhat light, it is often useful to pass them around by value.
+Closures are very light and it is often useful to pass them around by value.
 
 #### Basic closure usage
 
 ```C
-  #include <stdlib.h>
-  #include <stdint.h>
-  #include "utils/closure.h"
+#include <stdint.h>
+#include <uevloop/utils/closure.h>
 
-  static void *add(uel_closure_t *closure){
-    uintptr_t value1 = (uintptr_t)closure->context;
-    uintptr_t value2 = (uintptr_t)closure->params;
+static void *add(void *context, void *params){
+    uintptr_t value1 = (uintptr_t)context;
+    uintptr_t value2 = (uintptr_t)params;
 
     return (void *)(value1 + value2);
-  }
+}
 
-  // ...
+// ...
 
-  // Binds the function `add` to the context (5)
-  uel_closure_t add_five = uel_closure_create(&add, (void *)5, NULL);
+// Binds the function `add` to the context (5)
+uel_closure_t add_five = uel_closure_create(&add, (void *)5);
 
-  // Invokes the closure with the parameters set to (2)
-  uintptr_t result = (uintptr_t)uel_closure_invoke(&add_five, (void *)2);
-  // Result is 7
+// Invokes the closure with the parameters set to (2)
+uintptr_t result = (uintptr_t)uel_closure_invoke(&add_five, (void *)2);
+// Result is 7
 
 ```
 
 #### A word on (void \*)
 
-Closures take the context and parameters as a void pointer and return the same. This is meant to make possible to pass and return complex objects from them.
+Closures take the context and parameters as a void pointers and return the same. This is meant to make possible to pass and return complex objects from them.
 
 At many times, however, the programmer may find the values passed/returned are small and simple (*i.e.*: smaller than a pointer). If so, it is absolutely valid to cast from/to a `uintptr_t` or other data type known to be at most the size of a pointer. The above example does that to avoid creating unnecessary object pools or allocating dynamic memory.
 
@@ -169,9 +170,8 @@ The size of µEvLoop's circular queues are **required** to be powers of two, so 
 #### Basic circular queue usage
 
 ```c
-#include <stdlib.h>
 #include <stdint.h>
-#include "utils/circular-queue.h"
+#include <uevloop/utils/circular-queue.h>
 
 #define BUFFER_SIZE_LOG2N   (5)
 #define BUFFER_SIZE         (1<<BUFFER_SIZE_LOG2N)  // 1<<5 == 2**5 == 32
@@ -206,15 +206,14 @@ Because object pools are statically allocated and backed by [circular queues](#c
 #### Basic object pool usage
 
 ```c
-#include <stdlib.h>
 #include <stdint.h>
-#include "utils/object-pool.h"
+#include <uevloop/utils/object-pool.h>
 
 typedef struct obj obj_t;
 struct obj {
-  uint32_t num;
-  char str[32];
-  // Whatever
+    uint32_t num;
+    char str[32];
+    // Whatever
 };
 
 // ...
@@ -224,7 +223,7 @@ struct obj {
 UEL_DECLARE_OBJPOOL_BUFFERS(obj_t, POOL_SIZE_LOG2N, my_pool);
 
 uel_objpool_t my_pool;
-uel_objpool_init(&my_pool, POOL_SIZE_LOG2N, sizeof(obj_t),UEL_OBJPOOL_BUFFERS(my_pool));
+uel_objpool_init(&my_pool, POOL_SIZE_LOG2N, sizeof(obj_t), UEL_OBJPOOL_BUFFERS(my_pool));
 // my_pool now is a pool with 32 (2**5) obj_t
 
 // ...
@@ -243,9 +242,9 @@ uel_objpool_release(&my_pool, obj);
 #### Basic linked list usage
 
 ```c
-#include <stdlib.h>
+#include <stddef.h>
 #include <stdint.h>
-#include "utils/linked-list.h"
+#include <uevloop/utils/linked-list.h>
 
 // ...
 
@@ -253,8 +252,8 @@ uel_llist_t list;
 uel_llist_init(&list);
 
 uel_llist_node_t nodes[2] = {
-  {(void *)1, NULL},
-  {(void *)2, NULL}
+    {(void *)1, NULL},
+    {(void *)2, NULL}
 };
 
 // Push items into the list
@@ -279,12 +278,12 @@ The `syspools` component is a container for the system internal object pools. It
 
 The system pools component is meant to be internally operated only. The only responsibility of the programmer is to allocate, initialise and provide it to other core components.
 
-To configure the size of each pool created, edit `src/config.h`.
+To configure the size of each pool created, edit `include/uevloop/config.h`.
 
 #### System pools usage
 
 ```c
-#include "system/containers/system-pools.h"
+#include <uevloop/system/containers/system-pools.h>
 
 // ...
 
@@ -301,13 +300,13 @@ The `sysqueues` component contains the necessary queues for sharing data amongst
 
 As is the case with system pools, the `sysqueues` component should not be directly operated by the programmer, except for declaration and initialisation.
 
-Configure the size of each queue created in `src/config.h`.
+Configure the size of each queue created in `include/uevloop/config.h`.
 
 
 #### System queues usage
 
 ```C
-#include "system/containers/system-queues.h"
+#include <uevloop/system/containers/system-queues.h>
 
 // ...
 
@@ -326,7 +325,7 @@ It also proxies functions to the [`event loop`](#event-loop) and [`scheduler`](#
 
 The following code is a realistic minimal setup of the framework.
 ```c
-#include "system/containers/application.h"
+#include <uevloop/system/containers/application.h>
 #include <stdint.h>
 
 static volatile uint32_t counter = 0;
@@ -334,24 +333,24 @@ static uel_application_t my_app;
 
 // 1 kHz timer
 void my_timer_isr(){
-  my_timer_isr_flag = 0;
-  uel_app_update_timer(&my_app, ++counter);
+    my_timer_isr_flag = 0;
+    uel_app_update_timer(&my_app, ++counter);
 }
 
 int main (int argc, char *argv[]){
-  uel_app_init(&my_app);
+    uel_app_init(&my_app);
 
-  // From here, the programmer can:
-  // - Schedule timers with `uel_app_run_later` or `uel_app_run_at_intervals`
-  // - Enqueue closures with `uel_app_enqueue_closure`
-  // - Set up observers with `uel_app_observe`
-  // - Listen for signals set at other places
+    // From here, the programmer can:
+    // - Schedule timers with `uel_app_run_later` or `uel_app_run_at_intervals`
+    // - Enqueue closures with `uel_app_enqueue_closure`
+    // - Set up observers with `uel_app_observe`
+    // - Listen for signals set at other places
 
-  while(1){  
-    uel_app_tick(&my_app);
-  }
+    while(1){  
+        uel_app_tick(&my_app);
+    }
 
-  return 0;
+    return 0;
 }
 ```
 
@@ -372,9 +371,9 @@ This component needs access to system's pools and queues.
 #### Basic scheduler initialisation
 
 ```c
-#include "system/containers/system-pools.h"
-#include "system/containers/system-queues.h"
-#include "system/scheduler.h"
+#include <uevloop/system/containers/system-pools.h>
+#include <uevloop/system/containers/system-queues.h>
+#include <uevloop/system/scheduler.h>
 
 // ...
 
@@ -396,30 +395,33 @@ The `scheduler` component accepts input of closures and scheduling info an then 
 ```c
 #include <stdio.h>
 #include <stdint.h>
-#include <stdlib.h>
-#include "utils/closure.h"
+#include <uevloop/utils/closure.h>
 
-static void *print_num(uel_closure_t *closure){
-  uintptr_t num = (uintptr_t)closure->context;
-  printf("%d\n", num);
+static void *print_coords(void *context, void *params){
+    uintptr_t x = (uintptr_t)context;
+    uintptr_t y = (uintptr_t)params;
+    printf("(x: %d, y: %d)\n", x, y);
 
-  return NULL;
+    return NULL;
 }
 
 // ...
 
-uel_closure_t  print_one = uel_closure_create(&print_num, (void *)1, NULL);
-uel_closure_t  print_two = uel_closure_create(&print_num, (void *)2, NULL);
-uel_closure_t  print_three = uel_closure_create(&print_num, (void *)3, NULL);
+uel_closure_t  print_x_one = uel_closure_create(&print_coords, (void *)1);
+uel_closure_t  print_x_two = uel_closure_create(&print_coords, (void *)2);
+uel_closure_t  print_x_three = uel_closure_create(&print_coords, (void *)3);
 
 // Schedules to run 1000ms in the future.
-uel_sch_run_later(&scheduler, 1000, print_one);
+// Will print (x: 1, y: 4)
+uel_sch_run_later(&scheduler, 1000, print_x_one, (void *)4);
 
 // Schedules to run at intervals of 500ms, runs the first time after 500ms
-uel_sch_run_at_intervals(&scheduler, 500, false, print_two);
+// Will print (x: 2, y: 5)
+uel_sch_run_at_intervals(&scheduler, 500, false, print_x_two, (void *)5);
 
 // Schedules to run at intervals of 300ms, runs the first time the next runloop
-uel_sch_run_at_intervals(&scheduler, 300, true, print_three);
+// Will print (x: 3, y: 6)
+uel_sch_run_at_intervals(&scheduler, 300, true, print_x_three, (void *)6);
 ```
 
 The `scheduler` must be fed regularly to work. It needs both an update on the running time as an stimulus to process enqueued timers. Ideally, a hardware timer will be consistently incrementing a counter and feeding it at an ISR while in the main loop the scheduler is oriented to process its queue.
@@ -430,8 +432,8 @@ volatile uint32_t counter = 0;
 
 // 1kHz timer ISR
 void my_timer_isr(){
-  my_timer_isr_flag = 0;
-  uel_sch_update_timer(&scheduler, ++counter);
+  	my_timer_isr_flag = 0;
+  	uel_sch_update_timer(&scheduler, ++counter);
 }
 
 // ...
@@ -448,9 +450,12 @@ When the function `uel_sch_manage_timers` is called, two things happen:
 
 Events are messages passed amongst the system internals that coordinate what tasks are to be run, when and in which order.
 Usually, the programmer don't have to interact directly with events, being *timer events* and [observers](#observers) the only exceptions to this.
-The functions `uel_sch_run_later` and `uel_sch_run_at_intervals` return a `uel_event_t *`. With this handle, it is possible to pause and resume or even completely cancel said timer event.
+The functions `uel_sch_run_later` and `uel_sch_run_at_intervals` return a `uel_event_t *`. With this handle, it is possible to pause and resume or even completely cancel a timer event.
+
 ```C
-uel_event_t *timer = uel_sch_run_at_intervals(&scheduler, 100, false, print_one);
+#include <stddef.h>
+
+uel_event_t *timer = uel_sch_run_at_intervals(&scheduler, 100, false, print_one, NULL);
 
 // The event will be put on a hold queue in the scheduler
 uel_event_timer_pause(timer);  
@@ -488,9 +493,9 @@ The event loop requires access to system's internal pools and queues.
 #### Basic event loop initialisation
 
 ```c
-#include "system/containers/system-pools.h"
-#include "system/containers/system-queues.h"
-#include "system/event-loop.h"
+#include <uevloop/system/containers/system-pools.h>
+#include <uevloop/system/containers/system-queues.h>
+#include <uevloop/system/event-loop.h>
 
 // Create system containers
 uel_syspools_t pools;
@@ -512,33 +517,31 @@ The only way the programmer interacts with it, besides creation / initialisation
 Any closure can be enqueued multiple times.
 
 ```c
-#include <stdlib.h>
-#include "utils/closure.h"
+#include <uevloop/utils/closure.h>
 
-// ...
+static void *add(void *context, void *params){
+    uintptr_t *num = (uintptr_t *)context;
+  	uintptr_t other = (uintptr_t)params;
+  	*num += other;
 
-static void *increment(uel_closure_t *closure){
-  uintptr_t *value = (uintptr_t *)closure->context;
-  (*value)++;
-
-  return NULL;
+  	return NULL;
 }
 
 // ...
 
 uintptr_t value = 0;
-uel_closure_t closure = uel_closure_create(&increment, (void *)&value, NULL);
+uel_closure_t closure = uel_closure_create(&add, (void *)&value);
 
-uel_evloop_enqueue_closure(&loop, &closure);
+uel_evloop_enqueue_closure(&loop, &closure, (void *)1);
 // value is 0
 
 uel_evloop_run(&loop);  
 // value is 1
 
-uel_evloop_enqueue_closure(&loop, &closure);
-uel_evloop_enqueue_closure(&loop, &closure);
+uel_evloop_enqueue_closure(&loop, &closure, (void *)2);
+uel_evloop_enqueue_closure(&loop, &closure, (void *)3);
 uel_evloop_run(&loop);
-// value is 3
+// value is 6
 
 ```
 ***WARNING!*** `uel_evloop_run` is the single most important function within µEvLoop. Almost every other core component depends on the event loop and if this function is not called, the loop won't work at all. Don't ever let it starve.
@@ -553,18 +556,18 @@ Because observers are completely passive, they are ideal for triggering side-eff
 static volatile uintptr_t adc_reading = 0;
 
 void my_adc_isr(){
-  adc_reading  = my_adc_buffer;
-  my_adc_isr_flag = 0;
+    adc_reading  = my_adc_buffer;
+    my_adc_isr_flag = 0;
 }
 
-static void *process_adc_reading(uel_closure_t *closure){
-  uintptr_t value = (uintptr_t)closure->params;
-  // Do something with `value`
+static void *process_adc_reading(void *context, void *params){
+    uintptr_t value = (uintptr_t)params;
+    // Do something with `value`
 
-  return NULL;
+    return NULL;
 }
 uel_closure_t processor =
-  uel_closure_create(process_adc_reading, NULL, NULL);
+    uel_closure_create(process_adc_reading, NULL);
 
 // This ensures each runloop the `adc_reading` variable is polled and, in case
 // of changes to it, the `processor` closure is called with its new value as
@@ -590,10 +593,10 @@ To use signals, the programmer must first define what signals will be available 
 To be initialised, the relay must have access to the system's internal pools and queues. The programmer will also need to supply it a buffer of [linked lists](#linked-lists), where listeners will be stored.
 
  ```c
-#include "system/containers/system-pools.h"
-#include "system/containers/system-queues.h"
-#include "system/signal.h"
-#include "utils/linked-list.h"
+#include <uevloop/system/containers/system-pools.h>
+#include <uevloop/system/containers/system-queues.h>
+#include <uevloop/system/signal.h>
+#include <uevloop/utils/linked-list.h>
 
 // Create the system containers
 uel_syspools_t pools;
@@ -604,9 +607,10 @@ uel_sysqueues_init(&queues);
 // Define what signals will be available to this relay.
 // Doing so in an enum makes it easy to add new signals in the future.
 enum my_component_signals {
-  SIGNAL_1 = 0,
-  SIGNAL_2,
-  SIGNAL_COUNT
+    SIGNAL_1 = 0,
+    SIGNAL_2,
+	// New events would go here
+    SIGNAL_COUNT
 };
 
 // Declare the relay buffer. Note this array will be the number of signals large.
@@ -614,28 +618,28 @@ uel_llist_t buffer[SIGNAL_COUNT];
 
 // Create the relay
 uel_signal_relay_t relay;
-void uel_signal_relay_init(&relay, &pools, &queues, buffer, SIGNAL_COUNT);
+uel_signal_relay_init(&relay, &pools, &queues, buffer, SIGNAL_COUNT);
  ```
 
 #### Signal operation
 
 ```c
 // This is the listener function.
-static void *respond_to_signal(uel_closure_t *closure){
-  uintptr_t num = (uintptr_t)closure->context;
+static void *respond_to_signal(void *context, void *params){
+  uintptr_t num = (uintptr_t)context;
   // Signals can be emitted with parameters, just like events in JS
-  char c = (char)(uintptr_t)closure->params;
+  char c = (char)(uintptr_t)params;
   printf("%d%c\n", num, c);
 
   return NULL;
 }
 
 // Listeners can be persistent. They will fire once each time the signal is emitted
-uel_closure_t respond_to_signal_1 = uel_closure_create(&respond_to_signal, (void *)1, NULL);
+uel_closure_t respond_to_signal_1 = uel_closure_create(&respond_to_signal, (void *)1);
 uel_signal_listener_t listener_1 = uel_signal_listen(SIGNAL_1, &relay, &respond_to_signal_1);
 
 // Listeners can also be transient, so they fire ust on first emission
-uel_closure_t respond_to_signal_2 = uel_closure_create(&respond_to_signal, (void *)2, NULL);
+uel_closure_t respond_to_signal_2 = uel_closure_create(&respond_to_signal, (void *)2);
 uel_signal_listener_t listener_2 = uel_signal_listen_once(SIGNAL_2, &relay, &respond_to_signal_2);
 
 // ...
@@ -676,8 +680,6 @@ Promise store need access to two object pools, one for promises and one for segm
 #define PROMISE_STORE_SIZE_LOG2N    4   // 16 promises
 #define SEGMENT_STORE_SIZE_LOG2N    6   // 64 segments
 
-...
-
 uel_objpool_t promise_pool;
 uel_objpool_t segment_pool;
 UEL_DECLARE_OBJPOOL_BUFFERS(uel_promise_t, PROMISE_STORE_SIZE_LOG2N, promise);
@@ -698,29 +700,27 @@ uel_objpool_init(
 uel_promise_store_t store = uel_promise_store_create(&promise_pool, &segment_pool);
 ```
 
-The [system pools component](#system-pools) contains a promise store. Its pools can have their size configured by modifying the `uevloop/config.h` file.
-
 ### Promises and segments
 
 As mentioned above, promises and segments are the two building blocks for composing asynchronous chains of events. Promises represent the asynchronous operation *per se* and segments are the synchronous processing that occurs when a promise settles.
 
-Settling a promise means transitioning it into either **resolved** or **rejected** states which respectively indicate success or error of the asynchronous operation, optionally assigning a value to the promise.
+Settling a promise means transitioning it into either **resolved** or **rejected** states which respectively indicate success or error of the asynchronous operation, optionally assigning a meaningful value to the promise.
 
 #### Promise creation
 
 There are two necessary pieces for creating a promise: a store and a constructor closure that starts the asynchronous operation.
 
 ```C
-void *start_some_async(uel_closure_t *closure){
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
-    ...
+void *start_some_async(void *context, void *params){
+    uel_promise_t *promise = (uel_promise_t *)params;
+    // ...
     return NULL; // return value is ignored
 }
 
-...
+// ...
 
 uel_promise_t *promise =
-    uel_promise_create(&store, uel_closure_create(start_some_async, NULL, NULL));
+    uel_promise_create(&store, uel_closure_create(start_some_async, NULL));
 ```
 
 When the promise is created, `start_some_async` is invoked immediately, taking the promise pointer as parameter.
@@ -737,6 +737,8 @@ uel_promise_resolve(promise1, (void *)SOME_VALUE); // operation succeeded
 uel_promise_reject(promise2, (void *)SOME_ERROR);  // operation failed
 ```
 
+Once a promise is settled, it holds a value that can be accessed via `promise->value`.
+
 #### Segments
 
 Segments represent the synchronous phase that follows a promise settling. They contain two closures, one for handling resolved promises and one for handling rejected promises. Either one is chosen at runtime, depending on the settled state of the promise, and is invoked with the promise as parameter.
@@ -745,37 +747,38 @@ Depending on the promise state, attaching segments have different effects. When 
 
 ```C
 #include <stdio.h>
+#include <stddef.h>
 
-void *report_success(uel_closure_t *closure) {
-    char *tag = (char *)closure->context;
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+void *report_success(void *context, void *params) {
+    char *tag = (char *)context;
+    uel_promise_t *promise = (uel_promise_t *)params;
     printf("promise %s resolved with %d\n", tag, promise->value);
     return NULL;
 }
 
-void *report_error(uel_closure_t *closure) {
-    char *tag = (char *)closure->context;
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+void *report_error(void *context, void *params) {
+    char *tag = (char *)context;
+    uel_promise_t *promise = (uel_promise_t *)params;
     printf("promise %s rejected with %d\n", tag, promise->value);
     return NULL;
 }
 
-...
+// ...
 
 // Assume p1, p2 and p3 as pending, resolved and rejected promises, respectively
 // p2 is resolved with (uintptr_t)10 and p3 is rejected with (uintptr_t)100
 
 uel_promise_after(
     p1,
-    uel_closure_create(report_success, (void *)"p1", NULL),
-    uel_closure_create(report_error, (void *)"p1", NULL)
+    uel_closure_create(report_success, (void *)"p1"),
+    uel_closure_create(report_error, (void *)"p1")
 );
 // Neither closure gets invoked. Instead, a new segment containing them is enqueued.
 
 uel_promise_after(
     p2,
-    uel_closure_create(report_success, (void *)"p2", NULL),  
-    uel_closure_create(report_error, (void *)"p2", NULL)
+    uel_closure_create(report_success, (void *)"p2"),  
+    uel_closure_create(report_error, (void *)"p2")
 );
 // As the promise is already resolved, instead of enqueueing a segment, the first
 // closure is invoked.
@@ -783,8 +786,8 @@ uel_promise_after(
 
 uel_promise_after(
     p3,
-    uel_closure_create(report_success, (void *)"p3", NULL),  
-    uel_closure_create(report_error, (void *)"p3", NULL)
+    uel_closure_create(report_success, (void *)"p3"),  
+    uel_closure_create(report_error, (void *)"p3")
 );
 // Similarly, as the promise is already rejected, the second closure gets invoked
 // immediately.
@@ -819,34 +822,34 @@ Any number of segments can be attached to some promise. They will be either proc
 Chaining segments is useful because segments have the ability to commute between execution paths through *promise resettling*. To resettle a promise means changing its state and value.
 
 ```C
-void *store_char(uel_closure_t *closure) {
-    unsigned char *var = (unsigned char *)closure->context;
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+void *store_char(void *context, void *params) {
+    unsigned char *var = (unsigned char *)context;
+    uel_promise_t *promise = (uel_promise_t *)params;
     if((uintptr_t)promise->value <= 255) {
         *var = (unsigned char)(uintptr_t)promise->value;
     } else {
-        uel_promise_resettle(UEL_PROMISE_REJECTED, (void *)"Value too big");
+        uel_promise_resettle(promise, UEL_PROMISE_REJECTED, (void *)"Value too big");
     }
     return NULL;
 }
 
-void *report_error(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+void *report_error(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
     printf("promise was rejected with error '%s'\n", (char *)promise->value);
     return NULL;
 }
 
-void *done(uel_closure_t *closure) {
+void *done(void *context, void *params) {
     static char *states[3] = { "pending", "resolved", "rejected" };
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+    uel_promise_t *promise = (uel_promise_t *)params;
     printf("operation done with state '%s'\n", states[promise->state]);
 }
 
 unsigned char c1 = 0;
 uel_promise_t *p1 = uel_promise_create(&store, uel_nop()); // Creates a pending promise
-uel_promise_then(p1, uel_closure_create(store_char, (void *)&c1, NULL));
-uel_promise_catch(p1, uel_closure_create(report_error, NULL, NULL));
-uel_promsie_always(p1, uel_closure_create(done, NULL, NULL));
+uel_promise_then(p1, uel_closure_create(store_char, (void *)&c1));
+uel_promise_catch(p1, uel_closure_create(report_error, NULL));
+uel_promsie_always(p1, uel_closure_create(done, NULL));
 ```
 This builds a segment chain attached to promise `p1`. Each segment added describes one synchronous step to be executed for each of the two settled states.
 
@@ -863,11 +866,11 @@ The outcome of this chain is determined upon settling. For example, given the fo
 uel_promise_resolve(p1, (void *)10);
 ```
 
-The first closure invoked is `store_char`, in segment 1. In the closure function, the test condition `promise->value <= 255` is true, so the closure proceeds to store its value in the c1 variable.
+The first closure invoked is `store_char`, in segment 1. In the closure function, the test condition `promise->value <= 255` is true, so the closure proceeds to store its value in the `c1` variable.
 
 As the promise remains resolved, it advances to segment 2, where it finds a `nop` (no-operation). This is due to the segment being attached via `uel_promise_catch`.
 
-The promise then advances to segment 3, where it finds the `done` closure. The process then ends and the promise retains its state and value (`UEL_PROMISE_RESOLVED` and `(void *)10` in this case). By then, c1 holds `(char)10` and `operation done with state 'resolved'` is printed.
+The promise then advances to segment 3, where it finds the `done` closure. The process then ends and the promise retains its state and value (`UEL_PROMISE_RESOLVED` and `(void *)10` in this case). By then, `c1` holds `(char)10` and `operation done with state 'resolved'` is printed.
 
 If instead the promise was resolved as:
 ```C
@@ -883,9 +886,9 @@ uel_promise_reject(p1, (void *)"Asynchronous operation failed");
 ```
 Segment 1 would be ignored, `report_error` would be invoked and print `promise was rejected with error 'Asynchronous operation failed'` and, at segment 3, `done` would be invoked and print `operation done with state 'rejected'`.
 
-Resettling can also be used for recovering from errors if it commutes back to `resolved` state. This constitutes an excellent exception system that allows errors raised in loose asynchronous operations to be rescued consistently Even exclusively synchronous processes can benefit from this error rescuing system.
+Resettling can also be used for recovering from errors if it commutes back to `resolved` state. This constitutes an excellent exception system that allows errors raised in loose asynchronous operations to be rescued consistently. Even exclusively synchronous processes can benefit from this error rescuing system.
 
-As a last note, segments can also resettle a promise as `pending`. This halts the synchronous stage immediately, leaving any unprocessed segments in place. This phase can be restarted by either resolving or rejecting the promise again.
+As a last note, segments can also resettle a promise as `UEL_PROMISE_PENDING`. This halts the synchronous stage immediately, leaving any unprocessed segments in place. This phase can be restarted by either resolving or rejecting the promise again.
 
 #### Nested promises
 
@@ -912,9 +915,9 @@ static void adc_isr() {
 }
 
 // Launches the ADC and returns. This effectively starts an asynchronous operation.
-static void *start_adc(uel_closure_t *closure) {
-    uintptr_t count = (uintptr_t)closure->context;
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+static void *start_adc(void *context, void *params) {
+    uintptr_t count = (uintptr_t)context;
+    uel_promise_t *promise = (uel_promise_t *)params;
     ADC_COUNT = count;
     ADC_START = 1;
     adc_promise = promise;
@@ -925,12 +928,11 @@ static void *start_adc(uel_closure_t *closure) {
 // when resolved, will contain the address of the buffer where
 // data was sampled
 uel_promise_t *adc_read(uintptr_t count) {
-    return uel_promise_create(
-        &store,
-        uel_closure_create(start_adc, (void *)count, NULL)
-    );
+    return uel_promise_create(&store, uel_closure_create(start_adc, (void *)count));
 }
+```
 
+```c
 // DMA implementation
 static uel_promise_ t *dma_promise;
 
@@ -950,9 +952,9 @@ struct dma_mapping {
 };
 
 // Launches the DMA channel, starting an asynchronous operation
-static void *start_dma(uel_closure_t *closure) {
-    struct dma_mapping *mapping = (struct dma_mapping *)closure->context;
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+static void *start_dma(void *context, void *params) {
+    struct dma_mapping *mapping = (struct dma_mapping *)context;
+    uel_promise_t *promise = (uel_promise_t *)params;
     DMA_SOURCE = mapping->source;
     DMA_DESTINATION = mapping->destination;
     DMA_COUNT = mapping->count;
@@ -966,28 +968,26 @@ static void *start_dma(uel_closure_t *closure) {
 // of the buffer to where data was moved
 uel_promise_t *dma_move(void *destination, void *source, uintptr_t count) {
     struct dma_mapping mapping = { source, destination, count };
-    return uel_promise_create(
-        &store,
-        uel_closure_create(start_adc, (void *)&mapping, NULL)
-    );
+    return uel_promise_create(&store, uel_closure_create(start_adc, (void *)&mapping));
 }
-
 ```
+
+
 
 Implementing the project requirements is this simple:
 
 ```C
 #define N  10 // Will take 10 samples
 
-static void *move_from_buffer(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+static void *move_from_buffer(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
     void *source = promise->value;
-    void *destination = closure->context;
+    void *destination = context;
     return (void *)dma_move(destination, source, N);
 }
 
-static void *data_moved(uel_closure_t *closure) {
-    uel_promise_t *promise = (uel_promise_t *)closure->params;
+static void *data_moved(void *context, void *params) {
+    uel_promise_t *promise = (uel_promise_t *)params;
     printf("Data moved to %p\n", promise->value);
     return NULL;
 }
@@ -996,14 +996,14 @@ static void *data_moved(uel_closure_t *closure) {
 
 uel_promise_t *promise = adc_read(N);
 unsigned char destination[N];
-uel_promise_then(promise, uel_closure_create(move_from_buffer, (void *)destination, NULL));
-uel_promise_then(promise, uel_closure_create(data_moved, NULL, NULL));
+uel_promise_then(promise, uel_closure_create(move_from_buffer, (void *)destination));
+uel_promise_then(promise, uel_closure_create(data_moved, NULL));
 
 ```
 
 Note that, in the above example, promises are resolved **synchronously** inside the ISR's. This may be not desirable due to performance reasons, but can be easily improved by enqueueing a closure that resolves nested promises into the [event loop](#event-loop).
 
-#### Promise destroying and promise helpers
+#### Promise destruction and promise helpers
 
 To destroy a promise, call `uel_promise_destroy()`. This will release all segments and then the promise itself. Settling a promise after it has been destroyed is undefined behaviour.
 
@@ -1036,8 +1036,8 @@ Modules can serve as a variety of purposes:
 ```c
 // File: my_module.h
 
-#include "utils/module.h"
-#include "system/containers/application.h"
+#include <uevloop/utils/module.h>
+#include <uevloop/system/containers/application.h>
 
 typedef struct my_module my_module_t; // Private implementation
 
@@ -1055,9 +1055,6 @@ struct my_module {
 
     // Other properties
 };
-
-// Modules are meant to be static singletons
-static my_module_t module;
 
 // The config hook is used to prepare the module.
 // When it is fired by the `application`, all modules are guaranteed to be
@@ -1078,13 +1075,14 @@ static void launch(uel_module_t *mod){
 // This function should initialise all independent or readly available data.
 // It must not be called more than once per module.
 uel_module_t *my_module(uel_application_t *my_app){
+	static my_module_t module;
     uel_module_init(&module.base, config, launch, my_app);
 
     // Initialise other module's properties
 
     return &module.base;
 }
-```  
+```
 
 ### Module registration
 
@@ -1107,7 +1105,7 @@ enum MY_APP_MODULES {
 ```c
 // File: main.c
 
-#include <system/containers/application.h>
+#include <uevloop/system/containers/application.h>
 #include "my_app_modules.h"
 
 // Creates the controlling application
@@ -1143,8 +1141,8 @@ Given the following module header:
 // File: my_greeter.h
 
 #include "my_module.h"
-#include "utils/module.h"
-#include "system/containers/application.h"
+#include <uevloop/utils/module.h>
+#include <uevloop/system/containers/application.h>
 
 typedef struct my_greeter my_greeter_t;
 uel_module_t *my_greeter(
@@ -1186,7 +1184,7 @@ Ad-hoc injections can occur anywhere, including places outside the scope of the 
 ```c
 // ANYWHERE with access to `my_app`:
 
-#include <system/containers/application.h>
+#include <uevloop/system/containers/application.h>
 #include "my_greeter.h"
 #include "my_app_modules.h"
 
@@ -1206,7 +1204,7 @@ There are two iterator specialisations shipped with µEvLoop:
 #### Array iterators
 
 ```c
-#include "utils/iterator.h"
+#include <uevloop/utils/iterator.h>
 #define NUMS_LENGTH	5
 
 uintptr_t nums[NUMS_LENGTH] = { 1, 2, 3, 4, 5 };
@@ -1217,8 +1215,8 @@ uel_iterator_array_t array_iterator =
 #### Linked list iterators
 
 ```c
-#include "utils/iterator.h
-#include "utils/linked-list.h
+#include <uevloop/utils/iterator.h>
+#include <uevloop/utils/linked-list.h>
 
 uel_llist_node_t nodes[] = {
     { (void *)1, NULL },
@@ -1258,25 +1256,24 @@ while(true){
 Besides manually operating an iterator, there are several iteration helpers that automatise work.
 
 ```c
-#include "utils/closure.h"
+#include <uevloop/utils/closure.h>
 
-void *accumulate(uel_closure_t *closure){
-    uintptr_t *acc = (uintptr_t *)closure->context;
-    uintptr_t num = *(uintptr_t *)closure->params;
+void *accumulate(void *context, void *params){
+    uintptr_t *acc = (uintptr_t *)context;
+    uintptr_t num = *(uintptr_t *)params;
     *acc += num;
     return (void *)true; // required; returning false is equivalent to a `break`
 }
 
 uintptr_t acc = 0;
-uel_closure_t acumulate_into_acc =
-        uel_closure_create(accumulate, (void *)&acc, NULL);
+uel_closure_t acumulate_into_acc = uel_closure_create(accumulate, (void *)&acc);
 
 uel_iterator_foreach(iterator, &accumulate_into_acc);
 // if `iterator` is the same array iterator defined previously,
 // acc == 15
 ```
 
-There are many more iteration helpers, check the more details on [the docs](https://andsmedeiros.github.io/uevloop/html/pipeline_8h.html).
+There are many more iteration helpers, check the more details on [the docs](https://andsmedeiros.github.io/uevloop/html/iterator_8h.html).
 
 #### Custom iterators
 
@@ -1304,7 +1301,7 @@ struct my_collection_iterator iterator = {
 };
 ```
 
-Note that `base` is **required** to be the first member in your custom iterator struct. That way, a pointer to your iterator can be safely cast to `uel_iterator_t *` forth and back.
+Note that `base` is **required** to be the first member in your custom iterator structure. That way, a pointer to your iterator can be safely cast to `uel_iterator_t *` forth and back.
 
 ### Conditionals
 
@@ -1313,28 +1310,28 @@ Conditionals are functional switches in the form of a tuple of closures `<test, 
 When applied to some input, this input is submitted to the `test` closure. If it returns `true`, `if_true` closure is invoked, otherwise, `if_false` is invoked. All closures take the same input as arguments.
 
 ```c
-#include "utils/conditional.h"
+#include <uevloop/utils/conditional.h>
 #include <stdio.h>
 
-void *is_divisible(uel_closure_t *closure){
-    uintptr_t divisor = (uintptr_t)closure->context;
-    uintptr_t dividend = (uintptr_t)closure->params;
+void *is_divisible(void *context, void *params){
+    uintptr_t divisor = (uintptr_t)context;
+    uintptr_t dividend = (uintptr_t)params;
     return (void *)(uintptr_t)(dividend % divisor != 0);
 }
 
-void *qualify_number(uel_closure_t *closure){
-    char *parity = (char *)closure->context;
-    uintptr_t num = (uintptr_t)closure->params;
+void *qualify_number(void *context, void *params){
+    char *parity = (char *)context;
+    uintptr_t num = (uintptr_t)params;
     printf("%d is %s\n", num, parity);
     return NULL;
 }
 
 uel_closure_t is_even =
-        uel_closure_create(is_divisible, (void *)2, NULL);
+        uel_closure_create(is_divisible, (void *)2);
 uel_closure_t print_even =
-        uel_closure_create(qualify_number, (void *)"even", NULL);
+        uel_closure_create(qualify_number, (void *)"even");
 uel_closure_t print_odd =
-        uel_closure_create(qualify_number, (void *)"odd", NULL);
+        uel_closure_create(qualify_number, (void *)"odd");
 
 uel_conditional_t numer_parity;
 uel_conditional_init(&number_parity, is_even, print_even, print_odd);
@@ -1353,21 +1350,23 @@ Pipelines are sequences of closures whose outputs are connected to the next clos
 When applied to some input, this input is passed along each closure, being transformed along the way. Applying a pipeline returns the value returned by the last closure in it.
 
 ```c
-void *exponentiate(uel_closure_t *closure){
-    uintptr_t power = (uintptr_t)closure->context;
-    uintptr_t base = (uintptr_t)closure->params;
+#include <uevloop/utils/pipeline.h>
+
+void *exponentiate(void *context, void *params){
+    uintptr_t power = (uintptr_t)context;
+    uintptr_t base = (uintptr_t)params;
     return (void *)(uintptr_t)pow(base, power);
 }
-void *add(uel_closure_t *closure){
-    uintptr_t term1 = (uintptr_t)closure->context;
-    uintptr_t term2 = (uintptr_t)closure->params;
+void *add(void *context, void *params){
+    uintptr_t term1 = (uintptr_t)context;
+    uintptr_t term2 = (uintptr_t)params;
     return (void *)(uintptr_t)(term1 + term2);
 }
 
-uel_closure_t square = uel_closure_create(exponentiate, (void *)2, NULL);
-uel_closure_t increment = uel_closure_create(add, (void *)1, NULL);
+uel_closure_t square = uel_closure_create(exponentiate, (void *)2);
+uel_closure_t increment = uel_closure_create(add, (void *)1);
 
-// creates the math_pipeline, equivalente to the function f(x) = x^2 + 1
+// creates the math_pipeline, equivalent to the function f(x) = x^2 + 1
 UEL_PIPELINE_DECLARE(math, square, increment);
 
 uintptr_t res = (uintptr_t)uel_pipeline_apply(&math_pipeline, (void *)5);
@@ -1393,6 +1392,8 @@ Automatic pointers are objects that associate some object to the pool it is from
 Automatic pools are created and initialised in very similar ways to object pools:
 
 ```C
+#include <uevloop/utils/automatic-pool.h>
+
 #define TUPLE_POOL_SIZE_LOG2N    5    // 32 tuples
 struct tuple {
     int a;
@@ -1426,15 +1427,15 @@ if(t) {
 It is possible to attach a constructor and a destructor to some automatic pool. This are closures that will be invoked upon object allocation and deallocation, taking a **bare** pointer to the object being operated on.
 
 ```C
-static void *default_tuple(uel_closure_t *closure) {
-    struct tuple *value = (struct tuple *)closure->context;
-    struct tuple *t = (struct tuple *)closure->params;
+static void *default_tuple(void *context, void *params) {
+    struct tuple *value = (struct tuple *)context;
+    struct tuple *t = (struct tuple *)params;
     *t = *value;
     return NULL;
 }
 
-static void *zero_tuple(uel_closure_t *closure) {
-    struct tuple *t = (struct tuple *)closure->params;
+static void *zero_tuple(void *context, void *params) {
+    struct tuple *t = (struct tuple *)params;
     t->a = 0;
     t->b = 0;
     return NULL;
@@ -1445,19 +1446,18 @@ static void *zero_tuple(uel_closure_t *closure) {
 static struct tuple default_value = { 10, 100 };
 uel_autopool_set_contructor(
     &tuple_pool,
-    uel_closure_create(default_tuple, (void *)&default_value, NULL)
+    uel_closure_create(default_tuple, (void *)&default_value)
 );
 uel_autopool_set_destructor(
     &tuple_pool,
-    uel_closure_create(zero_tuple, NULL, NULL)
+    uel_closure_create(zero_tuple, NULL)
 );
 
-struct tuple **t1 =
-    (struct tuple **)uel_autopool_alloc(&tuple_pool);
-// t1.a = 10, t1.b = 100
+struct tuple **t1 = (struct tuple **)uel_autopool_alloc(&tuple_pool);
+// t1.a == 10, t1.b == 100
 
 uel_autoptr_dealloc((uel_autoptr_t)t1);
-// before t1 is dealloc'ed t1.a = 0, t1.b = 0
+// before t1 is dealloc'ed t1.a == 0, t1.b == 0
 ```
 
 ## Concurrency model
@@ -1499,6 +1499,8 @@ I am also looking for a new job and needed to improve my portfolio.
 ## Roadmap
 
 * Better error handling
+* Logging helpers
+* Macro shortcuts for frequently used functions
 * More lifecycle hooks for modules
 * Application teardown/exit
 * Implement [application](#application) signals

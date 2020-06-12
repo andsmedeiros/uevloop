@@ -76,14 +76,11 @@ Collaboration diagram for uel_syspools_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structsyspools__coll__graph.png" border="0" usemap="#uel__syspools__t_coll__map" alt="Collaboration graph"/></div>
 <map name="uel__syspools__t_coll__map" id="uel__syspools__t_coll__map">
-<area shape="rect" title="A container for the system pools." alt="" coords="381,161,500,188"/>
-<area shape="rect" title=" " alt="" coords="37,9,152,36"/>
-<area shape="rect" title=" " alt="" coords="33,60,157,87"/>
-<area shape="rect" title=" " alt="" coords="45,111,144,137"/>
-<area shape="rect" title=" " alt="" coords="5,161,184,188"/>
-<area shape="rect" title=" " alt="" coords="17,212,172,239"/>
-<area shape="rect" title=" " alt="" coords="40,296,149,323"/>
-<area shape="rect" title=" " alt="" coords="64,444,125,471"/>
+<area shape="rect" title="A container for the system pools." alt="" coords="264,139,383,165"/>
+<area shape="rect" title=" " alt="" coords="5,5,129,32"/>
+<area shape="rect" title=" " alt="" coords="198,5,297,32"/>
+<area shape="rect" title=" " alt="" coords="346,5,455,32"/>
+<area shape="rect" title=" " alt="" coords="503,5,565,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -113,34 +110,6 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 uel_objpool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a8a333444479f17163fe541f84f88d8ce">llist_node_pool</a></td></tr>
 <tr class="memdesc:a8a333444479f17163fe541f84f88d8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The llist node pool object. Contains all llist nodes used by the core. <br /></td></tr>
 <tr class="separator:a8a333444479f17163fe541f84f88d8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f6689f5b5a0f82d18bb4c89dc6cd4d0"><td class="memItemLeft" align="right" valign="top"><a id="a3f6689f5b5a0f82d18bb4c89dc6cd4d0"></a>
-uel_promise_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a3f6689f5b5a0f82d18bb4c89dc6cd4d0">promise_pool_buffer</a> [<a class="el" href="system-pools_8h.html#a1e91ee1d3fd9f41e0d2ef0bef15d283a">UEL_PROMISE_POOL_SIZE</a>]</td></tr>
-<tr class="memdesc:a3f6689f5b5a0f82d18bb4c89dc6cd4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store promises in the promise pool. <br /></td></tr>
-<tr class="separator:a3f6689f5b5a0f82d18bb4c89dc6cd4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affd8eb60fd89f22e244fc43c45858c6b"><td class="memItemLeft" align="right" valign="top"><a id="affd8eb60fd89f22e244fc43c45858c6b"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#affd8eb60fd89f22e244fc43c45858c6b">promise_pool_queue_buffer</a> [<a class="el" href="system-pools_8h.html#a1e91ee1d3fd9f41e0d2ef0bef15d283a">UEL_PROMISE_POOL_SIZE</a>]</td></tr>
-<tr class="memdesc:affd8eb60fd89f22e244fc43c45858c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store promise pointers in the promise pool queue. <br /></td></tr>
-<tr class="separator:affd8eb60fd89f22e244fc43c45858c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1585a348dc1661e104ddb09f0b3fde32"><td class="memItemLeft" align="right" valign="top"><a id="a1585a348dc1661e104ddb09f0b3fde32"></a>
-uel_objpool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a1585a348dc1661e104ddb09f0b3fde32">promise_pool</a></td></tr>
-<tr class="memdesc:a1585a348dc1661e104ddb09f0b3fde32"><td class="mdescLeft">&#160;</td><td class="mdescRight">The promise pool object. Contains all the promises available to use. <br /></td></tr>
-<tr class="separator:a1585a348dc1661e104ddb09f0b3fde32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b9b406c7a7749e10689ed853cffba27"><td class="memItemLeft" align="right" valign="top"><a id="a8b9b406c7a7749e10689ed853cffba27"></a>
-uel_promise_segment_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a8b9b406c7a7749e10689ed853cffba27">segment_pool_buffer</a> [<a class="el" href="system-pools_8h.html#a47773ebfe12b99c180a4b78adcb887d8">UEL_PROMISE_SEGMENT_POOL_SIZE</a>]</td></tr>
-<tr class="memdesc:a8b9b406c7a7749e10689ed853cffba27"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store promise segments in the segment pool. <br /></td></tr>
-<tr class="separator:a8b9b406c7a7749e10689ed853cffba27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1ae5dd6f4ba9ee20c934eba229446ba"><td class="memItemLeft" align="right" valign="top"><a id="ab1ae5dd6f4ba9ee20c934eba229446ba"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#ab1ae5dd6f4ba9ee20c934eba229446ba">segment_pool_queue_buffer</a> [<a class="el" href="system-pools_8h.html#a47773ebfe12b99c180a4b78adcb887d8">UEL_PROMISE_SEGMENT_POOL_SIZE</a>]</td></tr>
-<tr class="memdesc:ab1ae5dd6f4ba9ee20c934eba229446ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer used to store promise segment pointers in the segment pool queue. <br /></td></tr>
-<tr class="separator:ab1ae5dd6f4ba9ee20c934eba229446ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5d22545e6524a6409c53c00972cac80"><td class="memItemLeft" align="right" valign="top"><a id="ad5d22545e6524a6409c53c00972cac80"></a>
-uel_objpool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#ad5d22545e6524a6409c53c00972cac80">segment_pool</a></td></tr>
-<tr class="memdesc:ad5d22545e6524a6409c53c00972cac80"><td class="mdescLeft">&#160;</td><td class="mdescRight">The segment pool object. Contains all the promise segments available to use. <br /></td></tr>
-<tr class="separator:ad5d22545e6524a6409c53c00972cac80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1063f8a62c72bffcaae608f3f71d3942"><td class="memItemLeft" align="right" valign="top"><a id="a1063f8a62c72bffcaae608f3f71d3942"></a>
-uel_promise_store_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsyspools.html#a1063f8a62c72bffcaae608f3f71d3942">promise_store</a></td></tr>
-<tr class="memdesc:a1063f8a62c72bffcaae608f3f71d3942"><td class="mdescLeft">&#160;</td><td class="mdescRight">An object that aggregates promise and segment pools. <br /></td></tr>
-<tr class="separator:a1063f8a62c72bffcaae608f3f71d3942"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A container for the system pools. </p>
