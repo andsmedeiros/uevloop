@@ -56,24 +56,30 @@ void uel_app_tick(uel_application_t *app){
 uel_event_t *uel_app_run_later(
     uel_application_t *app,
     uint16_t timeout_in_ms,
-    uel_closure_t closure
+    uel_closure_t closure,
+    void *value
 ){
     app->run_scheduler = true;
-    return uel_sch_run_later(&app->scheduler, timeout_in_ms, closure);
+    return uel_sch_run_later(&app->scheduler, timeout_in_ms, closure, value);
 }
 
 uel_event_t *uel_app_run_at_intervals(
   uel_application_t *app,
   uint16_t interval_in_ms,
   bool immediate,
-  uel_closure_t closure
+  uel_closure_t closure,
+  void *value
 ){
     app->run_scheduler = true;
-    return uel_sch_run_at_intervals(&app->scheduler, interval_in_ms, immediate, closure);
+    return uel_sch_run_at_intervals(&app->scheduler, interval_in_ms, immediate, closure, value);
 }
 
-void uel_app_enqueue_closure(uel_application_t *app, uel_closure_t *closure){
-    uel_evloop_enqueue_closure(&app->event_loop, closure);
+void uel_app_enqueue_closure(
+    uel_application_t *app,
+    uel_closure_t *closure,
+    void *value
+) {
+    uel_evloop_enqueue_closure(&app->event_loop, closure, value);
 }
 
 uel_event_t *uel_app_observe(

@@ -96,12 +96,14 @@ void uel_app_update_timer(uel_application_t *app, uint32_t timer);
   * \param app The uel_application_t instance
   * \param timeout_in_ms The delay in milliseconds until the closure is run
   * \param closure The closure to be invoked when the due time is reached
+  * \param value The value to invoked the closure with
   * \returns The timer event associated with this operation
   */
   uel_event_t *uel_app_run_later(
       uel_application_t *app,
       uint16_t timeout_in_ms,
-      uel_closure_t closure
+      uel_closure_t closure,
+      void *value
   );
 
 /** \brief Enqueues a closure for execution at intervals.
@@ -114,13 +116,15 @@ void uel_app_update_timer(uel_application_t *app, uint32_t timer);
   * \param immediate If this flag is set, the the event will be created with a
   * due time to the current time.
   * \param closure The closure to be invoked when the due time is reached
+  * \param value The value to invoked the closure with
   * \returns The timer event associated with this operation
   */
 uel_event_t *uel_app_run_at_intervals(
     uel_application_t *app,
     uint16_t interval_in_ms,
     bool immediate,
-    uel_closure_t closure
+    uel_closure_t closure,
+    void *value
 );
 
 /** \brief Enqueues a closure to be invoked.
@@ -130,8 +134,13 @@ uel_event_t *uel_app_run_at_intervals(
   *
   * \param app The uel_application_t instance
   * \param closure The closure to be enqueued
+  * \param value The value to invoked the closure with
   */
-void uel_app_enqueue_closure(uel_application_t *app, uel_closure_t *closure);
+void uel_app_enqueue_closure(
+    uel_application_t *app,
+    uel_closure_t *closure,
+    void *value
+);
 
 /** \brief Sets up an observer
   *

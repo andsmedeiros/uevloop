@@ -52,8 +52,13 @@ void uel_evloop_run(uel_evloop_t *event_loop);
   *
   * \param event_loop The uel_evloop_t instance into which the closure will be enqueued
   * \param closure The closure to be enqueued
+  * \param value The value to invoked the closure with
   */
-void uel_evloop_enqueue_closure(uel_evloop_t *event_loop, uel_closure_t *closure);
+void uel_evloop_enqueue_closure(
+    uel_evloop_t *event_loop,
+    uel_closure_t *closure,
+    void *value
+);
 
 /** \brief Observes a value and reacts to changes in it
   *

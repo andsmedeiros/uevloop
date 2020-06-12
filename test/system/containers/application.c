@@ -172,9 +172,9 @@ static char *should_tick(){
     uel_closure_t closure2 = uel_closure_create(&increment, (void *)&counter2);
     uel_closure_t closure3 = uel_closure_create(&increment, (void *)&counter3);
 
-    uel_evloop_enqueue_closure(&app.event_loop, &closure1);
-    uel_sch_run_later(&app.scheduler, 100, closure2);
-    uel_sch_run_at_intervals(&app.scheduler, 100, true, closure3);
+    uel_evloop_enqueue_closure(&app.event_loop, &closure1, (void *)&app);
+    uel_sch_run_later(&app.scheduler, 100, closure2, (void *)&app);
+    uel_sch_run_at_intervals(&app.scheduler, 100, true, closure3, (void *)&app);
 
     uel_app_tick(&app);
     uelt_assert_ints_equal("counter1 at 0ms", 1, counter1);
@@ -204,7 +204,7 @@ static char *should_proxy_functions(){
 
     uel_closure_t closure = uel_closure_create(&nop, NULL);
 
-    uel_app_enqueue_closure(&app, &closure);
+    uel_app_enqueue_closure(&app, &closure, (void *)&app);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",
         1,
@@ -216,7 +216,7 @@ static char *should_proxy_functions(){
         uel_sysqueues_count_scheduled_events(&app.queues)
     );
 
-    uel_app_run_later(&app, 1000, closure);
+    uel_app_run_later(&app, 1000, closure, (void *)&app);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",
         1,
@@ -228,7 +228,7 @@ static char *should_proxy_functions(){
         uel_sysqueues_count_scheduled_events(&app.queues)
     );
 
-    uel_app_run_at_intervals(&app, 500, false, closure);
+    uel_app_run_at_intervals(&app, 500, false, closure, (void *)&app);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",
         1,
@@ -240,7 +240,7 @@ static char *should_proxy_functions(){
         uel_sysqueues_count_scheduled_events(&app.queues)
     );
 
-    uel_app_run_at_intervals(&app, 500, true, closure);
+    uel_app_run_at_intervals(&app, 500, true, closure, (void *)&app);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",
         2,

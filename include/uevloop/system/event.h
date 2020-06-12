@@ -103,10 +103,16 @@ struct event {
   *
   * \param event The event to be configured
   * \param closure The closure to be invoked when the event is run
+  * \param value The value to supply to the closure as parameters when it is invoked
   * \param repeating Intructs the system whether should this event be disposed of
   * after processing
   */
-void uel_event_config_closure(uel_event_t *event, uel_closure_t *closure, bool repeating);
+void uel_event_config_closure(
+    uel_event_t *event,
+    uel_closure_t *closure,
+    void *value,
+    bool repeating
+);
 
 /** \brief Configures a signal event
   *
@@ -161,6 +167,7 @@ void uel_event_observer_cancel(uel_event_t *event);
   * \param immediate If this flag is set, a recurring timer will be immediately
   * enqueued for processing. One-shot timers will ignore this setting.
   * \param closure The closure to be invoked when the timer expires
+  * \param value The value to supply to the closure as parameters when it is invoked
   * \param current_time The current value set in the system counter.
   */
 void uel_event_config_timer(
@@ -169,6 +176,7 @@ void uel_event_config_timer(
     bool repeating,
     bool immediate,
     uel_closure_t *closure,
+    void *value,
     uint32_t current_time
 );
 

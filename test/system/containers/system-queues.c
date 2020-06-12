@@ -32,8 +32,8 @@ static char *should_manipulate_the_event_queue(){
 
     uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_event_t events[3];
-    uel_event_config_closure(&events[0], &closure, false);
-    uel_event_config_timer(&events[1], 10, false, false, &closure, 0);
+    uel_event_config_closure(&events[0], &closure, (void *)&queues, false);
+    uel_event_config_timer(&events[1], 10, false, false, &closure, (void *)&queues, 0);
     uel_event_config_signal(&events[2], 0, NULL, NULL);
 
     uel_sysqueues_enqueue_event(&queues, &events[0]);
@@ -88,8 +88,8 @@ static char *should_manipulate_the_schedule_queue(){
 
     uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_event_t events[3];
-    uel_event_config_closure(&events[0], &closure, false);
-    uel_event_config_timer(&events[1], 10, false, false, &closure, 0);
+    uel_event_config_closure(&events[0], &closure, (void *)&queues, false);
+    uel_event_config_timer(&events[1], 10, false, false, &closure, (void *)&queues, 0);
     uel_event_config_signal(&events[2], 0, NULL, NULL);
 
     uel_sysqueues_schedule_event(&queues, &events[2]);

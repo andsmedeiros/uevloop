@@ -10,7 +10,7 @@
 #include "uevloop/portability/critical-section.h"
 
 static inline bool run_closure_event(uel_evloop_t *event_loop, uel_event_t *event){
-    uel_closure_invoke(&event->closure, event_loop);
+    uel_closure_invoke(&event->closure, event->value);
     return event->repeating;
 }
 
@@ -23,7 +23,7 @@ static inline bool run_timer_event(uel_evloop_t *event_loop, uel_event_t *event)
             return true;
         default: break;
     }
-    uel_closure_invoke(&event->closure, event_loop);
+    uel_closure_invoke(&event->closure, event->value);
     if (event->repeating) {
         event->detail.timer.due_time += event->detail.timer.timeout;
         uel_sysqueues_schedule_event(event_loop->queues, event);
@@ -136,9 +136,13 @@ void uel_evloop_run(uel_evloop_t *event_loop){
     uel_iterator_foreach(&observer_it, &observe);
 }
 
-void uel_evloop_enqueue_closure(uel_evloop_t *event_loop, uel_closure_t *closure){
+void uel_evloop_enqueue_closure(
+    uel_evloop_t *event_loop,
+    uel_closure_t *closure,
+    void *value
+){
     uel_event_t *event = uel_syspools_acquire_event(event_loop->pools);
-    uel_event_config_closure(event, closure, false);
+    uel_event_config_closure(event, closure, value, false);
     uel_sysqueues_enqueue_event(event_loop->queues, event);
 }
 

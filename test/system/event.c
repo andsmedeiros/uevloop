@@ -12,7 +12,7 @@ static char *should_config_uel_closure_event(){
     uel_event_t event;
     uel_closure_t closure = uel_closure_create(&nop, NULL);
 
-    uel_event_config_closure(&event, &closure, false);
+    uel_event_config_closure(&event, &closure, &event, false);
 
     uelt_assert_ints_equal("event.type", UEL_CLOSURE_EVENT, event.type);
     uelt_assert_pointers_equal(
@@ -20,9 +20,10 @@ static char *should_config_uel_closure_event(){
         &nop,
         event.closure.function
     );
+    uelt_assert_pointers_equal("event.value", &event, event.value);
     uelt_assert_not("event.repeating", event.repeating);
 
-    uel_event_config_closure(&event, &closure, true);
+    uel_event_config_closure(&event, &closure, &event, true);
     uelt_assert("event.repeating", event.repeating);
 
     return NULL;
@@ -35,13 +36,14 @@ static char *should_config_timer_event(){
     uint32_t timer = 326680;
     uint16_t timeout_in_ms = 15000;
 
-    uel_event_config_timer(&event, timeout_in_ms, true, false, &closure, timer);
+    uel_event_config_timer(&event, timeout_in_ms, true, false, &closure, &event, timer);
     uelt_assert_ints_equal("event.type", UEL_TIMER_EVENT, event.type);
     uelt_assert_pointers_equal(
         "event.closure.function",
         &nop,
         event.closure.function
     );
+    uelt_assert_pointers_equal("event.value", &event, event.value);
     uelt_assert_ints_equal(
         "event.detail.timer.timeout",
         timeout_in_ms,

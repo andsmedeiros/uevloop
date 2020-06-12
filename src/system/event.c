@@ -4,9 +4,15 @@
 #include <stdlib.h>
 /// \endcond
 
-void uel_event_config_closure(uel_event_t *event, uel_closure_t *closure, bool repeating){
+void uel_event_config_closure(
+    uel_event_t *event,
+    uel_closure_t *closure,
+    void *value,
+    bool repeating
+) {
     event->type = UEL_CLOSURE_EVENT;
     event->closure = *closure;
+    event->value = value;
     event->repeating = repeating;
 }
 
@@ -54,10 +60,12 @@ void uel_event_config_timer(
     bool repeating,
     bool immediate,
     uel_closure_t *closure,
+    void *value,
     uint32_t current_time
-){
+) {
     event->type = UEL_TIMER_EVENT;
     event->closure = *closure;
+    event->value = value;
     event->repeating = repeating;
     event->detail.timer.due_time = immediate ?
         current_time :

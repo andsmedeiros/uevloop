@@ -95,10 +95,13 @@ void uel_sch_init(
 uel_event_t *uel_sch_run_later(
     uel_scheduer_t *scheduler,
     uint16_t  timeout_in_ms,
-    uel_closure_t closure
+    uel_closure_t closure,
+    void *value
 ){
     uel_event_t *event = uel_syspools_acquire_event(scheduler->pools);
-    uel_event_config_timer(event, timeout_in_ms, false, false, &closure, scheduler->timer);
+    uel_event_config_timer(event, timeout_in_ms, false, false, &closure,
+                                                    value, scheduler->timer);
+                                                    
     uel_sysqueues_schedule_event(scheduler->queues, event);
     return event;
 }
@@ -107,10 +110,13 @@ uel_event_t *uel_sch_run_at_intervals(
     uel_scheduer_t *scheduler,
     uint16_t interval_in_ms,
     bool immediate,
-    uel_closure_t closure
+    uel_closure_t closure,
+    void *value
 ){
     uel_event_t *event = uel_syspools_acquire_event(scheduler->pools);
-    uel_event_config_timer(event, interval_in_ms, true, immediate, &closure, scheduler->timer);
+    uel_event_config_timer(event, interval_in_ms, true, immediate, &closure,
+                                                    value, scheduler->timer);
+                                                    
     if(immediate){
         uel_sysqueues_enqueue_event(scheduler->queues, event);
     }else{

@@ -31,7 +31,7 @@ static char *should_enqueue_closures(){
     DECLARE_EVENT_LOOP();
 
     uel_closure_t closure = uel_closure_create(&nop, NULL);
-    uel_evloop_enqueue_closure(&loop, &closure);
+    uel_evloop_enqueue_closure(&loop, &closure, (void *)&loop);
 
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events after first insertion",
@@ -52,11 +52,11 @@ static char *should_run_events(){
 
     bool done1 = false;
     uel_closure_t closure1 = uel_closure_create(&mark_execution, (void *)&done1);
-    uel_evloop_enqueue_closure(&loop, &closure1);
+    uel_evloop_enqueue_closure(&loop, &closure1, (void *)&loop);
 
     bool done2 = false;
     uel_closure_t closure2 = uel_closure_create(&mark_execution, (void *)&done2);
-    uel_evloop_enqueue_closure(&loop, &closure2);
+    uel_evloop_enqueue_closure(&loop, &closure2, (void *)&loop);
 
     uel_evloop_run(&loop);
 
@@ -75,7 +75,7 @@ static char *should_schedule_expired_timers(){
 
     uel_closure_t closure = uel_closure_create(&nop, NULL);
     uel_event_t *timer = uel_syspools_acquire_event(&pools);
-    uel_event_config_timer(timer, 100, true, false, &closure, 0);
+    uel_event_config_timer(timer, 100, true, false, &closure, (void *)&loop, 0);
     uel_sysqueues_enqueue_event(loop.queues, timer);
     uel_evloop_run(&loop);
 
@@ -96,7 +96,7 @@ static char *should_handle_paused_and_cancelled_timers(){
     uel_closure_t closure = uel_closure_create(&mark_execution, (void *)&flag);
 
     uel_event_t *timer = uel_syspools_acquire_event(loop.pools);
-    uel_event_config_timer(timer, 10, true, false, &closure, counter);
+    uel_event_config_timer(timer, 10, true, false, &closure, (void *)&loop, counter);
     uel_sysqueues_enqueue_event(loop.queues, timer);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",
@@ -118,7 +118,7 @@ static char *should_handle_paused_and_cancelled_timers(){
     uelt_assert_not("flag", flag);
 
     timer = uel_syspools_acquire_event(loop.pools);
-    uel_event_config_timer(timer, 10, true, false, &closure, counter);
+    uel_event_config_timer(timer, 10, true, false, &closure, (void *)&loop, counter);
     uel_sysqueues_enqueue_event(loop.queues, timer);
     uelt_assert_ints_equal(
         "uel_sysqueues_count_enqueued_events",

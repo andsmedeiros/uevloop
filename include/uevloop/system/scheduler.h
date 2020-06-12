@@ -67,12 +67,14 @@ void uel_sch_init(
   * \param scheduler The uel_scheduer_t into which the event will be registered
   * \param timeout_in_ms The delay in milliseconds until the closure is run
   * \param closure The closure to be invoked when the due time is reached
+  * \param value The value to invoked the closure with
   * \returns The scheduled event
   */
 uel_event_t *uel_sch_run_later(
     uel_scheduer_t *scheduler,
     uint16_t  timeout_in_ms,
-    uel_closure_t closure
+    uel_closure_t closure,
+    void *value
 );
 
 
@@ -83,13 +85,15 @@ uel_event_t *uel_sch_run_later(
   * \param immediate If this flag is set, the the event will be created with a
   * due time to the current time.
   * \param closure The closure to be invoked when the due time is reached
+  * \param value The value to invoked the closure with
   * \returns The scheduled event
   */
 uel_event_t *uel_sch_run_at_intervals(
     uel_scheduer_t *scheduler,
     uint16_t interval_in_ms,
     bool immediate,
-    uel_closure_t closure
+    uel_closure_t closure,
+    void *value
 );
 
 /** \brief Enqueue timers that are due to be processed in the event queue
