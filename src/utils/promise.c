@@ -39,9 +39,9 @@ static inline void push_segment(uel_promise_t *promise, uel_promise_segment_t *s
 static inline void await_promise(uel_promise_t *promise, uel_promise_t *other) {
     promise->state = UEL_PROMISE_PENDING;
 
+    uel_promise_segment_t *segment;
     UEL_CRITICAL_ENTER;
-    uel_promise_segment_t *segment =
-        (uel_promise_segment_t *)uel_objpool_acquire(promise->source->segment_pool);
+    segment = (uel_promise_segment_t *)uel_objpool_acquire(promise->source->segment_pool);
     UEL_CRITICAL_EXIT;
 
     segment->next = promise->first_segment;
@@ -60,8 +60,9 @@ static inline void await_promise(uel_promise_t *promise, uel_promise_t *other) {
 }
 
 static inline void process_segment(uel_promise_t *promise) {
+    uel_promise_segment_t *segment;
     UEL_CRITICAL_ENTER;
-    uel_promise_segment_t *segment = promise->first_segment;
+    segment = promise->first_segment;
     promise->first_segment = segment->next;
     if(!promise->first_segment) promise->last_segment = NULL;
     UEL_CRITICAL_EXIT;
@@ -102,9 +103,9 @@ uel_promise_store_t uel_promise_store_create(
     return store;
 }
 uel_promise_t *uel_promise_create(uel_promise_store_t *store, uel_closure_t closure) {
+    uel_promise_t *promise;
     UEL_CRITICAL_ENTER;
-    uel_promise_t *promise =
-        (uel_promise_t *)uel_objpool_acquire(store->promise_pool);
+    promise = (uel_promise_t *)uel_objpool_acquire(store->promise_pool);
     UEL_CRITICAL_EXIT;
 
     promise->source = store;
@@ -146,9 +147,9 @@ void uel_promise_after(
     uel_closure_t resolve,
     uel_closure_t reject
 ) {
+    uel_promise_segment_t *segment;
     UEL_CRITICAL_ENTER;
-    uel_promise_segment_t *segment =
-        (uel_promise_segment_t *)uel_objpool_acquire(promise->source->segment_pool);
+    segment = (uel_promise_segment_t *)uel_objpool_acquire(promise->source->segment_pool);
     UEL_CRITICAL_EXIT;
 
     segment ->next = NULL;
