@@ -11,12 +11,12 @@ dist/libuevloop.so: $(OBJ)
 	mkdir -p dist
 	$(CC) -shared -fpic -o dist/libuevloop.so $(OBJ) $(CFLAGS) -fprofile-arcs -ftest-coverage
 
-build/system/%.o: src/system/%.c include/uevloop/system/%.h
-	mkdir -p build/system
-	$(CC) -c -fpic -o $@ $< $(CFLAGS) -fprofile-arcs -ftest-coverage
-
 build/system/containers/%.o: src/system/containers/%.c include/uevloop/system/containers/%.h
 	mkdir -p build/system/containers
+	$(CC) -c -fpic -o $@ $< $(CFLAGS) -fprofile-arcs -ftest-coverage
+
+build/system/%.o: src/system/%.c include/uevloop/system/%.h
+	mkdir -p build/system
 	$(CC) -c -fpic -o $@ $< $(CFLAGS) -fprofile-arcs -ftest-coverage
 
 build/utils/%.o: src/utils/%.c include/uevloop/utils/%.h
@@ -29,12 +29,12 @@ dist/test: dist/libuevloop.so build/test.o $(TEST_OBJ)
 build/test.o: test/test.c test/uelt.h
 	$(CC) -c -fpic -o build/test.o test/test.c $(CFLAGS_TEST)
 
-build/test/system/%.o: test/system/%.c test/system/%.h build/system/%.o test/uelt.h
-	mkdir -p build/test/system
-	$(CC) -c -fpic -o $@ $< $(CFLAGS_TEST)
-
 build/test/system/containers/%.o: test/system/containers/%.c test/system/containers/%.h build/system/containers/%.o test/uelt.h
 	mkdir -p build/test/system/containers
+	$(CC) -c -fpic -o $@ $< $(CFLAGS_TEST)
+
+build/test/system/%.o: test/system/%.c test/system/%.h build/system/%.o test/uelt.h
+	mkdir -p build/test/system
 	$(CC) -c -fpic -o $@ $< $(CFLAGS_TEST)
 
 build/test/utils/%.o: test/utils/%.c test/utils/%.h build/utils/%.o test/uelt.h
