@@ -58,6 +58,12 @@ static inline void run_signal_event(uel_evloop_t *event_loop, uel_event_t *signa
         uel_closure_t *closure = &closures[i];
         uel_closure_invoke(closure, signal->value);
     }
+
+    if (signal->final_callback != NULL)
+    {
+        signal->final_callback(signal);
+    }
+
     for(unsigned int node_count = j, j = 0; j < node_count; j++){
         uel_event_t *event = removed_nodes[j]->value;
         uel_syspools_release_event(event_loop->pools, event);

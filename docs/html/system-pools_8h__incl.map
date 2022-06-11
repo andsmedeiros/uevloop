@@ -1,9 +1,0 @@
-<map id="include/uevloop/system/containers/system&#45;pools.h" name="include/uevloop/system/containers/system&#45;pools.h">
-<area shape="rect" id="node1" title="A container for the system&#39;s internal pools." alt="" coords="193,5,391,47"/>
-<area shape="rect" id="node2" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="5,102,136,129"/>
-<area shape="rect" id="node3" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="315,184,464,225"/>
-<area shape="rect" id="node5" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="161,95,311,136"/>
-<area shape="rect" id="node7" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="387,102,565,129"/>
-<area shape="rect" id="node4" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="361,273,530,300"/>
-<area shape="rect" id="node6" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="131,184,290,225"/>
-</map>

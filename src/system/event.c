@@ -10,6 +10,7 @@ void uel_event_config_closure(
     void *value,
     bool repeating
 ) {
+    event->final_callback = NULL;
     event->type = UEL_CLOSURE_EVENT;
     event->closure = *closure;
     event->value = value;
@@ -22,6 +23,7 @@ void uel_event_config_signal(
     uel_llist_t *listeners,
     void *params
 ){
+    event->final_callback = NULL;
     event->closure = uel_closure_create(NULL, NULL);
     event->type = UEL_SIGNAL_EVENT;
     event->detail.signal.value = signal;
@@ -30,6 +32,7 @@ void uel_event_config_signal(
 }
 
 void uel_event_config_signal_listener(uel_event_t *event, uel_closure_t *closure, bool repeating){
+    event->final_callback = NULL;
     event->type = UEL_SIGNAL_LISTENER_EVENT;
     event->closure = *closure;
     event->repeating = repeating;
@@ -42,6 +45,7 @@ void uel_event_config_observer(
     volatile uintptr_t *condition_var,
     bool repeating
 ){
+    event->final_callback = NULL;
     event->type = UEL_OBSERVER_EVENT;
     event->closure = *closure;
     event->repeating = repeating;
@@ -63,6 +67,7 @@ void uel_event_config_timer(
     void *value,
     uint32_t current_time
 ) {
+    event->final_callback = NULL;
     event->type = UEL_TIMER_EVENT;
     event->closure = *closure;
     event->value = value;

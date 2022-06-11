@@ -76,6 +76,22 @@ void uel_signal_emit(uel_signal_t signal, uel_signal_relay_t *relay, void *param
     }
 }
 
+void uel_signal_emit_with_final_callback(uel_signal_t signal, uel_signal_relay_t *relay, void *params,
+  event_final_callback_t final_callback)
+{
+    uel_llist_t *listeners = &relay->signal_vector[signal];
+    bool has_listeners = false;
+    UEL_CRITICAL_ENTER;
+    has_listeners = listeners->count > 0;
+    UEL_CRITICAL_EXIT;
+    if (has_listeners) {
+        uel_event_t *event = uel_syspools_acquire_event(relay->pools);
+        uel_event_config_signal(event, signal, listeners, params);
+        event->final_callback = final_callback;
+        uel_sysqueues_enqueue_event(relay->queues, event);
+    }
+}
+
 uel_signal_listener_t uel_signal_resolve_promise(
     uel_signal_t signal,
     uel_signal_relay_t *relay,

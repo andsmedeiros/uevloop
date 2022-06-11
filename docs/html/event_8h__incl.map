@@ -1,5 +1,0 @@
-<map id="include/uevloop/system/event.h" name="include/uevloop/system/event.h">
-<area shape="rect" id="node1" title="Defines events and methods to configure events." alt="" coords="5,5,183,47"/>
-<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="9,184,179,211"/>
-<area shape="rect" id="node3" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="75,95,225,136"/>
-</map>

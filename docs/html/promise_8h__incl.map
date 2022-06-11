@@ -1,7 +1,0 @@
-<map id="include/uevloop/utils/promise.h" name="include/uevloop/utils/promise.h">
-<area shape="rect" id="node1" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="167,5,324,47"/>
-<area shape="rect" id="node2" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="5,102,136,129"/>
-<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="161,102,330,129"/>
-<area shape="rect" id="node4" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="354,95,505,136"/>
-<area shape="rect" id="node5" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="350,184,509,225"/>
-</map>
