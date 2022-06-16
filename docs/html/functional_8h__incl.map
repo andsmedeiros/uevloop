@@ -1,8 +1,0 @@
-<map id="include/uevloop/utils/functional.h" name="include/uevloop/utils/functional.h">
-<area shape="rect" id="node1" title="Contains helpers for composing and augumenting closures." alt="" coords="53,5,210,47"/>
-<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="159,259,328,285"/>
-<area shape="rect" id="node3" href="$pipeline_8h.html" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially,..." alt="" coords="31,177,205,203"/>
-<area shape="rect" id="node4" href="$conditional_8h.html" title="Contains definitions of functional conditionals, structures that act as if&#45;else constructs." alt="" coords="102,95,297,121"/>
-<area shape="rect" id="node5" href="$iterator_8h.html" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="321,95,491,121"/>
-<area shape="rect" id="node6" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="331,169,481,211"/>
-</map>

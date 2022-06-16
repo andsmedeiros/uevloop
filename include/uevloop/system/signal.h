@@ -114,6 +114,17 @@ void uel_signal_unlisten(uel_signal_listener_t listener);
   */
 void uel_signal_emit(uel_signal_t signal, uel_signal_relay_t *relay, void *params);
 
+/** \brief Emits a signal at the supplied relay. Any closure listening to this
+  * signal will be asynchronously invoked. When all are invoked, call the final callback.
+  *
+  * \param signal The signal to be emitted
+  * \param relay The relay where the signal is registered
+  * \param params The parameters supplied to the listener's closure when it is
+  * invoked.
+  */
+void uel_signal_emit_with_final_callback(uel_signal_t signal, uel_signal_relay_t *relay, void *params,
+  event_final_callback_t final_callback);
+
 /** \brief Attaches a non-repeating listener that resolves the provided promise
   * upon emission.
   *

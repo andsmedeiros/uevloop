@@ -34,7 +34,6 @@ enum uel_event_timer_status {
 //! Alias to the uel_event_timer_status
 typedef enum uel_event_timer_status uel_event_timer_status_t;
 
-
 /** \brief Events are special messages passed around the core.
   * They represent tasks to be run at some point by the system.
   *
@@ -55,11 +54,13 @@ typedef enum uel_event_timer_status uel_event_timer_status_t;
   * flag determines whether the signal should be able to fire multiple times or just once.
   */
 typedef struct event uel_event_t;
+typedef void (*event_final_callback_t)(uel_event_t *);
 struct event {
     uel_event_type_t type; //!< The type of the event, as defined by `uel_event_type_t`
     uel_closure_t closure; //!< The closure to be invoked a.k.a. the action to be run
     void *value; //!< The value the closure should be invoked with
     bool repeating; //!< Marks whether the event should be discarded after processing.
+    event_final_callback_t final_callback; //!< Get's called when all the listeners have been invoked.
 
     //! Allows to compact many speciffic details on various event types on a single
     //! memory slot. Pertinent content depends on the `type` member value.

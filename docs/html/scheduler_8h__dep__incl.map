@@ -1,4 +1,0 @@
-<map id="include/uevloop/system/scheduler.h" name="include/uevloop/system/scheduler.h">
-<area shape="rect" id="node1" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="8,5,185,47"/>
-<area shape="rect" id="node2" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="5,95,188,136"/>
-</map>

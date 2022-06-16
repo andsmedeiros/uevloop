@@ -1,8 +1,0 @@
-<map id="uel_promise_t" name="uel_promise_t">
-<area shape="rect" id="node1" title="A promise is association of an asynchronous operation to the possible execution paths that follow its..." alt="" coords="331,213,445,240"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,109,195,136"/>
-<area shape="rect" id="node3" href="$structuel__promise__store.html" title="An issuer of promises. Contains references to pools for promises and segments." alt="" coords="219,109,373,136"/>
-<area shape="rect" id="node4" title=" " alt="" coords="241,5,351,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="397,109,459,136"/>
-<area shape="rect" id="node6" title=" " alt="" coords="483,109,666,136"/>
-</map>
