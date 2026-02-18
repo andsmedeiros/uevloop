@@ -1,7 +1,11 @@
 <map id="uel_scheduer_t" name="uel_scheduer_t">
-<area shape="rect" id="node1" title="The scheduler object." alt="" coords="195,109,315,136"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,136,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="160,5,245,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="269,5,344,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="369,5,487,32"/>
+<area shape="rect" id="Node000001" title="The scheduler object." alt="" coords="173,125,282,152"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,82,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,43,82,73,110,99,141,115,175,128,170,128,139,120,107,104,78,77,57,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="105,5,214,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="176,44,223,125,218,125,173,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="237,5,356,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="285,44,252,103,237,127,234,123,248,100,280,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="380,5,448,32"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="397,43,369,76,333,104,306,117,279,127,278,122,304,112,330,99,365,72,393,45"/>
 </map>

@@ -1,12 +1,32 @@
 <map id="include/uevloop/system/signal.h" name="include/uevloop/system/signal.h">
-<area shape="rect" id="node1" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="171,5,349,47"/>
-<area shape="rect" id="node2" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="5,273,155,315"/>
-<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="367,363,537,389"/>
-<area shape="rect" id="node4" href="$promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="495,102,670,129"/>
-<area shape="rect" id="node8" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="50,95,249,136"/>
-<area shape="rect" id="node9" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="51,191,229,218"/>
-<area shape="rect" id="node10" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="273,95,471,136"/>
-<area shape="rect" id="node5" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="429,191,560,218"/>
-<area shape="rect" id="node6" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="254,184,405,225"/>
-<area shape="rect" id="node7" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="350,273,509,315"/>
+<area shape="rect" id="Node000001" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="160,5,318,48"/>
+<area shape="rect" id="Node000002" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="6,277,138,320"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,33,124,41,88,53,55,72,29,98,12,130,9,159,16,191,28,228,47,264,41,266,23,230,11,192,4,159,7,128,25,94,52,67,86,48,122,36,161,30"/>
+<area shape="rect" id="Node000003" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="340,368,492,395"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="317,28,403,34,493,46,572,65,602,78,622,94,640,118,650,140,651,161,643,184,627,209,601,239,521,322,492,345,461,363,460,358,489,341,517,318,597,235,622,206,639,181,646,161,645,141,635,121,618,98,599,83,570,70,492,51,402,39,319,33"/>
+<area shape="rect" id="Node000004" href="$promise_8h.html" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="453,104,608,131"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="307,46,477,98,472,100,307,51"/>
+<area shape="rect" id="Node000008" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="50,96,227,139"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="214,51,175,87,171,84,217,46"/>
+<area shape="rect" id="Node000009" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="48,195,208,221"/>
+<area shape="poly" id="edge20_Node000001_Node000009" title=" " alt="" coords="157,35,127,43,94,56,65,73,41,97,34,117,41,137,62,164,90,186,85,188,58,168,36,140,29,117,36,95,61,69,92,51,125,38,161,32"/>
+<area shape="rect" id="Node000010" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="251,96,429,139"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="262,46,308,85,302,86,262,51"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="139,313,349,362,346,366,138,318"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="537,129,548,175,549,203,544,230,526,270,500,305,446,360,443,355,496,302,521,267,539,229,543,202,542,176,534,134"/>
+<area shape="rect" id="Node000005" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="390,195,506,221"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="521,130,472,185,469,181,517,133"/>
+<area shape="rect" id="Node000006" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="232,187,365,229"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="495,133,368,183,366,178,500,130"/>
+<area shape="rect" id="Node000007" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="322,277,462,320"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="321,227,362,267,357,267,320,232"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="87,142,61,161,38,188,33,206,35,226,51,264,45,265,29,227,28,206,34,185,57,157,89,137"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="211,137,392,188,387,191,211,142"/>
+<area shape="poly" id="edge12_Node000008_Node000006" title=" " alt="" coords="176,137,251,178,246,180,176,142"/>
+<area shape="poly" id="edge13_Node000008_Node000009" title=" " alt="" coords="137,137,134,180,129,179,135,142"/>
+<area shape="poly" id="edge15_Node000009_Node000002" title=" " alt="" coords="122,220,95,266,91,263,119,224"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="149,219,311,318,382,360,377,360,308,322,147,224"/>
+<area shape="poly" id="edge18_Node000010_Node000005" title=" " alt="" coords="366,136,424,185,419,185,365,142"/>
+<area shape="poly" id="edge19_Node000010_Node000007" title=" " alt="" coords="419,137,481,159,506,171,521,185,529,208,521,231,501,255,475,273,472,268,497,251,516,228,524,208,517,188,502,176,479,164,419,142"/>
+<area shape="poly" id="edge17_Node000010_Node000009" title=" " alt="" coords="289,141,174,191,171,186,292,137"/>
 </map>

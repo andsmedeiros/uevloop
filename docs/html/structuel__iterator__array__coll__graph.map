@@ -1,5 +1,7 @@
 <map id="uel_iterator_array_t" name="uel_iterator_array_t">
-<area shape="rect" id="node1" title="A specialised iterator suitable for iterating over arrays of arbitrary data." alt="" coords="15,109,165,136"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,65,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="90,5,199,32"/>
+<area shape="rect" id="Node000001" title="A specialised iterator suitable for iterating over arrays of arbitrary data." alt="" coords="37,125,169,152"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,45,100,125,95,125,63,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="125,5,182,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,45,127,102,113,127,109,123,122,100,143,48"/>
 </map>

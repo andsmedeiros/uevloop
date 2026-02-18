@@ -1,9 +1,23 @@
 <map id="include/uevloop/system/event.h" name="include/uevloop/system/event.h">
-<area shape="rect" id="node1" title="Defines events and methods to configure events." alt="" coords="340,5,517,47"/>
-<area shape="rect" id="node2" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="101,95,300,136"/>
-<area shape="rect" id="node6" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="482,184,660,225"/>
-<area shape="rect" id="node7" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="323,95,534,136"/>
-<area shape="rect" id="node3" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="226,273,409,315"/>
-<area shape="rect" id="node4" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="229,184,406,225"/>
-<area shape="rect" id="node5" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="28,184,205,225"/>
+<area shape="rect" id="Node000001" title="Defines events and methods to configure events." alt="" coords="308,5,467,48"/>
+<area shape="rect" id="Node000002" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="90,96,269,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="323,56,230,98,227,93,327,53"/>
+<area shape="rect" id="Node000006" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="440,187,599,229"/>
+<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="449,53,475,72,496,94,509,117,516,142,522,187,517,185,511,143,504,119,492,98,472,76,449,58"/>
+<area shape="rect" id="Node000007" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="293,96,482,139"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="389,61,390,97,385,95,386,66"/>
+<area shape="rect" id="Node000003" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="206,277,369,320"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,146,50,163,22,182,13,192,9,203,9,215,16,228,28,238,45,247,93,264,149,276,208,288,203,289,148,282,91,269,43,252,25,242,12,231,4,217,3,203,8,190,18,178,48,158,88,142"/>
+<area shape="rect" id="Node000004" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="208,187,367,229"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="217,146,265,186,260,186,216,151"/>
+<area shape="rect" id="Node000005" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="26,187,184,229"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="154,148,124,188,120,185,151,152"/>
+<area shape="poly" id="edge7_Node000002_Node000006" title=" " alt="" coords="274,140,442,185,437,187,274,146"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="290,243,290,279,285,276,286,247"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="162,234,248,276,243,278,161,239"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="454,235,343,279,341,274,449,236"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="394,152,393,192,381,231,358,258,330,279,328,274,354,254,376,228,388,192,390,157"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="356,148,313,188,310,184,351,150"/>
+<area shape="poly" id="edge12_Node000007_Node000005" title=" " alt="" coords="305,146,172,188,170,184,309,142"/>
+<area shape="poly" id="edge13_Node000007_Node000006" title=" " alt="" coords="432,145,492,186,486,186,431,150"/>
 </map>

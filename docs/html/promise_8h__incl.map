@@ -1,7 +1,11 @@
 <map id="include/uevloop/utils/promise.h" name="include/uevloop/utils/promise.h">
-<area shape="rect" id="node1" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="167,5,324,47"/>
-<area shape="rect" id="node2" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="5,102,136,129"/>
-<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="161,102,330,129"/>
-<area shape="rect" id="node4" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="354,95,505,136"/>
-<area shape="rect" id="node5" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="350,184,509,225"/>
+<area shape="rect" id="Node000001" title="Contains definitions for promise stores, promises and functions to manipulate them." alt="" coords="151,5,290,48"/>
+<area shape="rect" id="Node000002" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="5,104,122,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,51,101,98,98,94,185,46"/>
+<area shape="rect" id="Node000003" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="145,104,296,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="222,46,223,89,218,87,219,51"/>
+<area shape="rect" id="Node000004" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="321,96,454,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="260,46,338,88,333,89,260,51"/>
+<area shape="rect" id="Node000005" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="317,187,458,229"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="389,137,390,173,385,170,386,141"/>
 </map>

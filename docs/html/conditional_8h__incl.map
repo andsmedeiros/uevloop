@@ -1,4 +1,5 @@
 <map id="include/uevloop/utils/conditional.h" name="include/uevloop/utils/conditional.h">
-<area shape="rect" id="node1" title="Contains definitions of functional conditionals, structures that act as if&#45;else constructs." alt="" coords="11,5,169,47"/>
-<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="5,95,175,121"/>
+<area shape="rect" id="Node000001" title="Contains definitions of functional conditionals, structures that act as if&#45;else constructs." alt="" coords="11,5,151,48"/>
+<area shape="rect" id="Node000002" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="5,96,157,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,47,84,81,78,79,79,51"/>
 </map>

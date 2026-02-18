@@ -1,5 +1,8 @@
 <map id="include/uevloop/utils/iterator.h" name="include/uevloop/utils/iterator.h">
-<area shape="rect" id="node1" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="57,5,215,47"/>
-<area shape="rect" id="node2" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="5,95,155,136"/>
-<area shape="rect" id="node3" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="51,184,221,211"/>
+<area shape="rect" id="Node000001" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="54,5,193,48"/>
+<area shape="rect" id="Node000002" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="5,96,138,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,46,93,84,89,81,110,51"/>
+<area shape="rect" id="Node000003" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="48,187,199,213"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="135,46,153,95,156,117,153,139,140,174,136,171,148,138,150,117,148,97,133,51"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,137,110,173,104,174,84,142"/>
 </map>

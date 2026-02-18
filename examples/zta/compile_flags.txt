@@ -1,0 +1,4 @@
+-I../../include
+-L../../dist
+-luevloop
+-lncurses

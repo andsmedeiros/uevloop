@@ -1,7 +1,11 @@
 <map id="uel_autoptr" name="uel_autoptr">
-<area shape="rect" id="node1" title="Automatic pointers are pointers wrapped by information of where they were issued." alt="" coords="136,199,232,225"/>
-<area shape="rect" id="node2" href="$structuel__autopool.html" title="Automatic pools are wrappers to object pools. They manage the acquisition and release cycle from obje..." alt="" coords="67,109,186,136"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,115,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="139,5,247,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="211,109,272,136"/>
+<area shape="rect" id="Node000001" title="Automatic pointers are pointers wrapped by information of where they were issued." alt="" coords="26,224,111,251"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,125,60,152"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="39,165,51,199,63,224,58,224,46,201,37,169"/>
+<area shape="rect" id="Node000003" href="$structuel__autopool.html" title="Automatic pools are wrappers to object pools. They manage the acquisition and release cycle from obje..." alt="" coords="84,125,189,152"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,165,79,226,75,222,116,165"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="26,5,124,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,45,70,74,77,100,88,113,104,124,99,126,85,117,72,103,65,75,68,50"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="147,5,246,32"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="187,44,162,103,147,127,143,123,157,100,184,48"/>
 </map>

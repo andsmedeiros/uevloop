@@ -1,8 +1,13 @@
 <map id="uel_promise_t" name="uel_promise_t">
-<area shape="rect" id="node1" title="A promise is association of an asynchronous operation to the possible execution paths that follow its..." alt="" coords="331,213,445,240"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,109,195,136"/>
-<area shape="rect" id="node3" href="$structuel__promise__store.html" title="An issuer of promises. Contains references to pools for promises and segments." alt="" coords="219,109,373,136"/>
-<area shape="rect" id="node4" title=" " alt="" coords="241,5,351,32"/>
-<area shape="rect" id="node5" title=" " alt="" coords="397,109,459,136"/>
-<area shape="rect" id="node6" title=" " alt="" coords="483,109,666,136"/>
+<area shape="rect" id="Node000001" title="A promise is association of an asynchronous operation to the possible execution paths that follow its..." alt="" coords="265,245,367,272"/>
+<area shape="rect" id="Node000002" href="$structuel__promise__store.html" title="An issuer of promises. Contains references to pools for promises and segments." alt="" coords="5,125,144,152"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,158,160,188,219,219,280,245,275,245,217,224,157,193,107,163"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="26,5,123,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,45,77,125,72,125,73,50"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="168,125,331,152"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="265,164,311,245,306,244,262,168"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="355,125,410,152"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="371,164,339,223,325,247,322,243,335,220,366,167"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="434,125,603,152"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="495,161,454,194,408,224,354,247,353,242,405,219,451,190,490,163"/>
 </map>

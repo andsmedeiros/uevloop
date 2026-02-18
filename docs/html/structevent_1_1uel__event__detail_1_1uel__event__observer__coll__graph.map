@@ -1,5 +1,9 @@
 <map id="uel_event_t::uel_event_detail::uel_event_observer" name="uel_event_t::uel_event_detail::uel_event_observer">
-<area shape="rect" id="node1" title="Contains the reference to an observer variable." alt="" coords="5,109,208,151"/>
-<area shape="rect" id="node2" title=" " alt="" coords="33,5,84,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="117,5,195,32"/>
+<area shape="rect" id="Node000001" title="Contains the reference to an observer variable." alt="" coords="96,104,277,147"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,128,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,44,86,63,98,78,132,103,127,104,94,82,82,66,75,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="152,5,221,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,46,189,105,184,102,185,49"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="261,5,306,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="277,45,257,82,227,106,225,101,252,78,272,48"/>
 </map>

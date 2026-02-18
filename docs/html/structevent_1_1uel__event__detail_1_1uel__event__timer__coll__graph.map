@@ -1,6 +1,9 @@
 <map id="uel_event_t::uel_event_detail::uel_event_timer" name="uel_event_t::uel_event_detail::uel_event_timer">
-<area shape="rect" id="node1" title="Contains information suitable for scheduling an event at the scheduler." alt="" coords="147,109,327,151"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,175,47"/>
-<area shape="rect" id="node3" title=" " alt="" coords="199,13,274,39"/>
-<area shape="rect" id="node4" title=" " alt="" coords="298,13,373,39"/>
+<area shape="rect" id="Node000001" title="Contains information suitable for scheduling an event at the scheduler." alt="" coords="51,120,211,163"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,13,73,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,52,55,75,67,94,94,119,89,120,63,98,50,77,44,57"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,13,165,40"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,53,134,120,128,119,129,57"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="188,5,338,48"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="232,58,189,98,159,122,156,117,185,94,227,60"/>
 </map>

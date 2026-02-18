@@ -1,4 +1,5 @@
 <map id="uel_conditional_t" name="uel_conditional_t">
-<area shape="rect" id="node1" title="Conditionals are constructs that provide functional flow control." alt="" coords="5,124,139,151"/>
-<area shape="rect" id="node2" title=" " alt="" coords="18,5,126,32"/>
+<area shape="rect" id="Node000001" title="Conditionals are constructs that provide functional flow control." alt="" coords="5,147,124,173"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="15,5,114,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,46,67,147,62,146,62,48"/>
 </map>

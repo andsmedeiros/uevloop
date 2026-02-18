@@ -1,6 +1,9 @@
 <map id="uel_func_mapper_t" name="uel_func_mapper_t">
-<area shape="rect" id="node1" title="Maps elements of an iterator to an area of memory. Each element is assigned to a void pointer slot." alt="" coords="74,95,221,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,73,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="117,5,177,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="202,5,311,32"/>
+<area shape="rect" id="Node000001" title="Maps elements of an iterator to an area of memory. Each element is assigned to a void pointer slot." alt="" coords="99,104,230,131"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,111,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,42,113,78,146,103,141,104,110,82,76,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="135,5,194,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,46,167,105,162,103,163,49"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="238,5,294,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="259,45,251,65,239,82,221,96,202,106,200,101,218,91,235,78,246,63,255,48"/>
 </map>

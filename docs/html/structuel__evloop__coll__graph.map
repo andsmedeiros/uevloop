@@ -1,6 +1,9 @@
 <map id="uel_evloop_t" name="uel_evloop_t">
-<area shape="rect" id="node1" title="The event loop object." alt="" coords="127,95,233,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,91,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="115,5,245,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="269,5,411,32"/>
+<area shape="rect" id="Node000001" title="The event loop object." alt="" coords="150,104,244,131"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,114,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,39,181,102,177,105,89,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="137,5,256,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,46,199,105,194,103,195,50"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="280,5,356,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="297,42,254,82,219,106,217,101,251,78,292,44"/>
 </map>

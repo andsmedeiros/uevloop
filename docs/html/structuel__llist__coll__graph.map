@@ -1,5 +1,7 @@
 <map id="uel_llist_t" name="uel_llist_t">
-<area shape="rect" id="node1" title="Defines a linked list. If it is empty, head == tail == NULL. Pushing or popping from both the head or..." alt="" coords="95,109,181,136"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="165,5,242,32"/>
+<area shape="rect" id="Node000001" title="Defines a linked list. If it is empty, head == tail == NULL. Pushing or popping from both the head or..." alt="" coords="79,125,155,152"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,117,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,44,114,124,108,125,72,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="140,5,208,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,45,142,103,127,127,124,123,137,100,162,48"/>
 </map>

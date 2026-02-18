@@ -1,8 +1,17 @@
 <map id="include/uevloop/utils/functional.h" name="include/uevloop/utils/functional.h">
-<area shape="rect" id="node1" title="Contains helpers for composing and augumenting closures." alt="" coords="53,5,210,47"/>
-<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="159,259,328,285"/>
-<area shape="rect" id="node3" href="$pipeline_8h.html" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially,..." alt="" coords="31,177,205,203"/>
-<area shape="rect" id="node4" href="$conditional_8h.html" title="Contains definitions of functional conditionals, structures that act as if&#45;else constructs." alt="" coords="102,95,297,121"/>
-<area shape="rect" id="node5" href="$iterator_8h.html" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="321,95,491,121"/>
-<area shape="rect" id="node6" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="331,169,481,211"/>
+<area shape="rect" id="Node000001" title="Contains helpers for composing and augumenting closures." alt="" coords="61,5,201,48"/>
+<area shape="rect" id="Node000002" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="146,261,297,288"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,51,65,83,29,124,16,147,9,169,10,191,20,212,36,225,63,236,133,256,129,259,61,241,33,229,16,215,5,192,4,168,11,144,24,121,61,79,103,46"/>
+<area shape="rect" id="Node000003" href="$pipeline_8h.html" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially,..." alt="" coords="30,179,184,205"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,51,107,72,98,97,95,131,101,164,96,163,90,131,92,95,102,70,118,46"/>
+<area shape="rect" id="Node000004" href="$conditional_8h.html" title="Contains definitions of functional conditionals, structures that act as if&#45;else constructs." alt="" coords="107,96,278,123"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="147,46,176,83,171,84,147,51"/>
+<area shape="rect" id="Node000005" href="$iterator_8h.html" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="302,96,451,123"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="194,46,325,89,321,92,194,51"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="126,203,194,252,189,253,124,208"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="197,121,219,247,214,246,193,125"/>
+<area shape="poly" id="edge9_Node000005_Node000002" title=" " alt="" coords="359,122,330,146,300,173,266,212,239,250,236,246,262,209,296,169,326,142,355,124"/>
+<area shape="rect" id="Node000006" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="310,171,443,213"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="378,121,379,157,374,154,375,125"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="339,213,260,256,259,251,334,215"/>
 </map>

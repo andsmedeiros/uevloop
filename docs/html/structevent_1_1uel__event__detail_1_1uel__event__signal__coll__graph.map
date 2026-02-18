@@ -1,5 +1,7 @@
 <map id="uel_event_t::uel_event_detail::uel_event_signal" name="uel_event_t::uel_event_detail::uel_event_signal">
-<area shape="rect" id="node1" title="Contains information related to an emitted signal." alt="" coords="8,95,192,136"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,91,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="115,5,192,32"/>
+<area shape="rect" id="Node000001" title="Contains information related to an emitted signal." alt="" coords="8,104,172,147"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,74,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="54,44,83,103,78,104,50,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="98,5,184,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,45,102,105,98,102,126,47"/>
 </map>

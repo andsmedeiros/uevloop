@@ -1,4 +1,5 @@
 <map id="include/uevloop/utils/pipeline.h" name="include/uevloop/utils/pipeline.h">
-<area shape="rect" id="node1" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially,..." alt="" coords="5,5,163,47"/>
-<area shape="rect" id="node2" href="$functional_8h.html" title="Contains helpers for composing and augumenting closures." alt="" coords="5,95,163,136"/>
+<area shape="rect" id="Node000001" title="Defines pipelines, structures to hold many closures and functions to invoke them sequentially,..." alt="" coords="5,5,145,48"/>
+<area shape="rect" id="Node000002" href="$functional_8h.html" title="Contains helpers for composing and augumenting closures." alt="" coords="5,96,145,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,62,78,96,72,95,73,66"/>
 </map>

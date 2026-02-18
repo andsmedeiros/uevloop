@@ -1,12 +1,33 @@
 <map id="include/uevloop/utils/linked&#45;list.h" name="include/uevloop/utils/linked&#45;list.h">
-<area shape="rect" id="node1" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="331,5,489,47"/>
-<area shape="rect" id="node2" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="104,184,303,225"/>
-<area shape="rect" id="node4" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="259,273,436,315"/>
-<area shape="rect" id="node5" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="5,273,183,315"/>
-<area shape="rect" id="node6" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="512,273,689,315"/>
-<area shape="rect" id="node7" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="385,95,563,136"/>
-<area shape="rect" id="node9" href="$iterator_8h.html" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="713,95,870,136"/>
-<area shape="rect" id="node3" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="256,363,439,404"/>
-<area shape="rect" id="node8" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="377,184,587,225"/>
-<area shape="rect" id="node10" href="$functional_8h.html" title="Contains helpers for composing and augumenting closures." alt="" coords="713,184,870,225"/>
+<area shape="rect" id="Node000001" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="304,5,444,48"/>
+<area shape="rect" id="Node000002" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="93,187,271,229"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="333,60,292,98,202,188,198,185,288,94,337,56"/>
+<area shape="rect" id="Node000004" href="$event-loop_8h.html" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="237,277,396,320"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="357,60,344,97,333,147,326,197,319,278,315,276,320,196,328,146,339,95,354,64"/>
+<area shape="rect" id="Node000005" href="$scheduler_8h.html" title="Module responsible for keeping track of time and tasks to be run in the future." alt="" coords="5,277,164,320"/>
+<area shape="poly" id="edge18_Node000001_Node000005" title=" " alt="" coords="288,50,235,70,177,99,124,138,101,162,83,188,75,210,73,233,80,277,75,277,68,234,70,209,78,185,97,158,120,134,174,95,233,65,292,46"/>
+<area shape="rect" id="Node000006" href="$signal_8h.html" title="Defines signals and relays, structures used to communicate asynchronously between distant parts of th..." alt="" coords="469,277,628,320"/>
+<area shape="poly" id="edge19_Node000001_Node000006" title=" " alt="" coords="457,52,493,70,525,94,554,125,571,155,577,188,574,230,559,279,555,275,569,229,572,188,566,156,549,128,521,98,490,75,457,57"/>
+<area shape="rect" id="Node000007" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="353,96,512,139"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="396,58,422,96,416,95,395,64"/>
+<area shape="rect" id="Node000009" href="$iterator_8h.html" title="Defines iterators, structures and functions suitable for enumerating other data structures." alt="" coords="660,96,800,139"/>
+<area shape="poly" id="edge20_Node000001_Node000009" title=" " alt="" coords="458,46,663,98,658,100,459,52"/>
+<area shape="rect" id="Node000003" href="$application_8h.html" title="The application module is a convenient top&#45;level container for the system internals." alt="" coords="235,368,398,411"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="192,242,207,281,228,318,253,345,283,368,278,367,250,349,224,322,202,284,189,247"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="227,236,288,276,282,277,226,241"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="146,242,109,279,105,275,150,238"/>
+<area shape="poly" id="edge7_Node000002_Node000006" title=" " alt="" coords="283,231,471,277,466,279,282,236"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="318,334,319,369,314,366,315,337"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="153,323,264,366,260,369,152,329"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="483,325,372,370,370,365,478,326"/>
+<area shape="poly" id="edge11_Node000007_Node000002" title=" " alt="" coords="358,146,242,188,239,184,362,143"/>
+<area shape="poly" id="edge17_Node000007_Node000006" title=" " alt="" coords="505,144,530,162,549,185,558,209,561,234,556,279,552,275,556,234,553,210,545,188,527,166,504,149"/>
+<area shape="rect" id="Node000008" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="346,187,535,229"/>
+<area shape="poly" id="edge12_Node000007_Node000008" title=" " alt="" coords="437,152,441,188,436,185,434,157"/>
+<area shape="poly" id="edge13_Node000008_Node000003" title=" " alt="" coords="438,243,428,284,409,322,384,349,355,370,353,365,381,345,405,318,423,282,434,247"/>
+<area shape="poly" id="edge14_Node000008_Node000004" title=" " alt="" coords="402,237,347,279,344,274,397,240"/>
+<area shape="poly" id="edge15_Node000008_Node000005" title=" " alt="" coords="341,236,165,280,163,275,344,231"/>
+<area shape="poly" id="edge16_Node000008_Node000006" title=" " alt="" coords="478,237,526,277,521,276,476,242"/>
+<area shape="rect" id="Node000010" href="$functional_8h.html" title="Contains helpers for composing and augumenting closures." alt="" coords="660,187,800,229"/>
+<area shape="poly" id="edge21_Node000009_Node000010" title=" " alt="" coords="731,152,732,188,728,185,728,156"/>
 </map>

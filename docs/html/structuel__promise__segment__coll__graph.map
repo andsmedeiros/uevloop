@@ -1,5 +1,7 @@
 <map id="uel_promise_segment_t" name="uel_promise_segment_t">
-<area shape="rect" id="node1" title="Defines a single synchronous operation to be invoked when the promise is either resolved or rejected." alt="" coords="97,109,276,136"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,195,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="219,5,327,32"/>
+<area shape="rect" id="Node000001" title="Defines a single synchronous operation to be invoked when the promise is either resolved or rejected." alt="" coords="54,125,213,152"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,104,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,43,127,124,122,126,70,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="128,5,296,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,45,165,103,146,127,142,123,160,100,195,47"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="uel_closure_t" name="uel_closure_t">
-<area shape="rect" id="node1" title="Defines a closure, a tuple &lt;function, context, destructor&gt;" alt="" coords="109,109,217,136"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,180,47"/>
-<area shape="rect" id="node3" title=" " alt="" coords="205,13,266,39"/>
+<area shape="rect" id="Node000001" title="Defines a closure, a tuple &lt;function, context, destructor&gt;." alt="" coords="94,120,193,147"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,157,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,59,139,119,133,120,100,64"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="180,13,235,40"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,53,181,97,159,122,156,117,176,95,197,56"/>
 </map>

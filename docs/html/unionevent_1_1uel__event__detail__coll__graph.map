@@ -1,13 +1,27 @@
 <map id="uel_event_t::uel_event_detail" name="uel_event_t::uel_event_detail">
-<area shape="rect" id="node1" title=" " alt="" coords="624,195,795,236"/>
-<area shape="rect" id="node2" href="$structevent_1_1uel__event__detail_1_1uel__event__timer.html" title="Contains information suitable for scheduling an event at the scheduler." alt="" coords="323,80,503,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,175,47"/>
-<area shape="rect" id="node4" title=" " alt="" coords="53,71,127,98"/>
-<area shape="rect" id="node5" title=" " alt="" coords="53,122,127,149"/>
-<area shape="rect" id="node6" href="$structevent_1_1uel__event__detail_1_1uel__event__observer.html" title="Contains the reference to an observer variable." alt="" coords="312,223,515,264"/>
-<area shape="rect" id="node7" title=" " alt="" coords="65,191,115,218"/>
-<area shape="rect" id="node9" href="$structevent_1_1uel__event__detail_1_1uel__event__listener.html" title="Contains the context of a particular signal listener." alt="" coords="316,157,511,199"/>
-<area shape="rect" id="node8" title=" " alt="" coords="51,290,129,317"/>
-<area shape="rect" id="node10" href="$structevent_1_1uel__event__detail_1_1uel__event__signal.html" title="Contains information related to an emitted signal." alt="" coords="321,308,505,349"/>
-<area shape="rect" id="node11" title=" " alt="" coords="47,361,133,387"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="574,219,726,261"/>
+<area shape="rect" id="Node000002" href="$structevent_1_1uel__event__detail_1_1uel__event__timer.html" title="Contains information suitable for scheduling an event at the scheduler." alt="" coords="298,101,458,144"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="463,147,551,182,616,218,611,218,549,186,463,152"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="46,5,114,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="128,23,195,35,265,56,308,76,347,100,342,102,305,81,263,61,193,40,130,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="46,59,114,85"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="128,77,264,100,300,107,295,110,263,105,130,82"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,109,155,152"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="169,127,264,124,300,124,295,127,264,129,171,131"/>
+<area shape="rect" id="Node000006" href="$structevent_1_1uel__event__detail_1_1uel__event__signal.html" title="Contains information related to an emitted signal." alt="" coords="296,381,460,424"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="427,371,610,262,615,261,430,375"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="46,361,114,388"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="129,388,179,399,238,404,298,406,293,407,238,409,178,404,129,393"/>
+<area shape="rect" id="Node000011" href="$structevent_1_1uel__event__detail_1_1uel__event__observer.html" title="Contains the reference to an observer variable." alt="" coords="288,267,468,309"/>
+<area shape="poly" id="edge12_Node000011_Node000007" title=" " alt="" coords="128,359,263,320,309,309,304,311,264,325,130,364"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="37,444,123,471"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="138,451,199,444,263,433,306,425,312,424,264,439,199,449,139,456"/>
+<area shape="rect" id="Node000009" href="$structevent_1_1uel__event__detail_1_1uel__event__listener.html" title="Contains the context of a particular signal listener." alt="" coords="292,171,464,213"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="479,207,576,226,571,227,480,213"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="57,201,103,228"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="117,209,293,196,290,201,119,214"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="118,221,290,264,286,268,118,226"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="483,267,576,253,571,254,484,272"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="19,280,141,307"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="156,291,264,289,290,291,285,292,264,295,157,296"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="uel_cqueue_t" name="uel_cqueue_t">
-<area shape="rect" id="node1" title="Defines a circular queue of void pointers." alt="" coords="33,139,141,165"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,73,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="98,5,175,32"/>
+<area shape="rect" id="Node000001" title="Defines a circular queue of void pointers." alt="" coords="30,168,128,195"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,65,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="36,45,43,93,56,143,71,167,65,168,51,145,38,94,35,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="89,5,157,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,46,96,145,87,169,83,166,91,143,115,48"/>
 </map>

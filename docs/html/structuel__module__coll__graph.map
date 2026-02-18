@@ -1,13 +1,27 @@
 <map id="uel_module_t" name="uel_module_t">
-<area shape="rect" id="node1" title="A module is an isolated unit of behaviour with lifecycle hooks." alt="" coords="500,208,611,235"/>
-<area shape="rect" id="node2" href="$structuel__application.html" title="Top&#45;level container for µEvLoop&#39;d application." alt="" coords="289,208,423,235"/>
-<area shape="rect" id="node3" title=" " alt="" coords="15,5,135,32"/>
-<area shape="rect" id="node4" title=" " alt="" coords="10,56,141,83"/>
-<area shape="rect" id="node5" title=" " alt="" coords="33,107,118,133"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,157,145,184"/>
-<area shape="rect" id="node7" title=" " alt="" coords="23,208,128,235"/>
-<area shape="rect" id="node8" title=" " alt="" coords="45,259,105,285"/>
-<area shape="rect" id="node9" title=" " alt="" coords="50,309,101,336"/>
-<area shape="rect" id="node10" title=" " alt="" coords="11,360,139,387"/>
-<area shape="rect" id="node11" title=" " alt="" coords="16,411,135,437"/>
+<area shape="rect" id="Node000001" title="A module is an isolated unit of behaviour with lifecycle hooks." alt="" coords="655,237,754,263"/>
+<area shape="rect" id="Node000002" href="$structuel__module.html" title="A module is an isolated unit of behaviour with lifecycle hooks." alt="" coords="463,302,561,329"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="567,294,660,265,666,263,569,299"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="495,284,501,278,512,275,523,278,530,284,528,303,524,300,525,286,520,282,512,281,504,283,498,288"/>
+<area shape="rect" id="Node000003" href="$structuel__application.html" title="Top&#45;level container for µEvLoop&#39;d application." alt="" coords="268,237,386,263"/>
+<area shape="poly" id="edge13_Node000001_Node000003" title=" " alt="" coords="393,230,463,218,548,211,585,214,632,222,672,236,667,236,631,227,584,219,548,217,463,223,395,235"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="381,266,475,301,470,302,381,272"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="12,18,124,45"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="138,26,194,34,221,44,245,58,266,78,282,101,306,151,320,200,327,237,321,236,315,201,301,153,278,104,262,82,242,63,219,49,193,39,141,30"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="40,73,96,99"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="110,83,178,91,213,101,245,118,274,145,297,178,324,236,318,236,292,180,270,149,242,123,211,106,177,96,113,88"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="14,127,122,154"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="137,145,192,156,245,176,286,204,317,236,312,237,283,209,242,180,190,161,139,150"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="8,182,128,209"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="143,203,244,222,287,235,282,237,243,227,144,208"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="21,237,115,263"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="130,247,269,248,265,252,132,253"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="13,291,123,318"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="137,295,243,277,294,263,289,265,244,282,139,300"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="5,346,131,373"/>
+<area shape="poly" id="edge10_Node000003_Node000010" title=" " alt="" coords="145,351,195,340,242,322,283,293,313,265,317,262,287,297,245,327,196,345,147,356"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="30,401,106,427"/>
+<area shape="poly" id="edge11_Node000003_Node000011" title=" " alt="" coords="121,412,183,403,214,394,242,378,271,352,293,320,319,265,323,262,297,323,275,355,245,383,216,398,184,409,122,417"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="45,455,91,482"/>
+<area shape="poly" id="edge12_Node000003_Node000012" title=" " alt="" coords="106,470,138,470,174,466,210,456,242,438,262,420,278,397,302,347,315,299,322,266,326,262,320,301,307,349,283,400,266,423,245,443,212,461,175,471,138,475,106,475"/>
 </map>

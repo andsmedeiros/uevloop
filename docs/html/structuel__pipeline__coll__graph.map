@@ -1,5 +1,7 @@
 <map id="uel_pipeline_t" name="uel_pipeline_t">
-<area shape="rect" id="node1" title="A pipeline is an ordered closure list to be run in sequence." alt="" coords="32,95,145,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,65,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="89,5,197,32"/>
+<area shape="rect" id="Node000001" title="A pipeline is an ordered closure list to be run in sequence." alt="" coords="55,104,155,131"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,104,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,45,72,79,92,103,87,104,67,81,57,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="128,5,184,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,45,129,81,115,105,111,102,124,79,141,48"/>
 </map>

@@ -1,11 +1,26 @@
 <map id="include/uevloop/system/event&#45;loop.h" name="include/uevloop/system/event&#45;loop.h">
-<area shape="rect" id="node1" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="444,5,621,47"/>
-<area shape="rect" id="node2" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="476,363,645,389"/>
-<area shape="rect" id="node3" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="486,273,635,315"/>
-<area shape="rect" id="node4" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="345,95,544,136"/>
-<area shape="rect" id="node9" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="57,95,256,136"/>
-<area shape="rect" id="node5" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="25,191,155,218"/>
-<area shape="rect" id="node6" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="180,184,331,225"/>
-<area shape="rect" id="node8" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="355,191,534,218"/>
-<area shape="rect" id="node7" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="43,273,201,315"/>
+<area shape="rect" id="Node000001" title="Module responsible for running enqueued events and process them accordingly." alt="" coords="408,5,566,48"/>
+<area shape="rect" id="Node000002" href="$closure_8h.html" title="Defines closures, objects that bind functions to creating and calling contexts." alt="" coords="442,368,593,395"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="502,46,531,95,573,183,587,223,599,277,604,299,599,321,582,344,559,362,557,357,578,341,594,319,598,299,594,278,582,225,568,185,526,97,500,51"/>
+<area shape="rect" id="Node000003" href="$linked-list_8h.html" title="Defines a simple implementation of linked lists and functions to manipulate it." alt="" coords="452,277,584,320"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="494,46,507,95,518,141,524,186,524,229,522,263,518,260,519,229,519,187,512,142,502,97,491,51"/>
+<area shape="rect" id="Node000004" href="$system-pools_8h.html" title="A container for the system&#39;s internal pools." alt="" coords="314,96,492,139"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="470,47,435,87,431,83,466,50"/>
+<area shape="rect" id="Node000009" href="$system-queues_8h.html" title="A container for the system&#39;s internal queues." alt="" coords="54,96,232,139"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="405,50,239,94,237,89,409,47"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="520,319,520,354,516,350,516,323"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="443,136,473,158,497,185,513,223,519,263,515,261,508,225,493,188,469,162,443,142"/>
+<area shape="rect" id="Node000005" href="$config_8h.html" title="Central repository of system configuration. This is meant to be edited by the programmer as needed." alt="" coords="25,195,141,221"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="325,142,154,189,143,192,140,188,153,184,328,137"/>
+<area shape="rect" id="Node000006" href="$object-pool_8h.html" title="Defines object pools, arrays of pre&#45;allocated objects for dynamic use." alt="" coords="166,187,299,229"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="361,141,287,182,284,177,365,138"/>
+<area shape="rect" id="Node000008" href="$event_8h.html" title="Defines events and methods to configure events." alt="" coords="323,195,483,221"/>
+<area shape="poly" id="edge9_Node000004_Node000008" title=" " alt="" coords="405,137,405,180,401,178,402,141"/>
+<area shape="rect" id="Node000007" href="$circular-queue_8h.html" title="Defines circular queues, fast and efficient FIFO data structures." alt="" coords="40,277,180,320"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="202,231,152,270,149,266,206,228"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="406,219,417,267,427,293,441,318,461,340,484,360,479,359,457,344,437,322,422,296,412,268,403,224"/>
+<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="420,219,482,268,476,268,419,225"/>
+<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="128,141,102,183,98,181,130,137"/>
+<area shape="poly" id="edge15_Node000009_Node000007" title=" " alt="" coords="70,142,40,161,15,188,8,208,15,228,31,249,52,268,48,270,27,253,10,231,3,208,10,185,37,157,73,137"/>
+<area shape="poly" id="edge13_Node000009_Node000008" title=" " alt="" coords="204,137,354,188,349,191,204,142"/>
 </map>

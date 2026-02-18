@@ -1,5 +1,7 @@
 <map id="uel_autopool_t" name="uel_autopool_t">
-<area shape="rect" id="node1" title="Automatic pools are wrappers to object pools. They manage the acquisition and release cycle from obje..." alt="" coords="67,109,186,136"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,115,32"/>
-<area shape="rect" id="node3" title=" " alt="" coords="139,5,247,32"/>
+<area shape="rect" id="Node000001" title="Automatic pools are wrappers to object pools. They manage the acquisition and release cycle from obje..." alt="" coords="61,125,167,152"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,103,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="54,45,60,74,69,100,80,112,93,125,88,125,76,116,65,103,54,75,52,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="126,5,224,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,45,162,75,148,103,129,127,126,123,144,100,157,73,167,49"/>
 </map>
