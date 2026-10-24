@@ -222,7 +222,27 @@ static char *should_remove_elements(){
     return NULL;
 }
 
+static char *should_clear_endpoints_when_drained(){
+    for(int operation = 0; operation < 3; operation++){
+        uel_llist_t list;
+        uel_llist_init(&list);
+        uel_llist_node_t node = { NULL, NULL };
+        uel_llist_push_head(&list, &node);
+        if(operation == 0) uel_llist_pop_head(&list);
+        else if(operation == 1) uel_llist_pop_tail(&list);
+        else uel_llist_remove(&list, &node);
+        uelt_assert_pointer_null("drained head", list.head);
+        uelt_assert_pointer_null("drained tail", list.tail);
+        uelt_assert_int_zero("drained count", list.count);
+        uel_llist_push_tail(&list, &node);
+        uelt_assert_pointers_equal("reused head", &node, list.head);
+        uelt_assert_pointers_equal("reused tail", &node, list.tail);
+    }
+    return NULL;
+}
+
 char *uel_llist_run_tests(){
+    uelt_run_test("should clear drained endpoints", should_clear_endpoints_when_drained);
     uelt_run_test("should correctly initialise a linked list", should_init_llist);
     uelt_run_test("should push elements to a linked list", should_push_elements);
     uelt_run_test("should pop elements from a linked list", should_pop_elements);

@@ -52,7 +52,6 @@ test: dist/test
 coverage: dist/test
 	mkdir -p coverage
 	LD_LIBRARY_PATH=$(shell pwd)/dist:$(LD_LIBRARY_PATH) ./dist/test
-	gcov test/test.c
 	lcov -c --directory . --output-file coverage/test.info
 	genhtml coverage/test.info --output-directory coverage
 

@@ -23,6 +23,7 @@ struct uel_llist_node{
 };
 
 /** \brief Defines a linked list. If it is empty, head == tail == NULL.
+  * Removing the last node clears both endpoints so the list can be reused.
   * Pushing or popping from both the head or tail is always O(1).
   */
 typedef struct uel_llist uel_llist_t;

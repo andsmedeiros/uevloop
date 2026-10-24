@@ -162,7 +162,7 @@ var searchData=
   ['uel_5fsignal_5frelay_159',['uel_signal_relay',['../structuel__signal__relay.html',1,'']]],
   ['uel_5fsignal_5frelay_5finit_160',['uel_signal_relay_init',['../signal_8h.html#a8eaa68abe3e288c96eb0ae88d244364f',1,'signal.h']]],
   ['uel_5fsignal_5fresolve_5fpromise_161',['uel_signal_resolve_promise',['../signal_8h.html#a1b208dd90b74c52c2775518c242f7c8a',1,'signal.h']]],
-  ['uel_5fsignal_5ft_162',['uel_signal_t',['../signal_8h.html#aaf128d77dc33b78789d69b8f0252bc7f',1,'signal.h']]],
+  ['uel_5fsignal_5ft_162',['uel_signal_t',['../signal_8h.html#a4321d8b0f2c6bc3c0cc143e1bb1d1a2b',1,'signal.h']]],
   ['uel_5fsignal_5funlisten_163',['uel_signal_unlisten',['../signal_8h.html#a3fb31014f6cec7acf29e7de4b66fe531',1,'signal.h']]],
   ['uel_5fsyspools_5facquire_5fevent_164',['uel_syspools_acquire_event',['../system-pools_8h.html#a39359a860eaaa89bf8c30644e7c414d4',1,'system-pools.h']]],
   ['uel_5fsyspools_5facquire_5fllist_5fnode_165',['uel_syspools_acquire_llist_node',['../system-pools_8h.html#a2eee2d06c51448c1afcd95ad793df3e3',1,'system-pools.h']]],
