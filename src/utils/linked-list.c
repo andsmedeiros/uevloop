@@ -34,6 +34,11 @@ void uel_llist_push_tail(uel_llist_t *list, uel_llist_node_t *node){
 uel_llist_node_t *uel_llist_pop_head(uel_llist_t *list){
     if(list->head == NULL) return NULL;
 
+    if(list->head == list->tail){
+        uel_llist_node_t *head = list->head;
+        uel_llist_init(list);
+        return head;
+    }
     uel_llist_node_t *current = list->tail, *head = list->head;
     while(current->next != head && current->next != NULL){
         current = current->next;
@@ -49,6 +54,7 @@ uel_llist_node_t *uel_llist_pop_tail(uel_llist_t *list){
 
     uel_llist_node_t *tail = list->tail;
     list->tail = list->tail->next;
+    if(list->tail == NULL) list->head = NULL;
     list->count--;
     return tail;
 }
@@ -63,6 +69,7 @@ uel_llist_node_t *uel_llist_peek_tail(uel_llist_t *list){
 bool uel_llist_remove(uel_llist_t *list, uel_llist_node_t *node){
     if(node == list->tail){
         list->tail = node->next;
+        if(list->tail == NULL) list->head = NULL;
         list->count--;
         return true;
     }
@@ -71,6 +78,7 @@ bool uel_llist_remove(uel_llist_t *list, uel_llist_node_t *node){
     while(current != NULL){
         if(current->next == node){
             current->next = node->next;
+            if(node == list->head) list->head = current;
             list->count--;
             return true;
         }

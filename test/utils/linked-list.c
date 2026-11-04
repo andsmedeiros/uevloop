@@ -214,11 +214,32 @@ static char *should_remove_elements(){
     uel_llist_remove(&list, &node3);
     uelt_assert_ints_equal("list.count after second removal", 1, list.count);
     uelt_assert_not("list must not contain node3", contains(&list, &node3));
+    uelt_assert_pointers_equal("list.head after second removal", &node1, list.head);
+    uelt_assert_pointers_equal("list.tail after second removal", &node1, list.tail);
 
     uel_llist_remove(&list, &node1);
     uelt_assert_int_zero("list.count after third removal", list.count);
     uelt_assert_not("list must not contain node1", contains(&list, &node1));
 
+    return NULL;
+}
+
+static char *should_clear_endpoints_when_drained(){
+    for(int operation = 0; operation < 3; operation++){
+        uel_llist_t list;
+        uel_llist_init(&list);
+        uel_llist_node_t node = { NULL, NULL };
+        uel_llist_push_head(&list, &node);
+        if(operation == 0) uel_llist_pop_head(&list);
+        else if(operation == 1) uel_llist_pop_tail(&list);
+        else uel_llist_remove(&list, &node);
+        uelt_assert_pointer_null("drained head", list.head);
+        uelt_assert_pointer_null("drained tail", list.tail);
+        uelt_assert_int_zero("drained count", list.count);
+        uel_llist_push_tail(&list, &node);
+        uelt_assert_pointers_equal("reused head", &node, list.head);
+        uelt_assert_pointers_equal("reused tail", &node, list.tail);
+    }
     return NULL;
 }
 
@@ -239,6 +260,7 @@ char *uel_llist_run_tests(){
         "should remove arbitraty elements",
         should_remove_elements
     );
+    uelt_run_test("should clear drained endpoints", should_clear_endpoints_when_drained);
 
     return NULL;
 }

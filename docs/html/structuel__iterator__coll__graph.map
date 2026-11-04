@@ -1,7 +1,7 @@
 <map id="uel_iterator_t" name="uel_iterator_t">
-<area shape="rect" id="Node000001" title="Iterators are data structures that wrap arbitrary collections of data and define ways of enumerating ..." alt="" coords="84,120,180,147"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,141,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,59,127,119,122,120,90,64"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="164,13,219,40"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,53,141,121,137,118,175,54"/>
+<area shape="rect" id="Node000001" title="Iterators are data structures that wrap arbitrary collections of data and define ways of enumerating ..." alt="" coords="34,104,130,131"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,73,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,45,64,79,77,104,72,103,60,81,47,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,5,152,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,45,89,105,85,102,110,47"/>
 </map>
