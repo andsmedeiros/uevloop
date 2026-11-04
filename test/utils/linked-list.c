@@ -214,6 +214,8 @@ static char *should_remove_elements(){
     uel_llist_remove(&list, &node3);
     uelt_assert_ints_equal("list.count after second removal", 1, list.count);
     uelt_assert_not("list must not contain node3", contains(&list, &node3));
+    uelt_assert_pointers_equal("list.head after second removal", &node1, list.head);
+    uelt_assert_pointers_equal("list.tail after second removal", &node1, list.tail);
 
     uel_llist_remove(&list, &node1);
     uelt_assert_int_zero("list.count after third removal", list.count);
@@ -242,7 +244,6 @@ static char *should_clear_endpoints_when_drained(){
 }
 
 char *uel_llist_run_tests(){
-    uelt_run_test("should clear drained endpoints", should_clear_endpoints_when_drained);
     uelt_run_test("should correctly initialise a linked list", should_init_llist);
     uelt_run_test("should push elements to a linked list", should_push_elements);
     uelt_run_test("should pop elements from a linked list", should_pop_elements);
@@ -259,6 +260,7 @@ char *uel_llist_run_tests(){
         "should remove arbitraty elements",
         should_remove_elements
     );
+    uelt_run_test("should clear drained endpoints", should_clear_endpoints_when_drained);
 
     return NULL;
 }
